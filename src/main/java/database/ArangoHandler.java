@@ -2,7 +2,7 @@ package database;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-import models.User;
+import models.Company;
 import com.arangodb.ArangoCollection;
 import com.arangodb.ArangoCursor;
 //import com.arangodb.ArangoDB;
@@ -26,9 +26,9 @@ ArangoDB arangoDB;
     public void disconnect() {
         // TODO
     }
-    public User getUser(){
-        User user = arangoDB.db("myDatabase").collection("myCollection").getDocument("", User.class);
-        return user;
+    public Company getCompany(){
+        Company company = arangoDB.db("Linked-in").collection("Companies").getDocument("", Company.class);
+        return company;
     }
     public static void main(String [] srgs){
 

@@ -1,15 +1,18 @@
+package  models;
 import java.util.Date;
-
+import models.lightPost;
+import  models.lightUser;
+import models.lightJobListing;
 public class Company {
     private String companyName;
-    private int companyID
+    private int companyID;
     private String companyProfilePicture;
     private String adminUserName;
     private int adminUserID;
     private int adminUserIDMongo;
     private String industryType;
     private String companyLocation;
-    private Connection[] relatedConnections;
+    private lightUser[] relatedConnections;
     private String aboutUs;
     private String website;
     private Date yearFounded;
@@ -17,8 +20,8 @@ public class Company {
     private String companytype;
     private int companySize;
     private String[] specialities;
-    private Post[] posts;
-    private Job[] jobListings;
+    private lightPost[] posts;
+    private lightJobListing[] jobListings;
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
@@ -52,7 +55,7 @@ public class Company {
         this.companyLocation = companyLocation;
     }
 
-    public void setRelatedConnections(Connection[] relatedConnections) {
+    public void setRelatedConnections(lightUser[] relatedConnections) {
         this.relatedConnections = relatedConnections;
     }
 
@@ -84,11 +87,11 @@ public class Company {
         this.specialities = specialities;
     }
 
-    public void setPosts(Post[] posts) {
+    public void setPosts(lightPost[] posts) {
         this.posts = posts;
     }
 
-    public void setJobListings(Job[] jobListings) {
+    public void setJobListings(lightJobListing[] jobListings) {
         this.jobListings = jobListings;
     }
 
@@ -125,7 +128,7 @@ public class Company {
         return companyLocation;
     }
 
-    public Connection[] getRelatedConnections() {
+    public lightUser[] getRelatedConnections() {
         return relatedConnections;
     }
 
@@ -157,11 +160,11 @@ public class Company {
         return specialities;
     }
 
-    public Post[] getPosts() {
+    public lightPost[] getPosts() {
         return posts;
     }
 
-    public Job[] getJobListings() {
+    public lightJobListing[] getJobListings() {
         return jobListings;
     }
 }
