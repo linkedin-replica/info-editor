@@ -81,6 +81,7 @@ ArangoDB arangoDB;
         String query = "FOR u IN users\n "+"FILTER u.userId ==  @userID"+"UPDATE u WITH{ Cv:@cv} IN users";
         Map<String, Object> bindVars = new HashMap<String, Object>();
         bindVars.put("userId", userID);
+        bindVars.put("cv",cv);
 
         dbInstance.query(query, bindVars, null, Company.class);
 
@@ -91,6 +92,7 @@ ArangoDB arangoDB;
             String query = "FOR u IN users\n "+"FILTER u.userId ==  @userID"+"UPDATE u WITH{ Cv:@nil} IN users";
             Map<String, Object> bindVars = new HashMap<String, Object>();
             bindVars.put("userId", userID);
+            bindVars.put("nil",nil);
 
            dbInstance.query(query, bindVars, null, Company.class);
 
