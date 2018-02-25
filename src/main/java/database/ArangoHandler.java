@@ -1,8 +1,11 @@
 package database;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import utils.ConfigReader;
+import com.arangodb.ArangoDatabase;
 import models.Company;
 import com.arangodb.ArangoCollection;
 import com.arangodb.ArangoCursor;
@@ -21,6 +24,10 @@ import models.lightUser;
 
 public class ArangoHandler implements DatabaseHandler{
 ArangoDB arangoDB;
+    private ConfigReader config;
+    private ArangoDatabase dbInstance;
+    private ArangoCollection collection;
+    private String collectionName;
 
     public void connect() {
         // TODO
@@ -32,7 +39,7 @@ ArangoDB arangoDB;
         // TODO
     }
     public Company getCompany(String companyID){
-        Company company = arangoDB.db("Linked-in").collection("Companies").getDocument(companyID, Company.class);
+        Company company = collection.getDocument(companyID, Company.class);
 
         return company;
     }
@@ -71,7 +78,7 @@ ArangoDB arangoDB;
         myObject.setKey(userID);
         myObject.addAttribute("cv",cv);
         try {
-            arangoDB.db("Linked-in").collection("Users").updateDocument(userID,myObject);
+            collection.updateDocument(userID,myObject);
         } catch (ArangoDBException e) {
             System.err.println("Failed to Insert cv. " + e.getMessage());
         }
@@ -89,7 +96,18 @@ ArangoDB arangoDB;
         }
 
     }
+    public ArangoHandler()throws IOException {
+
+        config = new ConfigReader("arango_names");
+
+        // init db
+        ArangoDB arangoDriver = DatabaseConnection.getDBConnection().getArangoDriver();
+        collectionName = config.getConfig("collection.notifications.name");
+        dbInstance = arangoDriver.db(config.getConfig("db.name"));
+        collection = dbInstance.collection(collectionName);
+    }
     public static void main(String [] srgs){
 
     }
 }
+
