@@ -1,10 +1,12 @@
 package database;
 import java.util.*;
-
 import models.*;
+import java.io.IOException;
+import utils.ConfigReader;
+import com.arangodb.ArangoDatabase;
+import models.Company;
 import com.arangodb.ArangoCollection;
 import com.arangodb.ArangoCursor;
-//import com.arangodb.ArangoDB;
 import com.arangodb.ArangoDB;
 import com.arangodb.ArangoDBException;
 import com.arangodb.entity.BaseDocument;
@@ -15,20 +17,29 @@ import com.arangodb.velocypack.VPackSlice;
 import com.arangodb.velocypack.exception.VPackException;
 
 public class ArangoHandler implements DatabaseHandler{
-ArangoDB arangoDB;
+
+    ArangoDB arangoDB;
+    private ConfigReader config;
+    private ArangoDatabase dbInstance;
+    private ArangoCollection collection;
+    private String collectionName;
 
     public void connect() {
         // TODO
         arangoDB = new ArangoDB.Builder().build();
     }
 
-  
+
     public void disconnect() {
         // TODO
     }
     public Company getCompany(String companyID){
-        Company company = arangoDB.db("Linked-in").collection("Companies").getDocument(companyID, Company.class);
-        return company;
+        String query = "For t in " + collectionName + " FILTER t.companyId == @companyId RETURN t";
+        Map<String, Object> bindVars = new HashMap<String, Object>();
+        bindVars.put("companyId", companyID);
+        ArangoCursor<Company> cursor = dbInstance.query(query, bindVars, null, Company.class);
+
+        return cursor.next();
     }
     public void updateCompany(String companyName,int companyID,String companyProfilePicture,String adminUserName,int adminUserID,
             int adminUserIDMongo, String industryType,String companyLocation,lightUser[] relatedConnections,String aboutUs, String website,Date yearFounded
@@ -61,100 +72,65 @@ ArangoDB arangoDB;
         }
     }
 
-    public void updateProfile(LinkedHashMap<String, Object> updates, String UserId){
-        String getUserQuery = "FOR t IN @userCollection FILTER t.userId == @userId RETURN t";
-        Map<String, Object> bindVars = new HashMap<>();
-        bindVars.put("userId", UserId);
-        BaseDocument newProfile = arangoDB.db(dbName).collection(userCollection).
-                getDocument(getUserQuery, BaseDocument.class);
-        if(updates.containsKey("firstName"))
-            newProfile.addAttribute("firstName", updates.get("firstName"));
-        if(updates.containsKey("lastName"))
-            newProfile.addAttribute("lastName", updates.get("lastName"));
-        if(updates.containsKey("headline"))
-            newProfile.addAttribute("headline", updates.get("headline"));
-        if(updates.containsKey("personalInfo"))
-            newProfile.addAttribute("personalInfo", updates.get("personalInfo"));
-        if(updates.containsKey("numConnections"))
-            newProfile.addAttribute("numConnections", updates.get("numConnections"));
-        if(updates.containsKey("numFollowers"))
-            newProfile.addAttribute("numFollowers", updates.get("numFollowers"));
-        if(updates.containsKey("summary"))
-            newProfile.addAttribute("summary", updates.get("summary"));
-        if(updates.containsKey("positions"))
-            newProfile.addAttribute("positions", updates.get("positions"));
-        if(updates.containsKey("educations"))
-            newProfile.addAttribute("educations", updates.get("educations"));
-        if(updates.containsKey("imageUrl"))
-            newProfile.addAttribute("imageUrl", updates.get("imageUrl"));
-        if(updates.containsKey("cvUrl"))
-            newProfile.addAttribute("cvUrl", updates.get("cvUrl"));
-        if(updates.containsKey("skills"))
-            newProfile.addAttribute("skills", updates.get("skills"));
-        if(updates.containsKey("friendsList"))
-            newProfile.addAttribute("friendsList", updates.get("friendsList"));
-        if(updates.containsKey("bookmarkedPosts"))
-            newProfile.addAttribute("bookmarkedPosts", updates.get("bookmarkedPosts"));
-        arangoDB.db(dbName).collection(userCollection).updateDocument("bookmarks", l);
 
-    }
-
-
-    public void addSkill(String userID, String Skill){
-        String getUserQuery = "FOR t IN @userCollection FILTER t.userId == @userId RETURN t";
-        Map<String, Object> bindVars = new HashMap<>();
-        bindVars.put("userId", userID);
-        User newProfile = arangoDB.db(dbName).collection(userCollection).
-                getDocument(getUserQuery, User.class);
-        newProfile.getSkills().add(Skill);
-
-
-    }
 
     public void addCV(String userID,String cv){
-        BaseDocument myObject = new BaseDocument();
-        myObject.setKey(userID);
-        myObject.addAttribute("cv",cv);
-        try {
-            arangoDB.db("Linked-in").collection("Users").updateDocument(userID,myObject);
-        } catch (ArangoDBException e) {
-            System.err.println("Failed to Insert cv. " + e.getMessage());
-        }
+        String query = "FOR u IN users\n "+"FILTER u.userId ==  @userID"+"UPDATE u WITH{ Cv:@cv} IN users";
+        Map<String, Object> bindVars = new HashMap<String, Object>();
+        bindVars.put("userId", userID);
+        bindVars.put("cv",cv);
+
+        dbInstance.query(query, bindVars, null, Company.class);
 
     }
 
     public void deleteCV(String userID){
-        BaseDocument myObject = new BaseDocument();
-        myObject.setKey(userID);
-        myObject.addAttribute("cv",null);
-        try {
-            arangoDB.db("Linked-in").collection("Users").updateDocument(userID,myObject);
-        } catch (ArangoDBException e) {
-            System.err.println("Failed to delete cv. " + e.getMessage());
-        }
-
+        String nil= "";
+        String result = "";
+            String query = "FOR u IN users\n "+"FILTER u.userId ==  @userID"+"UPDATE u WITH{ "+result+"Cv:@nil} IN users";
+            Map<String, Object> bindVars = new HashMap<String, Object>();
+            bindVars.put("userId", userID);
+            bindVars.put("nil",nil);
+           dbInstance.query(query, bindVars, null, Company.class);
     }
 
-    /**
+    /*
+    * *
      * Get the profile of the user
      * @param userId : the id of the user
      * @return the queried user profile
      */
 
     public User getUserProfile(String UserID){
+        String UsersCollectionName = config.getConfig("collection.users.name");
+        System.out.println(dbInstance.name());
 
-        String query = "For t in " + collectionName + " FILTER t.userId == @userId RETURN t";
-
-        Map<String, Object> bindVars = new HashMap<>();
+        String query = "For t in " + UsersCollectionName + " FILTER " +
+                "t.userId == @userId" +
+                " RETURN t";
+        Map<String, Object> bindVars = new HashMap<String,Object>();
         bindVars.put("userId", UserID);
-
         // process query
-        ArangoCursor<User> cursor = dbInstance.query(query, bindVars, null, User.class);
+        ArangoCursor<User> cursor =   dbInstance.query(query, bindVars, null, User.class);
 
+        System.out.println(cursor.next().getFirstName() + "dkdmd");
         return cursor.next();
     }
 
-    public static void main(String [] srgs){
 
+
+
+    public ArangoHandler()throws IOException {
+
+        config = new ConfigReader("arango_names");
+
+        // init db
+        ArangoDB arangoDriver = DatabaseConnection.getDBConnection().getArangoDriver();
+        collectionName = config.getConfig("collection.users.name");
+        dbInstance = arangoDriver.db(config.getConfig("db.name"));
+        collection = dbInstance.collection(collectionName);
+    }
+    public static void main(String [] srgs){
     }
 }
+

@@ -1,10 +1,9 @@
 package  infoEditor;
 import  models.Command;
-import models.Company;
 import models.User;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 class GetUserProfileCommamd extends Command{
 

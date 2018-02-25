@@ -7,6 +7,8 @@ public class Education {
     private String endDate;
     private String degree;
 
+    public  Education(){};
+
     public Education(String schoolName, String fieldOfStudy, String startDate, String endDate, String degree) {
         this.schoolName = schoolName;
         this.fieldOfStudy = fieldOfStudy;

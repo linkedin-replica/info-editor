@@ -8,6 +8,8 @@ public class Position {
     private  boolean isCurrent;
     private LightCompany company;
 
+    public Position(){};
+
     public Position(String title, String summary, String startDate, String endDate, boolean isCurrent, LightCompany company) {
         this.title = title;
         this.summary = summary;

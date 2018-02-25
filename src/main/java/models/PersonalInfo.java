@@ -8,6 +8,7 @@ public class PersonalInfo {
     private String dob;
     private  String website;
 
+    public PersonalInfo(){};
 
     public PersonalInfo(String phone, String email, Location location, String dob, String website) {
         this.phone = phone;

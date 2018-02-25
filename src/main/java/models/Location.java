@@ -5,6 +5,8 @@ public class Location {
     private String country;
     private int code;
 
+    public Location(){};
+
     public Location(String address, String country, int code) {
         this.address = address;
         this.country = country;

@@ -8,6 +8,8 @@ public class FriendsList {
     private String imageURL;
     private String headline;
 
+    public FriendsList(){};
+
     public FriendsList(String userId, String firstName, String lastName, String imageURL, String headline) {
         this.userId = userId;
         this.firstName = firstName;

@@ -22,6 +22,8 @@ public  class User {
    private ArrayList<String> bookmarkedPosts;
 
 
+   public User() {};
+
     public User(String userId, String firstName, String lastName, String headline, String industry,
                 PersonalInfo personalInfo, int numConnections, int numFollowers, String summary,
                 ArrayList<Position> positions, ArrayList<Education> educations, String imageUrl,
