@@ -2,8 +2,17 @@ package  models;
 
 public class Company {
     private String companyName;
-    private int companyID;
     private String companyProfilePicture;
+    private String companyID;
+
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    public String getCompanytype() {
+        return companytype;
+    }
+
     private String adminUserName;
     private int adminUserID;
     private String industryType;
@@ -14,7 +23,6 @@ public class Company {
     public Company(String companyName,int companyID,String companyProfilePicture,String adminUserName,int adminUserID,
                    String industryType,String companyLocation,String companytype,String[] posts,String [] lightJobListings) {
         this.companyName = companyName;
-        this.companyID = companyID;
         this.adminUserName=adminUserName;
         this.companyProfilePicture = companyProfilePicture;
         this.adminUserID = adminUserID;
@@ -25,13 +33,13 @@ public class Company {
         this.jobListings = lightJobListings;
 
     }
+    public Company(){
+
+    }
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
-    public void setCompanyID(int companyID) {
-        this.companyID = companyID;
-    }
 
     public void setCompanyProfilePicture(String companyProfilePicture) {
         this.companyProfilePicture = companyProfilePicture;
@@ -71,10 +79,6 @@ public class Company {
     public String getCompanyName() {
 
         return companyName;
-    }
-
-    public int getCompanyID() {
-        return companyID;
     }
 
     public String getCompanyProfilePicture() {
