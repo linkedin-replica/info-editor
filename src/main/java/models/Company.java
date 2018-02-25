@@ -15,14 +15,36 @@ public class Company {
     private lightUser[] relatedConnections;
     private String aboutUs;
     private String website;
-    private Date yearFounded;
+    private String yearFounded;
     private String[] headquarters;
     private String companytype;
     private int companySize;
     private String[] specialities;
     private lightPost[] posts;
     private lightJobListing[] jobListings;
+    public Company(String companyName,int companyID,String companyProfilePicture,String adminUserName,int adminUserID,int adminUserIDMongo,
+                   String industryType,String companyLocation,lightUser[]relatedConnections,String aboutUs,String website,String yearFounded,
+                   String [] headquarters,String companytype,
+                   int companySize,String [] specialities,lightPost[] posts,lightJobListing [] lightJobListings) {
+        this.companyName = companyName;
+        this.companyID = companyID;
+        this.companyProfilePicture = companyProfilePicture;
+        this.adminUserID = adminUserID;
+        this.adminUserIDMongo = adminUserIDMongo;
+        this.industryType = industryType;
+        this.companyLocation = companyLocation;
+        this.relatedConnections = relatedConnections;
+        this.aboutUs = aboutUs;
+        this.website = website;
+        this.yearFounded = yearFounded;
+        this.headquarters = headquarters;
+        this.companytype = companytype;
+        this.companySize = companySize;
+        this.specialities = specialities;
+        this.posts = posts;
+        this.jobListings = lightJobListings;
 
+    }
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
@@ -67,7 +89,7 @@ public class Company {
         this.website = website;
     }
 
-    public void setYearFounded(Date yearFounded) {
+    public void setYearFounded(String yearFounded) {
         this.yearFounded = yearFounded;
     }
 
@@ -140,7 +162,7 @@ public class Company {
         return website;
     }
 
-    public Date getYearFounded() {
+    public String getYearFounded() {
         return yearFounded;
     }
 
