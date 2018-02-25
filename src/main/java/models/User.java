@@ -1,8 +1,10 @@
 package models;
 
 
+import java.util.ArrayList;
+
 public  class User {
-   private  String userId;
+   private String userId;
    private String firstName;
    private String lastName;
    private String headline;
@@ -11,19 +13,20 @@ public  class User {
    private int numConnections;
    private int numFollowers;
    private String summary;
-   private Position[] positions;
-   private Education[] educations;
+   private ArrayList<Position> positions;
+   private ArrayList<Education> educations;
    private String imageUrl;
    private String cvUrl;
-   private String[] skills;
-   private FriendsList[] friendsList;
-   private String[] bookmarkedPosts;
+   private ArrayList<String> skills;
+   private ArrayList<FriendsList> friendsList;
+   private ArrayList<String> bookmarkedPosts;
 
 
     public User(String userId, String firstName, String lastName, String headline, String industry,
                 PersonalInfo personalInfo, int numConnections, int numFollowers, String summary,
-                Position[] positions, Education[] educations, String imageUrl, String cvUrl, String[] skills,
-                FriendsList[] friendsList, String[] bookmarkedPosts) {
+                ArrayList<Position> positions, ArrayList<Education> educations, String imageUrl,
+                String cvUrl, ArrayList<String> skills, ArrayList<FriendsList> friendsList,
+                ArrayList<String> bookmarkedPosts) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -78,11 +81,11 @@ public  class User {
         return summary;
     }
 
-    public Position[] getPositions() {
+    public ArrayList<Position> getPositions() {
         return positions;
     }
 
-    public Education[] getEducations() {
+    public ArrayList<Education> getEducations() {
         return educations;
     }
 
@@ -94,15 +97,15 @@ public  class User {
         return cvUrl;
     }
 
-    public String[] getSkills() {
+    public ArrayList<String> getSkills() {
         return skills;
     }
 
-    public FriendsList[] getFriendsList() {
+    public ArrayList<FriendsList> getFriendsList() {
         return friendsList;
     }
 
-    public String[] getBookmarkedPosts() {
+    public ArrayList<String> getBookmarkedPosts() {
         return bookmarkedPosts;
     }
 
@@ -143,11 +146,11 @@ public  class User {
         this.summary = summary;
     }
 
-    public void setPositions(Position[] positions) {
+    public void setPositions(ArrayList<Position> positions) {
         this.positions = positions;
     }
 
-    public void setEducations(Education[] educations) {
+    public void setEducations(ArrayList<Education> educations) {
         this.educations = educations;
     }
 
@@ -159,15 +162,15 @@ public  class User {
         this.cvUrl = cvUrl;
     }
 
-    public void setSkills(String[] skills) {
+    public void setSkills(ArrayList<String> skills) {
         this.skills = skills;
     }
 
-    public void setFriendsList(FriendsList[] friendsList) {
+    public void setFriendsList(ArrayList<FriendsList> friendsList) {
         this.friendsList = friendsList;
     }
 
-    public void setBookmarkedPosts(String[] bookmarkedPosts) {
+    public void setBookmarkedPosts(ArrayList<String> bookmarkedPosts) {
         this.bookmarkedPosts = bookmarkedPosts;
     }
 }

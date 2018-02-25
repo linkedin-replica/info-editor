@@ -1,9 +1,7 @@
 package database;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import models.Company;
+import java.util.*;
+
+import models.*;
 import com.arangodb.ArangoCollection;
 import com.arangodb.ArangoCursor;
 //import com.arangodb.ArangoDB;
@@ -15,9 +13,6 @@ import com.arangodb.model.AqlQueryOptions;
 import com.arangodb.util.MapBuilder;
 import com.arangodb.velocypack.VPackSlice;
 import com.arangodb.velocypack.exception.VPackException;
-import models.lightJobListing;
-import models.lightPost;
-import models.lightUser;
 
 public class ArangoHandler implements DatabaseHandler{
 ArangoDB arangoDB;
@@ -33,7 +28,6 @@ ArangoDB arangoDB;
     }
     public Company getCompany(String companyID){
         Company company = arangoDB.db("Linked-in").collection("Companies").getDocument(companyID, Company.class);
-
         return company;
     }
     public void updateCompany(String companyName,int companyID,String companyProfilePicture,String adminUserName,int adminUserID,
@@ -66,6 +60,57 @@ ArangoDB arangoDB;
             System.err.println("Failed to update document. " + e.getMessage());
         }
     }
+
+    public void updateProfile(LinkedHashMap<String, Object> updates, String UserId){
+        String getUserQuery = "FOR t IN @userCollection FILTER t.userId == @userId RETURN t";
+        Map<String, Object> bindVars = new HashMap<>();
+        bindVars.put("userId", UserId);
+        BaseDocument newProfile = arangoDB.db(dbName).collection(userCollection).
+                getDocument(getUserQuery, BaseDocument.class);
+        if(updates.containsKey("firstName"))
+            newProfile.addAttribute("firstName", updates.get("firstName"));
+        if(updates.containsKey("lastName"))
+            newProfile.addAttribute("lastName", updates.get("lastName"));
+        if(updates.containsKey("headline"))
+            newProfile.addAttribute("headline", updates.get("headline"));
+        if(updates.containsKey("personalInfo"))
+            newProfile.addAttribute("personalInfo", updates.get("personalInfo"));
+        if(updates.containsKey("numConnections"))
+            newProfile.addAttribute("numConnections", updates.get("numConnections"));
+        if(updates.containsKey("numFollowers"))
+            newProfile.addAttribute("numFollowers", updates.get("numFollowers"));
+        if(updates.containsKey("summary"))
+            newProfile.addAttribute("summary", updates.get("summary"));
+        if(updates.containsKey("positions"))
+            newProfile.addAttribute("positions", updates.get("positions"));
+        if(updates.containsKey("educations"))
+            newProfile.addAttribute("educations", updates.get("educations"));
+        if(updates.containsKey("imageUrl"))
+            newProfile.addAttribute("imageUrl", updates.get("imageUrl"));
+        if(updates.containsKey("cvUrl"))
+            newProfile.addAttribute("cvUrl", updates.get("cvUrl"));
+        if(updates.containsKey("skills"))
+            newProfile.addAttribute("skills", updates.get("skills"));
+        if(updates.containsKey("friendsList"))
+            newProfile.addAttribute("friendsList", updates.get("friendsList"));
+        if(updates.containsKey("bookmarkedPosts"))
+            newProfile.addAttribute("bookmarkedPosts", updates.get("bookmarkedPosts"));
+        arangoDB.db(dbName).collection(userCollection).updateDocument("bookmarks", l);
+
+    }
+
+
+    public void addSkill(String userID, String Skill){
+        String getUserQuery = "FOR t IN @userCollection FILTER t.userId == @userId RETURN t";
+        Map<String, Object> bindVars = new HashMap<>();
+        bindVars.put("userId", userID);
+        User newProfile = arangoDB.db(dbName).collection(userCollection).
+                getDocument(getUserQuery, User.class);
+        newProfile.getSkills().add(Skill);
+
+
+    }
+
     public void addCV(String userID,String cv){
         BaseDocument myObject = new BaseDocument();
         myObject.setKey(userID);
@@ -89,6 +134,26 @@ ArangoDB arangoDB;
         }
 
     }
+
+    /**
+     * Get the profile of the user
+     * @param userId : the id of the user
+     * @return the queried user profile
+     */
+
+    public User getUserProfile(String UserID){
+
+        String query = "For t in " + collectionName + " FILTER t.userId == @userId RETURN t";
+
+        Map<String, Object> bindVars = new HashMap<>();
+        bindVars.put("userId", UserID);
+
+        // process query
+        ArangoCursor<User> cursor = dbInstance.query(query, bindVars, null, User.class);
+
+        return cursor.next();
+    }
+
     public static void main(String [] srgs){
 
     }

@@ -1,6 +1,7 @@
 package database;
 
 import models.Company;
+import models.User;
 
 public interface DatabaseHandler {
     /**
@@ -8,6 +9,8 @@ public interface DatabaseHandler {
      */
     void connect();
      Company getCompany(String companyID);
+     User getUserProfile(String UserID);
+
     /**
      * Send a new notification to the user
      */
