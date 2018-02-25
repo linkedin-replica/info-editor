@@ -1,9 +1,7 @@
 package database;
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
+
 import utils.ConfigReader;
 import com.arangodb.ArangoDatabase;
 import models.Company;
@@ -39,9 +37,15 @@ ArangoDB arangoDB;
         // TODO
     }
     public Company getCompany(String companyID){
-        Company company = collection.getDocument(companyID, Company.class);
+        String query = "For t in " + collectionName + " FILTER t.companyId == @companyId RETURN t";
+        Map<String, Object> bindVars = new HashMap<String, Object>();
+        bindVars.put("companyId", companyID);
 
-        return company;
+        ArangoCursor<Company> cursor = dbInstance.query(query, bindVars, null, Company.class);
+
+
+
+        return cursor.next();
     }
     public void updateCompany(String companyName,int companyID,String companyProfilePicture,String adminUserName,int adminUserID,
             int adminUserIDMongo, String industryType,String companyLocation,lightUser[] relatedConnections,String aboutUs, String website,Date yearFounded
@@ -74,26 +78,24 @@ ArangoDB arangoDB;
         }
     }
     public void addCV(String userID,String cv){
-        BaseDocument myObject = new BaseDocument();
-        myObject.setKey(userID);
-        myObject.addAttribute("cv",cv);
-        try {
-            collection.updateDocument(userID,myObject);
-        } catch (ArangoDBException e) {
-            System.err.println("Failed to Insert cv. " + e.getMessage());
-        }
+        String query = "FOR u IN users\n "+"FILTER u.userId ==  @userID"+"UPDATE u WITH{ Cv:@cv} IN users";
+        Map<String, Object> bindVars = new HashMap<String, Object>();
+        bindVars.put("userId", userID);
+
+        dbInstance.query(query, bindVars, null, Company.class);
 
     }
 
     public void deleteCV(String userID){
-        BaseDocument myObject = new BaseDocument();
-        myObject.setKey(userID);
-        myObject.addAttribute("cv",null);
-        try {
-            arangoDB.db("Linked-in").collection("Users").updateDocument(userID,myObject);
-        } catch (ArangoDBException e) {
-            System.err.println("Failed to delete cv. " + e.getMessage());
-        }
+        String nil= "";
+            String query = "FOR u IN users\n "+"FILTER u.userId ==  @userID"+"UPDATE u WITH{ Cv:@nil} IN users";
+            Map<String, Object> bindVars = new HashMap<String, Object>();
+            bindVars.put("userId", userID);
+
+           dbInstance.query(query, bindVars, null, Company.class);
+
+
+
 
     }
     public ArangoHandler()throws IOException {
