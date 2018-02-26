@@ -72,6 +72,66 @@ public class ArangoHandler implements DatabaseHandler{
         }
     }
 
+//    public void updateProfile(LinkedHashMap<String, Object> updates, String UserId){
+//        String getUserQuery = "FOR t IN @userCollection FILTER t.userId == @userId RETURN t";
+//        Map<String, Object> bindVars = new HashMap<>();
+//        bindVars.put("userId", UserId);
+//        BaseDocument newProfile = arangoDB.db(dbName).collection(userCollection).
+//                getDocument(getUserQuery, BaseDocument.class);
+//        if(updates.containsKey("firstName"))
+//            newProfile.addAttribute("firstName", updates.get("firstName"));
+//        if(updates.containsKey("lastName"))
+//            newProfile.addAttribute("lastName", updates.get("lastName"));
+//        if(updates.containsKey("headline"))
+//            newProfile.addAttribute("headline", updates.get("headline"));
+//        if(updates.containsKey("personalInfo"))
+//            newProfile.addAttribute("personalInfo", updates.get("personalInfo"));
+//        if(updates.containsKey("numConnections"))
+//            newProfile.addAttribute("numConnections", updates.get("numConnections"));
+//        if(updates.containsKey("numFollowers"))
+//            newProfile.addAttribute("numFollowers", updates.get("numFollowers"));
+//        if(updates.containsKey("summary"))
+//            newProfile.addAttribute("summary", updates.get("summary"));
+//        if(updates.containsKey("positions"))
+//            newProfile.addAttribute("positions", updates.get("positions"));
+//        if(updates.containsKey("educations"))
+//            newProfile.addAttribute("educations", updates.get("educations"));
+//        if(updates.containsKey("imageUrl"))
+//            newProfile.addAttribute("imageUrl", updates.get("imageUrl"));
+//        if(updates.containsKey("cvUrl"))
+//            newProfile.addAttribute("cvUrl", updates.get("cvUrl"));
+//        if(updates.containsKey("skills"))
+//            newProfile.addAttribute("skills", updates.get("skills"));
+//        if(updates.containsKey("friendsList"))
+//            newProfile.addAttribute("friendsList", updates.get("friendsList"));
+//        if(updates.containsKey("bookmarkedPosts"))
+//            newProfile.addAttribute("bookmarkedPosts", updates.get("bookmarkedPosts"));
+//        arangoDB.db(dbName).collection(userCollection).updateDocument("bookmarks", l);
+//
+//    }
+
+//
+
+
+    /*
+     * *
+     * Add new skill in the user profile
+     * @param userId : the id of the user and the new skill
+     */
+    public void addSkill(String userID, String Skill){
+        User user = getUserProfile(userID);
+        String UsersCollectionName = config.getConfig("collection.users.name");
+        ArrayList<String>  skills =  user.getSkills();
+        if(skills == null)
+            skills = new ArrayList<String>();
+        skills.add(Skill);
+        String query = "For t in " + UsersCollectionName + " FILTER " +
+                "t.userId == @userId" + " UPDATE t WITH{ skills:@skills} IN users";
+        Map<String, Object> bindVars = new HashMap<String, Object>();
+        bindVars.put("userId", userID);
+        bindVars.put("skills",skills);
+        dbInstance.query(query, bindVars, null, User.class);
+    }
 
 
     public void addCV(String userID,String cv){
@@ -103,7 +163,6 @@ public class ArangoHandler implements DatabaseHandler{
 
     public User getUserProfile(String UserID){
         String UsersCollectionName = config.getConfig("collection.users.name");
-        System.out.println(dbInstance.name());
 
         String query = "For t in " + UsersCollectionName + " FILTER " +
                 "t.userId == @userId" +
@@ -113,7 +172,6 @@ public class ArangoHandler implements DatabaseHandler{
         // process query
         ArangoCursor<User> cursor =   dbInstance.query(query, bindVars, null, User.class);
 
-        System.out.println(cursor.next().getFirstName() + "dkdmd");
         return cursor.next();
     }
 

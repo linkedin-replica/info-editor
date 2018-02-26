@@ -38,8 +38,18 @@ public class ArangoHandlerTest {
         assertEquals("Expected matching first name", "Omar", myUser.getFirstName());
         assertEquals("Expected matching last name", "Radwan", myUser.getLastName());
         assertEquals("Expected matching headline", "Software Engineer at DFKI", myUser.getHeadline());
-        assertEquals("Expected matching skills", 1, myUser.getNumConnections());
+        assertEquals("Expected matching skills", 0, myUser.getNumConnections());
         assertEquals("Expected matching skills", "Ahmed", myUser.getFriendsList().get(0).getFirstName());
+    }
+
+    @Test
+    public void testAddNewSkill() throws IOException {
+          arangoHandler.addSkill("3","ACMER");
+        arangoHandler.addSkill("2","ACMER");
+        User myUser = arangoHandler.getUserProfile("3");
+        User myUser1 = arangoHandler.getUserProfile("2");
+        assertEquals("Expected matching added skill", "ACMER" , myUser.getSkills().get(0));
+        assertEquals("Expected matching skills count", 5 , myUser1.getSkills().size());
 
     }
 

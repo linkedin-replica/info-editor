@@ -10,7 +10,7 @@ public interface DatabaseHandler {
     void connect();
      Company getCompany(String companyID);
      User getUserProfile(String UserID);
-
+     void addSkill(String userID, String Skill);
     /**
      * Send a new notification to the user
      */

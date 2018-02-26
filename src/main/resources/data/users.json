@@ -1,11 +1,16 @@
 [
   {
     "userId": "0",
-    "lastName": "Radwan",
     "firstName": "Omar",
+    "lastName": "Radwan",
     "headline": "Software Engineer at DFKI",
     "industry": "Software",
-    "numConnections" : 1,
+    "skills": [
+      "Python",
+      "Java",
+      "HTML",
+      "CSS"
+    ],
     "friendsList": [
       {
         "userId": "1",
@@ -35,20 +40,23 @@
     "firstName": "Ahmed",
     "lastName": "Soliman",
     "headline": "Junior Data Wrangling Engineer",
-    "industry": "Software"
+    "industry": "Software",
+    "skills": ["Python", "Java", "Software", "NLP"]
   },
   {
     "userId": "2",
     "firstName": "John",
     "lastName": "Bob",
     "headline": "Truck Driver",
-    "industry": "Market"
+    "industry": "Market",
+    "skills": ["License", "Driving Experience"]
   },
   {
     "userId": "3",
     "firstName": "Mark",
     "lastName": "Lopez",
     "headline": "Student",
-    "industry": "N/A"
+    "industry": "N/A",
+    "skills": []
   }
 ]
