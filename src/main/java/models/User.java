@@ -139,6 +139,7 @@ public  class User {
         this.numConnections = numConnections;
     }
 
+
     public void setNumFollowers(String numFollowers) {
         this.numFollowers = numFollowers;
     }

@@ -80,6 +80,7 @@ public class DatabaseSeed {
     }
 
     /**
+<<<<<<< HEAD
      * Insert articles specified in articles.json file to the database collection articles
      *
      * @throws IOException
@@ -129,6 +130,7 @@ public class DatabaseSeed {
     /**
      * Insert jobs specified in jobs.json file to the database collection jobs
      *
+     * Insert jobs specified in jobs.json file to the database collection jobs
      * @throws IOException
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -160,8 +162,8 @@ public class DatabaseSeed {
         for (Object job : jobs) {
             JSONObject jobObject = (JSONObject) job;
             jobDocument = new BaseDocument();
-
 //            jobDocument.addAttribute("JobID", id++);
+            jobDocument.addAttribute("JobID", id++);
             jobDocument.addAttribute("positionName", jobObject.get("positionName"));
             jobDocument.addAttribute("companyName", jobObject.get("companyName"));
             jobDocument.addAttribute("companyId", jobObject.get("companyId"));
@@ -180,7 +182,8 @@ public class DatabaseSeed {
      * @throws IOException
      * @throws SQLException
      */
-    public static void deleteAllJobs() throws ArangoDBException, IOException {
+
+    public static void deleteAllJobs() throws ArangoDBException, IOException{
         String dbName = config.getConfig("db.name");
         String collectionName = config.getConfig("collection.jobs.name");
         try {
@@ -243,6 +246,5 @@ public class DatabaseSeed {
 
         DatabaseConnection.getDBConnection().getArangoDriver().shutdown();
     }
-
 
 }

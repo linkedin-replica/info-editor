@@ -1,5 +1,6 @@
 db.name=Linkedin
 collection.users.name=users
+<<<<<<< HEAD
 collection.recommendations.name=recommendations
 collection.jobs.name=jobs
 collection.articles.name=articles
@@ -7,3 +8,7 @@ weights.like = 1
 weights.comment = 5
 weights.share = 15
 count.trendingArticles = 5
+=======
+collection.users.name=users
+collection.companies.name=companies
+>>>>>>> 8ce68ba6349ef667f6ed77c843800d0aaefaa900
