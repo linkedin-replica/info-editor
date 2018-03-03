@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import models.User;
+
+
 import static org.junit.Assert.assertEquals;
 
 public class ArangoHandlerTest {
@@ -44,18 +46,18 @@ public class ArangoHandlerTest {
 //                        "software1", "cairo", "software", null, null);
         int userId = 12345;
         ArangoHandler arangoHandler = new ArangoHandler();
-        arangoHandler.insertCompany("Microsoft", 14, "profilepicture", "bill gates", 12,
-                "software1", "cairo", "software", new String[1], new String[1],new String[1]);
-        Company companytemp = arangoHandler.getCompany(14 + "");
+        arangoHandler.insertCompany("Microsoft2", "1434", "profilepicture2", "bill gate2s", "1","Cairo",
+                "software1", "cair2o", new String[1],new String[1],null);
+        Company companytemp = arangoHandler.getCompany("1434");
         System.out.println(companytemp.toString());
+        assertEquals("companies name are the same", "Microsoft2", companytemp.getCompanyName());
+        assertEquals("companies profile picture are the same", "profilepicture2",companytemp.getCompanyProfilePicture());
+//        assertEquals("companies admin users are the same","bill gates",companytemp.getAdminUserName());
+        assertEquals("companies admin users names are the same","bill gates",companytemp.getAdminUserName());
         assertEquals("companies name are the same", "Microsoft", companytemp.getCompanyName());
         assertEquals("companies profile picture are the same", "profilepicture",companytemp.getCompanyProfilePicture());
-//        assertEquals("companies admin users are the same","bill gates",companytemp.getAdminUserName());
-//        assertEquals("companies admin users names are the same","bill gates",companytemp.getAdminUserName());
-//        assertEquals("companies name are the same", "Microsoft", companytemp.getCompanyName());
-//        assertEquals("companies profile picture are the same", "profilepicture",companytemp.getCompanyProfilePicture());
-//        assertEquals("companies admin users are the same","bill gates",companytemp.getAdminUserName());
-//        assertEquals("companies admin users names are the same","bill gates",companytemp.getAdminUserName());
+        assertEquals("companies admin users are the same","bill gates",companytemp.getAdminUserName());
+        assertEquals("companies admin users names are the same","bill gates",companytemp.getAdminUserName());
 //    }
     }
 
@@ -75,10 +77,10 @@ public class ArangoHandlerTest {
 
 
 //
-//    @Before
+    @Before
 //    public void initBeforeTest() throws IOException {
 //        arangoDb.createCollection(
-//                config.getArangoConfig("collection.notifications.name")
+//                config.getArangoConfig("collection.companies.name")
 //        );
 //    }
 
@@ -101,7 +103,7 @@ public class ArangoHandlerTest {
 //    @After
 //    public void cleanAfterTest()throws IOException {
 //        arangoDb.collection(
-//                config.getArangoConfig("collection.notifications.name")
+//                config.getArangoConfig("collection.companies.name")
 //        ).drop();
 //    }
 

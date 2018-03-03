@@ -14,16 +14,17 @@ public class Company {
     }
 
     private String adminUserName;
-    private int adminUserID;
+    private String adminUserID;
     private String industryType;
     private String companyLocation;
     private String companytype;
     private String[] posts;
     private String[] jobListings;
-    public Company(String companyName,int companyID,String companyProfilePicture,String adminUserName,int adminUserID,
+    public Company(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,
                    String industryType,String companyLocation,String companytype,String[] posts,String [] lightJobListings) {
         this.companyName = companyName;
         this.adminUserName=adminUserName;
+        this.companyID = companyID;
         this.companyProfilePicture = companyProfilePicture;
         this.adminUserID = adminUserID;
         this.industryType = industryType;
@@ -49,7 +50,7 @@ public class Company {
         this.adminUserName = adminUserName;
     }
 
-    public void setAdminUserID(int adminUserID) {
+    public void setAdminUserID(String adminUserID) {
         this.adminUserID = adminUserID;
     }
 
@@ -89,7 +90,7 @@ public class Company {
         return adminUserName;
     }
 
-    public int getAdminUserID() {
+    public String getAdminUserID() {
         return adminUserID;
     }
 

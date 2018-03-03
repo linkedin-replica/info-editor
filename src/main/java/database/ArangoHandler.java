@@ -1,9 +1,11 @@
 package database;
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.io.IOException;
 import java.util.*;
 
 import com.arangodb.model.DocumentCreateOptions;
+import jdk.internal.util.xml.impl.Pair;
 import models.User;
 import utils.ConfigReader;
 import com.arangodb.ArangoDatabase;
@@ -23,7 +25,9 @@ ArangoDB arangoDB;
     private String collectionName;
 
     public void connect() {
-        // TODO
+        // TODe
+        Point x ;
+        TreeSet<Pair > paur = new TreeSet<Pair>();
         arangoDB = new ArangoDB.Builder().build();
     }
 
@@ -39,32 +43,30 @@ ArangoDB arangoDB;
 //                baseDocument.getAttribute("industryType"),baseDocument.getAttribute("companyLocation"),baseDocument.getAttribute("companyType"),
 //                baseDocument.getAttribute("posts"),baseDocument.getAttribute("jobListings"));
 //        System.out.println("Key: " + baseDocument.getKey());
-        System.out.println("Attribute a: " + baseDocument.getAdminUserName());
-        System.out.println("Attribute b: " + baseDocument.getCompanyName());
+//        System.out.println("AdminUserName: " + baseDocument.getAdminUserName());
+//        System.out.println("adminUser: " + baseDocument.getAdminUserID());
+//        System.out.println("getCompanyID: " + baseDocument.getCompanyID());
+//        System.out.println("getCompanyName: " + baseDocument.getCompanyName());
+//        System.out.println("getJobListings: " + baseDocument.getJobListings());
+//        System.out.println("getIndustryType: " + baseDocument.getIndustryType());
 
 
         return baseDocument;
     }
-    public void insertCompany(String companyName,int companyID,String companyProfilePicture,String adminUserName,int adminUserID, String industryType,String companyLocation
+    public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
             ,String companytype,String[] specialities,String[] posts,String[] jobListings){
 
         BaseDocument myObject = new BaseDocument();
         myObject.setKey(companyID+"");
-        if(companyName!=null)
             myObject.addAttribute("companyName", companyName);
-        if(companyProfilePicture!=null)
+            myObject.addAttribute("companyID", companyID);
             myObject.addAttribute("companyProfilePicture", companyProfilePicture);
-        if(companyLocation!=null)
             myObject.addAttribute("companyLocation", companyLocation);
-        if(companytype==null)
             myObject.addAttribute("companyType", companytype);
-        if(industryType!=null)
+            myObject.addAttribute("adminUserName", adminUserName);
             myObject.addAttribute("industryType", industryType);
-        if(specialities!=null)
             myObject.addAttribute("specatilities",specialities);
-        if(jobListings!=null)
-            myObject.addAttribute("jobListings",jobListings);
-        if(posts!=null)
+            myObject.addAttribute("JobListings",jobListings);
             myObject.addAttribute("posts",posts);
         System.out.println(arangoDB);
         try {
