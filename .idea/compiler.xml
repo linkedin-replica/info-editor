@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="info-editor" />
         <module name="mv" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="info-editor" target="1.5" />
       <module name="mv" target="1.5" />
     </bytecodeTargetLevel>
   </component>
