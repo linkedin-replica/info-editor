@@ -5,6 +5,12 @@
       <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/AddNewSkillCommandTest.java" />
       <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/EditUserProfileCommandTest.java" />
       <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/GetUserProfileCommandTest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/infoEditor/AddNewSkillCommand.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/infoEditor/EditProfileDetailsCommand.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/infoEditor/GetUserProfileCommand.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/AddNewSkillCommandTest.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/EditUserProfileCommandTest.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/GetUserProfileCommandTest.class" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/database/ArangoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/database/ArangoHandler.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseHandler.java" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseHandler.java" />
@@ -17,7 +23,11 @@
       <change beforePath="$PROJECT_DIR$/src/test/java/ArangoHandlerTest.java" afterPath="$PROJECT_DIR$/src/test/java/ArangoHandlerTest.java" />
       <change beforePath="$PROJECT_DIR$/target/classes/database/ArangoHandler.class" afterPath="$PROJECT_DIR$/target/classes/database/ArangoHandler.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/database/DatabaseHandler.class" afterPath="$PROJECT_DIR$/target/classes/database/DatabaseHandler.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/EditProfileDetailsCommamd.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/GetUserProfileCommamd.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/models/Location.class" afterPath="$PROJECT_DIR$/target/classes/models/Location.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/models/Position.class" afterPath="$PROJECT_DIR$/target/classes/models/Position.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/models/User.class" afterPath="$PROJECT_DIR$/target/classes/models/User.class" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ArangoHandlerTest.class" afterPath="$PROJECT_DIR$/target/test-classes/ArangoHandlerTest.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -93,7 +103,7 @@
       <file leaf-file-name="ArangoHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/ArangoHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2774">
+            <state relative-caret-position="1442">
               <caret line="230" column="5" lean-forward="true" selection-start-line="230" selection-start-column="5" selection-end-line="230" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -1156,7 +1166,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/ArangoHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2774">
+        <state relative-caret-position="1442">
           <caret line="230" column="5" lean-forward="true" selection-start-line="230" selection-start-column="5" selection-end-line="230" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
