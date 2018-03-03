@@ -72,43 +72,163 @@ public class ArangoHandler implements DatabaseHandler{
         }
     }
 
-//    public void updateProfile(LinkedHashMap<String, Object> updates, String UserId){
-//        String getUserQuery = "FOR t IN @userCollection FILTER t.userId == @userId RETURN t";
-//        Map<String, Object> bindVars = new HashMap<>();
-//        bindVars.put("userId", UserId);
-//        BaseDocument newProfile = arangoDB.db(dbName).collection(userCollection).
-//                getDocument(getUserQuery, BaseDocument.class);
-//        if(updates.containsKey("firstName"))
-//            newProfile.addAttribute("firstName", updates.get("firstName"));
-//        if(updates.containsKey("lastName"))
-//            newProfile.addAttribute("lastName", updates.get("lastName"));
-//        if(updates.containsKey("headline"))
-//            newProfile.addAttribute("headline", updates.get("headline"));
-//        if(updates.containsKey("personalInfo"))
-//            newProfile.addAttribute("personalInfo", updates.get("personalInfo"));
-//        if(updates.containsKey("numConnections"))
-//            newProfile.addAttribute("numConnections", updates.get("numConnections"));
-//        if(updates.containsKey("numFollowers"))
-//            newProfile.addAttribute("numFollowers", updates.get("numFollowers"));
-//        if(updates.containsKey("summary"))
-//            newProfile.addAttribute("summary", updates.get("summary"));
-//        if(updates.containsKey("positions"))
-//            newProfile.addAttribute("positions", updates.get("positions"));
-//        if(updates.containsKey("educations"))
-//            newProfile.addAttribute("educations", updates.get("educations"));
-//        if(updates.containsKey("imageUrl"))
-//            newProfile.addAttribute("imageUrl", updates.get("imageUrl"));
-//        if(updates.containsKey("cvUrl"))
-//            newProfile.addAttribute("cvUrl", updates.get("cvUrl"));
-//        if(updates.containsKey("skills"))
-//            newProfile.addAttribute("skills", updates.get("skills"));
-//        if(updates.containsKey("friendsList"))
-//            newProfile.addAttribute("friendsList", updates.get("friendsList"));
-//        if(updates.containsKey("bookmarkedPosts"))
-//            newProfile.addAttribute("bookmarkedPosts", updates.get("bookmarkedPosts"));
-//        arangoDB.db(dbName).collection(userCollection).updateDocument("bookmarks", l);
-//
-//    }
+    public void updateProfile(HashMap<String, String> updates, String userID){
+        String UsersCollectionName = config.getConfig("collection.users.name");
+        User user = getUserProfile(userID);
+        PersonalInfo personalInfo = user.getPersonalInfo();
+        if(personalInfo == null)
+            personalInfo = new PersonalInfo();
+        Location location = personalInfo.getLocation();
+        ArrayList<String> bookmarks = user.getBookmarkedPosts();
+        if(bookmarks == null)
+            bookmarks = new ArrayList<String>();
+        if(updates.containsKey("firstName"))
+            user.setFirstName(updates.get("firstName"));
+
+        if(updates.containsKey("lastName"))
+            user.setLastName(updates.get("lastName"));
+
+        if(updates.containsKey("headline"))
+            user.setHeadline(updates.get("headline"));
+        if(updates.containsKey("personalInfo.phone"))
+            personalInfo.setPhone((String)(updates.get("personalInfo.phone")));
+        if(updates.containsKey("personalInfo.email"))
+            personalInfo.setEmail((String)(updates.get("personalInfo.email")));
+
+        if(updates.containsKey("personalInfo.dob"))
+            personalInfo.setDob((String)(updates.get("personalInfo.dob")));
+
+        if(updates.containsKey("personalInfo.location.address"))
+            location.setAddress(updates.get("personalInfo.location.address"));
+
+        if(updates.containsKey("personalInfo.location.country"))
+            location.setCountry(updates.get("personalInfo.location.country"));
+
+        if(updates.containsKey("personalInfo.location.country"))
+            location.setCountry(updates.get("personalInfo.location.country"));
+
+        if(updates.containsKey("personalInfo.location.code"))
+            location.setCountry(updates.get("personalInfo.location.code"));
+
+        personalInfo.setLocation(location);
+        if(updates.containsKey("personalInfo.website"))
+            personalInfo.setWebsite((String)(updates.get("personalInfo.website")));
+
+        user.setPersonalInfo(personalInfo);
+        if(updates.containsKey("numConnections"))
+            user.setNumConnections((String)updates.get("numConnections"));
+        if(updates.containsKey("numFollowers"))
+            user.setNumFollowers((String)updates.get("numFollowers"));
+        if(updates.containsKey("summary"))
+            user.setSummary((String)updates.get("summary"));
+        if(updates.containsKey("imageUrl"))
+            user.setImageUrl((String)updates.get("imageUrl"));
+        if(updates.containsKey("cvUrl"))
+            user.setCvUrl((String)updates.get("cvUrl"));
+        if(updates.containsKey("bookmarkedPosts")) {
+            bookmarks.add((String)updates.get("bookmarkedPosts"));
+            user.setBookmarkedPosts(bookmarks);
+        }
+        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
+    }
+
+    public void updateEducation(HashMap<String, String> updates, String userID){
+        String UsersCollectionName = config.getConfig("collection.users.name");
+        User user = getUserProfile(userID);
+        ArrayList<Education> educations  = user.getEducations();
+        if(educations == null)
+            educations = new ArrayList<Education>();
+        for (Map.Entry<String, String> entry: updates.entrySet()){
+                    String[] values = entry.getKey().split(".");
+                    int idx = Integer.parseInt(values[1]);
+                    HashMap<String, Integer> Types = new HashMap<String, Integer>();
+                    Types.put("schoolName", 1);
+                    Types.put("fieldOfStudy", 2);
+                    Types.put("startDate", 3);
+                    Types.put("endDate", 4);
+                    Types.put("degree", 5);
+                     int type = Types.get(values[0]);
+                     if(educations.get(idx) == null)
+                         educations.set(idx,new Education());
+                    switch (type){
+                        case 1: educations.get(idx).setSchoolName(entry.getKey());break;
+                        case 2: educations.get(idx).setFieldOfStudy(entry.getKey());break;
+                        case 3 : educations.get(idx).setStartDate(entry.getKey());break;
+                        case 4 : educations.get(idx).setEndDate(entry.getKey());break;
+                        case 5: educations.get(idx).setDegree(entry.getKey());
+                        default: break;
+                    }
+        }
+        user.setEducations(educations);
+        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
+    }
+
+    public void UpdatePositions(HashMap<String, String> updates, String userID){
+        String UsersCollectionName = config.getConfig("collection.users.name");
+        User user = getUserProfile(userID);
+        ArrayList<Position> positions  = user.getPositions();
+        if(positions == null)
+            positions = new ArrayList<Position>();
+        for (Map.Entry<String, String> entry: updates.entrySet()){
+            String[] values = entry.getKey().split(".");
+            int idx = Integer.parseInt(values[1]);
+            HashMap<String, Integer> Types = new HashMap<String, Integer>();
+            Types.put("title", 1);
+            Types.put("summary", 2);
+            Types.put("startDate", 3);
+            Types.put("endDate", 4);
+            Types.put("isCurrent", 5);
+            Types.put("companyName", 6);
+            Types.put("companyID", 7);
+            int type = Types.get(values[0]);
+            if(positions.get(idx) == null)
+                positions.set(idx,new Position());
+            switch (type){
+                case 1: positions.get(idx).setTitle(entry.getKey());break;
+                case 2: positions.get(idx).setSummary(entry.getKey());break;
+                case 3 : positions.get(idx).setStartDate(entry.getKey());break;
+                case 4 :  positions.get(idx).setEndDate(entry.getKey());break;
+                case 5: if(entry.getKey().equals("false"))
+                    positions.get(idx).setCurrent(false);
+                else
+                    positions.get(idx).setCurrent(true);
+                    break;
+                case 6: positions.get(idx).setCompanyName(entry.getKey());break;
+                case 7: positions.get(idx).setCompanyID(entry.getKey());break;
+                default: break;
+            }
+        }
+        user.setPositions(positions);
+        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
+    }
+
+    public void UpdateFriendsList(HashMap<String, String> updates, String userID){
+        String UsersCollectionName = config.getConfig("collection.users.name");
+        User user = getUserProfile(userID);
+        ArrayList<FriendsList> friendsLists  = user.getFriendsList();
+        for (Map.Entry<String, String> entry: updates.entrySet()){
+            String[] values = entry.getKey().split(".");
+            int idx = Integer.parseInt(values[1]);
+            HashMap<String, Integer> Types = new HashMap<String, Integer>();
+            Types.put("userId", 1);
+            Types.put("firstName", 2);
+            Types.put("lastName", 3);
+            Types.put("imageURL", 4);
+            Types.put("headline", 5);
+            int type = Types.get(values[0]);
+            switch (type){
+                case 1: friendsLists.get(idx).setUserId(entry.getKey());break;
+                case 2: friendsLists.get(idx).setFirstName(entry.getKey());break;
+                case 3 : friendsLists.get(idx).setLastName(entry.getKey());break;
+                case 4 :  friendsLists.get(idx).setImageURL(entry.getKey());break;
+                case 5: friendsLists.get(idx).setHeadline(entry.getKey());break;
+                default: break;
+            }
+        }
+        user.setFriendsList(friendsLists);
+        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
+
+    }
 
 //
 
@@ -125,12 +245,15 @@ public class ArangoHandler implements DatabaseHandler{
         if(skills == null)
             skills = new ArrayList<String>();
         skills.add(Skill);
-        String query = "For t in " + UsersCollectionName + " FILTER " +
-                "t.userId == @userId" + " UPDATE t WITH{ skills:@skills} IN users";
-        Map<String, Object> bindVars = new HashMap<String, Object>();
-        bindVars.put("userId", userID);
-        bindVars.put("skills",skills);
-        dbInstance.query(query, bindVars, null, User.class);
+        BaseDocument newProfile = new BaseDocument();
+        newProfile.addAttribute("skills", skills);
+//
+//        String query = "For t in " + UsersCollectionName + " FILTER " +
+//                "t.userId == @userId" + " UPDATE t WITH{ skills:@skills} IN users";
+//        Map<String, Object> bindVars = new HashMap<String, Object>();
+//        bindVars.put("userId", userID);
+//        bindVars.put("skills",skills);
+        dbInstance.collection(UsersCollectionName).updateDocument(userID, newProfile);
     }
 
 
@@ -164,24 +287,22 @@ public class ArangoHandler implements DatabaseHandler{
     public User getUserProfile(String UserID){
         String UsersCollectionName = config.getConfig("collection.users.name");
 
-        String query = "For t in " + UsersCollectionName + " FILTER " +
-                "t.userId == @userId" +
-                " RETURN t";
-        Map<String, Object> bindVars = new HashMap<String,Object>();
-        bindVars.put("userId", UserID);
+//        String query = "For t in " + UsersCollectionName + " FILTER " +
+//                "t.userId == @userId" +
+//                " RETURN t";
+//        Map<String, Object> bindVars = new HashMap<String,Object>();
+//        bindVars.put("userId", UserID);
         // process query
-        ArangoCursor<User> cursor =   dbInstance.query(query, bindVars, null, User.class);
-
-        return cursor.next();
+        User UserProfile = dbInstance.collection(UsersCollectionName).getDocument(UserID,
+                User.class);
+        return UserProfile;
     }
 
 
 
 
     public ArangoHandler()throws IOException {
-
         config = new ConfigReader("arango_names");
-
         // init db
         ArangoDB arangoDriver = DatabaseConnection.getDBConnection().getArangoDriver();
         collectionName = config.getConfig("collection.users.name");

@@ -3,6 +3,9 @@ package database;
 import models.Company;
 import models.User;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 public interface DatabaseHandler {
     /**
      * Initiate a connection with the database
@@ -11,9 +14,7 @@ public interface DatabaseHandler {
      Company getCompany(String companyID);
      User getUserProfile(String UserID);
      void addSkill(String userID, String Skill);
-    /**
-     * Send a new notification to the user
-     */
+     void updateProfile(HashMap<String, String> updates, String UserId);
     void addCV(String userID,String cv);
     void deleteCV(String userID);
     void disconnect();

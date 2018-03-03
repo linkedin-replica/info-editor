@@ -3,11 +3,11 @@ package models;
 public class Location {
     private String address;
     private String country;
-    private int code;
+    private String code;
 
     public Location(){};
 
-    public Location(String address, String country, int code) {
+    public Location(String address, String country, String  code) {
         this.address = address;
         this.country = country;
         this.code = code;
@@ -21,7 +21,7 @@ public class Location {
         return country;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
@@ -33,7 +33,7 @@ public class Location {
         this.country = country;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 }

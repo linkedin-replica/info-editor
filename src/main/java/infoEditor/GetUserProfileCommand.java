@@ -5,16 +5,17 @@ import models.User;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-class GetUserProfileCommamd extends Command{
+public class GetUserProfileCommand extends Command{
 
-    public GetUserProfileCommamd(HashMap<String, String> args) {
+    public GetUserProfileCommand(HashMap<String, String> args) {
         super(args);
     }
     public LinkedHashMap<String, Object> execute() {
         // validate that all required arguments are passed
         validateArgs(new String[]{"userId"});
         // get notifications from db
-        User user = dbHandler.getUserProfile("userId");
+        System.out.println(args.get("userId"));
+        User user = dbHandler.getUserProfile(args.get("userId"));
         LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
         result.put("results", user);
         return result;

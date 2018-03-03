@@ -10,8 +10,8 @@ public  class User {
    private String headline;
    private String industry;
    private PersonalInfo personalInfo;
-   private int numConnections;
-   private int numFollowers;
+   private String numConnections;
+   private String numFollowers;
    private String summary;
    private ArrayList<Position> positions;
    private ArrayList<Education> educations;
@@ -24,11 +24,10 @@ public  class User {
 
    public User() {};
 
-    public User(String userId, String firstName, String lastName, String headline, String industry,
-                PersonalInfo personalInfo, int numConnections, int numFollowers, String summary,
-                ArrayList<Position> positions, ArrayList<Education> educations, String imageUrl,
-                String cvUrl, ArrayList<String> skills, ArrayList<FriendsList> friendsList,
-                ArrayList<String> bookmarkedPosts) {
+    public User(String userId, String firstName, String lastName, String headline, String industry, PersonalInfo personalInfo, String numConnections,
+                String numFollowers, String summary, ArrayList<Position> positions, ArrayList<Education> educations,
+                String imageUrl, String cvUrl, ArrayList<String> skills,
+                ArrayList<FriendsList> friendsList, ArrayList<String> bookmarkedPosts) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -71,11 +70,11 @@ public  class User {
         return personalInfo;
     }
 
-    public int getNumConnections() {
+    public String getNumConnections() {
         return numConnections;
     }
 
-    public int getNumFollowers() {
+    public String getNumFollowers() {
         return numFollowers;
     }
 
@@ -136,11 +135,11 @@ public  class User {
         this.personalInfo = personalInfo;
     }
 
-    public void setNumConnections(int numConnections) {
+    public void setNumConnections(String numConnections) {
         this.numConnections = numConnections;
     }
 
-    public void setNumFollowers(int numFollowers) {
+    public void setNumFollowers(String numFollowers) {
         this.numFollowers = numFollowers;
     }
 
