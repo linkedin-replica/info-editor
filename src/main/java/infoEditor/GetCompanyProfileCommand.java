@@ -3,7 +3,6 @@ import database.ArangoHandler;
 import database.DatabaseHandler;
 import  models.Command;
 import models.Company;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -28,5 +27,5 @@ public class GetCompanyProfileCommand extends Command{
         result.put("results", companies);
         return result;
 
-}
+    }
 }
