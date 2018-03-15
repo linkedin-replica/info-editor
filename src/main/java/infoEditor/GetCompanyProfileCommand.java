@@ -15,11 +15,9 @@ public class GetCompanyProfileCommand extends Command{
     }
     public LinkedHashMap<String, Object> execute() throws IOException {
         // validate that all required arguments are passed
+        DatabaseHandler dbHandler = (DatabaseHandler) this.dbHandler;
         validateArgs(new String[]{"companyId"});
         // get notifications from db
-        DatabaseHandler noSqlHandler = (DatabaseHandler) new ArangoHandler();
-
-        this.setDbHandler(noSqlHandler);
         Company companies = dbHandler.getCompany(args.get("companyId"));
 
         LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
