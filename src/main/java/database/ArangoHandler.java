@@ -41,13 +41,14 @@ public class ArangoHandler implements DatabaseHandler{
         // TODO
     }
     public Company getCompany(String companyID){
-
-        Company compnay =dbInstance.collection("jobs").getDocument(companyID,
+        String collectionName = config.getConfig("collection.companies.name");
+//        System.out.println(collectionName);
+        Company company = dbInstance.collection(collectionName).getDocument(companyID,
                 Company.class);
-        return compnay;
+        return company;
     }
     public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
-            ,String companytype,String[] specialities,String[] posts,String[] jobListings){
+            ,String companytype,ArrayList<String> specialities,ArrayList<String> posts,ArrayList<String> jobListings){
             BaseDocument myObject = new BaseDocument();
             myObject.setKey(companyID+"");
             myObject.addAttribute("companyName", companyName);
@@ -61,14 +62,16 @@ public class ArangoHandler implements DatabaseHandler{
             myObject.addAttribute("JobListings",jobListings);
             myObject.addAttribute("posts",posts);
         try {
-            dbInstance.collection("jobs").insertDocument(myObject);
+            dbInstance.collection("companies").insertDocument(myObject);
         } catch (ArangoDBException e) {
             System.err.println("Failed to update document. " + e.getMessage());
         }
     }
-    public void updateCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,int adminUserID, String industryType,String companyLocation
-           ,String companytype, String[]specialities,String[] posts,String[] jobListings){
+    public void updateCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
+           ,String companytype,ArrayList<String>specialities,ArrayList<String> posts,ArrayList<String>jobListings){
+        String collectionName = config.getConfig("collection.companies.name");
         Company company = getCompany(companyID);
+        System.out.println(company.getJobListings().size());
         if(companyName!=null)
         company.setCompanyName(companyName);
         if(companyProfilePicture!=null)
@@ -79,14 +82,12 @@ public class ArangoHandler implements DatabaseHandler{
            company.setCompanytype(companytype);
         if(industryType!=null)
             company.setIndustryType(industryType);
-//        if(specialities.length!=0)
-//            company.se
-//        if(jobListings.length!=0)
-//            myObject.addAttribute("jobListings",jobListings);
-//        if(posts.length!=0)
-//            myObject.addAttribute("posts",posts);
+        if(jobListings!=null&&jobListings.size()!=0)
+           company.updateJobListings(jobListings);
+        if(posts!=null&&posts.size()!=0)
+            company.updatePosts(posts);
         try {
-            dbInstance.collection("Companies").updateDocument(companyID+"", company);
+            dbInstance.collection(collectionName).updateDocument(companyID+"", company);
         } catch (ArangoDBException e) {
             System.err.println("Failed to update document. " + e.getMessage());
         }
@@ -291,7 +292,7 @@ public class ArangoHandler implements DatabaseHandler{
         String UsersCollectionName = config.getConfig("collection.users.name");
         User UserProfile = dbInstance.collection(UsersCollectionName).getDocument(UserID,
                 User.class);
-        System.out.println(UserProfile.getFriendsList().size());
+        System.out.println(UserProfile.getFriendsList().size()+"here");
         return UserProfile;
     }
 

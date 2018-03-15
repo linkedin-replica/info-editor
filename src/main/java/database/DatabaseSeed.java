@@ -173,6 +173,47 @@ public class DatabaseSeed {
         }
     }
 
+    public static void insertCompanies() throws IOException, ClassNotFoundException, SQLException, ParseException {
+
+        ArangoDB arangoDB = DatabaseConnection.getDBConnection().getArangoDriver();
+        String dbName = config.getConfig("db.name");
+        String collectionName = config.getConfig("collection.companies.name");
+
+        try {
+            arangoDB.db(dbName).
+                    createCollection(collectionName);
+
+        } catch (ArangoDBException exception) {
+            //database not found exception
+            if (exception.getErrorNum() == 1228) {
+                arangoDB.createDatabase(dbName);
+                arangoDB.db(dbName).createCollection(collectionName);
+            } else if (exception.getErrorNum() == 1207) { // duplicate name error
+                // NoOP
+            } else {
+                throw exception;
+            }
+        }
+        BaseDocument companyDocument;
+        JSONArray companies = getJSONData("src/main/resources/data/companies.json");
+        for (Object company : companies) {
+            JSONObject companyObject = (JSONObject) company;
+            companyDocument = new BaseDocument();
+            companyDocument.setKey((String)companyObject.get("companyID"));
+            companyDocument.addAttribute("companyName", companyObject.get("companyName"));
+            companyDocument.addAttribute("companyID", companyObject.get("companyID"));
+            companyDocument.addAttribute("companyProfilePicture", companyObject.get("companyProfilePicture"));
+            companyDocument.addAttribute("adminUserName", companyObject.get("adminUserName"));
+            companyDocument.addAttribute("adminUserID", companyObject.get( "adminUserID"));
+            companyDocument.addAttribute("industryType", companyObject.get("industryType"));
+            companyDocument.addAttribute("companyLocation", companyObject.get("companyLocation"));
+            companyDocument.addAttribute("posts",companyObject.get("posts"));
+            companyDocument.addAttribute("jobListings", companyObject.get( "jobListings"));
+            arangoDB.db(dbName).collection(collectionName).insertDocument(companyDocument);
+            System.out.println("New article document insert with key = " + companyDocument.getId());
+
+        }
+    }
     /**
      * Delete jobs collection from the database if it exists
      *
@@ -217,6 +258,18 @@ public class DatabaseSeed {
             }
         }
     }
+    public static void deleteAllCompanies() throws ArangoDBException, IOException{
+        String dbName = config.getConfig("db.name");
+        String collectionName = config.getConfig("collection.companies.name");
+        try {
+            DatabaseConnection.getDBConnection().getArangoDriver().db(dbName).collection(collectionName).drop();
+        } catch(ArangoDBException exception) {
+            if(exception.getErrorNum() == 1228) {
+                System.out.println("Database not found");
+            }
+        }
+    }
+
 
     /**
      * Drop specified database from Arango Driver

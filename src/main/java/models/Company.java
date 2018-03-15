@@ -1,27 +1,20 @@
 package  models;
 
+import java.util.ArrayList;
+
 public class Company {
     private String companyName;
     private String companyProfilePicture;
     private String companyID;
-
-    public String getCompanyID() {
-        return companyID;
-    }
-
-    public String getCompanytype() {
-        return companytype;
-    }
-
     private String adminUserName;
     private String adminUserID;
     private String industryType;
     private String companyLocation;
     private String companytype;
-    private String[] posts;
-    private String[] jobListings;
+    private ArrayList<String> posts;
+    private ArrayList<String> jobListings;
     public Company(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,
-                   String industryType,String companyLocation,String companytype,String[] posts,String [] lightJobListings) {
+                   String industryType,String companyLocation,String companytype,ArrayList<String>posts,ArrayList<String> JobListings) {
         this.companyName = companyName;
         this.adminUserName=adminUserName;
         this.companyID = companyID;
@@ -30,12 +23,11 @@ public class Company {
         this.industryType = industryType;
         this.companyLocation = companyLocation;
         this.companytype = companytype;
-        this.posts = posts;
-        this.jobListings = lightJobListings;
+        this.posts =posts;
+        this.jobListings = JobListings;
 
     }
     public Company(){
-
     }
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
@@ -69,12 +61,29 @@ public class Company {
     }
 
 
-    public void setPosts(String[] posts) {
+    public void updatePosts(ArrayList<String> posts) {
+        this.posts.addAll(posts);
+    }
+    public void updateJobListings(ArrayList<String> jobListings){
+            this.jobListings.addAll(jobListings);
+        }
+    public void setPosts(ArrayList<String>posts){
         this.posts = posts;
     }
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
+    }
 
-    public void setJobListings(String[] jobListings) {
-        this.jobListings = jobListings;
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    public String getCompanytype() {
+        return companytype;
+    }
+
+    public void setJobListings(ArrayList<String> jobListings) {
+        this.jobListings =jobListings;
     }
 
     public String getCompanyName() {
@@ -104,11 +113,11 @@ public class Company {
     }
 
 
-    public String[] getPosts() {
+    public ArrayList<String> getPosts() {
         return posts;
     }
 
-    public String[] getJobListings() {
+    public ArrayList<String> getJobListings() {
         return jobListings;
     }
 }

@@ -16,9 +16,8 @@ public class DeleteCvCommand extends Command{
     public LinkedHashMap<String, Object> execute() throws IOException {
         validateArgs(new String[]{"userId"});
         // get notifications from db
-        DatabaseHandler noSqlHandler = (DatabaseHandler) new ArangoHandler();
-
-        this.setDbHandler(noSqlHandler);
+        DatabaseHandler dbHandler = (DatabaseHandler) this.dbHandler;
+        validateArgs(new String[]{"userId"});
 
         dbHandler.deleteCV(args.get("userId"));
         LinkedHashMap<String, Object>resutls = new LinkedHashMap<String, Object>();

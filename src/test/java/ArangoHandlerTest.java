@@ -8,6 +8,9 @@ import utils.ConfigReader;
 import models.Company;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,7 +26,7 @@ public class ArangoHandlerTest {
     static ConfigReader config;
 
     @BeforeClass
-    public static void init() throws  IOException, org.json.simple.parser.ParseException{
+    public static void init() throws IOException, org.json.simple.parser.ParseException, SQLException, ClassNotFoundException {
         ConfigReader.isTesting = true;
         databaseSeed = new DatabaseSeed();
         config = ConfigReader.getInstance();
@@ -31,7 +34,9 @@ public class ArangoHandlerTest {
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 ConfigReader.getInstance().getArangoConfig("db.name")
         );
+        System.out.println("here");
         databaseSeed.insertUsers();
+        databaseSeed.insertCompanies();
     }
 
 
@@ -45,29 +50,31 @@ public class ArangoHandlerTest {
         assertEquals("Expected matching skills", "Ahmed", myUser.getFriendsList().get(0).getFirstName());
     }
 
-//    @Test
-//    public void testGetCompany() throws IOException {
-//        String collectionName = config.getArangoConfig("collection.companies.name");
-//        long time = System.currentTimeMillis();
-////        Company company =
-////                new Company("Microsoft", 14, "profilepicture", "bill gates", 12,
-////                        "software1", "cairo", "software", null, null);
-//        int userId = 12345;
-//        ArangoHandler arangoHandler = new ArangoHandler();
-//        arangoHandler.insertCompany("Microsoft2", "1434", "profilepicture2", "bill gate2s", "1","Cairo",
-//                "software1", "cair2o", new String[1],new String[1],null);
-//        Company companytemp = arangoHandler.getCompany("1434");
+    @Test
+    public void testGetCompany() throws IOException {
+        String collectionName = config.getArangoConfig("collection.companies.name");
+        Company companytemp = arangoHandler.getCompany("1");
+//        System.out.println(companytemp);
+
+        assertEquals("name should be update",companytemp.getCompanyID(),"1");
+//    }x`
+    }
+    @Test
+    public void testUpdateCompany() throws IOException {
+        String collectionName = config.getArangoConfig("collection.companies.name");
+        ArrayList<String>posts = new ArrayList<String>();
+        posts.add("hello world");
+//        Company companytemp = arangoHandler.getCompany("1");
+//        System.out.println(companytemp);
+       arangoHandler.updateCompany("microsoft3","1",null,null,null,null,null,null,null,posts,null);
+        Company companytemp2 = arangoHandler.getCompany("1");
+
 //        System.out.println(companytemp.toString());
-//        assertEquals("companies name are the same", "Microsoft2", companytemp.getCompanyName());
-//        assertEquals("companies profile picture are the same", "profilepicture2",companytemp.getCompanyProfilePicture());
-////        assertEquals("companies admin users are the same","bill gates",companytemp.getAdminUserName());
-//        assertEquals("companies admin users names are the same","bill gates",companytemp.getAdminUserName());
-//        assertEquals("companies name are the same", "Microsoft", companytemp.getCompanyName());
-//        assertEquals("companies profile picture are the same", "profilepicture",companytemp.getCompanyProfilePicture());
-//        assertEquals("companies admin users are the same","bill gates",companytemp.getAdminUserName());
-//        assertEquals("companies admin users names are the same","bill gates",companytemp.getAdminUserName());
-////    }
-//    }
+    assertEquals("name should be update",companytemp2.getCompanyName(),"microsoft3");
+        assertEquals("name should be update",companytemp2.getPosts().size(),4);
+
+    //    }
+    }
 //
 //    @Test
 //    public void testAddNewSkill() throws IOException {
@@ -79,56 +86,77 @@ public class ArangoHandlerTest {
 //        assertEquals("Expected matching skills count", "ACMER" , myUser1.getSkills().
 //                get(myUser.getSkills().size()));
 //    }
-
-    @Test
-    public void testUpdateProfile() throws IOException {
-        HashMap<String, String> updates = new HashMap<String, String>();
-        updates.put("firstName", "baher");
-        updates.put("lastName", "Abdou");
-        updates.put("numConnections", "7");
-        updates.put("personalInfo.email", "bebo@gmail.com");
-        updates.put("bookmarkedPosts", "udcity course");
-        updates.put("imageUrl", "www.image.com");
-        updates.put("numFollowers", "10");
-        arangoHandler.updateProfile(updates, "0");
-        User myUser = arangoHandler.getUserProfile("0");
-        assertEquals("Expected matching first name", "baher", myUser.getFirstName());
-        assertEquals("Expected matching last name", "Abdou", myUser.getLastName());
-        assertEquals("Expected matching numConnections", "7", myUser.getNumConnections());
-        assertEquals("Expected matching personalInfo Email", "bebo@gmail.com",
-                myUser.getPersonalInfo().getEmail());
-        assertEquals("Expected matching numFollower", "10", myUser.getNumFollowers());
-        assertEquals("Expected matching imageUrl", "www.image.com", myUser.getImageUrl());
-        assertEquals("Expected matching bookmarks", "udcity course", myUser.getBookmarkedPosts().get(0));
-    }
+@Test
+public void testUpdateProfile() throws IOException {
+    HashMap<String, String> updates = new HashMap<String, String>();
+    updates.put("firstName", "baher");
+    updates.put("lastName", "Abdou");
+    updates.put("numConnections", "7");
+    updates.put("personalInfo.email", "bebo@gmail.com");
+    updates.put("bookmarkedPosts", "udcity course");
+    updates.put("imageUrl", "www.image.com");
+    updates.put("numFollowers", "10");
+    arangoHandler.updateProfile(updates, "0");
+    User myUser = arangoHandler.getUserProfile("0");
+    assertEquals("Expected matching first name", "baher", myUser.getFirstName());
+    assertEquals("Expected matching last name", "Abdou", myUser.getLastName());
+    assertEquals("Expected matching numConnections", "7", myUser.getNumConnections());
+    assertEquals("Expected matching personalInfo Email", "bebo@gmail.com",
+            myUser.getPersonalInfo().getEmail());
+    assertEquals("Expected matching numFollower", "10", myUser.getNumFollowers());
+    assertEquals("Expected matching imageUrl", "www.image.com", myUser.getImageUrl());
+    assertEquals("Expected matching bookmarks", "udcity course", myUser.getBookmarkedPosts().get(0));
+}
 
 //    @Test
-//    public void testaddCv() throws IOException {
-//        String collectionName = config.getArangoConfig("collection.users.name");
-//        ArangoHandler arangoHandler = new ArangoHandler();
-//       arangoHandler.addCV(12+"","my cv");
-//       User user = arangoHandler.getUser(12+"");
-//       assertEquals("the two cvs should matches",user.getCvUrl(),"my cv");
-//    }
-//    @Test
-//    public void testDeleteCv() throws IOException {
-//        String collectionName = config.getArangoConfig("collection.users.name");
-//        ArangoHandler arangoHandler = new ArangoHandler();
-//        arangoHandler.deleteCV(12+"");
-//        User user = arangoHandler.getUser(12+"");
-//        assertEquals("the two cvs should matches",user.getCvUrl(),"");
-//    }
+//    public void testUpdateProfile() throws IOException {
+//        HashMap<String, String> updates = new HashMap<String, String>();
+//        updates.put("firstName", "baher");
+//        updates.put("lastName", "Abdou");
+//        updates.put("numConnections", "7");
+//        updates.put("personalInfo.email", "bebo@gmail.com");
+//        updates.put("bookmarkedPosts", "udcity course");
+//        updates.put("imageUrl", "www.image.com");
+//        updates.put("numFollowers", "10");
+//        arangoHandler.updateProfile(updates, "0");
+//        User myUser = arangoHandler.getUserProfile("0");
+//        assertEquals("Expected matching first name", "baher", myUser.getFirstName());
+//        assertEquals("Expected matching last name", "Abdou", myUser.getLastName());
+//        assertEquals("Expected matching numConnections", "7", myUser.getNumConnections());
+//        assertEquals("Expected matching personalInfo Email", "bebo@gmail.com",
+//                myUser.getPersonalInfo().getEmail());
+//        assertEquals("Expected matching numFollower", "10", myUser.getNumFollowers());
+    //        assertEquals("Expected matching imageUrl", "www.image.com", myUser.getImageUrl());
+    //        assertEquals("Expected matching bookmarks", "udcity course", myUser.getBookmarkedPosts().get(0));
+    //    }
+
+    //    @Test
+    //    public void testaddCv() throws IOException {
+    //        String collectionName = config.getArangoConfig("collection.users.name");
+    //        ArangoHandler arangoHandler = new ArangoHandler();
+    //       arangoHandler.addCV(12+"","my cv");
+    //       User user = arangoHandler.getUser(12+"");
+    //       assertEquals("the two cvs should matches",user.getCvUrl(),"my cv");
+    //    }
+    //    @Test
+    //    public void testDeleteCv() throws IOException {
+    //        String collectionName = config.getArangoConfig("collection.users.name");
+    //        ArangoHandler arangoHandler = new ArangoHandler();
+    //        arangoHandler.deleteCV(12+"");
+    //        User user = arangoHandler.getUser(12+"");
+    //        assertEquals("the two cvs should matches",user.getCvUrl(),"");
+    //    }
 
 
-    @Test
-    public void testUpdateProfileEducation() throws IOException {
-        HashMap<String, String> updates = new HashMap<String, String>();
-        updates.put("schoolName#0", "Future");
-        updates.put("fieldOfStudy#1", "Mathmatical");
-        arangoHandler.updateEducation(updates, "0");
-        User myUser = arangoHandler.getUserProfile("0");
-        assertEquals("Expected matching school Name", "Future", myUser.getEducations().get(0).getSchoolName());
-        assertEquals("Expected matching fieldOfStudy", "Mathmatical", myUser.getEducations().get(1).getFieldOfStudy());
+        @Test
+        public void testUpdateProfileEducation() throws IOException {
+            HashMap<String, String> updates = new HashMap<String, String>();
+            updates.put("schoolName#0", "Future");
+            updates.put("fieldOfStudy#1", "Mathmatical");
+            arangoHandler.updateEducation(updates, "0");
+            User myUser = arangoHandler.getUserProfile("0");
+            assertEquals("Expected matching school Name", "Future", myUser.getEducations().get(0).getSchoolName());
+            assertEquals("Expected matching fieldOfStudy", "Mathmatical", myUser.getEducations().get(1).getFieldOfStudy());
     }
 
     @Test
@@ -149,7 +177,8 @@ public class ArangoHandlerTest {
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfig("db.name");
         databaseSeed.deleteAllUsers();
+        databaseSeed.deleteAllCompanies();
     }
-
+//
 
 }

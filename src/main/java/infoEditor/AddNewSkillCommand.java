@@ -16,8 +16,8 @@ import java.util.LinkedHashMap;
     public LinkedHashMap<String, Object> execute() throws IOException {
         // validate that all required arguments are passed
         validateArgs(new String[]{"userId"});
-        DatabaseHandler noSqlHandler = (DatabaseHandler) new ArangoHandler();
-        this.setDbHandler(noSqlHandler);
+        DatabaseHandler dbHandler = (DatabaseHandler) this.dbHandler;
+        validateArgs(new String[]{"userId"});
         // get notifications from db
         dbHandler.addSkill(args.get("userId"),args.get("Skill"));
         LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
