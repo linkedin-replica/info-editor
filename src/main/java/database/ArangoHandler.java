@@ -33,8 +33,6 @@ public class ArangoHandler implements DatabaseHandler{
 
     public void connect() {
         // TODe
-        Point x ;
-        TreeSet<Pair > paur = new TreeSet<Pair>();
         arangoDB = new ArangoDB.Builder().build();
     }
 
@@ -44,27 +42,14 @@ public class ArangoHandler implements DatabaseHandler{
     }
     public Company getCompany(String companyID){
 
-        Company baseDocument =dbInstance.collection("jobs").getDocument(companyID,
+        Company compnay =dbInstance.collection("jobs").getDocument(companyID,
                 Company.class);
-//        new Company(baseDocument.getAttribute("companyName"),Integer.parseInt(companyID),baseDocument.getAttribute("companyProfilePicture"),baseDocument.getAttribute("adminUserName"),baseDocument.getAttribute("adminUserID"),
-//                baseDocument.getAttribute("industryType"),baseDocument.getAttribute("companyLocation"),baseDocument.getAttribute("companyType"),
-//                baseDocument.getAttribute("posts"),baseDocument.getAttribute("jobListings"));
-//        System.out.println("Key: " + baseDocument.getKey());
-//        System.out.println("AdminUserName: " + baseDocument.getAdminUserName());
-//        System.out.println("adminUser: " + baseDocument.getAdminUserID());
-//        System.out.println("getCompanyID: " + baseDocument.getCompanyID());
-//        System.out.println("getCompanyName: " + baseDocument.getCompanyName());
-//        System.out.println("getJobListings: " + baseDocument.getJobListings());
-//        System.out.println("getIndustryType: " + baseDocument.getIndustryType());
-
-
-        return baseDocument;
+        return compnay;
     }
     public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
             ,String companytype,String[] specialities,String[] posts,String[] jobListings){
-
-        BaseDocument myObject = new BaseDocument();
-        myObject.setKey(companyID+"");
+            BaseDocument myObject = new BaseDocument();
+            myObject.setKey(companyID+"");
             myObject.addAttribute("companyName", companyName);
             myObject.addAttribute("companyID", companyID);
             myObject.addAttribute("companyProfilePicture", companyProfilePicture);
@@ -75,34 +60,33 @@ public class ArangoHandler implements DatabaseHandler{
             myObject.addAttribute("specatilities",specialities);
             myObject.addAttribute("JobListings",jobListings);
             myObject.addAttribute("posts",posts);
-        System.out.println(arangoDB);
         try {
             dbInstance.collection("jobs").insertDocument(myObject);
         } catch (ArangoDBException e) {
             System.err.println("Failed to update document. " + e.getMessage());
         }
     }
-    public void updateCompany(String companyName,int companyID,String companyProfilePicture,String adminUserName,int adminUserID, String industryType,String companyLocation
-           ,String companytype,String[] specialities,String[] posts,String[] jobListings){
-        BaseDocument myObject = new BaseDocument();
+    public void updateCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,int adminUserID, String industryType,String companyLocation
+           ,String companytype, String[]specialities,String[] posts,String[] jobListings){
+        Company company = getCompany(companyID);
         if(companyName!=null)
-        myObject.addAttribute("companyName", companyName);
+        company.setCompanyName(companyName);
         if(companyProfilePicture!=null)
-            myObject.addAttribute("companyProfilePicture", companyProfilePicture);
+            company.setCompanyProfilePicture(companyProfilePicture);
         if(companyLocation!=null)
-            myObject.addAttribute("companyLocation", companyLocation);
+            company.setCompanyLocation(companyLocation);
         if(companytype==null)
-            myObject.addAttribute("companyType", companytype);
+           company.setCompanytype(companytype);
         if(industryType!=null)
-            myObject.addAttribute("industryType", industryType);
-        if(specialities.length!=0)
-            myObject.addAttribute("specatilities",specialities);
-        if(jobListings.length!=0)
-            myObject.addAttribute("jobListings",jobListings);
-        if(posts.length!=0)
-            myObject.addAttribute("posts",posts);
+            company.setIndustryType(industryType);
+//        if(specialities.length!=0)
+//            company.se
+//        if(jobListings.length!=0)
+//            myObject.addAttribute("jobListings",jobListings);
+//        if(posts.length!=0)
+//            myObject.addAttribute("posts",posts);
         try {
-            dbInstance.collection("Companies").updateDocument(companyID+"", myObject);
+            dbInstance.collection("Companies").updateDocument(companyID+"", company);
         } catch (ArangoDBException e) {
             System.err.println("Failed to update document. " + e.getMessage());
         }
@@ -174,7 +158,7 @@ public class ArangoHandler implements DatabaseHandler{
         if(educations == null)
             educations = new ArrayList<Education>();
         for (Map.Entry<String, String> entry: updates.entrySet()){
-                    String[] values = entry.getKey().split(".");
+                    String[] values = entry.getKey().split("#");
                     int idx = Integer.parseInt(values[1]);
                     HashMap<String, Integer> Types = new HashMap<String, Integer>();
                     Types.put("schoolName", 1);
@@ -183,14 +167,14 @@ public class ArangoHandler implements DatabaseHandler{
                     Types.put("endDate", 4);
                     Types.put("degree", 5);
                      int type = Types.get(values[0]);
-                     if(educations.get(idx) == null)
-                         educations.set(idx,new Education());
+                     if(educations.size() <= idx)
+                         educations.add(new Education());
                     switch (type){
-                        case 1: educations.get(idx).setSchoolName(entry.getKey());break;
-                        case 2: educations.get(idx).setFieldOfStudy(entry.getKey());break;
-                        case 3 : educations.get(idx).setStartDate(entry.getKey());break;
-                        case 4 : educations.get(idx).setEndDate(entry.getKey());break;
-                        case 5: educations.get(idx).setDegree(entry.getKey());
+                        case 1: educations.get(idx).setSchoolName(entry.getValue());break;
+                        case 2: educations.get(idx).setFieldOfStudy(entry.getValue());break;
+                        case 3 : educations.get(idx).setStartDate(entry.getValue());break;
+                        case 4 : educations.get(idx).setEndDate(entry.getValue());break;
+                        case 5: educations.get(idx).setDegree(entry.getValue());
                         default: break;
                     }
         }
@@ -205,7 +189,7 @@ public class ArangoHandler implements DatabaseHandler{
         if(positions == null)
             positions = new ArrayList<Position>();
         for (Map.Entry<String, String> entry: updates.entrySet()){
-            String[] values = entry.getKey().split(".");
+            String[] values = entry.getKey().split("#");
             int idx = Integer.parseInt(values[1]);
             HashMap<String, Integer> Types = new HashMap<String, Integer>();
             Types.put("title", 1);
@@ -216,20 +200,20 @@ public class ArangoHandler implements DatabaseHandler{
             Types.put("companyName", 6);
             Types.put("companyID", 7);
             int type = Types.get(values[0]);
-            if(positions.get(idx) == null)
-                positions.set(idx,new Position());
+            if(positions.size() <= idx)
+                positions.add(new Position());
             switch (type){
-                case 1: positions.get(idx).setTitle(entry.getKey());break;
-                case 2: positions.get(idx).setSummary(entry.getKey());break;
-                case 3 : positions.get(idx).setStartDate(entry.getKey());break;
-                case 4 :  positions.get(idx).setEndDate(entry.getKey());break;
+                case 1: positions.get(idx).setTitle(entry.getValue());break;
+                case 2: positions.get(idx).setSummary(entry.getValue());break;
+                case 3 : positions.get(idx).setStartDate(entry.getValue());break;
+                case 4 :  positions.get(idx).setEndDate(entry.getValue());break;
                 case 5: if(entry.getKey().equals("false"))
                     positions.get(idx).setCurrent(false);
                 else
                     positions.get(idx).setCurrent(true);
                     break;
-                case 6: positions.get(idx).setCompanyName(entry.getKey());break;
-                case 7: positions.get(idx).setCompanyID(entry.getKey());break;
+                case 6: positions.get(idx).setCompanyName(entry.getValue());break;
+                case 7: positions.get(idx).setCompanyID(entry.getValue());break;
                 default: break;
             }
         }
@@ -241,8 +225,10 @@ public class ArangoHandler implements DatabaseHandler{
         String UsersCollectionName = config.getConfig("collection.users.name");
         User user = getUserProfile(userID);
         ArrayList<FriendsList> friendsLists  = user.getFriendsList();
+        if(friendsLists == null)
+            friendsLists = new ArrayList<FriendsList>();
         for (Map.Entry<String, String> entry: updates.entrySet()){
-            String[] values = entry.getKey().split(".");
+            String[] values = entry.getKey().split("#");
             int idx = Integer.parseInt(values[1]);
             HashMap<String, Integer> Types = new HashMap<String, Integer>();
             Types.put("userId", 1);
@@ -251,12 +237,14 @@ public class ArangoHandler implements DatabaseHandler{
             Types.put("imageURL", 4);
             Types.put("headline", 5);
             int type = Types.get(values[0]);
+            if(friendsLists.size() <= idx)
+                friendsLists.add(new FriendsList());
             switch (type){
-                case 1: friendsLists.get(idx).setUserId(entry.getKey());break;
-                case 2: friendsLists.get(idx).setFirstName(entry.getKey());break;
-                case 3 : friendsLists.get(idx).setLastName(entry.getKey());break;
-                case 4 :  friendsLists.get(idx).setImageURL(entry.getKey());break;
-                case 5: friendsLists.get(idx).setHeadline(entry.getKey());break;
+                case 1: friendsLists.get(idx).setUserId(entry.getValue());break;
+                case 2: friendsLists.get(idx).setFirstName(entry.getValue());break;
+                case 3 : friendsLists.get(idx).setLastName(entry.getValue());break;
+                case 4 :  friendsLists.get(idx).setImageURL(entry.getValue());break;
+                case 5: friendsLists.get(idx).setHeadline(entry.getValue());break;
                 default: break;
             }
         }
@@ -264,9 +252,6 @@ public class ArangoHandler implements DatabaseHandler{
         dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
 
     }
-
-//
-
 
     /*
      * *
@@ -276,37 +261,23 @@ public class ArangoHandler implements DatabaseHandler{
     public void addSkill(String userID, String Skill){
         User user = getUserProfile(userID);
         String UsersCollectionName = config.getConfig("collection.users.name");
-        ArrayList<String>  skills =  user.getSkills();
-        if(skills == null)
-            skills = new ArrayList<String>();
-        skills.add(Skill);
-        BaseDocument newProfile = new BaseDocument();
-        newProfile.addAttribute("skills", skills);
-//
-//        String query = "For t in " + UsersCollectionName + " FILTER " +
-//                "t.userId == @userId" + " UPDATE t WITH{ skills:@skills} IN users";
-//        Map<String, Object> bindVars = new HashMap<String, Object>();
-//        bindVars.put("userId", userID);
-//        bindVars.put("skills",skills);
-        dbInstance.collection(UsersCollectionName).updateDocument(userID, newProfile);
+        user.getSkills().add(Skill);
+        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
     }
 
 
     public void addCV(String userID,String cv){
-        BaseDocument baseDocument = new BaseDocument();
-        baseDocument.addAttribute("cv",cv);
-        dbInstance.collection("users").updateDocument(userID,baseDocument);
-    }
-    public User getUser(String userID){
-        User user = dbInstance.collection("users").getDocument(userID,User.class);
-        return user;
+        String UsersCollectionName = config.getConfig("collection.users.name");
+        User user = getUserProfile(userID);
+        user.setCvUrl(cv);
+        dbInstance.collection(UsersCollectionName).updateDocument(userID,user);
     }
 
     public void deleteCV(String userID) {
-        String nil = "";
-        BaseDocument baseDocument = new BaseDocument();
-        baseDocument.addAttribute("cv", "");
-        dbInstance.collection("users").updateDocument(userID, baseDocument);
+        String UsersCollectionName = config.getConfig("collection.users.name");
+        User user = getUserProfile(userID);
+        user.setCvUrl("");
+        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
     }
 
     /*
@@ -318,15 +289,9 @@ public class ArangoHandler implements DatabaseHandler{
 
     public User getUserProfile(String UserID){
         String UsersCollectionName = config.getConfig("collection.users.name");
-
-//        String query = "For t in " + UsersCollectionName + " FILTER " +
-//                "t.userId == @userId" +
-//                " RETURN t";
-//        Map<String, Object> bindVars = new HashMap<String,Object>();
-//        bindVars.put("userId", UserID);
-        // process query
         User UserProfile = dbInstance.collection(UsersCollectionName).getDocument(UserID,
                 User.class);
+        System.out.println(UserProfile.getFriendsList().size());
         return UserProfile;
     }
 

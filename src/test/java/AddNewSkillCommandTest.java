@@ -35,7 +35,7 @@ public class AddNewSkillCommandTest {
 
 
     @Test
-    public void execute() {
+    public void execute() throws IOException {
         HashMap<String, String> args = new HashMap();
         LinkedHashMap<String, Object> response;
         args.put("userId", "110265");

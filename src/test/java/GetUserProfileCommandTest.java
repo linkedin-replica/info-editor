@@ -2,15 +2,13 @@
 import com.arangodb.ArangoDatabase;
 import database.ArangoHandler;
 import database.DatabaseConnection;
+import database.DatabaseSeed;
 import infoEditor.*;
 import models.Command;
 import models.User;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import utils.ConfigReader;
-
+import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -22,32 +20,39 @@ public class GetUserProfileCommandTest {
     private static Command command;
     private static ArangoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
+    private static DatabaseSeed databaseSeed;
     static ConfigReader config;
 
 
     @BeforeClass
-    public static void init() throws IOException {
+    public static void init() throws IOException, org.json.simple.parser.ParseException {
         ConfigReader.isTesting = true;
         config = ConfigReader.getInstance();
+        databaseSeed = new DatabaseSeed();
         arangoHandler = new ArangoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 ConfigReader.getInstance().getArangoConfig("db.name")
         );
-
+        databaseSeed.insertUsers();
     }
 
     
     @Test
-    public void execute() {
+    public void execute()  throws IOException{
         HashMap<String, String> args = new HashMap();
         LinkedHashMap<String, Object> response;
-        args.put("userId", "110265");
+        args.put("userId", "0");
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
         response = command.execute();
         User myUser = (User) response.get("results");
-        assertEquals("Expected matching first name", "Bebo" , myUser.getFirstName());
-        assertEquals("Expected matching last name", "Abdelmalek" , myUser.getLastName());
-        assertEquals("Expected matching headline", "Student" , myUser.getHeadline());
+        assertEquals("Expected matching first name", "Omar" , myUser.getFirstName());
+        assertEquals("Expected matching last name", "Radwan" , myUser.getLastName());
+        assertEquals("Expected matching headline", "Software Engineer at DFKI" , myUser.getHeadline());
+    }
+    @AfterClass
+    public static void teardown() throws IOException {
+        String dbName = config.getArangoConfig("db.name");
+        databaseSeed.deleteAllUsers();
     }
 }

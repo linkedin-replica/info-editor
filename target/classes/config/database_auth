@@ -1,6 +1,2 @@
 arangodb.user=root
-<<<<<<< HEAD
 arangodb.password=
-=======
-arangodb.password=123
->>>>>>> 8ce68ba6349ef667f6ed77c843800d0aaefaa900

@@ -66,6 +66,7 @@ public class DatabaseSeed {
         for (Object user : users) {
             JSONObject userObject = (JSONObject) user;
             userDocument = new BaseDocument();
+            userDocument.setKey(userObject.get("userId") + "");
             userDocument.addAttribute("userId", userObject.get("userId"));
             userDocument.addAttribute("firstName", userObject.get("firstName"));
             userDocument.addAttribute("lastName", userObject.get("lastName"));
@@ -80,7 +81,6 @@ public class DatabaseSeed {
     }
 
     /**
-<<<<<<< HEAD
      * Insert articles specified in articles.json file to the database collection articles
      *
      * @throws IOException
@@ -216,7 +216,6 @@ public class DatabaseSeed {
                 System.out.println("Database not found");
             }
         }
-        System.out.println("Jobs collection is dropped");
     }
 
     /**
@@ -225,6 +224,7 @@ public class DatabaseSeed {
      * @param dbName Database name to be dropped
      * @throws IOException
      */
+
     public static void dropDatabase(String dbName) throws IOException {
         try {
             DatabaseConnection.getDBConnection().getArangoDriver().db(dbName).drop();
