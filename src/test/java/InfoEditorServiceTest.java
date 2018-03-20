@@ -36,7 +36,7 @@ public class InfoEditorServiceTest {
     @Before
     public void initBeforeTest() throws IOException {
         arangoDb.createCollection(
-                config.getArangoConfig("collection.notifications.name")
+                config.getArangoConfig("collection.companies.name")
         );
     }
 
@@ -45,17 +45,30 @@ public class InfoEditorServiceTest {
         HashMap<String, String> args = new HashMap<String,String>();
         args.put("companyId", "1234");
 
-
-        infoEditorService.serve("", args);
-
-
         args.clear();
-        args.put("userId", "1234");
 
-        LinkedHashMap<String, Object> result = infoEditorService.serve("notifications.all", args);
-         result.get("results");
 
-//        assertEquals("Expected 1 notification" ,1, all.size());
+        args.put("companyId", "110265");
+        args.put("companyName", "MicrosoftUnique");
+        args.put("companyProfilePicture", "http://www.");
+        args.put("adminUserName", "baher");
+        args.put("adminUserID", "11025");
+        args.put("industryType", "Software");
+        args.put("companyLocation", "Beirut");
+        args.put("companyType", "Startup");
+        args.put("posts", "");
+        args.put("specialities", "");
+        args.put("jobListings", "");
+
+        LinkedHashMap<String, Object> resultAddCompany = infoEditorService.serve("company.add", args);
+
+        args.put("companyId", "110265");
+
+
+        LinkedHashMap<String, Object> resultGetCompany = infoEditorService.serve("company.get", args);
+      Company company=(Company)resultGetCompany.get("results");
+
+        assertEquals("The Two companies' UserNames should match" ,company.getCompanyName(), "MicrosoftUnique");
 //
 //
 //        assertEquals("Expected 2 notifications" , 2, all.size());
@@ -65,7 +78,7 @@ public class InfoEditorServiceTest {
     @After
     public void cleanAfterTest() throws IOException {
         arangoDb.collection(
-                config.getArangoConfig("collection.notifications.name")
+                config.getArangoConfig("collection.companies.name")
         ).drop();
     }
 

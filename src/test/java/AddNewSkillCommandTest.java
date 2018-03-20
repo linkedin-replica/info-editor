@@ -1,7 +1,7 @@
 import com.arangodb.ArangoDatabase;
 import database.ArangoHandler;
 import database.DatabaseConnection;
-import infoEditor.*;
+import commands.*;
 import models.Command;
 import models.User;
 import org.junit.BeforeClass;

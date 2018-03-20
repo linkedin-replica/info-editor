@@ -1,4 +1,4 @@
-package infoEditor;
+package commands;
 
 import database.DatabaseHandler;
 import models.Command;

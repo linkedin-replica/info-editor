@@ -1,5 +1,4 @@
-package  infoEditor;
-import database.ArangoHandler;
+package commands;
 import database.DatabaseHandler;
 import  models.Command;
 import models.User;
@@ -8,9 +7,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-class EditProfileDetailsCommand extends Command{
+public class GetUserProfileCommand extends Command{
 
-    public EditProfileDetailsCommand(HashMap<String, String> args) {
+    public GetUserProfileCommand(HashMap<String, String> args) {
         super(args);
     }
     public LinkedHashMap<String, Object> execute()  throws IOException {
@@ -19,9 +18,9 @@ class EditProfileDetailsCommand extends Command{
         DatabaseHandler dbHandler = (DatabaseHandler) this.dbHandler;
         validateArgs(new String[]{"userId"});
         // get notifications from db
-        dbHandler.updateProfile (args, args.get("userId"));
+        User user = dbHandler.getUserProfile(args.get("userId"));
         LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
-        //result.put("results", user);
-       return result;
+        result.put("results", user);
+        return result;
     }
 }

@@ -1,9 +1,6 @@
-package  infoEditor;
-import com.sun.corba.se.impl.logging.InterceptorsSystemException;
-import database.ArangoHandler;
+package commands;
 import database.DatabaseHandler;
 import  models.Command;
-import models.User;
 
 import java.io.IOException;
 import java.util.ArrayList;

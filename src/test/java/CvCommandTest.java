@@ -8,14 +8,11 @@ import org.json.simple.parser.ParseException;
 import org.junit.*;
 import utils.ConfigReader;
 
-import infoEditor.DeleteCvCommand;
-import infoEditor.GetCompanyProfileCommand;
-import infoEditor.AddCvCommand;
+import commands.DeleteCvCommand;
+import commands.AddCvCommand;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
