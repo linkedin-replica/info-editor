@@ -1,11 +1,14 @@
-
 import com.arangodb.ArangoDatabase;
-import database.ArangoHandler;
-import database.DatabaseConnection;
-import database.DatabaseSeed;
-import commands.*;
-import models.Command;
-import models.User;
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
+import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
+import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
+import com.linkedin.replica.editInfo.database.DatabaseConnection;
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
+import com.linkedin.replica.editInfo.commands.impl.GetUserProfileCommand;
+import com.linkedin.replica.editInfo.commands.Command;
+import com.linkedin.replica.editInfo.models.User;
+import com.arangodb.ArangoDatabase;
+
 import org.junit.*;
 import utils.ConfigReader;
 
@@ -18,7 +21,7 @@ import static org.junit.Assert.*;
 public class GetUserProfileCommandTest {
 
     private static Command command;
-    private static ArangoHandler arangoHandler;
+    private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     private static DatabaseSeed databaseSeed;
     static ConfigReader config;
@@ -29,7 +32,7 @@ public class GetUserProfileCommandTest {
         ConfigReader.isTesting = true;
         config = ConfigReader.getInstance();
         databaseSeed = new DatabaseSeed();
-        arangoHandler = new ArangoHandler();
+        arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 ConfigReader.getInstance().getArangoConfig("db.name")
         );

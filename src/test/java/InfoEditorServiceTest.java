@@ -1,14 +1,16 @@
 import com.arangodb.ArangoDatabase;
-import config.Configuration;
-import database.DatabaseConnection;
-import database.DatabaseSeed;
-import models.Company;
-import models.User;
+import com.linkedin.replica.editInfo.config.Configuration;
+import com.linkedin.replica.editInfo.database.DatabaseConnection;
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
+import com.linkedin.replica.editInfo.models.Company;
+import com.linkedin.replica.editInfo.models.User;
 import org.json.simple.parser.ParseException;
 import org.junit.*;
-import services.*;
+import com.linkedin.replica.editInfo.services.*;
 
-
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
+import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
+import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;

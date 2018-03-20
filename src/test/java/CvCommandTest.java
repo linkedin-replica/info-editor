@@ -1,34 +1,42 @@
 import com.arangodb.ArangoDatabase;
-import database.ArangoHandler;
-import database.DatabaseConnection;
-import database.DatabaseSeed;
-import models.Company;
-import models.User;
-import org.json.simple.parser.ParseException;
-import org.junit.*;
-import utils.ConfigReader;
+import com.linkedin.replica.editInfo.commands.impl.AddCvCommand;
+import com.linkedin.replica.editInfo.commands.impl.AddNewSkillCommand;
+import com.linkedin.replica.editInfo.commands.impl.DeleteCvCommand;
+import com.linkedin.replica.editInfo.commands.impl.GetUserProfileCommand;
+import com.linkedin.replica.editInfo.database.DatabaseConnection;
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
+import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
+import com.linkedin.replica.editInfo.models.Company;
+import com.linkedin.replica.editInfo.models.User;
+import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
+import com.linkedin.replica.editInfo.database.DatabaseConnection;
+import com.linkedin.replica.editInfo.commands.*;
+import com.linkedin.replica.editInfo.commands.Command;
+import com.linkedin.replica.editInfo.models.User;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import commands.DeleteCvCommand;
-import commands.AddCvCommand;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
 
 public class CvCommandTest{
-    private static ArangoHandler arangoHandler;
+    private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
-    static ConfigReader config;
+    static utils.ConfigReader config;
     static DatabaseSeed databaseSeed;
     @BeforeClass
-    public static void init() throws IOException, ParseException {
-        ConfigReader.isTesting = true;
-        config = ConfigReader.getInstance();
+    public static void init() throws IOException, ParseException, org.json.simple.parser.ParseException {
+        utils.ConfigReader.isTesting = true;
+        config = utils.ConfigReader.getInstance();
         databaseSeed = new DatabaseSeed();
-        arangoHandler = new ArangoHandler();
+        arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
-                ConfigReader.getInstance().getArangoConfig("db.name")
+                utils.ConfigReader.getInstance().getArangoConfig("db.name")
         );
         databaseSeed.insertUsers();
     }

@@ -1,11 +1,11 @@
 import com.arangodb.ArangoDatabase;
-import database.ArangoHandler;
-import database.DatabaseConnection;
-import database.DatabaseSeed;
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
+import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
+import com.linkedin.replica.editInfo.database.DatabaseConnection;
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
 //import models.testUser;
 import org.junit.*;
 import utils.ConfigReader;
-import models.Company;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
 
@@ -14,13 +14,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import models.User;
+import com.linkedin.replica.editInfo.models.*;
 
 
 import static org.junit.Assert.assertEquals;
 
 public class ArangoHandlerTest {
-    private static ArangoHandler arangoHandler;
+    private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     private static DatabaseSeed databaseSeed;
     static ConfigReader config;
@@ -30,7 +30,7 @@ public class ArangoHandlerTest {
         ConfigReader.isTesting = true;
         databaseSeed = new DatabaseSeed();
         config = ConfigReader.getInstance();
-        arangoHandler = new ArangoHandler();
+        arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 ConfigReader.getInstance().getArangoConfig("db.name")
         );
