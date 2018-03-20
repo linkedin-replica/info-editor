@@ -21,6 +21,7 @@ public interface DatabaseHandler {
     void updateCompany(String companyName, String companyID, String companyProfilePicture, String adminUserName, String adminUserID, String industryType, String companyLocation
             , String companytype, ArrayList<String> specialities, ArrayList<String> posts, ArrayList<String>jobListings);
     void disconnect();
+    void createProfile(HashMap<String, String> profileAttributes, String userID);
     public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
             ,String companytype,ArrayList<String> specialities,ArrayList<String> posts,ArrayList<String> jobListings);
 }

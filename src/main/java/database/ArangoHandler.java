@@ -93,6 +93,48 @@ public class ArangoHandler implements DatabaseHandler{
         }
     }
 
+    public void createProfile(HashMap<String, String> profileAttributes, String userID){
+        String UsersCollectionName = config.getConfig("collection.users.name");
+        BaseDocument user = new BaseDocument();
+        user.setKey(userID);
+        PersonalInfo personalInfo = new PersonalInfo();
+        Location location = new Location();
+        if(profileAttributes.containsKey("firstName"))
+            user.addAttribute("firstName", profileAttributes.get("firstName"));
+        if(profileAttributes.containsKey("lastName"))
+            user.addAttribute("lastName", profileAttributes.get("lastName"));
+        if(profileAttributes.containsKey("headline"))
+            user.addAttribute("headline", profileAttributes.get("headline"));
+        if(profileAttributes.containsKey("personalInfo.phone"))
+            personalInfo.setPhone((String)(profileAttributes.get("personalInfo.phone")));
+        if(profileAttributes.containsKey("personalInfo.email"))
+            personalInfo.setEmail((String)(profileAttributes.get("personalInfo.email")));
+        if(profileAttributes.containsKey("personalInfo.dob"))
+            personalInfo.setDob((String)(profileAttributes.get("personalInfo.dob")));
+        if(profileAttributes.containsKey("personalInfo.location.address"))
+            location.setAddress(profileAttributes.get("personalInfo.location.address"));
+        if(profileAttributes.containsKey("personalInfo.location.country"))
+            location.setCountry(profileAttributes.get("personalInfo.location.country"));
+        if(profileAttributes.containsKey("personalInfo.location.country"))
+            location.setCountry(profileAttributes.get("personalInfo.location.country"));
+        if(profileAttributes.containsKey("personalInfo.location.code"))
+            location.setCountry(profileAttributes.get("personalInfo.location.code"));
+        personalInfo.setLocation(location);
+        if(profileAttributes.containsKey("personalInfo.website"))
+            personalInfo.setWebsite((String)(profileAttributes.get("personalInfo.website")));
+        user.addAttribute("personalInfo", personalInfo);
+        if(profileAttributes.containsKey("numConnections"))
+            user.addAttribute("numConnections", (String)profileAttributes.get("numConnections"));
+        if(profileAttributes.containsKey("numFollowers"))
+            user.addAttribute("numFollowers", (String)profileAttributes.get("numFollowers"));
+        if(profileAttributes.containsKey("summary"))
+            user.addAttribute("summary", (String)profileAttributes.get("summary"));
+        if(profileAttributes.containsKey("imageUrl"))
+            user.addAttribute("imageUrl", (String)profileAttributes.get("imageUrl"));
+        if(profileAttributes.containsKey("cvUrl"))
+            user.addAttribute("cvUrl", (String)profileAttributes.get("cvUrl"));
+        dbInstance.collection(UsersCollectionName).insertDocument(user);
+    }
     public void updateProfile(HashMap<String, String> updates, String userID){
         String UsersCollectionName = config.getConfig("collection.users.name");
         User user = getUserProfile(userID);
