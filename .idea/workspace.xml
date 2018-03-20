@@ -2,75 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14dbcbf3-a1ec-4f58-b44a-c5e1b4ac00e3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/AddCompanyCommand.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/UpdateCompanyCommand.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/config/Configuration.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/data/companies.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/AddCompanyCommandTest.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/InfoEditorServiceTest.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/UpdateCompanyCommandTest.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/getCompanyCommandTest.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/commands/AddCompanyCommand.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/commands/AddCvCommand.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/commands/AddNewSkillCommand.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/commands/DeleteCvCommand.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/commands/EditProfileDetailsCommand.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/commands/GetCompanyProfileCommand.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/commands/GetUserProfileCommand.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/commands/UpdateCompanyCommand.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/config/Configuration.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/data/companies.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/AddCompanyCommandTest.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/InfoEditorServiceTest.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/UpdateCompanyCommandTest.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/target/test-classes/getCompanyCommandTest.class" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/info-editor.iml" afterPath="$PROJECT_DIR$/info-editor.iml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/ArangoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/database/ArangoHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseConnection.java" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseConnection.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseHandler.java" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseSeed.java" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseSeed.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/AddCvCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/AddCvCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/AddNewSkillCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/AddNewSkillCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/DeleteCvCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/DeleteCvCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/EditProfileDetailsCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/EditProfileDetailsCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/GetCompanyProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/GetCompanyProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/GetUserProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/GetUserProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Company.java" afterPath="$PROJECT_DIR$/src/main/java/models/Company.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/arango.config" afterPath="$PROJECT_DIR$/src/main/resources/config/arango.config" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/arango.test.config" afterPath="$PROJECT_DIR$/src/main/resources/config/arango.test.config" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/commands.config" afterPath="$PROJECT_DIR$/src/main/resources/config/commands.config" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/database_auth" afterPath="$PROJECT_DIR$/src/main/resources/config/database_auth" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AddNewSkillCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/AddNewSkillCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ArangoHandlerTest.java" afterPath="$PROJECT_DIR$/src/test/java/ArangoHandlerTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CompanyServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/CompanyServiceTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CreateProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/CreateProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CvCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/CvCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EditUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/EditUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GetUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/GetUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/InfoEditorService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/arango.config" afterPath="$PROJECT_DIR$/target/classes/config/arango.config" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/arango.test.config" afterPath="$PROJECT_DIR$/target/classes/config/arango.test.config" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/commands.config" afterPath="$PROJECT_DIR$/target/classes/config/commands.config" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/database_auth" afterPath="$PROJECT_DIR$/target/classes/config/database_auth" />
-      <change beforePath="$PROJECT_DIR$/target/classes/database/ArangoHandler.class" afterPath="$PROJECT_DIR$/target/classes/database/ArangoHandler.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/database/DatabaseConnection.class" afterPath="$PROJECT_DIR$/target/classes/database/DatabaseConnection.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/database/DatabaseHandler.class" afterPath="$PROJECT_DIR$/target/classes/database/DatabaseHandler.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/database/DatabaseSeed.class" afterPath="$PROJECT_DIR$/target/classes/database/DatabaseSeed.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/AddCvCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/AddNewSkillCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/DeleteCvCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/EditProfileDetailsCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/GetCompanyProfileCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/GetUserProfileCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/models/Company.class" afterPath="$PROJECT_DIR$/target/classes/models/Company.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/AddNewSkillCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/AddNewSkillCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ArangoHandlerTest.class" afterPath="$PROJECT_DIR$/target/test-classes/ArangoHandlerTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/CompanyServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/CompanyServiceTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/CreateProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/CreateProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/CvCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/CvCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/EditUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/EditUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/GetUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/GetUserProfileCommandTest.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,12 +14,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ArangoHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ArangoHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/ArangoHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
+            <state relative-caret-position="4900">
               <caret line="343" column="0" lean-forward="false" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateProfileCommand.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/commands/CreateProfileCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#330#331#0" expanded="true" />
+                <element signature="e#357#358#0" expanded="true" />
+                <element signature="e#779#795#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,6 +91,13 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -158,6 +112,7 @@
         <option value="$PROJECT_DIR$/src/main/java/database/ArangoHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/DatabaseHandler.java" />
         <option value="$PROJECT_DIR$/src/test/java/CreateProfileCommandTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/commands/CreateProfileCommand.java" />
       </list>
     </option>
   </component>
@@ -456,6 +411,9 @@
     <history-entry file="InfoEditorServiceTest - 2018.03.20 at 16h 39m 06s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 16h 39m 08s.xml">
+      <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="293" y="53" width="1853" height="1055" extended-state="6" />
@@ -470,7 +428,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -555,9 +513,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/ArangoHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
+        <state relative-caret-position="4900">
           <caret line="343" column="0" lean-forward="false" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/commands/CreateProfileCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#330#331#0" expanded="true" />
+            <element signature="e#357#358#0" expanded="true" />
+            <element signature="e#779#795#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
