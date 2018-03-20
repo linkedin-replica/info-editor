@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-class EditProfileDetailsCommand extends Command{
+public class EditProfileDetailsCommand extends Command{
 
     public EditProfileDetailsCommand(HashMap<String, String> args) {
         super(args);

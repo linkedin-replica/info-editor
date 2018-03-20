@@ -53,7 +53,6 @@ static DatabaseSeed databaseSeed;
 
         args.clear();
 
-
         args.put("companyId", "110265");
         args.put("companyName", "MicrosoftUnique");
         args.put("companyProfilePicture", "http://www.");
@@ -67,7 +66,7 @@ static DatabaseSeed databaseSeed;
         args.put("jobListings", "");
 
         LinkedHashMap<String, Object> resultAddCompany = infoEditorService.serve("company.add", args);
-args.clear();
+        args.clear();
         args.put("companyId", "110265");
 
 
@@ -101,38 +100,26 @@ args.clear();
     @Test
     public void testinfoEditorServiceUser() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
         HashMap<String, String> args = new HashMap<String,String>();
-        args.put("companyId", "1234");
-
+        args.put("userId", "0");
+        LinkedHashMap<String, Object> resultProfile = infoEditorService.serve("user.get", args);
+        User user=(User)resultProfile.get("results");
+        assertEquals("The user first names match" ,user.getFirstName(), "Omar");
+        assertEquals("The user last names match" ,user.getLastName(), "Radwan");
         args.clear();
-
-
         args.put("userId", "0");
-       args.put("cv","mynewCv");
-
-        LinkedHashMap<String, Object> resultAddCompany = infoEditorService.serve("user.cv.add", args);
-
-        args.put("userId", "0");
-
-
-        LinkedHashMap<String, Object> resultGetCompany = infoEditorService.serve("user.get", args);
-        User user=(User)resultGetCompany.get("results");
-
-        assertEquals("The Two companies' Cvs should match" ,user.getCvUrl(), "mynewCv");
-
-
+        args.put("Skill", "C++");
+        resultProfile = infoEditorService.serve("user.add.skill", args);
+        resultProfile = infoEditorService.serve("user.get", args);
+        user=(User)resultProfile.get("results");
+        assertEquals("The added skill matched" ,user.getSkills().get(4), "C++");
         args.clear();
-
-
         args.put("userId", "0");
+        args.put("headline", "ACMER");
+        resultProfile = infoEditorService.serve("user.update", args);
+        resultProfile = infoEditorService.serve("user.get", args);
+        user=(User)resultProfile.get("results");
+        assertEquals("The headline is updated" , user.getHeadline(), "ACMER");
 
-        LinkedHashMap<String, Object> resultUpdateCompany = infoEditorService.serve("user.cv.delete", args);
-
-
-
-        LinkedHashMap<String, Object> resultGetCompany2 = infoEditorService.serve("user.get", args);
-        user=(User)resultGetCompany2.get("results");
-
-        assertEquals("The Two users' Cvs should match" ,user.getCvUrl(), "");
 
 
 
@@ -140,7 +127,7 @@ args.clear();
     }
     @After
     public void cleanAfterTest() throws IOException {
-        databaseSeed.deleteAllUsers();  
+        databaseSeed.deleteAllUsers();
 
 
     }
