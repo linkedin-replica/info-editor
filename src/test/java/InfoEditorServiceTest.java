@@ -69,6 +69,29 @@ public class InfoEditorServiceTest {
       Company company=(Company)resultGetCompany.get("results");
 
         assertEquals("The Two companies' UserNames should match" ,company.getCompanyName(), "MicrosoftUnique");
+
+
+        args.clear();
+
+
+        args.put("companyId", "110265");
+        args.put("companyName", "MicrosoftUnique2");
+        args.put("companyProfilePicture", "http://www.adsf221");
+
+        LinkedHashMap<String, Object> resultUpdateCompany = infoEditorService.serve("company.update", args);
+
+        args.put("companyId", "110265");
+
+
+        LinkedHashMap<String, Object> resultGetCompany2 = infoEditorService.serve("company.get", args);
+        Company companyUpdate=(Company)resultGetCompany2.get("results");
+
+        assertEquals("The Two companies' UserNames should match" ,companyUpdate.getCompanyName(), "MicrosoftUnique2");
+        assertEquals("The Two companies' UserProfilePicture should match" ,companyUpdate.getCompanyProfilePicture(), "http://www.adsf221");
+
+
+
+
 //
 //
 //        assertEquals("Expected 2 notifications" , 2, all.size());

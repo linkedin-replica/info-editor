@@ -59,7 +59,7 @@ public class ArangoHandler implements DatabaseHandler{
             myObject.addAttribute("adminUserName", adminUserName);
             myObject.addAttribute("industryType", industryType);
             myObject.addAttribute("specatilities",specialities);
-            myObject.addAttribute("JobListings",jobListings);
+            myObject.addAttribute("jobListings",jobListings);
             myObject.addAttribute("posts",posts);
         try {
             dbInstance.collection("companies").insertDocument(myObject);
@@ -71,7 +71,7 @@ public class ArangoHandler implements DatabaseHandler{
            ,String companytype,ArrayList<String>specialities,ArrayList<String> posts,ArrayList<String>jobListings){
         String collectionName = config.getConfig("collection.companies.name");
         Company company = getCompany(companyID);
-        System.out.println(company.getJobListings().size());
+        System.out.println(company.getPosts());
         if(companyName!=null)
         company.setCompanyName(companyName);
         if(companyProfilePicture!=null)
