@@ -2,43 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cb6207f-229b-4cc7-bc4f-e93a1e10a0a4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/AddCompanyCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/AddCompanyCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/AddCvCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/AddCvCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/AddNewSkillCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/AddNewSkillCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/DeleteCvCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/DeleteCvCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/EditProfileDetailsCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/EditProfileDetailsCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/GetCompanyProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/GetCompanyProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/GetUserProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/GetUserProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/infoEditor/UpdateCompanyCommand.java" afterPath="$PROJECT_DIR$/src/main/java/commands/UpdateCompanyCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/commands.config" afterPath="$PROJECT_DIR$/src/main/resources/config/commands.config" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AddCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/AddCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AddNewSkillCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/AddNewSkillCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CompanyServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/CompanyServiceTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CvCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/CvCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EditUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/EditUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GetUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/GetUserProfileCommandTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/ArangoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/database/ArangoHandler.java" />
       <change beforePath="$PROJECT_DIR$/src/test/java/InfoEditorServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/InfoEditorServiceTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UpdateCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/UpdateCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/getCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/getCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/commands.config" afterPath="$PROJECT_DIR$/target/classes/config/commands.config" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/AddCompanyCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/AddCvCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/AddNewSkillCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/DeleteCvCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/EditProfileDetailsCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/GetCompanyProfileCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/GetUserProfileCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/infoEditor/UpdateCompanyCommand.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/AddCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/AddCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/AddNewSkillCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/AddNewSkillCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/CompanyServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/CompanyServiceTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/CvCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/CvCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/EditUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/EditUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/GetUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/GetUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/InfoEditorServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/InfoEditorServiceTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/UpdateCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/UpdateCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/getCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/getCompanyCommandTest.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,6 +15,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ArangoHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/database/ArangoHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="61" column="36" lean-forward="false" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Company.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/models/Company.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+              <folding>
+                <element signature="e#2124#2125#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AddCompanyCommandTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/AddCompanyCommandTest.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -63,8 +50,8 @@
       <file leaf-file-name="InfoEditorServiceTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/InfoEditorServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="71" column="2" lean-forward="true" selection-start-line="71" selection-start-column="2" selection-end-line="71" selection-end-column="2" />
+            <state relative-caret-position="554">
+              <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="110" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,31 +82,11 @@
       <file leaf-file-name="InfoEditorService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/services/InfoEditorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="441">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.config" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.config">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arango.config" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="25" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -134,21 +101,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompanyServiceTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/CompanyServiceTest.java">
+      <file leaf-file-name="UpdateCompanyCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/commands/UpdateCompanyCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="306">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CvCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/CvCommandTest.java">
+      <file leaf-file-name="CompanyServiceTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/CompanyServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-287">
-              <caret line="25" column="10" lean-forward="false" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+            <state relative-caret-position="36">
+              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -203,12 +170,12 @@
         <option value="$PROJECT_DIR$/src/test/java/InfoEditorService.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/DatabaseConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/DatabaseHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/ArangoHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/infoEditor/AddCompanyCommand.java" />
         <option value="$PROJECT_DIR$/src/test/java/AddCompanyCommandTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/infoEditor/DeleteCvCommand.java" />
         <option value="$PROJECT_DIR$/src/test/java/CvCommandTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/commands.config" />
+        <option value="$PROJECT_DIR$/src/main/java/database/ArangoHandler.java" />
         <option value="$PROJECT_DIR$/src/test/java/InfoEditorServiceTest.java" />
       </list>
     </option>
@@ -574,34 +541,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 03m 41s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 41m 24s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 04m 21s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 42m 18s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 05m 00s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 43m 11s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 05m 41s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 45m 32s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 06m 45s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 45m 51s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 07m 42s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 47m 44s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 08m 16s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 48m 18s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 09m 39s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 48m 42s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 09m 52s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 48m 53s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 09m 53s.xml">
+    <history-entry file="InfoEditorServiceTest - 2018.03.20 at 14h 48m 55s.xml">
       <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -651,9 +618,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3630">
           <caret line="242" column="52" lean-forward="false" selection-start-line="242" selection-start-column="52" selection-end-line="242" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -785,43 +750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/models/Company.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="85" column="37" lean-forward="false" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
-          <folding>
-            <element signature="e#1958#1959#0" expanded="false" />
-            <element signature="e#1998#1999#0" expanded="false" />
-            <element signature="e#2064#2065#0" expanded="false" />
-            <element signature="e#2124#2125#0" expanded="false" />
-            <element signature="e#2174#2175#0" expanded="false" />
-            <element signature="e#2208#2209#0" expanded="false" />
-            <element signature="e#2257#2258#0" expanded="false" />
-            <element signature="e#2299#2300#0" expanded="false" />
-            <element signature="e#2335#2336#0" expanded="false" />
-            <element signature="e#2367#2368#0" expanded="false" />
-            <element signature="e#2405#2406#0" expanded="false" />
-            <element signature="e#2439#2440#0" expanded="false" />
-            <element signature="e#2504#2505#0" expanded="false" />
-            <element signature="e#2549#2550#0" expanded="false" />
-            <element signature="e#2670#2671#0" expanded="false" />
-            <element signature="e#2714#2715#0" expanded="false" />
-            <element signature="e#2754#2755#0" expanded="false" />
-            <element signature="e#2790#2791#0" expanded="false" />
-            <element signature="e#2828#2829#0" expanded="false" />
-            <element signature="e#2862#2863#0" expanded="false" />
-            <element signature="e#2902#2903#0" expanded="false" />
-            <element signature="e#2937#2938#0" expanded="false" />
-            <element signature="e#2979#2980#0" expanded="false" />
-            <element signature="e#3017#3018#0" expanded="false" />
-            <element signature="e#3061#3062#0" expanded="false" />
-            <element signature="e#3089#3090#0" expanded="false" />
-            <element signature="e#3138#3139#0" expanded="false" />
-            <element signature="e#3172#3173#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/commands/AddNewSkillCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -909,14 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/commands/UpdateCompanyCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="28" column="157" lean-forward="false" selection-start-line="28" selection-start-column="157" selection-end-line="28" selection-end-column="157" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/AddNewSkillCommandTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -954,16 +874,6 @@
         <state relative-caret-position="18">
           <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/ArangoHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="54" column="44" lean-forward="false" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1055,24 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/AddCompanyCommandTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="62" column="36" lean-forward="false" selection-start-line="52" selection-start-column="8" selection-end-line="62" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services/InfoEditorService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/utils/ConfigReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
@@ -1097,10 +989,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/AddCompanyCommandTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="62" column="36" lean-forward="false" selection-start-line="52" selection-start-column="8" selection-end-line="62" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/services/InfoEditorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/models/Company.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding>
+            <element signature="e#2124#2125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/commands/UpdateCompanyCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/ArangoHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="61" column="36" lean-forward="false" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/InfoEditorServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="71" column="2" lean-forward="true" selection-start-line="71" selection-start-column="2" selection-end-line="71" selection-end-column="2" />
+        <state relative-caret-position="554">
+          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="110" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
