@@ -18,7 +18,7 @@ public class DeleteCvCommand extends Command{
         // get notifications from db
         DatabaseHandler dbHandler = (DatabaseHandler) this.dbHandler;
         validateArgs(new String[]{"userId"});
-
+        System.out.println(dbHandler);
         dbHandler.deleteCV(args.get("userId"));
         LinkedHashMap<String, Object>resutls = new LinkedHashMap<String, Object>();
         resutls.put("response",true);
