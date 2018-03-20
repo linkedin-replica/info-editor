@@ -15,7 +15,9 @@ public interface DatabaseHandler {
      User getUserProfile(String UserID);
      void addSkill(String userID, String Skill);
      void updateProfile(HashMap<String, String> updates, String UserId);
-    void addCV(String userID,String cv);
-    void deleteCV(String userID);
+     void addCV(String userID,String cv);
+     void deleteCV(String userID);
+     void createProfile(HashMap<String, String> profileAttributes, String UserId);
+
     void disconnect();
 }
