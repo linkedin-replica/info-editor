@@ -1,0 +1,3 @@
+db.name=Linkedin
+collection.users.name=users
+collection.companies.name=companies
