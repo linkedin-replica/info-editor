@@ -1,7 +1,10 @@
 import com.arangodb.ArangoDatabase;
 import config.Configuration;
 import database.DatabaseConnection;
+import database.DatabaseSeed;
 import models.Company;
+import models.User;
+import org.json.simple.parser.ParseException;
 import org.junit.*;
 import services.*;
 
@@ -18,9 +21,9 @@ public class InfoEditorServiceTest {
     private static InfoEditorService infoEditorService;
     private static ArangoDatabase arangoDb;
     static Configuration config;
-
+static DatabaseSeed databaseSeed;
     @BeforeClass
-    public static void init() throws IOException {
+    public static void init() throws IOException, ParseException {
         String rootFolder = "src/main/resources/config/";
         Configuration.init(rootFolder + "app.config",
                 rootFolder + "arango.test.config",
@@ -31,19 +34,22 @@ public class InfoEditorServiceTest {
         arangoDb = DatabaseConnection.getInstance().getArangoDriver().db(
                 Configuration.getInstance().getArangoConfig("db.name")
         );
-    }
-
-    @Before
-    public void initBeforeTest() throws IOException {
+        databaseSeed = new DatabaseSeed();
         arangoDb.createCollection(
                 config.getArangoConfig("collection.companies.name")
         );
+
+    }
+
+    @Before
+    public void initBeforeTest() throws IOException, ParseException {
+        databaseSeed.insertUsers();
     }
 
     @Test
-    public void testinfoEditorService() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
-        HashMap<String, String> args = new HashMap<String,String>();
-        args.put("companyId", "1234");
+    public void testinfoEditorServiceCompany() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
+        HashMap<String, String> args = new HashMap<String, String>();
+        HashMap<String, String> args2 = new HashMap<String, String>();
 
         args.clear();
 
@@ -61,52 +67,92 @@ public class InfoEditorServiceTest {
         args.put("jobListings", "");
 
         LinkedHashMap<String, Object> resultAddCompany = infoEditorService.serve("company.add", args);
-
+args.clear();
         args.put("companyId", "110265");
 
 
         LinkedHashMap<String, Object> resultGetCompany = infoEditorService.serve("company.get", args);
-      Company company=(Company)resultGetCompany.get("results");
+        Company company = (Company) resultGetCompany.get("results");
 
-        assertEquals("The Two companies' UserNames should match" ,company.getCompanyName(), "MicrosoftUnique");
+        assertEquals("The Two companies' UserNames should match", company.getCompanyName(), "MicrosoftUnique");
+        System.out.println(company.getCompanyName()+"hereeeeee");
+
+        args2.clear();
+
+        args2.put("companyId", "110265");
+        args2.put("companyName", "MicrosoftUnique2");
+        args2.put("companyProfilePicture", "http://www.adsf221");
+
+        LinkedHashMap<String, Object> resultUpdateCompany = infoEditorService.serve("company.update", args2);
+        args2.clear();
+        args2.put("companyId", "110265");
+
+
+        LinkedHashMap<String, Object> resultGetCompany2 = infoEditorService.serve("company.get", args2);
+        Company companyUpdate = (Company) resultGetCompany2.get("results");
+
+
+        assertEquals("The Two companies' UserNames should match", companyUpdate.getCompanyName(), "MicrosoftUnique2");
+        assertEquals("The Two companies' UserProfilePicture should match", companyUpdate.getCompanyProfilePicture(), "http://www.adsf221");
+
+
+    }
+
+    @Test
+    public void testinfoEditorServiceUser() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
+        HashMap<String, String> args = new HashMap<String,String>();
+        args.put("companyId", "1234");
+
+        args.clear();
+
+
+        args.put("userId", "0");
+       args.put("cv","mynewCv");
+
+        LinkedHashMap<String, Object> resultAddCompany = infoEditorService.serve("user.cv.add", args);
+
+        args.put("userId", "0");
+
+
+        LinkedHashMap<String, Object> resultGetCompany = infoEditorService.serve("user.get", args);
+        User user=(User)resultGetCompany.get("results");
+
+        assertEquals("The Two companies' Cvs should match" ,user.getCvUrl(), "mynewCv");
 
 
         args.clear();
 
 
-        args.put("companyId", "110265");
-        args.put("companyName", "MicrosoftUnique2");
-        args.put("companyProfilePicture", "http://www.adsf221");
+        args.put("userId", "0");
 
-        LinkedHashMap<String, Object> resultUpdateCompany = infoEditorService.serve("company.update", args);
-
-        args.put("companyId", "110265");
+        LinkedHashMap<String, Object> resultUpdateCompany = infoEditorService.serve("user.cv.delete", args);
 
 
-        LinkedHashMap<String, Object> resultGetCompany2 = infoEditorService.serve("company.get", args);
-        Company companyUpdate=(Company)resultGetCompany2.get("results");
 
-        assertEquals("The Two companies' UserNames should match" ,companyUpdate.getCompanyName(), "MicrosoftUnique2");
-        assertEquals("The Two companies' UserProfilePicture should match" ,companyUpdate.getCompanyProfilePicture(), "http://www.adsf221");
+        LinkedHashMap<String, Object> resultGetCompany2 = infoEditorService.serve("user.get", args);
+        user=(User)resultGetCompany2.get("results");
+
+        assertEquals("The Two users' Cvs should match" ,user.getCvUrl(), "");
 
 
 
 
-//
-//
-//        assertEquals("Expected 2 notifications" , 2, all.size());
-//        assertEquals("Expected 1 unread notification", 1, unread.size());
     }
-
     @After
     public void cleanAfterTest() throws IOException {
-        arangoDb.collection(
-                config.getArangoConfig("collection.companies.name")
-        ).drop();
+        databaseSeed.deleteAllUsers();  
+
+
     }
 
     @AfterClass
     public static void clean() throws IOException {
         DatabaseConnection.getInstance().closeConnections();
+        arangoDb.collection(
+                config.getArangoConfig("collection.companies.name")
+        ).drop();
+
+
+
     }
 }
