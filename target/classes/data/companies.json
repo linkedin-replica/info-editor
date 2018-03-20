@@ -1,0 +1,40 @@
+[
+  {
+    "companyName": "Ergasti",
+    "companyID": "3",
+    "companyProfilePicture":"htttp//Ergasti",
+    "adminUserName":"Baher",
+    "adminUserID":"1",
+    "industryType":"Software",
+    "companyLocation":"Cairo",
+    "companytype":"middleCompany",
+    "posts":["0","1","2"],
+    "jobListings":[]
+  },
+
+
+  {
+    "companyName": "Microsoft",
+    "companyID": "2",
+    "companyProfilePicture":"htttp//Microsoft",
+    "adminUserName":"Loay",
+    "adminUserID":"5",
+    "industryType":"Software",
+    "companyLocation":"Cairo",
+    "companytype":"middleCompany",
+    "posts":["7","32","2"],
+    "jobListings":[]
+  },
+  {
+    "companyName": "Ergasti3",
+    "companyID": "1",
+    "companyProfilePicture":"htttp//Ergasti3",
+    "adminUserName":"Baher",
+    "adminUserID":"0",
+    "industryType":"Software",
+    "companyLocation":"Berlin",
+    "companytype":"middleCompany",
+    "posts":["10","11","21"],
+    "jobListings":[]
+  }
+]

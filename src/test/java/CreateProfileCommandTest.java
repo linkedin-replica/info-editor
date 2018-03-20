@@ -1,4 +1,5 @@
 import com.arangodb.ArangoDatabase;
+import commands.GetUserProfileCommand;
 import database.ArangoHandler;
 import database.DatabaseConnection;
 import database.DatabaseSeed;

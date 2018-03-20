@@ -26,7 +26,12 @@ public class DatabaseConnection {
                 .password(config.getConfig("arangodb.password"))
                 .build();
     }
-
+    public static void init() throws IOException {
+        dbConnection = new DatabaseConnection();
+    }
+    public static DatabaseConnection getInstance() throws IOException {
+        return dbConnection;
+    }
     /**
      * Get a singleton DB instance
      * @return The DB instance

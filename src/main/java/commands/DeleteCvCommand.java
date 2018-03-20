@@ -1,5 +1,4 @@
-package  infoEditor;
-import database.ArangoHandler;
+package commands;
 import database.DatabaseHandler;
 import  models.Command;
 
@@ -16,10 +15,9 @@ public class DeleteCvCommand extends Command{
     public LinkedHashMap<String, Object> execute() throws IOException {
         validateArgs(new String[]{"userId"});
         // get notifications from db
-        DatabaseHandler noSqlHandler = (DatabaseHandler) new ArangoHandler();
-
-        this.setDbHandler(noSqlHandler);
-
+        DatabaseHandler dbHandler = (DatabaseHandler) this.dbHandler;
+        validateArgs(new String[]{"userId"});
+        System.out.println(dbHandler);
         dbHandler.deleteCV(args.get("userId"));
         LinkedHashMap<String, Object> resutls = new LinkedHashMap<String, Object>();
         resutls.put("response",true);

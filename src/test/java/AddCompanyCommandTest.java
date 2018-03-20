@@ -2,10 +2,11 @@ import com.arangodb.ArangoDatabase;
 import database.ArangoHandler;
 import database.DatabaseConnection;
 import database.DatabaseSeed;
-import commands.GetUserProfileCommand;
+import commands.*;
 import models.Command;
-import models.User;
+import models.Company;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import utils.ConfigReader;
@@ -16,7 +17,8 @@ import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
 
-public class EditUserProfileCommandTest {
+public class AddCompanyCommandTest {
+
     private static Command command;
     private static ArangoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
@@ -26,7 +28,7 @@ public class EditUserProfileCommandTest {
 
 
     @BeforeClass
-    public static void init() throws IOException, org.json.simple.parser.ParseException{
+    public static void init() throws IOException {
         ConfigReader.isTesting = true;
         config = ConfigReader.getInstance();
         arangoHandler = new ArangoHandler();
@@ -34,7 +36,13 @@ public class EditUserProfileCommandTest {
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 ConfigReader.getInstance().getArangoConfig("db.name")
         );
-        databaseSeed.insertUsers();
+
+    }
+    @Before
+    public void initBeforeTest() throws IOException {
+        arangoDb.createCollection(
+                config.getArangoConfig("collection.companies.name")
+        );
     }
 
 
@@ -42,21 +50,32 @@ public class EditUserProfileCommandTest {
     public void execute() throws IOException {
         HashMap<String, String> args = new HashMap();
         LinkedHashMap<String, Object> response;
-        args.put("userId", "110265");
-        args.put("firstName", "Baher");
-        args.put("headline", "Graduate");
-        args.put("numConnections","7");
-        command = new GetUserProfileCommand(args);
+        args.put("companyId", "110265");
+        args.put("companyName", "MicrosoftUnique");
+        args.put("companyProfilePicture", "http://www.");
+        args.put("adminUserName", "baher");
+        args.put("adminUserID", "11025");
+        args.put("industryType", "Software");
+        args.put("companyLocation", "Beirut");
+        args.put("companyType", "Startup");
+        args.put("posts", "");
+        args.put("specialities", "");
+        args.put("jobListings", "");
+
+        command = new AddCompanyCommand(args);
         command.setDbHandler(arangoHandler);
         response = command.execute();
-        User myUser = (User) response.get("results");
-        assertEquals("Expected matching first name", "Bebo" , myUser.getFirstName());
-        assertEquals("Expected matching last name", "Abdelmalek" , myUser.getLastName());
-        assertEquals("Expected matching headline", "Student" , myUser.getHeadline());
+
+
+        Company company = arangoHandler.getCompany("110265");
+        System.out.println("");
+        assertEquals("Expected skillsNumber", company.getCompanyName() ,"MicrosoftUnique");
+//        assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(5));
     }
+
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfig("db.name");
-        databaseSeed.deleteAllUsers();
+        databaseSeed.deleteAllCompanies();
     }
 }

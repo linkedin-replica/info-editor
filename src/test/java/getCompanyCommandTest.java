@@ -2,21 +2,22 @@ import com.arangodb.ArangoDatabase;
 import database.ArangoHandler;
 import database.DatabaseConnection;
 import database.DatabaseSeed;
-import commands.GetUserProfileCommand;
+import commands.GetCompanyProfileCommand;
 import models.Command;
-import models.User;
+import models.Company;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import utils.ConfigReader;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
 
-public class EditUserProfileCommandTest {
+public class getCompanyCommandTest {
     private static Command command;
     private static ArangoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
@@ -26,7 +27,7 @@ public class EditUserProfileCommandTest {
 
 
     @BeforeClass
-    public static void init() throws IOException, org.json.simple.parser.ParseException{
+    public static void init() throws IOException, org.json.simple.parser.ParseException, SQLException, ClassNotFoundException {
         ConfigReader.isTesting = true;
         config = ConfigReader.getInstance();
         arangoHandler = new ArangoHandler();
@@ -34,7 +35,7 @@ public class EditUserProfileCommandTest {
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 ConfigReader.getInstance().getArangoConfig("db.name")
         );
-        databaseSeed.insertUsers();
+        databaseSeed.insertCompanies();
     }
 
 
@@ -42,21 +43,17 @@ public class EditUserProfileCommandTest {
     public void execute() throws IOException {
         HashMap<String, String> args = new HashMap();
         LinkedHashMap<String, Object> response;
-        args.put("userId", "110265");
-        args.put("firstName", "Baher");
-        args.put("headline", "Graduate");
-        args.put("numConnections","7");
-        command = new GetUserProfileCommand(args);
+        args.put("companyId", "1");
+        command = new GetCompanyProfileCommand(args);
         command.setDbHandler(arangoHandler);
         response = command.execute();
-        User myUser = (User) response.get("results");
-        assertEquals("Expected matching first name", "Bebo" , myUser.getFirstName());
-        assertEquals("Expected matching last name", "Abdelmalek" , myUser.getLastName());
-        assertEquals("Expected matching headline", "Student" , myUser.getHeadline());
+        Company company = (Company) response.get("results");
+        assertEquals("Expected matching company ID", "1" ,company.getCompanyID() );
+
     }
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfig("db.name");
-        databaseSeed.deleteAllUsers();
+        databaseSeed.deleteAllCompanies();
     }
 }
