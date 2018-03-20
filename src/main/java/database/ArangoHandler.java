@@ -50,9 +50,9 @@ public class ArangoHandler implements DatabaseHandler{
     public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
             ,String companytype,ArrayList<String> specialities,ArrayList<String> posts,ArrayList<String> jobListings){
             BaseDocument myObject = new BaseDocument();
-            myObject.setKey(companyID+"");
+            myObject.setKey(companyID);
             myObject.addAttribute("companyName", companyName);
-            myObject.addAttribute("companyID", companyID);
+            myObject.addAttribute("companyId", companyID);
             myObject.addAttribute("companyProfilePicture", companyProfilePicture);
             myObject.addAttribute("companyLocation", companyLocation);
             myObject.addAttribute("companyType", companytype);
