@@ -1,5 +1,4 @@
-package  infoEditor;
-import database.ArangoHandler;
+package commands;
 import database.DatabaseHandler;
 import  models.Command;
 

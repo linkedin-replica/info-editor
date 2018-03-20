@@ -2,14 +2,14 @@ import com.arangodb.ArangoDatabase;
 import database.ArangoHandler;
 import database.DatabaseConnection;
 import database.DatabaseSeed;
-import infoEditor.GetUserProfileCommand;
+import commands.GetUserProfileCommand;
 import models.Command;
 import models.User;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import utils.ConfigReader;
-import org.json.simple.parser.ParseException;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;

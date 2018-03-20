@@ -5,12 +5,10 @@ import models.Company;
 import org.junit.*;
 import utils.ConfigReader;
 
-import infoEditor.GetCompanyProfileCommand;
+import commands.GetCompanyProfileCommand;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
