@@ -13,6 +13,7 @@ import org.junit.Test;
 import utils.ConfigReader;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -41,7 +42,7 @@ public class EditUserProfileCommandTest {
 
 
     @Test
-    public void execute() throws IOException {
+    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, String> args = new HashMap();
         LinkedHashMap<String, Object> response;
         args.put("userId", "110265");

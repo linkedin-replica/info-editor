@@ -36,21 +36,24 @@ public class ClientMessagesTest {
         String rootFolder = "src/main/resources/config/";
         Configuration.init(rootFolder + "app.config",
                 rootFolder + "arango.test.config",
-                rootFolder + "commands.config");
+                rootFolder + "commands.config","");
         DatabaseConnection.init();
         config = Configuration.getInstance();
 
         // init message receiver
-        QUEUE_NAME = config.getAppConfig("rabbitmq.queue.client");
+        QUEUE_NAME = config.getAppConfigProp("rabbitmq.queue.client");
         messagesReceiver = new ClientMessagesReceiver();
 
         // init db
         arangoDb = DatabaseConnection.getInstance().getArangoDriver().db(
-                Configuration.getInstance().getArangoConfig("db.name")
+                Configuration.getInstance().getArangoConfigProp("db.name")
         );
 
         arangoDb.createCollection(
-                config.getArangoConfig("collection.companies.name")
+                config.getArangoConfigProp("collection.companies.name")
+        );
+        arangoDb.createCollection(
+                config.getArangoConfigProp("collection.users.name")
         );
 
         arangoHandler = new ArangoEditInfoHandler();
@@ -97,7 +100,10 @@ public class ClientMessagesTest {
         connection.close();
         // clean db
         arangoDb.collection(
-                config.getArangoConfig("collection.companies.name")
+                config.getArangoConfigProp("collection.companies.name")
+        ).drop();
+        arangoDb.collection(
+                config.getArangoConfigProp("collection.users.name")
         ).drop();
         DatabaseConnection.getInstance().closeConnections();
     }

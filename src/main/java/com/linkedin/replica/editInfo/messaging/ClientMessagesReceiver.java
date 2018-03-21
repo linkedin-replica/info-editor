@@ -18,8 +18,8 @@ import java.util.concurrent.TimeoutException;
 public class ClientMessagesReceiver {
     private Configuration configuration = Configuration.getInstance();
     private InfoEditorService infoEditorService = new InfoEditorService();
-    private final String QUEUE_NAME = configuration.getAppConfig("rabbitmq.queue.client");
-    private final String RABBIT_MQ_IP = configuration.getAppConfig("rabbitmq.ip");
+    private final String QUEUE_NAME = configuration.getAppConfigProp("rabbitmq.queue.client");
+    private final String RABBIT_MQ_IP = configuration.getAppConfigProp("rabbitmq.ip");
 
     private ConnectionFactory factory;
     private Channel channel;

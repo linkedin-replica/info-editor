@@ -29,16 +29,16 @@ static DatabaseSeed databaseSeed;
         String rootFolder = "src/main/resources/config/";
         Configuration.init(rootFolder + "app.config",
                 rootFolder + "arango.test.config",
-                rootFolder + "commands.config");
+                rootFolder + "commands.config",rootFolder+"controller.config");
         DatabaseConnection.init();
         config = Configuration.getInstance();
         infoEditorService = new InfoEditorService();
         arangoDb = DatabaseConnection.getInstance().getArangoDriver().db(
-                Configuration.getInstance().getArangoConfig("db.name")
+                Configuration.getInstance().getArangoConfigProp("db.name")
         );
         databaseSeed = new DatabaseSeed();
         arangoDb.createCollection(
-                config.getArangoConfig("collection.companies.name")
+                config.getArangoConfigProp("collection.companies.name")
         );
 
     }
@@ -138,7 +138,7 @@ static DatabaseSeed databaseSeed;
     public static void clean() throws IOException {
         DatabaseConnection.getInstance().closeConnections();
         arangoDb.collection(
-                config.getArangoConfig("collection.companies.name")
+                config.getArangoConfigProp("collection.companies.name")
         ).drop();
 
 

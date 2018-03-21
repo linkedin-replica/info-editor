@@ -2,6 +2,7 @@ import com.arangodb.ArangoDatabase;
 import com.linkedin.replica.editInfo.commands.impl.AddNewSkillCommand;
 import com.linkedin.replica.editInfo.commands.impl.GetUserProfileCommand;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
 import com.linkedin.replica.editInfo.models.User;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
@@ -9,11 +10,14 @@ import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.commands.*;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.models.User;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import utils.ConfigReader;
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -25,25 +29,27 @@ public class AddNewSkillCommandTest {
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     static ConfigReader config;
+    private static DatabaseSeed databaseSeed;
 
 
     @BeforeClass
-    public static void init() throws IOException {
+    public static void init() throws IOException, org.json.simple.parser.ParseException {
         ConfigReader.isTesting = true;
         config = ConfigReader.getInstance();
+        databaseSeed = new DatabaseSeed();
         arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 ConfigReader.getInstance().getArangoConfig("db.name")
         );
-
+        databaseSeed.insertUsers();
     }
 
 
     @Test
-    public void execute() throws IOException {
+    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, String> args = new HashMap();
         LinkedHashMap<String, Object> response;
-        args.put("userId", "110265");
+        args.put("userId", "0");
         args.put("Skill", "Java");
         command = new AddNewSkillCommand(args);
         command.setDbHandler(arangoHandler);
@@ -53,7 +59,13 @@ public class AddNewSkillCommandTest {
         command.setDbHandler(arangoHandler);
         response = command.execute();
         User myUser = (User) response.get("results");
-        assertEquals("Expected skillsNumber", 8 , myUser.getSkills().size());
-        assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(5));
+        assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(myUser.getSkills().size()-1));
     }
+
+    @AfterClass
+    public static void teardown() throws IOException {
+        String dbName = config.getArangoConfig("db.name");
+          databaseSeed.deleteAllUsers();
+    }
+
 }
