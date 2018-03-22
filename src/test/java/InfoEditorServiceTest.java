@@ -50,8 +50,8 @@ static DatabaseSeed databaseSeed;
 
     @Test
     public void testinfoEditorServiceCompany() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
-        HashMap<String, String> args = new HashMap<String, String>();
-        HashMap<String, String> args2 = new HashMap<String, String>();
+        HashMap<String, Object> args = new HashMap<String, Object>();
+        HashMap<String, Object> args2 = new HashMap<String,Object>();
 
         args.clear();
 
@@ -101,7 +101,7 @@ static DatabaseSeed databaseSeed;
 
     @Test
     public void testinfoEditorServiceUser() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
-        HashMap<String, String> args = new HashMap<String,String>();
+        HashMap<String, Object> args = new HashMap<String,Object>();
         args.put("userId", "0");
        Object resultProfile = infoEditorService.serve("user.get", args);
         User user=(User)resultProfile;

@@ -51,6 +51,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         String collectionName = config.getConfig("collection.companies.name");
 //        System.out.println(collectionName);
         Company company = dbInstance.collection(collectionName).getDocument(companyID,
+
                 Company.class);
         return company;
     }
@@ -74,10 +75,12 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
             System.err.println("Failed to update document. " + e.getMessage());
         }
     }
+
     public void updateCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
-           ,String companytype,ArrayList<String>specialities,ArrayList<String> posts,ArrayList<String>jobListings){
+           ,String companytype,ArrayList<String>specialities,ArrayList<String> posts,ArrayList<String>jobListings) {
         String collectionName = config.getConfig("collection.companies.name");
-        Company company = getCompany(companyID);
+
+       Company company = this.getCompany(companyID);
         System.out.println(company.getPosts());
         if(companyName!=null)
         company.setCompanyName(companyName);
@@ -341,7 +344,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         String UsersCollectionName = config.getConfig("collection.users.name");
         User UserProfile = dbInstance.collection(UsersCollectionName).getDocument(UserID,
                 User.class);
-        System.out.println(UserProfile.getFriendsList().size()+"here");
+
         return UserProfile;
     }
 

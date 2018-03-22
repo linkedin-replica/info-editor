@@ -42,6 +42,17 @@ public class ArangoHandlerTest {
 
 
     @Test
+    public void testCreateProfile() throws IOException {
+        HashMap<String, Object> profileAttributes = new HashMap<String, Object>();
+        profileAttributes.put("firstName", "Bebo");
+        profileAttributes.put("lastName", "Elmalek");
+        arangoHandler.createProfile(profileAttributes, "5");
+        User myUser = arangoHandler.getUserProfile("5");
+        assertEquals("Expected matching first name", "Bebo", myUser.getFirstName());
+        assertEquals("Expected matching last name", "Elmalek", myUser.getLastName());
+    }
+
+    @Test
     public void testGetProfile() throws IOException {
         User myUser = arangoHandler.getUserProfile("0");
         assertEquals("Expected matching first name", "Omar", myUser.getFirstName());

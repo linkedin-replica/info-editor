@@ -66,7 +66,7 @@ public class CvCommandTest{
     public void DeleteCvexecute()throws IOException {
 
         HashMap<String, Object> args = new HashMap();
-        LinkedHashMap<String, Object> response;
+       Object response;
 
         args.put("userId", "0");
 
@@ -74,7 +74,7 @@ public class CvCommandTest{
         command.setDbHandler(arangoHandler);
         response = command.execute();
 
-        System.out.println((Company) response.get("results"));
+        System.out.println((Company) response);
         User user = arangoHandler.getUserProfile("0");
 //
         assertEquals("response should be true", user.getCvUrl(), "");
