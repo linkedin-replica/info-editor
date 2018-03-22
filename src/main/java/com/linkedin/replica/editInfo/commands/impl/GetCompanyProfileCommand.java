@@ -13,20 +13,20 @@ import java.util.LinkedHashMap;
 
 public class GetCompanyProfileCommand extends Command{
 
-    public GetCompanyProfileCommand(HashMap<String, String> args) {
+    public GetCompanyProfileCommand(HashMap<String, Object> args) {
         super(args);
     }
-    public LinkedHashMap<String, Object> execute() throws IOException {
+    public Object execute() throws IOException {
         // validate that all required arguments are passed
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
         validateArgs(new String[]{"companyId"});
         // get notifications from db
-        Company companies = dbHandler.getCompany(args.get("companyId"));
+        Company companies = dbHandler.getCompany((String)args.get("companyId"));
 
         LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
         System.out.println(companies);
         result.put("results", companies);
-        return result;
+        return companies;
 
     }
 }

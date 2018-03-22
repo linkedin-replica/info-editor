@@ -48,8 +48,8 @@ public class CvCommandTest{
     @Test
     public void AddCvexecute()throws IOException {
 
-        HashMap<String, String> args = new HashMap();
-        LinkedHashMap<String, Object> response;
+        HashMap<String, Object> args = new HashMap();
+       Object response;
 
         args.put("userId", "0");
         args.put("cv","user12URL");
@@ -57,7 +57,7 @@ public class CvCommandTest{
         command.setDbHandler(arangoHandler);
         response = command.execute();
         User user = arangoHandler.getUserProfile("0");
-        System.out.println((Company) response.get("results"));
+        System.out.println((User) user);
 
         assertEquals("response should be true", user.getCvUrl(), "user12URL");
 
@@ -65,7 +65,7 @@ public class CvCommandTest{
     @Test
     public void DeleteCvexecute()throws IOException {
 
-        HashMap<String, String> args = new HashMap();
+        HashMap<String, Object> args = new HashMap();
         LinkedHashMap<String, Object> response;
 
         args.put("userId", "0");

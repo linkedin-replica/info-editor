@@ -100,7 +100,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         }
     }
 
-    public void createProfile(HashMap<String, String> profileAttributes, String userID){
+    public void createProfile(HashMap<String,Object> profileAttributes, String userID){
         String UsersCollectionName = config.getConfig("collection.users.name");
         BaseDocument user = new BaseDocument();
         user.setKey(userID);
@@ -119,13 +119,13 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         if(profileAttributes.containsKey("personalInfo.dob"))
             personalInfo.setDob((String)(profileAttributes.get("personalInfo.dob")));
         if(profileAttributes.containsKey("personalInfo.location.address"))
-            location.setAddress(profileAttributes.get("personalInfo.location.address"));
+            location.setAddress((String)profileAttributes.get("personalInfo.location.address"));
         if(profileAttributes.containsKey("personalInfo.location.country"))
-            location.setCountry(profileAttributes.get("personalInfo.location.country"));
+            location.setCountry((String)profileAttributes.get("personalInfo.location.country"));
         if(profileAttributes.containsKey("personalInfo.location.country"))
-            location.setCountry(profileAttributes.get("personalInfo.location.country"));
+            location.setCountry((String)profileAttributes.get("personalInfo.location.country"));
         if(profileAttributes.containsKey("personalInfo.location.code"))
-            location.setCountry(profileAttributes.get("personalInfo.location.code"));
+            location.setCountry((String)profileAttributes.get("personalInfo.location.code"));
         personalInfo.setLocation(location);
         if(profileAttributes.containsKey("personalInfo.website"))
             personalInfo.setWebsite((String)(profileAttributes.get("personalInfo.website")));
@@ -142,7 +142,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
             user.addAttribute("cvUrl", (String)profileAttributes.get("cvUrl"));
         dbInstance.collection(UsersCollectionName).insertDocument(user);
     }
-    public void updateProfile(HashMap<String, String> updates, String userID){
+    public void updateProfile(HashMap<String, Object> updates, String userID){
         String UsersCollectionName = config.getConfig("collection.users.name");
         User user = getUserProfile(userID);
         PersonalInfo personalInfo = user.getPersonalInfo();
@@ -153,13 +153,13 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         if(bookmarks == null)
             bookmarks = new ArrayList<String>();
         if(updates.containsKey("firstName"))
-            user.setFirstName(updates.get("firstName"));
+            user.setFirstName((String)updates.get("firstName"));
 
         if(updates.containsKey("lastName"))
-            user.setLastName(updates.get("lastName"));
+            user.setLastName((String)updates.get("lastName"));
 
         if(updates.containsKey("headline"))
-            user.setHeadline(updates.get("headline"));
+            user.setHeadline((String)updates.get("headline"));
         if(updates.containsKey("personalInfo.phone"))
             personalInfo.setPhone((String)(updates.get("personalInfo.phone")));
         if(updates.containsKey("personalInfo.email"))
@@ -169,16 +169,16 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
             personalInfo.setDob((String)(updates.get("personalInfo.dob")));
 
         if(updates.containsKey("personalInfo.location.address"))
-            location.setAddress(updates.get("personalInfo.location.address"));
+            location.setAddress((String)updates.get("personalInfo.location.address"));
 
         if(updates.containsKey("personalInfo.location.country"))
-            location.setCountry(updates.get("personalInfo.location.country"));
+            location.setCountry((String)updates.get("personalInfo.location.country"));
 
         if(updates.containsKey("personalInfo.location.country"))
-            location.setCountry(updates.get("personalInfo.location.country"));
+            location.setCountry((String)updates.get("personalInfo.location.country"));
 
         if(updates.containsKey("personalInfo.location.code"))
-            location.setCountry(updates.get("personalInfo.location.code"));
+            location.setCountry((String)updates.get("personalInfo.location.code"));
 
         personalInfo.setLocation(location);
         if(updates.containsKey("personalInfo.website"))

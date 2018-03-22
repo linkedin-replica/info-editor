@@ -47,8 +47,8 @@ public class AddNewSkillCommandTest {
 
     @Test
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        HashMap<String, String> args = new HashMap();
-        LinkedHashMap<String, Object> response;
+        HashMap<String, Object> args = new HashMap();
+        Object response;
         args.put("userId", "0");
         args.put("Skill", "Java");
         command = new AddNewSkillCommand(args);
@@ -58,7 +58,7 @@ public class AddNewSkillCommandTest {
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
         response = command.execute();
-        User myUser = (User) response.get("results");
+        User myUser = (User) response;
         assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(myUser.getSkills().size()-1));
     }
 

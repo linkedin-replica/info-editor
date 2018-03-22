@@ -48,10 +48,10 @@ public class UpdateCompanyCommandTest {
 
     @Test
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        HashMap<String, String> args = new HashMap();
-        HashMap<String, String> argstemp = new HashMap();
+        HashMap<String, Object> args = new HashMap();
+        HashMap<String, Object> argstemp = new HashMap();
 
-        LinkedHashMap<String, Object> response;
+        Object response;
         args.put("companyId", "1");
         argstemp.put("companyId", "1");
         argstemp.put("companyName", "Microsoft2");
@@ -62,7 +62,7 @@ public class UpdateCompanyCommandTest {
         temp.setDbHandler(arangoHandler);
         temp.execute();
         response = command.execute();
-        Company company = (Company) response.get("results");
+        Company company = (Company) response;
         assertEquals("Expected matching company ID", "Microsoft2" ,company.getCompanyName() );
 
     }

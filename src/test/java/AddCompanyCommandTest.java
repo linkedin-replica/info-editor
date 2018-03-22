@@ -50,7 +50,7 @@ public class AddCompanyCommandTest {
 
     @Test
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        HashMap<String, String> args = new HashMap();
+        HashMap<String, Object> args = new HashMap();
         LinkedHashMap<String, Object> response;
         args.put("companyId", "110265");
         args.put("companyName", "MicrosoftUnique");
@@ -66,7 +66,7 @@ public class AddCompanyCommandTest {
 
         command = new AddCompanyCommand(args);
         command.setDbHandler(arangoHandler);
-        response = command.execute();
+        command.execute();
 
 
         Company company = arangoHandler.getCompany("110265");

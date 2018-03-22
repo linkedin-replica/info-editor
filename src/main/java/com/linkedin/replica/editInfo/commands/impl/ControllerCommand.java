@@ -24,21 +24,24 @@ import com.linkedin.replica.editInfo.services.Workers;
 public class ControllerCommand extends Command {
     private static Configuration config = Configuration.getInstance();
 
-    public ControllerCommand(HashMap<String,String> args) {
+    public ControllerCommand(HashMap<String,Object> args) {
         super(args);
     }
 
     @Override
-    public LinkedHashMap<String ,Object> execute() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public Object execute() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         String methodName = args.get("methodName").toString();
-        Object val = args.get("param");
+        Object val =args.get("param");
+        System.out.println(val.getClass());
 
         // get method
         Method method = ControllerCommand.class.getMethod(methodName, Object.class);
+        System.out.println(val + "  " + methodName);
         // invoke method, null because it is a static method
         try{
             method.invoke(null, val);
         }catch(InvocationTargetException ex){
+            ex.getTargetException().printStackTrace();
             throw new BadRequestException(ex.getTargetException().getMessage());
         }
         return null;
@@ -49,6 +52,7 @@ public class ControllerCommand extends Command {
      * @param val
      */
     public static void setMaxThreadCount(Object val){
+
         if(val == null || ! ((JsonPrimitive) val).isNumber())
             throw new BadRequestException(String.format("Invalid parameters : %s. expected an integer representing maximum number of threads", val ));
 
@@ -64,9 +68,9 @@ public class ControllerCommand extends Command {
      * @param val
      */
     public static void setMaxDBConnectionsCount(Object val){
+
         if(val == null || !((JsonPrimitive) val).isNumber())
             throw new BadRequestException(String.format("Invalid parameters : %s. expected an integer representing maximum number of DB connections", val ));
-
         int maxDBConnectionCount = ((JsonPrimitive) val).getAsInt();
         config.setAppControllerProp("app.max_db_connections_count", maxDBConnectionCount +"");
         //TODO set number of db connections

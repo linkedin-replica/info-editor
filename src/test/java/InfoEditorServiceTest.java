@@ -67,13 +67,13 @@ static DatabaseSeed databaseSeed;
         args.put("specialities", "");
         args.put("jobListings", "");
 
-        LinkedHashMap<String, Object> resultAddCompany = infoEditorService.serve("company.add", args);
+     Object resultAddCompany = infoEditorService.serve("company.add", args);
         args.clear();
         args.put("companyId", "110265");
 
 
-        LinkedHashMap<String, Object> resultGetCompany = infoEditorService.serve("company.get", args);
-        Company company = (Company) resultGetCompany.get("results");
+        Object resultGetCompany = infoEditorService.serve("company.get", args);
+        Company company = (Company) resultGetCompany;
 
         assertEquals("The Two companies' UserNames should match", company.getCompanyName(), "MicrosoftUnique");
         System.out.println(company.getCompanyName()+"hereeeeee");
@@ -84,13 +84,13 @@ static DatabaseSeed databaseSeed;
         args2.put("companyName", "MicrosoftUnique2");
         args2.put("companyProfilePicture", "http://www.adsf221");
 
-        LinkedHashMap<String, Object> resultUpdateCompany = infoEditorService.serve("company.update", args2);
+       Object resultUpdateCompany = infoEditorService.serve("company.update", args2);
         args2.clear();
         args2.put("companyId", "110265");
 
 
-        LinkedHashMap<String, Object> resultGetCompany2 = infoEditorService.serve("company.get", args2);
-        Company companyUpdate = (Company) resultGetCompany2.get("results");
+        Object resultGetCompany2 = infoEditorService.serve("company.get", args2);
+        Company companyUpdate = (Company) resultGetCompany2;
 
 
         assertEquals("The Two companies' UserNames should match", companyUpdate.getCompanyName(), "MicrosoftUnique2");
@@ -103,8 +103,8 @@ static DatabaseSeed databaseSeed;
     public void testinfoEditorServiceUser() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
         HashMap<String, String> args = new HashMap<String,String>();
         args.put("userId", "0");
-        LinkedHashMap<String, Object> resultProfile = infoEditorService.serve("user.get", args);
-        User user=(User)resultProfile.get("results");
+       Object resultProfile = infoEditorService.serve("user.get", args);
+        User user=(User)resultProfile;
         assertEquals("The user first names match" ,user.getFirstName(), "Omar");
         assertEquals("The user last names match" ,user.getLastName(), "Radwan");
         args.clear();
@@ -112,14 +112,14 @@ static DatabaseSeed databaseSeed;
         args.put("Skill", "C++");
         resultProfile = infoEditorService.serve("user.add.skill", args);
         resultProfile = infoEditorService.serve("user.get", args);
-        user=(User)resultProfile.get("results");
+        user=(User)resultProfile;
         assertEquals("The added skill matched" ,user.getSkills().get(4), "C++");
         args.clear();
         args.put("userId", "0");
         args.put("headline", "ACMER");
         resultProfile = infoEditorService.serve("user.update", args);
         resultProfile = infoEditorService.serve("user.get", args);
-        user=(User)resultProfile.get("results");
+        user=(User)resultProfile;
         assertEquals("The headline is updated" , user.getHeadline(), "ACMER");
 
 

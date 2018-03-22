@@ -8,9 +8,9 @@ import java.util.LinkedHashMap;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 
 public abstract class Command {
-    protected HashMap<String, String> args;
+    protected HashMap<String, Object> args;
     protected EditInfoHandler dbHandler;
-    public Command(HashMap<String, String> args) {
+    public Command(HashMap<String, Object> args) {
         this.args = args;
     }
 
@@ -19,10 +19,12 @@ public abstract class Command {
      * @return The output (if any) of the command
      */
 
-    public abstract LinkedHashMap<String, Object> execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException;
+    public abstract Object execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException;
     public void setDbHandler(EditInfoHandler dbHandler) {
         this.dbHandler = dbHandler;
     }
+
+
     protected void validateArgs(String[] requiredArgs) {
         for(String arg: requiredArgs)
             if(!args.containsKey(arg)) {

@@ -43,8 +43,8 @@ public class EditUserProfileCommandTest {
 
     @Test
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        HashMap<String, String> args = new HashMap();
-        LinkedHashMap<String, Object> response;
+        HashMap<String, Object> args = new HashMap();
+        Object response;
         args.put("userId", "110265");
         args.put("firstName", "Baher");
         args.put("headline", "Graduate");
@@ -52,7 +52,7 @@ public class EditUserProfileCommandTest {
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
         response = command.execute();
-        User myUser = (User) response.get("results");
+        User myUser = (User) response;
         assertEquals("Expected matching first name", "Bebo" , myUser.getFirstName());
         assertEquals("Expected matching last name", "Abdelmalek" , myUser.getLastName());
         assertEquals("Expected matching headline", "Student" , myUser.getHeadline());

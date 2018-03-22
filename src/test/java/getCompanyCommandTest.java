@@ -46,13 +46,13 @@ public class getCompanyCommandTest {
 
     @Test
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        HashMap<String, String> args = new HashMap();
-        LinkedHashMap<String, Object> response;
+        HashMap<String, Object> args = new HashMap();
+       Object response;
         args.put("companyId", "1");
         command = new GetCompanyProfileCommand(args);
         command.setDbHandler(arangoHandler);
         response = command.execute();
-        Company company = (Company) response.get("results");
+        Company company = (Company) response;
         assertEquals("Expected matching company ID", "1" ,company.getCompanyID() );
 
     }

@@ -10,16 +10,16 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 public class CreateProfileCommand extends Command {
 
-    public CreateProfileCommand(HashMap<String, String> args) {
+    public CreateProfileCommand(HashMap<String, Object> args) {
         super(args);
     }
-    public LinkedHashMap<String, Object> execute()  throws IOException {
+    public Object execute()  throws IOException {
         // validate that all required arguments are passed
         validateArgs(new String[]{"userId"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        dbHandler.createProfile(args,args.get("userId"));
+        dbHandler.createProfile(args,(String)args.get("userId"));
         LinkedHashMap<String, Object> resutls = new LinkedHashMap<String, Object>();
         resutls.put("response",true);
-        return resutls;
+        return true;
     }
 }

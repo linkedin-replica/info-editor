@@ -88,7 +88,7 @@ public class ArangoHandlerTest {
 //    }
 @Test
 public void testUpdateProfile() throws IOException {
-    HashMap<String, String> updates = new HashMap<String, String>();
+    HashMap<String, Object> updates = new HashMap<String, Object>();
     updates.put("firstName", "baher");
     updates.put("lastName", "Abdou");
     updates.put("numConnections", "7");

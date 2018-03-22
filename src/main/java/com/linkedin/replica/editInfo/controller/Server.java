@@ -1,4 +1,4 @@
-package com.linkedin.replica.jobs.controller;
+package com.linkedin.replica.editInfo.controller;
 
 import java.net.InetSocketAddress;
 
@@ -19,7 +19,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 
-public class Server {
+public class  Server {
     private final String IP;
     private final int PORT;
     private EventLoopGroup bossGroup;

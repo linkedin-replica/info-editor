@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 public class GetUserProfileCommand extends Command{
 
-    public GetUserProfileCommand(HashMap<String, String> args) {
+    public GetUserProfileCommand(HashMap<String, Object> args) {
         super(args);
     }
     public LinkedHashMap<String, Object> execute()  throws IOException {
@@ -18,7 +18,7 @@ public class GetUserProfileCommand extends Command{
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
         validateArgs(new String[]{"userId"});
         // get notifications from db
-        User user = dbHandler.getUserProfile(args.get("userId"));
+        User user = dbHandler.getUserProfile((String)args.get("userId"));
         LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
         result.put("results", user);
         return result;
