@@ -1,68 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0460d9bd-d149-4a18-a4d8-538a031f973e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/testCommand.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/controller/ControllerTestSuite.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/controller/RequestDecoderHandlerTest.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/controller/RequestProcessingHandlerTest.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/controller/ResponseEncoderHandlerTest.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/Command.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/Command.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCvCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCvCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddNewSkillCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddNewSkillCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/ControllerCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/ControllerCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/CreateProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/CreateProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/DeleteCvCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/DeleteCvCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/UpdateCompanyCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/UpdateCompanyCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/controller/Server.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/controller/Server.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/controller/handlers/RequestProcessingHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/controller/handlers/RequestProcessingHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/ControllerService.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/ControllerService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/InfoEditorService.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/InfoEditorService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/app.config" afterPath="$PROJECT_DIR$/src/main/resources/config/app.config" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/commands.config" afterPath="$PROJECT_DIR$/src/main/resources/config/commands.config" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AddCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/AddCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AddNewSkillCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/AddNewSkillCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ArangoHandlerTest.java" afterPath="$PROJECT_DIR$/src/test/java/ArangoHandlerTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ClientMessagesTest.java" afterPath="$PROJECT_DIR$/src/test/java/ClientMessagesTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CvCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/CvCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EditUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/EditUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GetUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/GetUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/InfoEditorServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/InfoEditorServiceTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UpdateCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/UpdateCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/getCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/getCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/Command.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/Command.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCvCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCvCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddNewSkillCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddNewSkillCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/ControllerCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/ControllerCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/CreateProfileCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/CreateProfileCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/DeleteCvCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/DeleteCvCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/UpdateCompanyCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/UpdateCompanyCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/messaging/ClientMessagesReceiver$1.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/messaging/ClientMessagesReceiver$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/services/ControllerService.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/services/ControllerService.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/services/InfoEditorService.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/services/InfoEditorService.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/AddCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/AddCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/AddNewSkillCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/AddNewSkillCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ClientMessagesTest$1.class" afterPath="$PROJECT_DIR$/target/test-classes/ClientMessagesTest$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ClientMessagesTest.class" afterPath="$PROJECT_DIR$/target/test-classes/ClientMessagesTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/CvCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/CvCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/EditUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/EditUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/GetUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/GetUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/InfoEditorServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/InfoEditorServiceTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/UpdateCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/UpdateCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/getCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/getCompanyCommandTest.class" />
-    </list>
+    <list default="true" id="0460d9bd-d149-4a18-a4d8-538a031f973e" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -98,8 +37,8 @@
       <file leaf-file-name="RequestProcessingHandlerTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/controller/RequestProcessingHandlerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="116" column="34" lean-forward="false" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="34" />
+            <state relative-caret-position="301">
+              <caret line="120" column="5" lean-forward="true" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -761,7 +700,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1208,8 +1147,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/controller/RequestProcessingHandlerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="116" column="34" lean-forward="false" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="34" />
+        <state relative-caret-position="301">
+          <caret line="120" column="5" lean-forward="true" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
