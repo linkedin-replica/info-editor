@@ -1,39 +1,26 @@
 package com.linkedin.replica.editInfo.database.handlers.impl;
 import java.util.*;
 
+import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
-import com.linkedin.replica.editInfo.database.handlers.DatabaseHandler;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.models.Company;
 import com.linkedin.replica.editInfo.models.User;
 
 import com.linkedin.replica.editInfo.models.*;
 import java.io.IOException;
-import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.io.IOException;
-import java.util.*;
-import com.arangodb.model.DocumentCreateOptions;
-import jdk.internal.util.xml.impl.Pair;
 
-import utils.ConfigReader;
 import com.arangodb.ArangoDatabase;
 
 import com.arangodb.ArangoCollection;
-import com.arangodb.ArangoCursor;
 import com.arangodb.ArangoDB;
 import com.arangodb.ArangoDBException;
 import com.arangodb.entity.BaseDocument;
-import com.arangodb.entity.CollectionEntity;
-import com.arangodb.model.AqlQueryOptions;
-import com.arangodb.util.MapBuilder;
-import com.arangodb.velocypack.VPackSlice;
-import com.arangodb.velocypack.exception.VPackException;
 
 public class ArangoEditInfoHandler implements EditInfoHandler {
 
     ArangoDB arangoDB;
-    private ConfigReader config;
+    private Configuration config;
     private ArangoDatabase dbInstance;
     private ArangoCollection collection;
     private String collectionName;
@@ -48,7 +35,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         // TODO
     }
     public Company getCompany(String companyID){
-        String collectionName = config.getConfig("collection.companies.name");
+        String collectionName = config.getArangoConfigProp("collection.companies.name");
 //        System.out.println(collectionName);
         Company company = dbInstance.collection(collectionName).getDocument(companyID,
 
@@ -78,7 +65,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
 
     public void updateCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
            ,String companytype,ArrayList<String>specialities,ArrayList<String> posts,ArrayList<String>jobListings) {
-        String collectionName = config.getConfig("collection.companies.name");
+        String collectionName = config.getArangoConfigProp("collection.companies.name");
 
        Company company = this.getCompany(companyID);
         System.out.println(company.getPosts());
@@ -104,7 +91,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     }
 
     public void createProfile(HashMap<String,Object> profileAttributes, String userID){
-        String UsersCollectionName = config.getConfig("collection.users.name");
+        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         BaseDocument user = new BaseDocument();
         user.setKey(userID);
         PersonalInfo personalInfo = new PersonalInfo();
@@ -146,7 +133,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         dbInstance.collection(UsersCollectionName).insertDocument(user);
     }
     public void updateProfile(HashMap<String, Object> updates, String userID){
-        String UsersCollectionName = config.getConfig("collection.users.name");
+        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         User user = getUserProfile(userID);
         PersonalInfo personalInfo = user.getPersonalInfo();
         if(personalInfo == null)
@@ -205,7 +192,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     }
 
     public void updateEducation(HashMap<String, String> updates, String userID){
-        String UsersCollectionName = config.getConfig("collection.users.name");
+        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         User user = getUserProfile(userID);
         ArrayList<Education> educations  = user.getEducations();
         if(educations == null)
@@ -236,7 +223,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     }
 
     public void UpdatePositions(HashMap<String, String> updates, String userID){
-        String UsersCollectionName = config.getConfig("collection.users.name");
+        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         User user = getUserProfile(userID);
         ArrayList<Position> positions  = user.getPositions();
         if(positions == null)
@@ -275,7 +262,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     }
 
     public void UpdateFriendsList(HashMap<String, String> updates, String userID){
-        String UsersCollectionName = config.getConfig("collection.users.name");
+        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         User user = getUserProfile(userID);
         ArrayList<FriendsList> friendsLists  = user.getFriendsList();
         if(friendsLists == null)
@@ -313,21 +300,21 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
      */
     public void addSkill(String userID, String Skill){
         User user = getUserProfile(userID);
-        String UsersCollectionName = config.getConfig("collection.users.name");
+        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         user.getSkills().add(Skill);
         dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
     }
 
 
     public void addCV(String userID,String cv){
-        String UsersCollectionName = config.getConfig("collection.users.name");
+        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         User user = getUserProfile(userID);
         user.setCvUrl(cv);
         dbInstance.collection(UsersCollectionName).updateDocument(userID,user);
     }
 
     public void deleteCV(String userID) {
-        String UsersCollectionName = config.getConfig("collection.users.name");
+        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         User user = getUserProfile(userID);
         user.setCvUrl("");
         dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
@@ -341,7 +328,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
      */
 
     public User getUserProfile(String UserID){
-        String UsersCollectionName = config.getConfig("collection.users.name");
+        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         User UserProfile = dbInstance.collection(UsersCollectionName).getDocument(UserID,
                 User.class);
 
@@ -352,11 +339,11 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
 
 
     public ArangoEditInfoHandler()throws IOException {
-        config = new ConfigReader("arango_names");
+        config = Configuration.getInstance();
         // init db
         ArangoDB arangoDriver = DatabaseConnection.getDBConnection().getArangoDriver();
-        collectionName = config.getConfig("collection.users.name");
-        dbInstance = arangoDriver.db(config.getConfig("db.name"));
+        collectionName = config.getArangoConfigProp("collection.users.name");
+        dbInstance = arangoDriver.db(config.getArangoConfigProp("db.name"));
         collection = dbInstance.collection(collectionName);
     }
     public static void main(String [] srgs){

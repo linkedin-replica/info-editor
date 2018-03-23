@@ -22,7 +22,7 @@ import java.util.LinkedHashMap;
         validateArgs(new String[]{"userId"});
         // get notifications from db
         dbHandler.addSkill((String) args.get("userId"),(String)args.get("Skill"));
-        LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
-        return true;
+        return "Skill added successfully";
+
     }
 }

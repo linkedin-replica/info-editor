@@ -24,7 +24,8 @@ public class AddCvCommand extends Command{
         dbHandler.addCV((String)args.get("userId"),(String)args.get("cv"));
         LinkedHashMap<String, Object>resutls = new LinkedHashMap<String, Object>();
         resutls.put("response",true);
-        return true;
+        return "CV added successfully";
+
     }
 
 

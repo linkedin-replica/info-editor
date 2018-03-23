@@ -1,20 +1,20 @@
 package com.linkedin.replica.editInfo.services;
 
+import com.linkedin.replica.editInfo.config.Configuration;
+import com.linkedin.replica.editInfo.database.handlers.DatabaseHandler;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
-import utils.ConfigReader;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class InfoEditorService {
-    private ConfigReader config;
+    private Configuration config;
 
     public InfoEditorService() throws IOException {
-        config = ConfigReader.getInstance();
+        config = Configuration.getInstance();
     }
 
     public Object serve(String commandName, HashMap<String, Object> args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException {
@@ -22,10 +22,10 @@ public class InfoEditorService {
         Constructor constructor = commandClass.getConstructor(HashMap.class);
         Command command = (Command) constructor.newInstance(args);
 
-        Class<?> noSqlHandlerClass = config.getNoSqlHandler();
-        EditInfoHandler noSqlHandler = (EditInfoHandler) noSqlHandlerClass.newInstance();
+        Class<?> dbHandlerClass = config.getHandlerClass(commandName);
+        DatabaseHandler databaseHandler = (DatabaseHandler) dbHandlerClass.newInstance();
 
-        command.setDbHandler(noSqlHandler);
+        command.setDbHandler(databaseHandler);
 
         return command.execute();
     }

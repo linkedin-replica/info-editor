@@ -18,8 +18,6 @@ public class CreateProfileCommand extends Command {
         validateArgs(new String[]{"userId"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
         dbHandler.createProfile(args,(String)args.get("userId"));
-        LinkedHashMap<String, Object> resutls = new LinkedHashMap<String, Object>();
-        resutls.put("response",true);
-        return true;
+        return "Profile created successfully";
     }
 }

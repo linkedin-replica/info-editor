@@ -5,6 +5,7 @@ import com.linkedin.replica.editInfo.commands.impl.AddCvCommand;
 import com.linkedin.replica.editInfo.commands.impl.AddNewSkillCommand;
 import com.linkedin.replica.editInfo.commands.impl.DeleteCvCommand;
 import com.linkedin.replica.editInfo.commands.impl.GetUserProfileCommand;
+import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.database.DatabaseSeed;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
@@ -29,16 +30,20 @@ import static org.junit.Assert.assertEquals;
 public class CvCommandTest{
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
-    static utils.ConfigReader config;
+    static Configuration config;
     static DatabaseSeed databaseSeed;
     @BeforeClass
-    public static void init() throws IOException, ParseException, org.json.simple.parser.ParseException {
-        utils.ConfigReader.isTesting = true;
-        config = utils.ConfigReader.getInstance();
+    public static void init() throws IOException, org.json.simple.parser.ParseException {
+        String rootFolder = "src/main/resources/config/";
+        Configuration.init(rootFolder + "app.config",
+                rootFolder + "arango.test.config",
+                rootFolder + "commands.config",rootFolder+"controller.config");
+        DatabaseConnection.init();
+        config = Configuration.getInstance();
         databaseSeed = new DatabaseSeed();
         arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
-                utils.ConfigReader.getInstance().getArangoConfig("db.name")
+                config.getArangoConfigProp("db.name")
         );
         databaseSeed.insertUsers();
     }
@@ -90,7 +95,7 @@ public class CvCommandTest{
     }
     @AfterClass
     public static void teardown() throws IOException {
-        String dbName = config.getArangoConfig("db.name");
+        String dbName = config.getArangoConfigProp("db.name");
         databaseSeed.deleteAllUsers();
     }
 }

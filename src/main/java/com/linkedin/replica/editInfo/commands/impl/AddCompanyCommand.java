@@ -29,7 +29,7 @@ specialities.add((String) args.get("specilities"));
         ,(String)args.get("industryType"),(String)args.get("companyLocation"),(String)args.get("companyType"),specialities,posts,jobLisitings);
         LinkedHashMap<String, Object>resutls = new LinkedHashMap<String, Object>();
         resutls.put("response",true);
-        return true;
+        return "Company added successfully";
     }
 
 

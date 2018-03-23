@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+
+import com.linkedin.replica.editInfo.database.handlers.DatabaseHandler;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 
 public abstract class Command {
     protected HashMap<String, Object> args;
-    protected EditInfoHandler dbHandler;
+    protected DatabaseHandler dbHandler;
     public Command(HashMap<String, Object> args) {
         this.args = args;
     }
@@ -20,7 +22,7 @@ public abstract class Command {
      */
 
     public abstract Object execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException;
-    public void setDbHandler(EditInfoHandler dbHandler) {
+    public void setDbHandler(DatabaseHandler dbHandler) {
         this.dbHandler = dbHandler;
     }
 

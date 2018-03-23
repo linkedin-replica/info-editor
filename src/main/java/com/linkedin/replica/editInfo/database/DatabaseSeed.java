@@ -3,11 +3,11 @@ package com.linkedin.replica.editInfo.database;
 import com.arangodb.ArangoDB;
 import com.arangodb.ArangoDBException;
 import com.arangodb.entity.BaseDocument;
+import com.linkedin.replica.editInfo.config.Configuration;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import utils.ConfigReader;
 
 import java.io.*;
 import java.sql.SQLException;
@@ -15,12 +15,12 @@ import java.util.*;
 
 public class DatabaseSeed {
 
-    private static ConfigReader config;
+    private static Configuration config;
     private ArangoDB arangoDriver;
     private com.linkedin.replica.editInfo.database.handlers.DatabaseHandler dbHandler;
 
     public DatabaseSeed() throws FileNotFoundException, IOException {
-        config = new ConfigReader("arango_names");
+        config = Configuration.getInstance();
     }
 
 
@@ -45,8 +45,8 @@ public class DatabaseSeed {
     public static void insertUsers() throws IOException, ParseException {
 
         ArangoDB arangoDB = DatabaseConnection.getDBConnection().getArangoDriver();
-        String dbName = config.getConfig("db.name");
-        String collectionName = config.getConfig("collection.users.name");
+        String dbName = config.getArangoConfigProp("db.name");
+        String collectionName = config.getArangoConfigProp("collection.users.name");
         try {
             arangoDB.db(dbName).createCollection(collectionName);
         } catch (ArangoDBException exception) {
@@ -91,8 +91,8 @@ public class DatabaseSeed {
     public static void insertArticles() throws IOException, ClassNotFoundException, SQLException, ParseException {
 
         ArangoDB arangoDB = DatabaseConnection.getDBConnection().getArangoDriver();
-        String dbName = config.getConfig("db.name");
-        String collectionName = config.getConfig("collection.articles.name");
+        String dbName = config.getArangoConfigProp("db.name");
+        String collectionName = config.getArangoConfigProp("collection.articles.name");
 
         try {
             arangoDB.db(dbName).
@@ -139,8 +139,8 @@ public class DatabaseSeed {
     public static void insertJobs() throws IOException, ClassNotFoundException, SQLException, ParseException {
 
         ArangoDB arangoDB = DatabaseConnection.getDBConnection().getArangoDriver();
-        String dbName = config.getConfig("db.name");
-        String collectionName = config.getConfig("collection.jobs.name");
+        String dbName = config.getArangoConfigProp("db.name");
+        String collectionName = config.getArangoConfigProp("collection.jobs.name");
         try {
             arangoDB.db(dbName).
                     createCollection(collectionName);
@@ -176,8 +176,8 @@ public class DatabaseSeed {
     public static void insertCompanies() throws IOException, ClassNotFoundException, SQLException, ParseException {
 
         ArangoDB arangoDB = DatabaseConnection.getDBConnection().getArangoDriver();
-        String dbName = config.getConfig("db.name");
-        String collectionName = config.getConfig("collection.companies.name");
+        String dbName = config.getArangoConfigProp("db.name");
+        String collectionName = config.getArangoConfigProp("collection.companies.name");
 
         try {
             arangoDB.db(dbName).
@@ -225,8 +225,8 @@ public class DatabaseSeed {
      */
 
     public static void deleteAllJobs() throws ArangoDBException, IOException{
-        String dbName = config.getConfig("db.name");
-        String collectionName = config.getConfig("collection.jobs.name");
+        String dbName = config.getArangoConfigProp("db.name");
+        String collectionName = config.getArangoConfigProp("collection.jobs.name");
         try {
             DatabaseConnection.getDBConnection().getArangoDriver().db(dbName).collection(collectionName).drop();
         } catch (ArangoDBException exception) {
@@ -248,8 +248,8 @@ public class DatabaseSeed {
      * @throws SQLException
      */
     public static void deleteAllUsers() throws ArangoDBException, IOException{
-        String dbName = config.getConfig("db.name");
-        String collectionName = config.getConfig("collection.users.name");
+        String dbName = config.getArangoConfigProp("db.name");
+        String collectionName = config.getArangoConfigProp("collection.users.name");
         try {
             DatabaseConnection.getDBConnection().getArangoDriver().db(dbName).collection(collectionName).drop();
         } catch(ArangoDBException exception) {
@@ -259,8 +259,8 @@ public class DatabaseSeed {
         }
     }
     public static void deleteAllCompanies() throws ArangoDBException, IOException{
-        String dbName = config.getConfig("db.name");
-        String collectionName = config.getConfig("collection.companies.name");
+        String dbName = config.getArangoConfigProp("db.name");
+        String collectionName = config.getArangoConfigProp("collection.companies.name");
         try {
             DatabaseConnection.getDBConnection().getArangoDriver().db(dbName).collection(collectionName).drop();
         } catch(ArangoDBException exception) {

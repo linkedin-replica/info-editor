@@ -21,12 +21,8 @@ public class GetCompanyProfileCommand extends Command{
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
         validateArgs(new String[]{"companyId"});
         // get notifications from db
-        Company companies = dbHandler.getCompany((String)args.get("companyId"));
-
-        LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
-        System.out.println(companies);
-        result.put("results", companies);
-        return companies;
+        Company company = dbHandler.getCompany((String)args.get("companyId"));
+        return company;
 
     }
 }

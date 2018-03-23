@@ -1,21 +1,19 @@
 package core;
 
 import com.arangodb.ArangoDatabase;
+import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseSeed;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
-import com.linkedin.replica.editInfo.database.DatabaseSeed;
 //import models.testUser;
 import org.junit.*;
-import utils.ConfigReader;
+
 import java.io.IOException;
-import org.json.simple.parser.ParseException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+
 import com.linkedin.replica.editInfo.models.*;
 
 
@@ -25,18 +23,21 @@ public class ArangoHandlerTest {
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     private static DatabaseSeed databaseSeed;
-    static ConfigReader config;
+    static Configuration config;
 
     @BeforeClass
     public static void init() throws IOException, org.json.simple.parser.ParseException, SQLException, ClassNotFoundException {
-        ConfigReader.isTesting = true;
+        String rootFolder = "src/main/resources/config/";
+        Configuration.init(rootFolder + "app.config",
+                rootFolder + "arango.test.config",
+                rootFolder + "commands.config",rootFolder+"controller.config");
+        DatabaseConnection.init();
+        config = Configuration.getInstance();
         databaseSeed = new DatabaseSeed();
-        config = ConfigReader.getInstance();
         arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
-                ConfigReader.getInstance().getArangoConfig("db.name")
+                config.getArangoConfigProp("db.name")
         );
-        System.out.println("here");
         databaseSeed.insertUsers();
         databaseSeed.insertCompanies();
     }
@@ -65,7 +66,7 @@ public class ArangoHandlerTest {
 
     @Test
     public void testGetCompany() throws IOException {
-        String collectionName = config.getArangoConfig("collection.companies.name");
+        String collectionName = config.getArangoConfigProp("collection.companies.name");
         Company companytemp = arangoHandler.getCompany("1");
 //        System.out.println(companytemp);
 
@@ -74,7 +75,7 @@ public class ArangoHandlerTest {
     }
     @Test
     public void testUpdateCompany() throws IOException {
-        String collectionName = config.getArangoConfig("collection.companies.name");
+        String collectionName = config.getArangoConfigProp("collection.companies.name");
         ArrayList<String>posts = new ArrayList<String>();
         posts.add("hello world");
 //        Company companytemp = arangoHandler.getCompany("1");
@@ -83,7 +84,7 @@ public class ArangoHandlerTest {
         Company companytemp2 = arangoHandler.getCompany("1");
 
 //        System.out.println(companytemp.toString());
-    assertEquals("name should be update",companytemp2.getCompanyName(),"microsoft3");
+         assertEquals("name should be update",companytemp2.getCompanyName(),"microsoft3");
         assertEquals("name should be update",companytemp2.getPosts().size(),4);
 
     //    }
@@ -151,14 +152,13 @@ public void testUpdateProfile() throws IOException {
     //       User user = arangoHandler.getUser(12+"");
     //       assertEquals("the two cvs should matches",user.getCvUrl(),"my cv");
     //    }
-    //    @Test
-    //    public void testDeleteCv() throws IOException {
-    //        String collectionName = config.getArangoConfig("collection.users.name");
-    //        ArangoHandler arangoHandler = new ArangoHandler();
-    //        arangoHandler.deleteCV(12+"");
-    //        User user = arangoHandler.getUser(12+"");
-    //        assertEquals("the two cvs should matches",user.getCvUrl(),"");
-    //    }
+        @Test
+        public void testDeleteCv() throws IOException {
+            String collectionName = config.getArangoConfigProp("collection.users.name");
+            arangoHandler.deleteCV(12+"");
+            User user = arangoHandler.getUserProfile("12");
+            assertEquals("the two cvs should matches",user.getCvUrl(),"");
+        }
 
 
         @Test
@@ -188,7 +188,7 @@ public void testUpdateProfile() throws IOException {
 
     @AfterClass
     public static void teardown() throws IOException {
-        String dbName = config.getArangoConfig("db.name");
+        String dbName = config.getArangoConfigProp("db.name");
         databaseSeed.deleteAllUsers();
         databaseSeed.deleteAllCompanies();
     }

@@ -22,7 +22,7 @@ public class DeleteCvCommand extends Command{
         dbHandler.deleteCV((String)args.get("userId"));
 
 
-        return true;
+        return "Cv deleted successfully";
     }
 
 }
