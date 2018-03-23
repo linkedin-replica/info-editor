@@ -21,7 +21,7 @@ public class ClientMessagesReceiver {
     private final String QUEUE_NAME = configuration.getAppConfigProp("rabbitmq.queue.client");
     private final String RABBIT_MQ_IP = configuration.getAppConfigProp("rabbitmq.ip");
     private final String RABBIT_MQ_USERNAME = configuration.getAppConfigProp("rabbitmq.username");
- +    private final String RABBIT_MQ_PASSWORD = configuration.getAppConfigProp("rabbitmq.password");
+    private final String RABBIT_MQ_PASSWORD = configuration.getAppConfigProp("rabbitmq.password");
     private ConnectionFactory factory;
     private Channel channel;
     private Connection connection;
