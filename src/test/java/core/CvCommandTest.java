@@ -1,3 +1,5 @@
+package core;
+
 import com.arangodb.ArangoDatabase;
 import com.linkedin.replica.editInfo.commands.impl.AddCvCommand;
 import com.linkedin.replica.editInfo.commands.impl.AddNewSkillCommand;
@@ -65,19 +67,22 @@ public class CvCommandTest{
     @Test
     public void DeleteCvexecute()throws IOException {
 
-        HashMap<String, Object> args = new HashMap();
+        HashMap<String, Object> args = new HashMap<String, Object>();
        Object response;
+
 
         args.put("userId", "0");
 
         DeleteCvCommand command = new DeleteCvCommand(args);
         command.setDbHandler(arangoHandler);
-        response = command.execute();
+        GetUserProfileCommand command2 = new GetUserProfileCommand(args);
+        command2.setDbHandler(arangoHandler);
+        response = command2.execute();
 
-        System.out.println((Company) response);
+        System.out.println((User) response);
         User user = arangoHandler.getUserProfile("0");
 //
-        assertEquals("response should be true", user.getCvUrl(), "");
+        assertEquals("response should be true", null, user.getCvUrl());
 
     }
     @AfterClass

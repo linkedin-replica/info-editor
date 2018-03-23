@@ -1,3 +1,5 @@
+package messaging;
+
 import com.arangodb.ArangoDatabase;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

@@ -1,3 +1,5 @@
+package core;
+
 import com.arangodb.ArangoDatabase;
 import com.linkedin.replica.editInfo.commands.impl.AddNewSkillCommand;
 import com.linkedin.replica.editInfo.commands.impl.GetUserProfileCommand;
