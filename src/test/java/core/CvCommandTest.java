@@ -82,7 +82,9 @@ public class CvCommandTest{
         System.out.println((User) response);
         User user = arangoHandler.getUserProfile("0");
 //
-        assertEquals("response should be true", null, user.getCvUrl());
+        assertEquals("the cv should be null because it is deleted", null, user.getCvUrl());
+    
+
 
     }
     @AfterClass
