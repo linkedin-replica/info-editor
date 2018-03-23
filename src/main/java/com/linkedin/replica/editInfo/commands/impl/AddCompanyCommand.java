@@ -15,7 +15,8 @@ public class AddCompanyCommand extends Command {
     }
 
     public Object execute() throws IOException {
-        validateArgs(new String[]{"companyId"});
+        validateArgs(new String[]{"companyId", "specilities", "posts", "jobListings","companyName", "companyId", "companyProfilePicture", "adminUserName","adminUserName" , "adminUserName",
+       "industryType", "companyLocation", "companyType" });
         // get notifications from db
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
         ArrayList<String>specialities = new ArrayList<String>();

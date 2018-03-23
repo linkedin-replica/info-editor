@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
     }
     public Object execute() throws IOException {
         // validate that all required arguments are passed
-        validateArgs(new String[]{"userId"});
+        validateArgs(new String[]{"userId", "Skill"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
         validateArgs(new String[]{"userId"});
         // get notifications from db

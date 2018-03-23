@@ -17,7 +17,7 @@ public class AddCvCommand extends Command{
     }
 
     public Object execute() throws IOException {
-        validateArgs(new String[]{"userId"});
+        validateArgs(new String[]{"userId", "cv"});
         // get notifications from db
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
         validateArgs(new String[]{"userId"});
