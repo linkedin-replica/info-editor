@@ -2,7 +2,7 @@ package com.linkedin.replica.editInfo.commands.impl;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
-import database.DatabaseHandler;
+import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;

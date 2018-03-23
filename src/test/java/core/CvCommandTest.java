@@ -77,13 +77,14 @@ public class CvCommandTest{
         command.setDbHandler(arangoHandler);
         GetUserProfileCommand command2 = new GetUserProfileCommand(args);
         command2.setDbHandler(arangoHandler);
+        command.execute();
         response = command2.execute();
 
         System.out.println((User) response);
         User user = arangoHandler.getUserProfile("0");
 //
-        assertEquals("the cv should be null because it is deleted", null, user.getCvUrl());
-    
+        assertEquals("the cv should be null because it is deleted", "", user.getCvUrl());
+
 
 
     }
