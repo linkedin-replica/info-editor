@@ -110,16 +110,14 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
         }
     }
     @Override
-    public void editUserIncache(String key, LinkedHashMap<String, String> args) {
+    public void editUserCache(String key, LinkedHashMap<String, String> args) {
         try {
             Jedis cacheInstance = cachePool.getResource();
             cacheInstance.select(databaseIndexusers);
             if(!cacheInstance.exists(key)) {
-
                 return;
             }
             for(Map.Entry<String, String> entry : args.entrySet()) {
-                System.out.println("hereeee   "+entry.getValue());
                 cacheInstance.hset(key, entry.getKey(), entry.getValue());
             }
         } catch(JedisException e) {
@@ -216,8 +214,9 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
         try {
             Jedis cacheInstance = cachePool.getResource();
             cacheInstance.select(databaseIndexcompanies);
-            if(!cacheInstance.exists(key))
+            if(!cacheInstance.exists(key)) {
                 return;
+            }
             for(Map.Entry<String, String> entry : args.entrySet()) {
                 cacheInstance.hset(key, entry.getKey(), entry.getValue());
             }

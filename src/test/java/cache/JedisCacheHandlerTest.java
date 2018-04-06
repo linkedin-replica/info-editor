@@ -84,20 +84,20 @@ public class JedisCacheHandlerTest {
     @Test
     public void testeditUsersCache() throws Exception {
 
-        User user = new User("1","loay","elzobaidy","position","Software",new PersonalInfo(),"","","",new ArrayList<Position>(),new ArrayList<Education>(),"",
+        User user = new User("2","loay","elzobaidy","position","Software",new PersonalInfo(),"","","",new ArrayList<Position>(),new ArrayList<Education>(),"",
                 "",new ArrayList<String>(),new ArrayList<FriendsList>(),new ArrayList<String>());
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
         String [] ids = new String[1];
-        ids[0]="1";
+        ids[0]="2";
         editinfoHandler.saveUsersInCache(ids,users);
         LinkedHashMap<String,String> args= new LinkedHashMap<String,String>();
-        String new_Position  = gson.toJson("");
-        args.put("headline",new_Position);
-        editinfoHandler.editUserIncache("1",args);
+        String new_Position  = gson.toJson("ahmed");
+        args.put("firstName",new_Position);
         System.out.println(args);
-        User tempuser = (User)editinfoHandler.getUserFromCache("1",User.class);
-        assertEquals("the user must has the new headline","new Position",user.getHeadline());
+        editinfoHandler.editUserCache("2",args);
+        User tempuser = (User)editinfoHandler.getUserFromCache("2",User.class);
+        assertEquals("the user must has the new first name","ahmed",tempuser.getFirstName());
 
     }
 
@@ -149,26 +149,26 @@ public class JedisCacheHandlerTest {
     @Test
     public void testeditCompaniesCache() throws Exception {
 
-        Company company = new Company("Microsoft","1","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
+        Company company = new Company("Microsoft","2","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
 
         ArrayList<Company> companies = new ArrayList<Company>();
         companies.add(company);
         String [] ids = new String[1];
-        ids[0]="1";
+        ids[0]="2";
         editinfoHandler.saveCompanyInCache(ids,companies);
 
         editinfoHandler.saveCompanyInCache(ids,companies);
         LinkedHashMap<String,String> args= new LinkedHashMap<String,String>();
         String new_Position  = gson.toJson("Mic");
         args.put("companyName",new_Position);
-        editinfoHandler.editUserIncache("1",args);
+        editinfoHandler.editcompanyFromCache("2",args);
         System.out.println(args);
-        Company tempcompany = (Company) editinfoHandler.getCompanyFromCache("1",Company.class);
+        Company tempcompany = (Company) editinfoHandler.getCompanyFromCache("2",Company.class);
         assertEquals("the user must has the new headline","Mic",tempcompany.getCompanyName());
 
     }
 
-    //
+
     @Test
     public void testdeleteCompaniesCache() throws Exception {
 

@@ -17,7 +17,7 @@ public interface CacheEditInfoHandler extends CacheHandler{
 
 
 
-    void editUserIncache(String key, LinkedHashMap<String, String> args);
+    void editUserCache(String key, LinkedHashMap<String, String> args);
 
     void saveCompanyInCache(String[] companiesIds, Object companies) throws IOException;
 

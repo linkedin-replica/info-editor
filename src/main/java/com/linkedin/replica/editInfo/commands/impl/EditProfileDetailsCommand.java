@@ -37,7 +37,7 @@ public class EditProfileDetailsCommand extends Command{
             // get notifications from db
             dbHandler.updateProfile(args, (String) args.get("userId"));
             cacheeditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-            cacheeditInfoHandler.editUserIncache((String) args.get("userId"), cacheargs);
+            cacheeditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
             return "Profile Edited successfully";
 
     }

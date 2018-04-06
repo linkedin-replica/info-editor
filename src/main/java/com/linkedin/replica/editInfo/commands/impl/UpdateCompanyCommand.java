@@ -44,7 +44,7 @@ public class UpdateCompanyCommand extends Command{
         posts.add((String)args.get("posts"));
         dbHandler.updateCompany((String)args.get("companyName"),(String)args.get("companyId"),(String)args.get("companyProfilePicture"),(String)args.get("adminUserName"),(String)args.get("adminUserID"),(String)args.get("industryType"),(String)args.get("companyLocation") ,(String)args.get("companytype"),specialities,posts,jobListings);
         cacheeditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-        cacheeditInfoHandler.editUserIncache((String) args.get("companyId"), cacheargs);
+        cacheeditInfoHandler.editUserCache((String) args.get("companyId"), cacheargs);
         return "Company updated successfully";
     }
 }
