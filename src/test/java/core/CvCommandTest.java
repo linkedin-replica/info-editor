@@ -1,6 +1,7 @@
 package core;
 
 import com.arangodb.ArangoDatabase;
+import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
 import com.linkedin.replica.editInfo.commands.impl.AddCvCommand;
 import com.linkedin.replica.editInfo.commands.impl.AddNewSkillCommand;
 import com.linkedin.replica.editInfo.commands.impl.DeleteCvCommand;
@@ -31,6 +32,7 @@ public class CvCommandTest{
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     static Configuration config;
+    private static JedisCacheHandler jedisCacheHandler;
     static DatabaseSeed databaseSeed;
     @BeforeClass
     public static void init() throws IOException, org.json.simple.parser.ParseException {
@@ -41,6 +43,7 @@ public class CvCommandTest{
         DatabaseConnection.init();
         config = Configuration.getInstance();
         databaseSeed = new DatabaseSeed();
+        jedisCacheHandler = new JedisCacheHandler();
         arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
@@ -62,6 +65,7 @@ public class CvCommandTest{
         args.put("cv","user12URL");
         AddCvCommand command = new AddCvCommand(args);
         command.setDbHandler(arangoHandler);
+        command.setCacheHandler(jedisCacheHandler);
         response = command.execute();
         User user = arangoHandler.getUserProfile("0");
         System.out.println((User) user);
@@ -82,10 +86,12 @@ public class CvCommandTest{
         command.setDbHandler(arangoHandler);
         GetUserProfileCommand command2 = new GetUserProfileCommand(args);
         command2.setDbHandler(arangoHandler);
+        command2.setCacheHandler(jedisCacheHandler);
+        command.setCacheHandler(jedisCacheHandler);
         command.execute();
         response = command2.execute();
 
-        System.out.println((User) response);
+//        System.out.println((User) response);
         User user = arangoHandler.getUserProfile("0");
 //
         assertEquals("the cv should be null because it is deleted", "", user.getCvUrl());

@@ -20,7 +20,7 @@ public class GetUserProfileCommand extends Command{
         String []ids=new String[1];
        ids[0]=(String) args.get("userId");
         cacheeditInfoHandler = (CacheEditInfoHandler)this.cacheHandler;
-        User user = (User) cacheeditInfoHandler.getUserFromCache(ids[0],Company.class);
+        User user = (User) cacheeditInfoHandler.getUserFromCache(ids[0],User.class);
         if(user!=null) {
             ArrayList<User>users = new ArrayList<User>();
             users.add(user);
@@ -28,11 +28,13 @@ public class GetUserProfileCommand extends Command{
 
         }
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
+
         validateArgs(new String[]{"userId"});
         // get notifications from db
         user = dbHandler.getUserProfile((String)args.get("userId"));
-
-
+        ArrayList<User>users = new ArrayList<User>();
+        users.add(user);
+        cacheeditInfoHandler.saveUsersInCache(ids,users);
         return user;
     }
 }

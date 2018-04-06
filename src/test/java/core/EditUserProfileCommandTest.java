@@ -69,9 +69,10 @@ public class EditUserProfileCommandTest {
         command2.execute();
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
-
+        command.setCacheHandler(cacheEditInfoHandler);
         response = command.execute();
-        User myUser = (User) response;
+        ArrayList<User> users2 =(ArrayList<User>)response;
+        User myUser = (User) users2.get(0) ;
         assertEquals("Expected matching first name", "Baher" , myUser.getFirstName());
         assertEquals("Expected matching last name", "Radwan" , myUser.getLastName());
         assertEquals("Expected matching headline", "Graduate" , myUser.getHeadline());
