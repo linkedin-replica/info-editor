@@ -3,16 +3,16 @@ package com.linkedin.replica.editInfo.models;
 import java.util.ArrayList;
 
 public class Company {
-    private String companyName;
-    private String companyProfilePicture;
-    private String companyID;
-    private String adminUserName;
-    private String adminUserID;
-    private String industryType;
-    private String companyLocation;
-    private String companytype;
-    private ArrayList<String> posts;
-    private ArrayList<String> jobListings;
+    public String companyName;
+    public String companyProfilePicture;
+    public String companyID;
+    public String adminUserName;
+    public String adminUserID;
+    public String industryType;
+    public String companyLocation;
+    public String companytype;
+    public ArrayList<String> posts;
+    public ArrayList<String> jobListings;
     public Company(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,
                    String industryType,String companyLocation,String companytype,ArrayList<String>posts,ArrayList<String> JobListings) {
         this.companyName = companyName;

@@ -32,7 +32,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
             cacheInstance.select(databaseIndexusers);
             Pipeline pipeline = cacheInstance.pipelined();
             ArrayList<Object> usersList = (ArrayList<Object>) users;
-            for(int j = 0; j < usersIds.length; ++j) {
+            for(int j = 0; j < usersIds.length; ++j){
                 String key = usersIds[j];
                 Object user = usersList.get(j);
                 Class userClass = user.getClass();
@@ -41,6 +41,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
                     String fieldName = fields[i].getName();
                     Object fieldValue;
                     try {
+                        fields[i].setAccessible(true);
                         fieldValue = fields[i].get(user);
                         pipeline.hset(key, fieldName, gson.toJson(fieldValue));
                     } catch (IllegalAccessException e) {
@@ -109,20 +110,22 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
         }
     }
     @Override
-    public void editUserFromCache(String key, LinkedHashMap<String, String> args) {
+    public void editUserIncache(String key, LinkedHashMap<String, String> args) {
         try {
             Jedis cacheInstance = cachePool.getResource();
             cacheInstance.select(databaseIndexusers);
-            if(!cacheInstance.exists(key))
+            if(!cacheInstance.exists(key)) {
+
                 return;
+            }
             for(Map.Entry<String, String> entry : args.entrySet()) {
+                System.out.println("hereeee   "+entry.getValue());
                 cacheInstance.hset(key, entry.getKey(), entry.getValue());
             }
         } catch(JedisException e) {
             e.printStackTrace();
         }
     }
-
     @Override
     public void saveCompanyInCache(String[] companiesIds, Object companies) throws IOException {
 
@@ -130,17 +133,18 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
             Jedis cacheInstance = cachePool.getResource();
             cacheInstance.select(databaseIndexcompanies);
             Pipeline pipeline = cacheInstance.pipelined();
-            ArrayList<Object> company = (ArrayList<Object>) companies;
+            ArrayList<Object> companyList = (ArrayList<Object>) companies;
             for(int j = 0; j < companiesIds.length; ++j) {
                 String key = companiesIds[j];
-                Object job = company.get(j);
+                Object company = companyList.get(j);
                 Class companyClass = company.getClass();
                 Field [] fields = companyClass.getDeclaredFields();
                 for(int i = 0; i < fields.length; ++i) {
                     String fieldName = fields[i].getName();
                     Object fieldValue;
                     try {
-                        fieldValue = fields[i].get(job);
+                        fields[i].setAccessible(true);
+                        fieldValue = fields[i].get(company);
                         pipeline.hset(key, fieldName, gson.toJson(fieldValue));
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();

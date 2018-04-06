@@ -1,6 +1,7 @@
 package core;
 
 import com.arangodb.ArangoDatabase;
+import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
 import com.linkedin.replica.editInfo.commands.impl.GetCompanyProfileCommand;
 import com.linkedin.replica.editInfo.commands.impl.UpdateCompanyCommand;
 import com.linkedin.replica.editInfo.config.Configuration;
@@ -25,6 +26,7 @@ public class UpdateCompanyCommandTest {
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     static Configuration config;
+    private static JedisCacheHandler jedisCacheHandler;
     private static DatabaseSeed databaseSeed;
 
 
@@ -38,6 +40,7 @@ public class UpdateCompanyCommandTest {
         DatabaseConnection.init();
         config = Configuration.getInstance();
         arangoHandler = new ArangoEditInfoHandler();
+        jedisCacheHandler = new JedisCacheHandler();
         databaseSeed = new DatabaseSeed();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                config.getArangoConfigProp("db.name")
@@ -58,12 +61,14 @@ public class UpdateCompanyCommandTest {
 
         command = new GetCompanyProfileCommand(args);
         Command temp = new UpdateCompanyCommand(argstemp);
+        temp.setCacheHandler(jedisCacheHandler);
+        command.setCacheHandler(jedisCacheHandler);
         command.setDbHandler(arangoHandler);
         temp.setDbHandler(arangoHandler);
         temp.execute();
         response = command.execute();
         Company company = (Company) response;
-        assertEquals("Expected matching company ID", "Microsoft2" ,company.getCompanyName() );
+        assertEquals("Expected matching new company name", "Microsoft2" ,company.getCompanyName() );
 
     }
     @AfterClass
