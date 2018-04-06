@@ -35,7 +35,7 @@ public class AddCompanyCommandTest {
         String rootFolder = "src/main/resources/config/";
         Configuration.init(rootFolder + "app.config",
                 rootFolder + "arango.test.config",
-                rootFolder + "commands.config",rootFolder+"controller.config");
+                rootFolder + "commands.config",rootFolder+"controller.config",rootFolder+"cache.config");
         DatabaseConnection.init();
         DatabaseConnection.init();
         config = Configuration.getInstance();

@@ -309,6 +309,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     public void addCV(String userID,String cv){
         String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         User user = getUserProfile(userID);
+        System.out.println(userID);
         user.setCvUrl(cv);
         dbInstance.collection(UsersCollectionName).updateDocument(userID,user);
     }

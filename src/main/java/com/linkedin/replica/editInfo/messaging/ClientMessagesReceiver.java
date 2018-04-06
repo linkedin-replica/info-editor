@@ -29,6 +29,8 @@ public class ClientMessagesReceiver {
 
     public ClientMessagesReceiver() throws IOException, TimeoutException {
         factory = new ConnectionFactory();
+        factory.setUsername(RABBIT_MQ_USERNAME);
+        factory.setPassword(RABBIT_MQ_PASSWORD);
         factory.setHost(RABBIT_MQ_IP);
         connection = factory.newConnection();
         channel = connection.createChannel();
