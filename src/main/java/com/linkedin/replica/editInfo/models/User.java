@@ -3,22 +3,22 @@ package com.linkedin.replica.editInfo.models;
 import java.util.ArrayList;
 
 public  class User {
-   private String userId;
-   private String firstName;
-   private String lastName;
-   private String headline;
-   private String industry;
-   private PersonalInfo personalInfo;
-   private String numConnections;
-   private String numFollowers;
-   private String summary;
-   private ArrayList<Position> positions;
-   private ArrayList<Education> educations;
-   private String imageUrl;
-   private String cvUrl;
-   private ArrayList<String> skills;
-   private ArrayList<FriendsList> friendsList;
-   private ArrayList<String> bookmarkedPosts;
+   public String userId;
+   public String firstName;
+   public String lastName;
+   public String headline;
+   public String industry;
+   public PersonalInfo personalInfo;
+   public String numConnections;
+   public String numFollowers;
+   public String summary;
+   public ArrayList<Position> positions;
+   public ArrayList<Education> educations;
+   public String imageUrl;
+   public String cvUrl;
+   public ArrayList<String> skills;
+   public ArrayList<FriendsList> friendsList;
+   public ArrayList<String> bookmarkedPosts;
 
 
    public User() {};

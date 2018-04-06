@@ -3,7 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="0ac9f98a-d4f9-433a-a5e4-22c30dc768dd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/EditInfoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/EditInfoHandler.java" />
+      <change beforePath="$PROJECT_DIR$/info-editor.iml" afterPath="$PROJECT_DIR$/info-editor.iml" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/EditInfoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/CacheEditInfoHandler.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/JedisCacheHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/JedisCacheHandler.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/Command.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/Command.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/User.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/arango.config" afterPath="$PROJECT_DIR$/src/main/resources/config/arango.config" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/arango.test.config" afterPath="$PROJECT_DIR$/src/main/resources/config/arango.test.config" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/cache.config" afterPath="$PROJECT_DIR$/src/main/resources/config/cache.config" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/Command.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/Command.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/arango.config" afterPath="$PROJECT_DIR$/target/classes/config/arango.config" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/arango.test.config" afterPath="$PROJECT_DIR$/target/classes/config/arango.test.config" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/cache.config" afterPath="$PROJECT_DIR$/target/classes/config/cache.config" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/core/EditUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/EditUserProfileCommandTest.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,51 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="InfoEditorServiceTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="33" column="103" lean-forward="false" selection-start-line="33" selection-start-column="103" selection-end-line="33" selection-end-column="103" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientMessagesTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/messaging/ClientMessagesTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="45" column="103" lean-forward="false" selection-start-line="45" selection-start-column="103" selection-end-line="45" selection-end-column="103" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddCompanyCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="37" column="103" lean-forward="false" selection-start-line="37" selection-start-column="103" selection-end-line="37" selection-end-column="103" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/main/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="37" column="27" lean-forward="false" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JedisCacheHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JedisCacheHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/JedisCacheHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="98" column="8" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="8" />
+            <state relative-caret-position="193">
+              <caret line="19" column="113" lean-forward="false" selection-start-line="19" selection-start-column="92" selection-end-line="19" selection-end-column="113" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,13 +43,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditInfoHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/EditInfoHandler.java">
+      <file leaf-file-name="cache.config" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/cache.config">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="54">
+              <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Company.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Company.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditProfileDetailsCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#888#904#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,38 +79,60 @@
       <file leaf-file-name="EditUserProfileCommandTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="35" column="103" lean-forward="false" selection-start-line="35" selection-start-column="103" selection-end-line="35" selection-end-column="103" />
-              <folding />
+            <state relative-caret-position="409">
+              <caret line="67" column="55" lean-forward="false" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
+              <folding>
+                <element signature="e#2537#2543#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateProfileCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="33" column="103" lean-forward="false" selection-start-line="33" selection-start-column="103" selection-end-line="33" selection-end-column="103" />
+            <state relative-caret-position="329">
+              <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetUserProfileCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="30" column="103" lean-forward="false" selection-start-line="30" selection-start-column="103" selection-end-line="30" selection-end-column="103" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CvCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/CvCommandTest.java">
+      <file leaf-file-name="DatabaseSeed.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/DatabaseSeed.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="193">
-              <caret line="37" column="21" lean-forward="false" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arango.config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.config">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arango.test.config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.test.config">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -154,10 +173,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/CreateProfileCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/DeleteCvCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/UpdateCompanyCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/InfoEditorService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/Command.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/DatabaseSeed.java" />
         <option value="$PROJECT_DIR$/src/test/java/messaging/ServicesMessagesReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.java" />
@@ -165,16 +182,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddNewSkillCommand.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/commands.config" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/messaging/ClientMessagesReceiver.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/arango.config" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/DatabaseConnection.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/arango.test.config" />
         <option value="$PROJECT_DIR$/src/main/resources/config/arango_names" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/app.config" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/JobsHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/CacheConnection.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/cache.config" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/CacheHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/EditInfoHandler.java" />
@@ -187,12 +200,19 @@
         <option value="$PROJECT_DIR$/src/test/java/core/CvCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/messaging/ClientMessagesTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/Command.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/JedisCacheHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/app.config" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/arango.test.config" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/arango.config" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/cache.config" />
+        <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/User.java" />
+        <option value="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" />
       </list>
     </option>
   </component>
@@ -301,6 +321,16 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="editInfo" type="462c0819:PsiDirectoryNode" />
+              <item name="commands" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="info-editor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="info-editor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="editInfo" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -365,6 +395,15 @@
               <item name="info-editor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="editInfo" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="info-editor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="info-editor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -387,6 +426,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="info-editor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="info-editor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="info-editor" type="b2602c69:ProjectViewProjectNode" />
@@ -433,7 +480,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.EditUserProfileCommandTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -499,18 +546,18 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="ArangoHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientMessagesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="core.*" />
+          <option name="PATTERN" value="messaging.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="info-editor" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="core" />
-      <option name="MAIN_CLASS_NAME" value="core.ArangoHandlerTest" />
+      <option name="PACKAGE_NAME" value="messaging" />
+      <option name="MAIN_CLASS_NAME" value="messaging.ClientMessagesTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -524,18 +571,18 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="ClientMessagesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EditUserProfileCommandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="messaging.*" />
+          <option name="PATTERN" value="core.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="info-editor" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="messaging" />
-      <option name="MAIN_CLASS_NAME" value="messaging.ClientMessagesTest" />
+      <option name="PACKAGE_NAME" value="core" />
+      <option name="MAIN_CLASS_NAME" value="core.EditUserProfileCommandTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -636,18 +683,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.InfoEditorServiceTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.ArangoHandlerTest" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.AddCompanyCommandTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.ClientMessagesTest" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.AddCompanyCommandTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.ClientMessagesTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.EditUserProfileCommandTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.InfoEditorServiceTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ClientMessagesTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.AddCompanyCommandTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.ArangoHandlerTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.EditUserProfileCommandTest" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.InfoEditorServiceTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ClientMessagesTest" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.AddCompanyCommandTest" />
       </list>
     </recent_temporary>
   </component>
@@ -668,35 +715,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AddCompanyCommandTest - 2018.03.23 at 23h 30m 47s.xml">
-      <configuration name="AddCompanyCommandTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 18h 49m 43s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClientMessagesTest - 2018.03.23 at 23h 31m 50s.xml">
-      <configuration name="ClientMessagesTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 18h 50m 18s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClientMessagesTest - 2018.03.23 at 23h 32m 36s.xml">
-      <configuration name="ClientMessagesTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 18h 51m 29s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClientMessagesTest - 2018.03.23 at 23h 32m 37s.xml">
-      <configuration name="ClientMessagesTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 18h 52m 20s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClientMessagesTest - 2018.03.23 at 23h 32m 41s.xml">
-      <configuration name="ClientMessagesTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 18h 53m 02s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.23 at 23h 28m 25s.xml">
-      <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 19h 04m 05s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.23 at 23h 29m 13s.xml">
-      <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 19h 04m 29s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.23 at 23h 29m 44s.xml">
-      <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 19h 05m 50s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.23 at 23h 30m 11s.xml">
-      <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 19h 06m 46s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="InfoEditorServiceTest - 2018.03.23 at 23h 32m 48s.xml">
-      <configuration name="InfoEditorServiceTest" configurationId="JUnit" />
+    <history-entry file="EditUserProfileCommandTest - 2018.04.06 at 19h 07m 19s.xml">
+      <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -739,13 +786,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/ControllerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-244">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/Workers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -753,36 +793,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Company.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/data/users.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-54">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-          <folding>
-            <element signature="e#816#817#0" expanded="false" />
-            <element signature="e#858#859#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/DatabaseSeed.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="142" column="59" lean-forward="true" selection-start-line="142" selection-start-column="59" selection-end-line="142" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -833,13 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="24" column="39" lean-forward="false" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="17" column="67" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -894,22 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.test.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/commands.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -926,26 +917,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="22" column="44" lean-forward="false" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCvCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -966,28 +941,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/cache.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="54" column="21" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/CacheConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1005,7 +964,7 @@
         <state relative-caret-position="-284">
           <caret line="44" column="73" lean-forward="false" selection-start-line="44" selection-start-column="73" selection-end-line="44" selection-end-column="73" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1074,14 +1033,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="35" column="103" lean-forward="false" selection-start-line="35" selection-start-column="103" selection-end-line="35" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -1114,23 +1065,124 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/EditInfoHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="17" column="67" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/CacheEditInfoHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="54" column="21" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/DatabaseSeed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.test.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/JedisCacheHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="98" column="8" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="8" />
+        <state relative-caret-position="193">
+          <caret line="19" column="113" lean-forward="false" selection-start-line="19" selection-start-column="92" selection-end-line="19" selection-end-column="113" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Company.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#888#904#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="67" column="55" lean-forward="false" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
+          <folding>
+            <element signature="e#2537#2543#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/cache.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>

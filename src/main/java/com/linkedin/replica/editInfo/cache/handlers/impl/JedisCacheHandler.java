@@ -3,7 +3,6 @@ package com.linkedin.replica.editInfo.cache.handlers.impl;
 import com.google.gson.Gson;
 import com.linkedin.replica.editInfo.cache.CacheConnection;
 import com.linkedin.replica.editInfo.config.Configuration;
-import com.linkedin.replica.editInfo.cache.handlers.CacheHandler;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Pipeline;
@@ -13,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.*;
 
-public class JedisCacheHandler implements EditInfoHandler {
+public class JedisCacheHandler implements CacheEditInfoHandler {
 
     private static JedisPool cachePool;
     private Configuration configuration = Configuration.getInstance();
@@ -109,7 +108,7 @@ public class JedisCacheHandler implements EditInfoHandler {
             e.printStackTrace();
         }
     }
-
+    @Override
     public void editUserFromCache(String key, LinkedHashMap<String, String> args) {
         try {
             Jedis cacheInstance = cachePool.getResource();
@@ -208,7 +207,7 @@ public class JedisCacheHandler implements EditInfoHandler {
             e.printStackTrace();
         }
     }
-
+    @Override
     public void editcompanyFromCache(String key, LinkedHashMap<String, String> args) {
         try {
             Jedis cacheInstance = cachePool.getResource();
