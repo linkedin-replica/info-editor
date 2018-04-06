@@ -90,7 +90,7 @@ public class JedisCacheHandlerTest {
         users.add(user);
         String [] ids = new String[1];
         ids[0]="1";
-//        editinfoHandler.saveUsersInCache(ids,users);
+        editinfoHandler.saveUsersInCache(ids,users);
         LinkedHashMap<String,String> args= new LinkedHashMap<String,String>();
         String new_Position  = gson.toJson("");
         args.put("headline",new_Position);
@@ -101,21 +101,21 @@ public class JedisCacheHandlerTest {
 
     }
 
-//
-//    @Test
-//    public void testdeleteUsersCache() throws Exception {
-//
-//        User user = new User("1","loay","elzobaidy","position","Software",new PersonalInfo(),"","","",new ArrayList<Position>(),new ArrayList<Education>(),"",
-//                "",new ArrayList<String>(),new ArrayList<FriendsList>(),new ArrayList<String>());
-//        ArrayList<User> users = new ArrayList<User>();
-//        users.add(user);
-//        String [] ids = new String[1];
-//        ids[0]="1";
-//        editinfoHandler.saveUsersInCache(ids,users);
-//        editinfoHandler.deleteUserFromCache("1");
-//        User usertemp = (User)editinfoHandler.getUserFromCache("1",User.class);
-//        assertEquals("the new user must be null",null,usertemp);
-  //  }
+
+    @Test
+    public void testdeleteUsersCache() throws Exception {
+
+        User user = new User("1","loay","elzobaidy","position","Software",new PersonalInfo(),"","","",new ArrayList<Position>(),new ArrayList<Education>(),"",
+                "",new ArrayList<String>(),new ArrayList<FriendsList>(),new ArrayList<String>());
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(user);
+        String [] ids = new String[1];
+        ids[0]="1";
+        editinfoHandler.saveUsersInCache(ids,users);
+        editinfoHandler.deleteUserFromCache("1");
+        User usertemp = (User)editinfoHandler.getUserFromCache("1",User.class);
+        assertEquals("the new user must be null",null,usertemp);
+    }
 
     @Test
     public void testsaveCompaniesCache() throws Exception {
@@ -124,7 +124,7 @@ public class JedisCacheHandlerTest {
        companies.add(company);
         String [] ids = new String[1];
         ids[0]="1";
-        editinfoHandler.saveUsersInCache(ids,companies);
+        editinfoHandler.saveCompanyInCache(ids,companies);
        Company tempCompany = (Company) editinfoHandler.getCompanyFromCache("1",Company.class);
         assertEquals("the two users must have the same id","1",tempCompany.getCompanyID());
 
@@ -138,7 +138,7 @@ public class JedisCacheHandlerTest {
         companies.add(company);
         String [] ids = new String[1];
         ids[0]="1";
-        editinfoHandler.saveUsersInCache(ids,companies);
+        editinfoHandler.saveCompanyInCache(ids,companies);
         Company tempcompany = (Company) editinfoHandler.getCompanyFromCache("1",Company.class);
         assertEquals("the two users must have the same id","1",tempcompany.getCompanyID());
 //        assertEquals("the two users must have the same firstname","loay",user.getFirstName());
@@ -155,9 +155,9 @@ public class JedisCacheHandlerTest {
         companies.add(company);
         String [] ids = new String[1];
         ids[0]="1";
-        editinfoHandler.saveUsersInCache(ids,companies);
+        editinfoHandler.saveCompanyInCache(ids,companies);
 
-//        editinfoHandler.saveUsersInCache(ids,users);
+        editinfoHandler.saveCompanyInCache(ids,companies);
         LinkedHashMap<String,String> args= new LinkedHashMap<String,String>();
         String new_Position  = gson.toJson("Mic");
         args.put("companyName",new_Position);
