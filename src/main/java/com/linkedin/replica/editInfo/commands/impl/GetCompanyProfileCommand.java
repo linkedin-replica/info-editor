@@ -1,5 +1,5 @@
 package com.linkedin.replica.editInfo.commands.impl;
-import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
+import com.linkedin.replica.editInfo.cache.handlers.EditInfoCacheHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.models.*;
 
 public class GetCompanyProfileCommand extends Command{
-    private CacheEditInfoHandler cacheeditInfoHandler;
+    private EditInfoCacheHandler cacheeditInfoHandler;
     public GetCompanyProfileCommand(HashMap<String, Object> args) {
         super(args);
     }
@@ -20,7 +20,7 @@ public class GetCompanyProfileCommand extends Command{
         // get notifications from db
         String [] ids  = new String[1];
         ids[0]=(String) args.get("companyId");
-        cacheeditInfoHandler = (CacheEditInfoHandler)this.cacheHandler;
+        cacheeditInfoHandler = (EditInfoCacheHandler)this.cacheHandler;
        Company company = (Company) cacheeditInfoHandler.getCompanyFromCache(ids[0],Company.class);
         if(company!=null) {
 

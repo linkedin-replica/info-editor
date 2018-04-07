@@ -1,5 +1,5 @@
 package com.linkedin.replica.editInfo.commands.impl;
-import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
+import com.linkedin.replica.editInfo.cache.handlers.EditInfoCacheHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.models.*;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GetUserProfileCommand extends Command{
-    private CacheEditInfoHandler cacheeditInfoHandler;
+    private EditInfoCacheHandler cacheeditInfoHandler;
 
     public GetUserProfileCommand(HashMap<String, Object> args) {
         super(args);
@@ -19,7 +19,7 @@ public class GetUserProfileCommand extends Command{
         validateArgs(new String[]{"userId"});
         String []ids=new String[1];
        ids[0]=(String) args.get("userId");
-        cacheeditInfoHandler = (CacheEditInfoHandler)this.cacheHandler;
+        cacheeditInfoHandler = (EditInfoCacheHandler)this.cacheHandler;
         User user = (User) cacheeditInfoHandler.getUserFromCache(ids[0],User.class);
         if(user!=null) {
             return user;

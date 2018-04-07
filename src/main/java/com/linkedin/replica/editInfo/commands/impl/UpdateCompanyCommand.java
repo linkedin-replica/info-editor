@@ -1,5 +1,5 @@
 package com.linkedin.replica.editInfo.commands.impl;
-import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
+import com.linkedin.replica.editInfo.cache.handlers.EditInfoCacheHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import org.apache.commons.codec.binary.Base64;
@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.zip.GZIPOutputStream;
 
 public class UpdateCompanyCommand extends Command{
-    private CacheEditInfoHandler cacheeditInfoHandler;
+    private EditInfoCacheHandler cacheeditInfoHandler;
     public UpdateCompanyCommand(HashMap<String, Object> args) {
         super(args);
     }
@@ -43,8 +43,8 @@ public class UpdateCompanyCommand extends Command{
         jobListings.add((String)args.get("jobListings"));
         posts.add((String)args.get("posts"));
         dbHandler.updateCompany((String)args.get("companyName"),(String)args.get("companyId"),(String)args.get("companyProfilePicture"),(String)args.get("adminUserName"),(String)args.get("adminUserID"),(String)args.get("industryType"),(String)args.get("companyLocation") ,(String)args.get("companytype"),specialities,posts,jobListings);
-        cacheeditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-        cacheeditInfoHandler.editcompanyFromCache((String) args.get("companyId"), cacheargs);
+        cacheeditInfoHandler = (EditInfoCacheHandler) cacheHandler;
+        cacheeditInfoHandler.editCompanyFromCache((String) args.get("companyId"), cacheargs);
         return "Company updated successfully";
     }
 }

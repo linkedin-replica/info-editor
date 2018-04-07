@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public interface CacheEditInfoHandler extends CacheHandler{
+public interface EditInfoCacheHandler extends CacheHandler{
 
 
     void saveUsersInCache(String[] usersIds, Object users) throws IOException;
@@ -23,7 +23,7 @@ public interface CacheEditInfoHandler extends CacheHandler{
 
     Object getCompanyFromCache(String key, Class<?> tClass) throws IOException;
 
-    void deleteCompanies(String key);
+    void deleteCompany(String key);
 
-    void editcompanyFromCache(String key, LinkedHashMap<String, String> args);
+    void editCompanyFromCache(String key, LinkedHashMap<String, String> args);
 }

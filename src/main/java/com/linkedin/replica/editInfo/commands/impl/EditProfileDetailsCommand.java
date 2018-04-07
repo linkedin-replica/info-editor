@@ -1,6 +1,6 @@
 package com.linkedin.replica.editInfo.commands.impl;
 import com.linkedin.replica.editInfo.commands.Command;
-import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
+import com.linkedin.replica.editInfo.cache.handlers.EditInfoCacheHandler;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 
 import java.io.ByteArrayOutputStream;
@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.zip.GZIPOutputStream;
 import org.apache.commons.codec.binary.Base64;
 public class EditProfileDetailsCommand extends Command{
-    private CacheEditInfoHandler cacheeditInfoHandler;
+    private EditInfoCacheHandler cacheeditInfoHandler;
     public EditProfileDetailsCommand(HashMap<String, Object> args) {
         super(args);
     }
@@ -36,7 +36,7 @@ public class EditProfileDetailsCommand extends Command{
             EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
             // get notifications from db
             dbHandler.updateProfile(args, (String) args.get("userId"));
-            cacheeditInfoHandler = (CacheEditInfoHandler) cacheHandler;
+            cacheeditInfoHandler = (EditInfoCacheHandler) cacheHandler;
             cacheeditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
             return "Profile Edited successfully";
 
