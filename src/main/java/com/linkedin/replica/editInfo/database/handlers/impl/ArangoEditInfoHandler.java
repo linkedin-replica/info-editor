@@ -32,7 +32,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
 
 
     public void disconnect() {
-        // TODO
+        //TODO
     }
     public Company getCompany(String companyID){
         String collectionName = config.getArangoConfigProp("collection.companies.name");
@@ -335,8 +335,6 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
 
         return UserProfile;
     }
-
-
 
 
     public ArangoEditInfoHandler()throws IOException {
