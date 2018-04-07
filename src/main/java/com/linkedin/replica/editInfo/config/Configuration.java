@@ -1,7 +1,7 @@
 
 package com.linkedin.replica.editInfo.config;
 
-import com.linkedin.replica.editInfo.cache.handlers.impl.CacheEditInfoHandler;
+import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 
@@ -85,7 +85,7 @@ public class Configuration {
         return Class.forName(handlerClassPath);
     }
     public Class getCacheHandlerClass(String commandName) throws ClassNotFoundException {
-        String handlerPackageName = CacheEditInfoHandler.class.getPackage().getName() + "";
+        String handlerPackageName = CacheEditInfoHandler.class.getPackage().getName() + ".impl";
         String handlerClassPath = handlerPackageName + "." + commandConfig.get(commandName + ".handler.cache");
         return Class.forName(handlerClassPath);
     }

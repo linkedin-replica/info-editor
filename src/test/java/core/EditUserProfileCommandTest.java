@@ -1,7 +1,6 @@
 package core;
 
 import com.arangodb.ArangoDatabase;
-import com.linkedin.replica.editInfo.cache.handlers.impl.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
 import com.linkedin.replica.editInfo.commands.impl.EditProfileDetailsCommand;
 import com.linkedin.replica.editInfo.config.Configuration;
@@ -71,8 +70,7 @@ public class EditUserProfileCommandTest {
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(cacheEditInfoHandler);
         response = command.execute();
-        ArrayList<User> users2 =(ArrayList<User>)response;
-        User myUser = (User) users2.get(0) ;
+        User myUser =(User)response;
         assertEquals("Expected matching first name", "Baher" , myUser.getFirstName());
         assertEquals("Expected matching last name", "Radwan" , myUser.getLastName());
         assertEquals("Expected matching headline", "Graduate" , myUser.getHeadline());

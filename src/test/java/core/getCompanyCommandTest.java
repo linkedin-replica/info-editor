@@ -1,7 +1,6 @@
 package core;
 
 import com.arangodb.ArangoDatabase;
-import com.linkedin.replica.editInfo.cache.handlers.impl.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
 import com.linkedin.replica.editInfo.commands.impl.GetCompanyProfileCommand;
 import com.linkedin.replica.editInfo.config.Configuration;

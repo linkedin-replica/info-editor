@@ -2,11 +2,8 @@ package cache;
 
 import com.google.gson.Gson;
 import com.linkedin.replica.editInfo.cache.CacheConnection;
-import com.linkedin.replica.editInfo.cache.handlers.CacheHandler;
 import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
-import com.linkedin.replica.editInfo.cache.handlers.impl.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.config.Configuration;
-import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.models.*;
 import com.linkedin.replica.editInfo.models.User;
 import com.linkedin.replica.editInfo.services.InfoEditorService;
@@ -15,12 +12,8 @@ import org.json.simple.parser.ParseException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;

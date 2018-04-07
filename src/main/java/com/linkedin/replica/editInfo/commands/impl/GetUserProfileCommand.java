@@ -1,5 +1,5 @@
 package com.linkedin.replica.editInfo.commands.impl;
-import com.linkedin.replica.editInfo.cache.handlers.impl.CacheEditInfoHandler;
+import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.models.*;
@@ -7,7 +7,7 @@ import com.linkedin.replica.editInfo.models.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+
 public class GetUserProfileCommand extends Command{
     private CacheEditInfoHandler cacheeditInfoHandler;
 
@@ -22,17 +22,15 @@ public class GetUserProfileCommand extends Command{
         cacheeditInfoHandler = (CacheEditInfoHandler)this.cacheHandler;
         User user = (User) cacheeditInfoHandler.getUserFromCache(ids[0],User.class);
         if(user!=null) {
-            ArrayList<User>users = new ArrayList<User>();
-            users.add(user);
-            return users;
+            return user;
 
         }
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
 
         validateArgs(new String[]{"userId"});
         // get notifications from db
-        user = dbHandler.getUserProfile((String)args.get("userId"));
-        ArrayList<User>users = new ArrayList<User>();
+         user = dbHandler.getUserProfile((String)args.get("userId"));
+       ArrayList<User> users = new ArrayList<User>();
         users.add(user);
         cacheeditInfoHandler.saveUsersInCache(ids,users);
         return user;

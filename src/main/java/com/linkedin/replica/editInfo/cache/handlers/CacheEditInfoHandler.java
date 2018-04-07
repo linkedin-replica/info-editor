@@ -1,4 +1,4 @@
-package com.linkedin.replica.editInfo.cache.handlers.impl;
+package com.linkedin.replica.editInfo.cache.handlers;
 import com.linkedin.replica.editInfo.cache.handlers.CacheHandler;
 import com.linkedin.replica.editInfo.models.*;
 

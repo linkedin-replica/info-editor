@@ -2,6 +2,7 @@ package com.linkedin.replica.editInfo.cache.handlers.impl;
 
 import com.google.gson.Gson;
 import com.linkedin.replica.editInfo.cache.CacheConnection;
+import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.config.Configuration;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -167,9 +168,9 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
             if(!cacheInstance.exists(key))
                 return null;
             Class companyClass = tClass;
-            Object user = null;
+            Object company = null;
             try {
-                user = companyClass.newInstance();
+                company = companyClass.newInstance();
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -181,7 +182,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
                 String jsonValue = cacheInstance.hget(key, fieldName);
                 Object objectValue = gson.fromJson(jsonValue, fields[i].getType());
                 try {
-                    companyClass.getField(fieldName).set(user, objectValue);
+                    companyClass.getField(fieldName).set(company, objectValue);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (NoSuchFieldException e) {
@@ -189,7 +190,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
                 }
             }
             cacheInstance.close();
-            return user;
+            return company;
         } catch(JedisException e) {
             e.printStackTrace();
         }

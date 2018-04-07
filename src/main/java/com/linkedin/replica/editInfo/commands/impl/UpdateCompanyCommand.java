@@ -1,5 +1,5 @@
 package com.linkedin.replica.editInfo.commands.impl;
-import com.linkedin.replica.editInfo.cache.handlers.impl.CacheEditInfoHandler;
+import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import org.apache.commons.codec.binary.Base64;
