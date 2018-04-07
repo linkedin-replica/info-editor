@@ -2,7 +2,7 @@ package com.linkedin.replica.editInfo.cache.handlers.impl;
 
 import com.google.gson.Gson;
 import com.linkedin.replica.editInfo.cache.CacheConnection;
-import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
+import com.linkedin.replica.editInfo.cache.handlers.EditInfoCacheHandler;
 import com.linkedin.replica.editInfo.config.Configuration;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.*;
 
-public class JedisCacheHandler implements CacheEditInfoHandler {
+public class JedisCacheHandler implements EditInfoCacheHandler {
 
     private static JedisPool cachePool;
     private Configuration configuration = Configuration.getInstance();
@@ -28,8 +28,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     @Override
     public void saveUsersInCache(String[] usersIds, Object users) throws IOException {
 
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()) {
             cacheInstance.select(databaseIndexusers);
             Pipeline pipeline = cacheInstance.pipelined();
             ArrayList<Object> usersList = (ArrayList<Object>) users;
@@ -62,8 +61,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     @Override
     public Object getUserFromCache(String key, Class<?> tClass) throws IOException {
 
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(Integer.parseInt(configuration.getRedisConfigProp("cache.users.index")));
             if(!cacheInstance.exists(key))
                 return null;
@@ -99,21 +97,22 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
 
     @Override
     public void deleteUserFromCache(String key) {
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(databaseIndexusers);
             if(!cacheInstance.exists(key))
                 return;
             String [] fieldNames = cacheInstance.hgetAll(key).keySet().toArray(new String[cacheInstance.hgetAll(key).keySet().size()]);
             cacheInstance.hdel(key, fieldNames);
+            cacheInstance.close();
         } catch(JedisException e) {
             e.printStackTrace();
         }
     }
     @Override
     public void editUserCache(String key, LinkedHashMap<String, String> args) {
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(databaseIndexusers);
             if(!cacheInstance.exists(key)) {
                 return;
@@ -121,6 +120,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
             for(Map.Entry<String, String> entry : args.entrySet()) {
                 cacheInstance.hset(key, entry.getKey(), entry.getValue());
             }
+            cacheInstance.close();
         } catch(JedisException e) {
             e.printStackTrace();
         }
@@ -128,8 +128,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     @Override
     public void saveCompanyInCache(String[] companiesIds, Object companies) throws IOException {
 
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(databaseIndexcompanies);
             Pipeline pipeline = cacheInstance.pipelined();
             ArrayList<Object> companyList = (ArrayList<Object>) companies;
@@ -162,8 +161,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     @Override
     public Object getCompanyFromCache(String key, Class<?> tClass) throws IOException {
 
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(Integer.parseInt(configuration.getRedisConfigProp("cache.companies.index")));
             if(!cacheInstance.exists(key))
                 return null;
@@ -198,22 +196,23 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     }
 
     @Override
-    public void deleteCompanies(String key) {
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+    public void deleteCompany(String key) {
+
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(databaseIndexcompanies);
             if(!cacheInstance.exists(key))
                 return;
             String [] fieldNames = cacheInstance.hgetAll(key).keySet().toArray(new String[cacheInstance.hgetAll(key).keySet().size()]);
             cacheInstance.hdel(key, fieldNames);
+            cacheInstance.close();
         } catch(JedisException e) {
             e.printStackTrace();
         }
     }
     @Override
-    public void editcompanyFromCache(String key, LinkedHashMap<String, String> args) {
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+    public void editCompanyFromCache(String key, LinkedHashMap<String, String> args) {
+
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(databaseIndexcompanies);
             if(!cacheInstance.exists(key)) {
                 return;
@@ -221,6 +220,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
             for(Map.Entry<String, String> entry : args.entrySet()) {
                 cacheInstance.hset(key, entry.getKey(), entry.getValue());
             }
+            cacheInstance.close();
         } catch(JedisException e) {
             e.printStackTrace();
         }
