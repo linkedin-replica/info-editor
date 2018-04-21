@@ -1,40 +1,34 @@
-[
+et companies_seed = [
   {
-    "companyName": "Ergasti",
-    "companyID": "3",
-    "companyProfilePicture":"htttp//Ergasti",
-    "adminUserName":"Baher",
-    "adminUserID":"1",
+    "_key": "11",
+    "companyId": "11",
+    "companyName": "Google",
+    "aboutUs": "BLA BLA BLA",
+    "profilePictureUrl":"htttp//Google",
+    "userId":"1",
     "industryType":"Software",
-    "companyLocation":"Cairo",
-    "companytype":"middleCompany",
-    "posts":["0","1","2"],
-    "jobListings":[]
-  },
-
-
-  {
-    "companyName": "Microsoft",
-    "companyID": "2",
-    "companyProfilePicture":"htttp//Microsoft",
-    "adminUserName":"Loay",
-    "adminUserID":"5",
-    "industryType":"Software",
-    "companyLocation":"Cairo",
-    "companytype":"middleCompany",
-    "posts":["7","32","2"],
-    "jobListings":[]
+    "posts":[]
   },
   {
-    "companyName": "Ergasti3",
-    "companyID": "1",
-    "companyProfilePicture":"htttp//Ergasti3",
-    "adminUserName":"Baher",
-    "adminUserID":"0",
+    "_key": "12",
+    "companyId": "12",
+    "companyName": "Facebook",
+    "aboutUs": "BLA BLA BLA",
+    "profilePictureUrl":"htttp//Facebook",
+    "userId":"2",
     "industryType":"Software",
-    "companyLocation":"Berlin",
-    "companytype":"middleCompany",
-    "posts":["10","11","21"],
-    "jobListings":[]
+    "posts":["1"]
+  },
+  {
+    "_key": "13",
+    "companyId": "13",
+    "companyName": "Swvl",
+    "aboutUs": "BLA BLA BLA",
+    "profilePictureUrl":"htttp//Swvl",
+    "userId":"3",
+    "industryType":"Software",
+    "posts":[]
   }
 ]
+
+for company in companies_seed insert company in companies

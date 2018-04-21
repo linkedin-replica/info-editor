@@ -25,7 +25,7 @@ public class UpdateCompanyCommand extends Command{
         LinkedHashMap<String, String> cacheargs = new LinkedHashMap<String, String>();
 
 
-        for (String key : cacheargs.keySet()) {
+        for (String key : args.keySet()) {
             ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
             GZIPOutputStream gzipOutputStream = new GZIPOutputStream(arrayOutputStream);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(gzipOutputStream);
@@ -33,16 +33,14 @@ public class UpdateCompanyCommand extends Command{
             objectOutputStream.flush();
             Base64 base64 = new Base64();
             String stringvalue = new String(base64.encode(arrayOutputStream.toByteArray()));
-
+            System.out.println(stringvalue+"heree");
             cacheargs.put(key, stringvalue);
         }
         ArrayList<String >posts = new ArrayList<String>();
         ArrayList<String >jobListings = new ArrayList<String>();
         ArrayList<String> specialities = new ArrayList<String>();
-        specialities.add((String)args.get("specialities"));
-        jobListings.add((String)args.get("jobListings"));
-        posts.add((String)args.get("posts"));
-        dbHandler.updateCompany((String)args.get("companyName"),(String)args.get("companyId"),(String)args.get("companyProfilePicture"),(String)args.get("adminUserName"),(String)args.get("adminUserID"),(String)args.get("industryType"),(String)args.get("companyLocation") ,(String)args.get("companytype"),specialities,posts,jobListings);
+        System.out.println(cacheargs+"cache");
+        dbHandler.updateCompany(args);
         cacheeditInfoHandler = (CacheEditInfoHandler) cacheHandler;
         cacheeditInfoHandler.editcompanyFromCache((String) args.get("companyId"), cacheargs);
         return "Company updated successfully";

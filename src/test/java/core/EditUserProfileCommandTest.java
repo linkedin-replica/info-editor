@@ -45,7 +45,7 @@ public class EditUserProfileCommandTest {
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
         );
-        databaseSeed.insertUsers();
+       // databaseSeed.insertUsers();
     }
 
 
@@ -53,13 +53,13 @@ public class EditUserProfileCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "0");
+        args.put("userId", "2");
         args.put("firstName", "Baher");
         args.put("headline", "Graduate");
         String [] ids = new String[1];
         ids[0]="1";
         ArrayList<User> users = new ArrayList<User>();
-        User user = new User("0","bahber","ahmed","","Software",new PersonalInfo(),"","","",new ArrayList<Position>(),new ArrayList<Education>(),"","",new ArrayList<String>(),new ArrayList<FriendsList>(),new ArrayList<String>());
+        User user = new User();
         users.add(user);
         cacheEditInfoHandler.saveUsersInCache(ids,users);
         Command command2 = new EditProfileDetailsCommand(args);
@@ -78,6 +78,6 @@ public class EditUserProfileCommandTest {
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfigProp("db.name");
-        databaseSeed.deleteAllUsers();
+        //databaseSeed.deleteAllUsers();
     }
 }

@@ -45,8 +45,7 @@ public class JedisCacheHandlerTest {
 
     @Test
     public void testsaveUsersCache() throws Exception {
-        User user = new User("1","loay","elzobaidy","position","Software",new PersonalInfo(),"","","",new ArrayList<Position>(),new ArrayList<Education>(),"",
-                "",new ArrayList<String>(),new ArrayList<FriendsList>(),new ArrayList<String>());
+        User user = new User("1","loay","elzobaidy","position","Software");
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
         String [] ids = new String[1];
@@ -60,8 +59,7 @@ public class JedisCacheHandlerTest {
     @Test
     public void testgetUsersCache() throws Exception {
 
-        User user = new User("1","loay","elzobaidy","position","Software",new PersonalInfo(),"","","",new ArrayList<Position>(),new ArrayList<Education>(),"",
-                "",new ArrayList<String>(),new ArrayList<FriendsList>(),new ArrayList<String>());
+        User user = new User("1","loay","elzobaidy","position","Software");
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
         String [] ids = new String[1];
@@ -77,8 +75,7 @@ public class JedisCacheHandlerTest {
     @Test
     public void testeditUsersCache() throws Exception {
 
-        User user = new User("2","loay","elzobaidy","position","Software",new PersonalInfo(),"","","",new ArrayList<Position>(),new ArrayList<Education>(),"",
-                "",new ArrayList<String>(),new ArrayList<FriendsList>(),new ArrayList<String>());
+        User user = new User("2","loay","elzobaidy","position","Software");
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
         String [] ids = new String[1];
@@ -98,8 +95,7 @@ public class JedisCacheHandlerTest {
     @Test
     public void testdeleteUsersCache() throws Exception {
 
-        User user = new User("1","loay","elzobaidy","position","Software",new PersonalInfo(),"","","",new ArrayList<Position>(),new ArrayList<Education>(),"",
-                "",new ArrayList<String>(),new ArrayList<FriendsList>(),new ArrayList<String>());
+        User user = new User("1","loay","elzobaidy","position","Software");
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
         String [] ids = new String[1];

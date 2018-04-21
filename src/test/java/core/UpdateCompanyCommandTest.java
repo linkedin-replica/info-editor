@@ -11,6 +11,9 @@ import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.models.Company;
 
+import com.linkedin.replica.editInfo.models.LightJob;
+import com.linkedin.replica.editInfo.models.LightPost;
+import com.linkedin.replica.editInfo.models.Media;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,6 +21,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
@@ -45,7 +49,7 @@ public class UpdateCompanyCommandTest {
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                config.getArangoConfigProp("db.name")
         );
-        databaseSeed.insertCompanies();
+       // databaseSeed.insertCompanies();
     }
 
 
@@ -55,9 +59,13 @@ public class UpdateCompanyCommandTest {
         HashMap<String, Object> argstemp = new HashMap();
 
         Object response;
-        args.put("companyId", "1");
-        argstemp.put("companyId", "1");
+        args.put("companyId", "13");
+        argstemp.put("companyId", "13");
         argstemp.put("companyName", "Microsoft2");
+        ArrayList<String>  joblistings =  new ArrayList<String>();
+        joblistings.add("2");
+
+        argstemp.put("posts",joblistings);
 
         command = new GetCompanyProfileCommand(args);
         Command temp = new UpdateCompanyCommand(argstemp);
@@ -74,6 +82,6 @@ public class UpdateCompanyCommandTest {
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfigProp("db.name");
-        databaseSeed.deleteAllCompanies();
+      //  databaseSeed.deleteAllCompanies();
     }
 }

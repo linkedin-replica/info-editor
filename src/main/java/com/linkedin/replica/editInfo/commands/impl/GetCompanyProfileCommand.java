@@ -21,20 +21,22 @@ public class GetCompanyProfileCommand extends Command{
         String [] ids  = new String[1];
         ids[0]=(String) args.get("companyId");
         cacheeditInfoHandler = (CacheEditInfoHandler)this.cacheHandler;
-       Company company = (Company) cacheeditInfoHandler.getCompanyFromCache(ids[0],Company.class);
+       Company company = null;
+               //= (Company) cacheeditInfoHandler.getCompanyFromCache(ids[0],Company.class);
         if(company!=null) {
 
             return company;
 
         }
        company = dbHandler.getCompany((String)args.get("companyId"));
+        System.out.println((String)args.get("companyId"));
         ArrayList<Company>companies ;
          ids = new String[1];
         ids[0]=(String)args.get("companyId");
        companies = new ArrayList<Company>();
-//        System.out.println(company.companyName);
+        System.out.println(ids[0]);
         companies.add(company);
-        cacheeditInfoHandler.saveCompanyInCache(ids,companies);
+        //cacheeditInfoHandler.saveCompanyInCache(ids,companies);
         return company;
 
     }

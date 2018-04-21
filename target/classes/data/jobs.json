@@ -1,44 +1,31 @@
-[
+let jobs_seed = [
   {
-    "positionName": "Software Developer",
-    "companyName": "Ergasti",
-    "companyId": "3",
-    "requiredSkills": ["NodeJS", "HTML", "CSS", "Java"]
+    "_key": "1",
+    "jobId": "1",
+    "jobTitle": "Software Engineer",
+    "industryType": "Software",
+    "jobBrief" : "Bla bla bla",
+    "companyId" : "11",
+    "requiredSkills":["gamed gddan", "SQL", "JAVA"]
   },
   {
-    "positionName": "Data Wrangling Engineer",
-    "companyName": "DFKI",
-    "companyId": "1",
-    "requiredSkills": ["Python", "Java"]
+    "_key": "2",
+    "jobId": "2",
+    "jobTitle": "Software Engineer II",
+    "industryType": "Medicine",
+    "jobBrief" : "Bla bla blaaaaaaa",
+    "companyId" : "12",
+    "requiredSkills":["Sociable", "7enayyen"]
   },
   {
-    "positionName": "HR Manager",
-    "companyName": "Vodafone",
-    "companyId": "2",
-    "requiredSkills": ["Team Management", "Administration"]
-  },
-  {
-    "positionName": "Junior Researcher",
-    "companyName": "DHBW",
-    "companyId": "5",
-    "requiredSkills": ["Research", "Python", "NLP"]
-  },
-  {
-    "positionName": "IT Engineer",
-    "companyName": "GUC",
-    "companyId": "4",
-    "requiredSkills": ["Hardware", "Software"]
-  },
-  {
-    "positionName": "web developer",
-    "companyName": "ITWorx",
-    "companyId": "7",
-    "requiredSkills": ["JS", "AngularJS", "HTML", "CSS"]
-  },
-  {
-    "positionName": "Driver",
-    "companyName": "Juhayna",
-    "companyId": "8",
-    "requiredSkills": ["License", "Driving Experience"]
+    "_key": "3",
+    "jobId": "3",
+    "jobTitle": "Doctor",
+    "industryType": "Education",
+    "jobBrief" : "GUC",
+    "companyId" : "13",
+    "requiredSkills":["skill"]
   }
 ]
+
+for job in jobs_seed insert job in jobs

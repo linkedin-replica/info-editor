@@ -3,7 +3,7 @@ package com.linkedin.replica.editInfo.models;
 public class LightCompany {
     private String companyName;
     private String companyID;
-
+public LightCompany(){}
     public LightCompany(String companyName, String companyID) {
         this.companyName = companyName;
         this.companyID = companyID;

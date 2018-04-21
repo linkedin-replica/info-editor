@@ -207,10 +207,13 @@ public class DatabaseSeed {
             companyDocument.addAttribute("adminUserID", companyObject.get( "adminUserID"));
             companyDocument.addAttribute("industryType", companyObject.get("industryType"));
             companyDocument.addAttribute("companyLocation", companyObject.get("companyLocation"));
+            companyDocument.addAttribute("companytype",companyObject.get("companytype"));
+            companyDocument.addAttribute("relatedConnections", companyObject.get( "relatedConnections"));
             companyDocument.addAttribute("posts",companyObject.get("posts"));
             companyDocument.addAttribute("jobListings", companyObject.get( "jobListings"));
             arangoDB.db(dbName).collection(collectionName).insertDocument(companyDocument);
             System.out.println("New article document insert with key = " + companyDocument.getId());
+
 
         }
     }

@@ -15,11 +15,10 @@ public interface EditInfoHandler extends DatabaseHandler {
     Company getCompany(String companyID);
     User getUserProfile(String UserID);
     void addSkill(String userID, String Skill);
-    void updateProfile(HashMap<String, Object> updates, String UserId);
+    void updateProfile(HashMap<String, Object> updates);
     void addCV(String userID,String cv);
     void deleteCV(String userID);
-    void updateCompany(String companyName, String companyID, String companyProfilePicture, String adminUserName, String adminUserID, String industryType, String companyLocation
-            , String companytype, ArrayList<String> specialities, ArrayList<String> posts, ArrayList<String>jobListings);
+    void updateCompany(HashMap<String,Object>args);
     void disconnect();
     void createProfile(HashMap<String, Object> profileAttributes, String userID);
     public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation

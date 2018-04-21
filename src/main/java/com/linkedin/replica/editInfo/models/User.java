@@ -8,34 +8,21 @@ public  class User {
    public String lastName;
    public String headline;
    public String industry;
-   public PersonalInfo personalInfo;
-   public String numConnections;
-   public String numFollowers;
-   public String summary;
-   public ArrayList<Position> positions;
-   public ArrayList<Education> educations;
+   public ArrayList<String> positions;
+   public ArrayList<String> educations;
    public String imageUrl;
    public String cvUrl;
    public ArrayList<String> skills;
-   public ArrayList<FriendsList> friendsList;
+   public ArrayList<String> friendsList;
    public ArrayList<String> bookmarkedPosts;
 
-
-   public User() {};
-
-    public User(String userId, String firstName, String lastName, String headline, String industry, PersonalInfo personalInfo, String numConnections,
-                String numFollowers, String summary, ArrayList<Position> positions, ArrayList<Education> educations,
-                String imageUrl, String cvUrl, ArrayList<String> skills,
-                ArrayList<FriendsList> friendsList, ArrayList<String> bookmarkedPosts) {
+    public User(String userId, String firstName, String lastName, String headline, String industry) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.headline = headline;
         this.industry = industry;
-        this.personalInfo = personalInfo;
-        this.numConnections = numConnections;
-        this.numFollowers = numFollowers;
-        this.summary = summary;
+
         this.positions = positions;
         this.educations = educations;
         this.imageUrl = imageUrl;
@@ -44,6 +31,10 @@ public  class User {
         this.friendsList = friendsList;
         this.bookmarkedPosts = bookmarkedPosts;
     }
+
+    public User() {};
+
+
 
     public String getUserId() {
         return userId;
@@ -65,27 +56,12 @@ public  class User {
         return industry;
     }
 
-    public PersonalInfo getPersonalInfo() {
-        return personalInfo;
-    }
 
-    public String getNumConnections() {
-        return numConnections;
-    }
-
-    public String getNumFollowers() {
-        return numFollowers;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public ArrayList<Position> getPositions() {
+    public ArrayList<String> getPositions() {
         return positions;
     }
 
-    public ArrayList<Education> getEducations() {
+    public ArrayList<String> getEducations() {
         return educations;
     }
 
@@ -101,7 +77,7 @@ public  class User {
         return skills;
     }
 
-    public ArrayList<FriendsList> getFriendsList() {
+    public ArrayList<String> getFriendsList() {
         return friendsList;
     }
 
@@ -130,28 +106,15 @@ public  class User {
         this.industry = industry;
     }
 
-    public void setPersonalInfo(PersonalInfo personalInfo) {
-        this.personalInfo = personalInfo;
-    }
-
-    public void setNumConnections(String numConnections) {
-        this.numConnections = numConnections;
-    }
 
 
-    public void setNumFollowers(String numFollowers) {
-        this.numFollowers = numFollowers;
-    }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
 
-    public void setPositions(ArrayList<Position> positions) {
+    public void setPositions(ArrayList<String> positions) {
         this.positions = positions;
     }
 
-    public void setEducations(ArrayList<Education> educations) {
+    public void setEducations(ArrayList<String> educations) {
         this.educations = educations;
     }
 
@@ -167,7 +130,7 @@ public  class User {
         this.skills = skills;
     }
 
-    public void setFriendsList(ArrayList<FriendsList> friendsList) {
+    public void setFriendsList(ArrayList<String> friendsList) {
         this.friendsList = friendsList;
     }
 

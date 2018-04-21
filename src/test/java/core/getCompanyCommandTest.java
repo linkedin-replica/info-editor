@@ -40,12 +40,20 @@ public class getCompanyCommandTest {
         DatabaseConnection.init();
         config = Configuration.getInstance();
         databaseSeed = new DatabaseSeed();
+    String JobID;
+    String positionName ;
+    String companyName ;
+    String companyID;
+    String companyProfilePictureURL ;
         cacheEditInfoHandler = new JedisCacheHandler();
         arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
         );
-        databaseSeed.insertCompanies();
+//        databaseSeed.insertCompanies();
+  //      databaseSeed.insertJobs();
+//        databaseSeed.insertUsers();
+
     }
 
 
@@ -53,7 +61,7 @@ public class getCompanyCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
        Object response;
-        args.put("companyId", "1");
+        args.put("companyId", "12");
         command = new GetCompanyProfileCommand(args);
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(cacheEditInfoHandler);
@@ -65,6 +73,6 @@ public class getCompanyCommandTest {
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfigProp("db.name");
-        databaseSeed.deleteAllCompanies();
+        //databaseSeed.deleteAllCompanies();
     }
 }

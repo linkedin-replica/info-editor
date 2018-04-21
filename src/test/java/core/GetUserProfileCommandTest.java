@@ -39,7 +39,7 @@ public class GetUserProfileCommandTest {
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
         );
-        databaseSeed.insertUsers();
+        //databaseSeed.insertUsers();
     }
 
     
@@ -47,7 +47,7 @@ public class GetUserProfileCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "0");
+        args.put("userId", "1");
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(jedisCacheHandler);
@@ -60,6 +60,6 @@ public class GetUserProfileCommandTest {
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfigProp("db.name");
-        databaseSeed.deleteAllUsers();
+       // databaseSeed.deleteAllUsers();
     }
 }

@@ -1,6 +1,9 @@
 package com.linkedin.replica.editInfo.database.handlers.impl;
 import java.util.*;
 
+import com.arangodb.*;
+import com.arangodb.util.MapBuilder;
+import com.google.gson.Gson;
 import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
@@ -10,11 +13,6 @@ import com.linkedin.replica.editInfo.models.User;
 import com.linkedin.replica.editInfo.models.*;
 import java.io.IOException;
 
-import com.arangodb.ArangoDatabase;
-
-import com.arangodb.ArangoCollection;
-import com.arangodb.ArangoDB;
-import com.arangodb.ArangoDBException;
 import com.arangodb.entity.BaseDocument;
 
 public class ArangoEditInfoHandler implements EditInfoHandler {
@@ -34,18 +32,39 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     public void disconnect() {
         // TODO
     }
-    public Company getCompany(String companyID){
-        String collectionName = config.getArangoConfigProp("collection.companies.name");
-//        System.out.println(collectionName);
-        Company company = dbInstance.collection(collectionName).getDocument(companyID,
+    public Company getCompany(String companyId){
+        Map <String, Object> bindVars = new HashMap<String ,Object>();
+        bindVars.put("companyId",companyId);
 
-                Company.class);
-        return company;
+        String Query = "FOR company in companies\n" +
+                "filter company._key == @companyId\n" +
+                "let Posts = (" +
+                "    for post in posts\n" +
+                "    filter post.postId in company.posts\n" +
+                "    return post\n" +
+                ")\n" +
+                "let jobListings = (\n" +
+                "    for jobListingtemp in jobs\n" +
+                "    filter jobListingtemp._key in company.jobListing\n" +
+                "    return jobListingtemp\n" +
+                ")\n" +
+                "return  MERGE_RECURSIVE (\n" +
+                "                    company, \n" +
+                "                    {\"posts\": Posts, \"jobListing\": jobListings}\n" +
+                "                    \n" +
+                "                )\n" +
+                "          ";
+        System.out.println(Query);
+        String collectionName = config.getArangoConfigProp("collection.companies.name");
+        ArangoCursor<String> cursor = dbInstance.query(Query, bindVars,null, String.class);
+        System.out.println(cursor.next());
+        return null;
     }
     public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
             ,String companytype,ArrayList<String> specialities,ArrayList<String> posts,ArrayList<String> jobListings){
             BaseDocument myObject = new BaseDocument();
             myObject.setKey(companyID);
+            System.out.println(myObject.getId());
             myObject.addAttribute("companyName", companyName);
             myObject.addAttribute("companyId", companyID);
             myObject.addAttribute("companyProfilePicture", companyProfilePicture);
@@ -63,28 +82,55 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         }
     }
 
-    public void updateCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
-           ,String companytype,ArrayList<String>specialities,ArrayList<String> posts,ArrayList<String>jobListings) {
+    public void updateCompany(HashMap<String,Object>args) {
         String collectionName = config.getArangoConfigProp("collection.companies.name");
+        Gson gson = new Gson();
+       // System.out.println(args+"args");
+        Map<String, Object> bindVars = new MapBuilder().get();
 
-       Company company = this.getCompany(companyID);
-        System.out.println(company.getPosts());
-        if(companyName!=null)
-        company.setCompanyName(companyName);
-        if(companyProfilePicture!=null)
-            company.setCompanyProfilePicture(companyProfilePicture);
-        if(companyLocation!=null)
-            company.setCompanyLocation(companyLocation);
-        if(companytype==null)
-           company.setCompanytype(companytype);
-        if(industryType!=null)
-            company.setIndustryType(industryType);
-        if(jobListings!=null&&jobListings.size()!=0)
-           company.updateJobListings(jobListings);
-        if(posts!=null&&posts.size()!=0)
-            company.updatePosts(posts);
+        //execute query
+        String Query = "FOR company IN "+config.getArangoConfigProp("collection.companies.name")+"  UPDATE { _key:"+"@companyId" ;
+        Query +="} WITH{ ";
+        for(String key :args.keySet()){
+            Class c = args.get(key).getClass();
+            //System.out.println(c.getName());
+            bindVars.put(key,args.get(key));
+            if(c.getName().equals("java.lang.String")){
+
+                Query +=key +": "+"@"+key+" , ";
+            }
+            else{
+                Query +=key +": "+"APPEND(company."+key+","+"@"+key+")"+" ,";
+            }
+          //  System.out.println(bindVars);
+
+        }
+   if(args.keySet().size()>0)
+       Query = Query.substring(0,Query.length()-2);
+        Query+="  }   IN "+collectionName;
+        System.out.println(Query);
+
         try {
-            dbInstance.collection(collectionName).updateDocument(companyID+"", company);
+        ArangoCursor<String> cursor = dbInstance.query(Query, bindVars,null, String.class);
+        System.out.println(cursor);
+
+//
+//        if(companyName!=null)
+//        company.addAttribute("companyName",companyName);
+//        if(companyProfilePicture!=null)
+//            company.setCompanyProfilePicture(companyProfilePicture);
+//        if(companyLocation!=null)
+//            company.setCompanyLocation(companyLocation);
+//        if(companytype==null)
+//           company.setCompanytype(companytype);
+//        if(industryType!=null)
+//            company.setIndustryType(industryType);
+//        if(jobListings!=null&&jobListings.size()!=0)
+//           company.updateJobListings(jobListings);
+//        if(posts!=null&&posts.size()!=0)
+//            company.updatePosts(posts);
+
+//            dbInstance.collection(collectionName).updateDocument(companyID+"", company);
         } catch (ArangoDBException e) {
             System.err.println("Failed to update document. " + e.getMessage());
         }
@@ -132,166 +178,62 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
             user.addAttribute("cvUrl", (String)profileAttributes.get("cvUrl"));
         dbInstance.collection(UsersCollectionName).insertDocument(user);
     }
-    public void updateProfile(HashMap<String, Object> updates, String userID){
-        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
-        User user = getUserProfile(userID);
-        PersonalInfo personalInfo = user.getPersonalInfo();
-        if(personalInfo == null)
-            personalInfo = new PersonalInfo();
-        Location location = personalInfo.getLocation();
-        ArrayList<String> bookmarks = user.getBookmarkedPosts();
-        if(bookmarks == null)
-            bookmarks = new ArrayList<String>();
-        if(updates.containsKey("firstName"))
-            user.setFirstName((String)updates.get("firstName"));
+    public void updateProfile(HashMap<String, Object> args){
+        String collectionName = config.getArangoConfigProp("collection.users.name");
+        Gson gson = new Gson();
+        // System.out.println(args+"args");
+        Map<String, Object> bindVars = new MapBuilder().get();
 
-        if(updates.containsKey("lastName"))
-            user.setLastName((String)updates.get("lastName"));
+        //execute query
+        String Query = "FOR user IN "+config.getArangoConfigProp("collection.users.name")+"  UPDATE { _key:"+"@userId" ;
+        Query +="} WITH{ ";
+        for(String key :args.keySet()){
+            Class c = args.get(key).getClass();
+            //System.out.println(c.getName());
+            bindVars.put(key,args.get(key));
+            if(c.getName().equals("java.lang.String")){
 
-        if(updates.containsKey("headline"))
-            user.setHeadline((String)updates.get("headline"));
-        if(updates.containsKey("personalInfo.phone"))
-            personalInfo.setPhone((String)(updates.get("personalInfo.phone")));
-        if(updates.containsKey("personalInfo.email"))
-            personalInfo.setEmail((String)(updates.get("personalInfo.email")));
-
-        if(updates.containsKey("personalInfo.dob"))
-            personalInfo.setDob((String)(updates.get("personalInfo.dob")));
-
-        if(updates.containsKey("personalInfo.location.address"))
-            location.setAddress((String)updates.get("personalInfo.location.address"));
-
-        if(updates.containsKey("personalInfo.location.country"))
-            location.setCountry((String)updates.get("personalInfo.location.country"));
-
-        if(updates.containsKey("personalInfo.location.country"))
-            location.setCountry((String)updates.get("personalInfo.location.country"));
-
-        if(updates.containsKey("personalInfo.location.code"))
-            location.setCountry((String)updates.get("personalInfo.location.code"));
-
-        personalInfo.setLocation(location);
-        if(updates.containsKey("personalInfo.website"))
-            personalInfo.setWebsite((String)(updates.get("personalInfo.website")));
-        user.setPersonalInfo(personalInfo);
-        if(updates.containsKey("numConnections"))
-            user.setNumConnections((String)updates.get("numConnections"));
-        if(updates.containsKey("numFollowers"))
-            user.setNumFollowers((String)updates.get("numFollowers"));
-        if(updates.containsKey("summary"))
-            user.setSummary((String)updates.get("summary"));
-        if(updates.containsKey("imageUrl"))
-            user.setImageUrl((String)updates.get("imageUrl"));
-        if(updates.containsKey("cvUrl"))
-            user.setCvUrl((String)updates.get("cvUrl"));
-        if(updates.containsKey("bookmarkedPosts")) {
-            bookmarks.add((String)updates.get("bookmarkedPosts"));
-            user.setBookmarkedPosts(bookmarks);
-        }
-        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
-    }
-
-    public void updateEducation(HashMap<String, String> updates, String userID){
-        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
-        User user = getUserProfile(userID);
-        ArrayList<Education> educations  = user.getEducations();
-        if(educations == null)
-            educations = new ArrayList<Education>();
-        for (Map.Entry<String, String> entry: updates.entrySet()){
-                    String[] values = entry.getKey().split("#");
-                    int idx = Integer.parseInt(values[1]);
-                    HashMap<String, Integer> Types = new HashMap<String, Integer>();
-                    Types.put("schoolName", 1);
-                    Types.put("fieldOfStudy", 2);
-                    Types.put("startDate", 3);
-                    Types.put("endDate", 4);
-                    Types.put("degree", 5);
-                     int type = Types.get(values[0]);
-                     if(educations.size() <= idx)
-                         educations.add(new Education());
-                    switch (type){
-                        case 1: educations.get(idx).setSchoolName(entry.getValue());break;
-                        case 2: educations.get(idx).setFieldOfStudy(entry.getValue());break;
-                        case 3 : educations.get(idx).setStartDate(entry.getValue());break;
-                        case 4 : educations.get(idx).setEndDate(entry.getValue());break;
-                        case 5: educations.get(idx).setDegree(entry.getValue());
-                        default: break;
-                    }
-        }
-        user.setEducations(educations);
-        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
-    }
-
-    public void UpdatePositions(HashMap<String, String> updates, String userID){
-        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
-        User user = getUserProfile(userID);
-        ArrayList<Position> positions  = user.getPositions();
-        if(positions == null)
-            positions = new ArrayList<Position>();
-        for (Map.Entry<String, String> entry: updates.entrySet()){
-            String[] values = entry.getKey().split("#");
-            int idx = Integer.parseInt(values[1]);
-            HashMap<String, Integer> Types = new HashMap<String, Integer>();
-            Types.put("title", 1);
-            Types.put("summary", 2);
-            Types.put("startDate", 3);
-            Types.put("endDate", 4);
-            Types.put("isCurrent", 5);
-            Types.put("companyName", 6);
-            Types.put("companyID", 7);
-            int type = Types.get(values[0]);
-            if(positions.size() <= idx)
-                positions.add(new Position());
-            switch (type){
-                case 1: positions.get(idx).setTitle(entry.getValue());break;
-                case 2: positions.get(idx).setSummary(entry.getValue());break;
-                case 3 : positions.get(idx).setStartDate(entry.getValue());break;
-                case 4 :  positions.get(idx).setEndDate(entry.getValue());break;
-                case 5: if(entry.getKey().equals("false"))
-                    positions.get(idx).setCurrent(false);
-                else
-                    positions.get(idx).setCurrent(true);
-                    break;
-                case 6: positions.get(idx).setCompanyName(entry.getValue());break;
-                case 7: positions.get(idx).setCompanyID(entry.getValue());break;
-                default: break;
+                Query +=key +": "+"@"+key+" , ";
             }
-        }
-        user.setPositions(positions);
-        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
-    }
-
-    public void UpdateFriendsList(HashMap<String, String> updates, String userID){
-        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
-        User user = getUserProfile(userID);
-        ArrayList<FriendsList> friendsLists  = user.getFriendsList();
-        if(friendsLists == null)
-            friendsLists = new ArrayList<FriendsList>();
-        for (Map.Entry<String, String> entry: updates.entrySet()){
-            String[] values = entry.getKey().split("#");
-            int idx = Integer.parseInt(values[1]);
-            HashMap<String, Integer> Types = new HashMap<String, Integer>();
-            Types.put("userId", 1);
-            Types.put("firstName", 2);
-            Types.put("lastName", 3);
-            Types.put("imageURL", 4);
-            Types.put("headline", 5);
-            int type = Types.get(values[0]);
-            if(friendsLists.size() <= idx)
-                friendsLists.add(new FriendsList());
-            switch (type){
-                case 1: friendsLists.get(idx).setUserId(entry.getValue());break;
-                case 2: friendsLists.get(idx).setFirstName(entry.getValue());break;
-                case 3 : friendsLists.get(idx).setLastName(entry.getValue());break;
-                case 4 :  friendsLists.get(idx).setImageURL(entry.getValue());break;
-                case 5: friendsLists.get(idx).setHeadline(entry.getValue());break;
-                default: break;
+            else{
+                Query +=key +": "+"APPEND(user."+key+","+"@"+key+")"+" ,";
             }
-        }
-        user.setFriendsList(friendsLists);
-        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
+            //  System.out.println(bindVars);
 
+        }
+        if(args.keySet().size()>0)
+            Query = Query.substring(0,Query.length()-2);
+        Query+="  }   IN "+collectionName;
+        System.out.println(Query);
+
+        try {
+            ArangoCursor<String> cursor = dbInstance.query(Query, bindVars,null, String.class);
+            System.out.println(cursor);
+
+//
+//        if(companyName!=null)
+//        company.addAttribute("companyName",companyName);
+//        if(companyProfilePicture!=null)
+//            company.setCompanyProfilePicture(companyProfilePicture);
+//        if(companyLocation!=null)
+//            company.setCompanyLocation(companyLocation);
+//        if(companytype==null)
+//           company.setCompanytype(companytype);
+//        if(industryType!=null)
+//            company.setIndustryType(industryType);
+//        if(jobListings!=null&&jobListings.size()!=0)
+//           company.updateJobListings(jobListings);
+//        if(posts!=null&&posts.size()!=0)
+//            company.updatePosts(posts);
+
+//            dbInstance.collection(collectionName).updateDocument(companyID+"", company);
+        } catch (ArangoDBException e) {
+            System.err.println("Failed to update document. " + e.getMessage());
+        }
     }
+
+
+
 
     /*
      * *
@@ -306,19 +248,54 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     }
 
 
-    public void addCV(String userID,String cv){
-        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
-        User user = getUserProfile(userID);
-        System.out.println(userID);
-        user.setCvUrl(cv);
-        dbInstance.collection(UsersCollectionName).updateDocument(userID,user);
+    public void addCV(String userID,String cv) {
+        String collectionName = config.getArangoConfigProp("collection.users.name");
+        Gson gson = new Gson();
+        // System.out.println(args+"args");
+        Map<String, Object> bindVars = new MapBuilder().get();
+        bindVars.put("cv", cv);
+        bindVars.put("userId", userID);
+
+        //execute query
+        String Query = "FOR user IN " + config.getArangoConfigProp("collection.users.name") + "  UPDATE { _key:" + "@userId";
+        Query += "} WITH{ ";
+
+
+        Query += " cvUrl:@cv }   IN " + collectionName;
+        System.out.println(Query);
+
+        try {
+            ArangoCursor<String> cursor = dbInstance.query(Query, bindVars, null, String.class);
+            System.out.println(cursor.next());
+
+        } catch (ArangoDBException e) {
+            System.err.println("Failed to update document. " + e.getMessage());
+        }
     }
 
     public void deleteCV(String userID) {
-        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
-        User user = getUserProfile(userID);
-        user.setCvUrl("");
-        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
+        String collectionName = config.getArangoConfigProp("collection.users.name");
+        Gson gson = new Gson();
+        // System.out.println(args+"args");
+        Map<String, Object> bindVars = new MapBuilder().get();
+        bindVars.put("cv", "");
+        bindVars.put("userId", userID);
+
+        //execute query
+        String Query = "FOR user IN " + config.getArangoConfigProp("collection.users.name") + "  UPDATE { _key:" + "@userId";
+        Query += "} WITH{ ";
+
+
+        Query += " cvUrl:@cv }   IN " + collectionName;
+       // System.out.println(Query);
+
+        try {
+            ArangoCursor<String> cursor = dbInstance.query(Query, bindVars, null, String.class);
+         //   System.out.println(cursor.next());
+
+        } catch (ArangoDBException e) {
+            System.err.println("Failed to update document. " + e.getMessage());
+        }
     }
 
     /*
@@ -329,11 +306,33 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
      */
 
     public User getUserProfile(String UserID){
-        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
-        User UserProfile = dbInstance.collection(UsersCollectionName).getDocument(UserID,
-                User.class);
-
-        return UserProfile;
+        Map <String, Object> bindVars = new HashMap<String ,Object>();
+        bindVars.put("userId",UserID);
+        System.out.println("here");
+        String Query = "FOR user in users\n" +
+                "filter user._key == @userId\n" +
+                "let BookMarkedPosts = (" +
+                "    for post in posts\n" +
+                "    filter post.postId in user.bookmarkedPosts\n" +
+                "    return {\"authorId\":post.authorId ,\"postId\":post.postId,\"text\":post.text}\n" +
+                ")\n" +
+                "let friendlist = (\n" +
+                "    for friend in users\n" +
+                "    filter friend._key in friend.friendsList\n" +
+                "    return {\"friend.userId\":friend.userId,\"friend.userName\":friend.firstName,\"friend.lastName\":friend.lastName}\n" +
+                ")\n" +
+                "return  MERGE_RECURSIVE (\n" +
+                "                    user, \n" +
+                "                    {\"bookmarkedPosts\": BookMarkedPosts, \"connections\": friendlist}\n" +
+                "                    \n" +
+                "                )\n" +
+                "          ";
+        System.out.println(Query);
+        String collectionName = config.getArangoConfigProp("collection.companies.name");
+        ArangoCursor<String> cursor = dbInstance.query(Query, bindVars,null, String.class);
+        System.out.println(cursor.next());
+        System.out.println(cursor.next());
+        return null;
     }
 
 
