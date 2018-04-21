@@ -321,9 +321,14 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
                 "    filter friend._key in friend.friendsList\n" +
                 "    return {\"friend.userId\":friend.userId,\"friend.userName\":friend.firstName,\"friend.lastName\":friend.lastName}\n" +
                 ")\n" +
+                "let followedCompanies = (\n" +
+                "    for company in companies\n" +
+                "    filter company._key in company.followedCompanies\n" +
+                "    return {\"company.companyId\":company.companyId,\"company.companyName\":company.companyName,\"company.profilePictureUrl\":company.profilePictureUrl}\n" +
+                ")\n" +
                 "return  MERGE_RECURSIVE (\n" +
                 "                    user, \n" +
-                "                    {\"bookmarkedPosts\": BookMarkedPosts, \"connections\": friendlist}\n" +
+                "                    {\"bookmarkedPosts\": BookMarkedPosts, \"connections\": friendlist, \"followedCompanines\":followedCompanies}\n" +
                 "                    \n" +
                 "                )\n" +
                 "          ";
