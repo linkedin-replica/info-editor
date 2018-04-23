@@ -5,7 +5,9 @@ import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.database.DatabaseSeed;
 import com.linkedin.replica.editInfo.models.Company;
+import com.linkedin.replica.editInfo.models.CompanyReturn;
 import com.linkedin.replica.editInfo.models.User;
+import com.linkedin.replica.editInfo.models.UserReturn;
 import org.json.simple.parser.ParseException;
 import org.junit.*;
 import com.linkedin.replica.editInfo.services.*;
@@ -70,31 +72,31 @@ static DatabaseSeed databaseSeed;
 
      Object resultAddCompany = infoEditorService.serve("company.add", args);
         args.clear();
-        args.put("companyId", "110265");
+        args.put("companyId", "12");
 
 
         Object resultGetCompany = infoEditorService.serve("company.get", args);
-        Company company = (Company) resultGetCompany;
+        CompanyReturn company = (CompanyReturn) resultGetCompany;
 
-        assertEquals("The Two companies' UserNames should match", company.getCompanyName(), "MicrosoftUnique");
+        assertEquals("The Two companies' UserNames should match", company.getCompanyName(), "microsoft3");
         System.out.println(company.getCompanyName()+"hereeeeee");
 
         args2.clear();
 
-        args2.put("companyId", "110265");
-        args2.put("companyName", "MicrosoftUnique2");
+        args2.put("companyId", "12");
+        args2.put("companyName", "microsoft3");
         args2.put("companyProfilePicture", "http://www.adsf221");
 
        Object resultUpdateCompany = infoEditorService.serve("company.update", args2);
         args2.clear();
-        args2.put("companyId", "110265");
+        args2.put("companyId", "12");
 
 
         Object resultGetCompany2 = infoEditorService.serve("company.get", args2);
-        Company companyUpdate = (Company) resultGetCompany2;
+        CompanyReturn companyUpdate = (CompanyReturn) resultGetCompany2;
 
 
-        assertEquals("The Two companies' UserNames should match", companyUpdate.getCompanyName(), "MicrosoftUnique2");
+        assertEquals("The Two companies' UserNames should match", companyUpdate.getCompanyName(), "microsoft3");
         assertEquals("The Two companies' UserProfilePicture should match", companyUpdate.getCompanyProfilePicture(), "http://www.adsf221");
 
 
@@ -103,24 +105,24 @@ static DatabaseSeed databaseSeed;
     @Test
     public void testinfoEditorServiceUser() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
         HashMap<String, Object> args = new HashMap<String,Object>();
-        args.put("userId", "0");
+        args.put("userId", "6");
        Object resultProfile = infoEditorService.serve("user.get", args);
-       User user=(User)resultProfile;
-        assertEquals("The user first names match" ,user.getFirstName(), "Omar");
-        assertEquals("The user last names match" ,user.getLastName(), "Radwan");
+       UserReturn user=(UserReturn) resultProfile;
+        assertEquals("The user first names match" ,user.getFirstName(), "baher");
+        assertEquals("The user last names match" ,user.getLastName(), "Abdou");
         args.clear();
-        args.put("userId", "0");
+        args.put("userId", "6");
         args.put("Skill", "C++");
         resultProfile = infoEditorService.serve("user.add.skill", args);
         resultProfile = infoEditorService.serve("user.get", args);
-        user = (User)resultProfile;
-        assertEquals("The added skill matched" ,user.getSkills().get(4), "C++");
+        user = (UserReturn) resultProfile;
+        assertEquals("The added skill matched" ,user.getSkills().get(0), "C++");
         args.clear();
-        args.put("userId", "0");
+        args.put("userId", "6");
         args.put("headline", "ACMER");
         resultProfile = infoEditorService.serve("user.update", args);
         resultProfile = infoEditorService.serve("user.get", args);
-        user=(User)resultProfile;
+        user=(UserReturn) resultProfile;
         assertEquals("The headline is updated" , user.getHeadline(), "ACMER");
 
 

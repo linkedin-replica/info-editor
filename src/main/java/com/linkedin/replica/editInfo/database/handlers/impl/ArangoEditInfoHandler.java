@@ -309,8 +309,8 @@ public void deleteSkill(String userId,String skill){
         System.out.println(Query);
 
         try {
-            ArangoCursor<String> cursor = dbInstance.query(Query, bindVars, null, String.class);
-            System.out.println(cursor.next());
+           dbInstance.query(Query, bindVars, null, String.class);
+
 
         } catch (ArangoDBException e) {
             System.err.println("Failed to update document. " + e.getMessage());

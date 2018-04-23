@@ -2,42 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ac9f98a-d4f9-433a-a5e4-22c30dc768dd" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/RemoveSkillCommand.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/CompanyReturn.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/CompanyReturn.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Education.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Education.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightJob.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightJob.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightPost.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightPost.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightUser.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightUser.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Position.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Position.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/UserReturn.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/UserReturn.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config/app.config" afterPath="$PROJECT_DIR$/src/main/resources/config/app.config" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config/commands.config" afterPath="$PROJECT_DIR$/src/main/resources/config/commands.config" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java" />
       <change beforePath="$PROJECT_DIR$/src/test/java/core/ArangoHandlerTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/ArangoHandlerTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java" />
       <change beforePath="$PROJECT_DIR$/src/test/java/core/CvCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/CvCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java" />
       <change beforePath="$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/getCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/getCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/models/Education.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/models/Education.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/models/Position.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/models/Position.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/AddCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/AddCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/AddNewSkillCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/AddNewSkillCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/ArangoHandlerTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/ArangoHandlerTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/CvCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/CvCommandTest.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,17 +23,37 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="186">
-              <caret line="382" column="0" lean-forward="false" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
+              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateCompanyCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java">
+      <file leaf-file-name="AddCompanyCommandTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="74" column="46" lean-forward="false" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
+            <state relative-caret-position="279">
+              <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfoEditorService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/InfoEditorService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="402">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfoEditorServiceTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="118" column="70" lean-forward="false" selection-start-line="118" selection-start-column="70" selection-end-line="118" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -72,50 +62,8 @@
       <file leaf-file-name="RemoveSkillCommandTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
+            <state relative-caret-position="78">
               <caret line="58" column="32" lean-forward="false" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetUserProfileCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="59" column="54" lean-forward="false" selection-start-line="59" selection-start-column="54" selection-end-line="59" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateProfileCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="53" column="31" lean-forward="false" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddCompanyCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddNewSkillCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="57" column="31" lean-forward="false" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,8 +74,32 @@
       <file leaf-file-name="ArangoHandlerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/core/ArangoHandlerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+            <state relative-caret-position="186">
+              <caret line="61" column="57" lean-forward="false" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
+              <folding>
+                <marker date="1524524230318" expanded="false" signature="1668:1684" ph="&lt;~&gt;" />
+                <marker date="1524524230318" expanded="false" signature="7088:7104" ph="&lt;~&gt;" />
+                <marker date="1524524230318" expanded="false" signature="7698:7714" ph="&lt;~&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddCvCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCvCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/data/users.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="18" column="6" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="158" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -136,20 +108,20 @@
       <file leaf-file-name="CvCommandTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/core/CvCommandTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="64" column="31" lean-forward="false" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
+            <state relative-caret-position="200">
+              <caret line="83" column="29" lean-forward="false" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
               <folding>
-                <marker date="1524521991885" expanded="false" signature="3157:3173" ph="&lt;~&gt;" />
+                <marker date="1524523920762" expanded="false" signature="3147:3163" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditUserProfileCommandTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java">
+      <file leaf-file-name="GetCompanyProfileCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="73" column="86" lean-forward="false" selection-start-line="73" selection-start-column="86" selection-end-line="73" selection-end-column="86" />
+            <state relative-caret-position="236">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -221,20 +193,20 @@
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/UserReturn.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/CompanyReturn.java" />
-        <option value="$PROJECT_DIR$/src/test/java/core/ArangoHandlerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/RemoveSkillCommand.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/getCompanyCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/CvCommandTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/core/ArangoHandlerTest.java" />
       </list>
     </option>
   </component>
@@ -430,6 +402,14 @@
               <item name="info-editor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="messaging" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="info-editor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="info-editor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -461,7 +441,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.UpdateCompanyCommandTest">
+  <component name="RunManager" selected="JUnit.ClientMessagesTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -483,7 +463,7 @@
       <module name="" />
       <envs />
     </configuration>
-    <configuration name="EditUserProfileCommandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AddCompanyCommandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="core.*" />
@@ -494,7 +474,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="core" />
-      <option name="MAIN_CLASS_NAME" value="core.EditUserProfileCommandTest" />
+      <option name="MAIN_CLASS_NAME" value="core.AddCompanyCommandTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -508,7 +488,7 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="GetUserProfileCommandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AddNewSkillCommandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="core.*" />
@@ -519,7 +499,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="core" />
-      <option name="MAIN_CLASS_NAME" value="core.GetUserProfileCommandTest" />
+      <option name="MAIN_CLASS_NAME" value="core.AddNewSkillCommandTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -533,18 +513,18 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="RemoveSkillCommandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientMessagesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="core.*" />
+          <option name="PATTERN" value="messaging.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="info-editor" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="core" />
-      <option name="MAIN_CLASS_NAME" value="core.RemoveSkillCommandTest" />
+      <option name="PACKAGE_NAME" value="messaging" />
+      <option name="MAIN_CLASS_NAME" value="messaging.ClientMessagesTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -558,18 +538,18 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="UpdateCompanyCommandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JedisCacheHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="core.*" />
+          <option name="PATTERN" value="cache.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="info-editor" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="core" />
-      <option name="MAIN_CLASS_NAME" value="core.UpdateCompanyCommandTest" />
+      <option name="PACKAGE_NAME" value="cache" />
+      <option name="MAIN_CLASS_NAME" value="cache.JedisCacheHandlerTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -603,20 +583,20 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="getCompanyCommandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="controller in info-editor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="core.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="info-editor" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="core" />
-      <option name="MAIN_CLASS_NAME" value="core.getCompanyCommandTest" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="package" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -669,19 +649,19 @@
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.EditUserProfileCommandTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.getCompanyCommandTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.GetUserProfileCommandTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.RemoveSkillCommandTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.UpdateCompanyCommandTest" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.AddNewSkillCommandTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.AddCompanyCommandTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.controller in info-editor" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.JedisCacheHandlerTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.ClientMessagesTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.UpdateCompanyCommandTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.RemoveSkillCommandTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.GetUserProfileCommandTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.getCompanyCommandTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.EditUserProfileCommandTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.ClientMessagesTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.JedisCacheHandlerTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.controller in info-editor" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.AddCompanyCommandTest" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.AddNewSkillCommandTest" />
       </list>
     </recent_temporary>
   </component>
@@ -702,40 +682,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AddNewSkillCommandTest - 2018.04.24 at 00h 19m 22s.xml">
+    <history-entry file="AddCompanyCommandTest - 2018.04.24 at 00h 57m 20s.xml">
+      <configuration name="AddCompanyCommandTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AddNewSkillCommandTest - 2018.04.24 at 00h 57m 16s.xml">
       <configuration name="AddNewSkillCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArangoHandlerTest - 2018.04.24 at 00h 19m 27s.xml">
+    <history-entry file="ArangoHandlerTest - 2018.04.24 at 00h 56m 50s.xml">
       <configuration name="ArangoHandlerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CreateProfileCommandTest - 2018.04.24 at 00h 19m 35s.xml">
+    <history-entry file="ArangoHandlerTest - 2018.04.24 at 00h 57m 12s.xml">
+      <configuration name="ArangoHandlerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ClientMessagesTest - 2018.04.24 at 01h 00m 59s.xml">
+      <configuration name="ClientMessagesTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CreateProfileCommandTest - 2018.04.24 at 00h 56m 46s.xml">
       <configuration name="CreateProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CvCommandTest - 2018.04.24 at 00h 19m 42s.xml">
+    <history-entry file="CvCommandTest - 2018.04.24 at 00h 56m 42s.xml">
       <configuration name="CvCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CvCommandTest - 2018.04.24 at 00h 19m 57s.xml">
-      <configuration name="CvCommandTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EditUserProfileCommandTest - 2018.04.24 at 00h 20m 07s.xml">
+    <history-entry file="EditUserProfileCommandTest - 2018.04.24 at 00h 56m 39s.xml">
       <configuration name="EditUserProfileCommandTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GetUserProfileCommandTest - 2018.04.24 at 00h 20m 16s.xml">
-      <configuration name="GetUserProfileCommandTest" configurationId="JUnit" />
+    <history-entry file="JedisCacheHandlerTest - 2018.04.24 at 00h 57m 45s.xml">
+      <configuration name="JedisCacheHandlerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RemoveSkillCommandTest - 2018.04.24 at 00h 20m 21s.xml">
-      <configuration name="RemoveSkillCommandTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UpdateCompanyCommandTest - 2018.04.24 at 00h 20m 26s.xml">
-      <configuration name="UpdateCompanyCommandTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="getCompanyCommandTest - 2018.04.24 at 00h 20m 12s.xml">
-      <configuration name="getCompanyCommandTest" configurationId="JUnit" />
+    <history-entry file="controller_in_info-editor - 2018.04.24 at 00h 57m 41s.xml">
+      <configuration name="controller in info-editor" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -773,16 +752,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1154,14 +1123,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/data/users.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="6" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="158" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddNewSkillCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1208,53 +1169,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/InfoEditorService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="382" column="0" lean-forward="false" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
           <caret line="74" column="46" lean-forward="false" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="58" column="32" lean-forward="false" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1274,14 +1193,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
@@ -1292,28 +1203,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/core/ArangoHandlerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+        <state relative-caret-position="474">
+          <caret line="73" column="86" lean-forward="false" selection-start-line="73" selection-start-column="86" selection-end-line="73" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/data/users.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="6" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="158" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="58" column="32" lean-forward="false" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCvCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/core/CvCommandTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="64" column="31" lean-forward="false" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
+        <state relative-caret-position="200">
+          <caret line="83" column="29" lean-forward="false" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
           <folding>
-            <marker date="1524521991885" expanded="false" signature="3157:3173" ph="&lt;~&gt;" />
+            <marker date="1524523920762" expanded="false" signature="3147:3163" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/services/InfoEditorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="73" column="86" lean-forward="false" selection-start-line="73" selection-start-column="86" selection-end-line="73" selection-end-column="86" />
+        <state relative-caret-position="402">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="118" column="70" lean-forward="false" selection-start-line="118" selection-start-column="70" selection-end-line="118" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/core/ArangoHandlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="61" column="57" lean-forward="false" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
+          <folding>
+            <marker date="1524524230318" expanded="false" signature="1668:1684" ph="&lt;~&gt;" />
+            <marker date="1524524230318" expanded="false" signature="7088:7104" ph="&lt;~&gt;" />
+            <marker date="1524524230318" expanded="false" signature="7698:7714" ph="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding />
         </state>
       </provider>
