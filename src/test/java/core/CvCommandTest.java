@@ -17,6 +17,7 @@ import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.commands.*;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.models.User;
+import com.linkedin.replica.editInfo.models.UserReturn;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -61,14 +62,14 @@ public class CvCommandTest{
         HashMap<String, Object> args = new HashMap();
        Object response;
 
-        args.put("userId", "1");
+        args.put("userId", "101");
         args.put("cv","user12URL");
         AddCvCommand command = new AddCvCommand(args);
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(jedisCacheHandler);
         response = command.execute();
-        User user = arangoHandler.getUserProfile("0");
-        System.out.println((User) user);
+        UserReturn user = arangoHandler.getUserProfile("0");
+        System.out.println((UserReturn) user);
 
         assertEquals("response should be true", user.getCvUrl(), "user12URL");
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class LightPost {
     public String getPostID() {
-        return postID;
+        return postId;
     }
 
     public String getAuthorID() {
@@ -15,16 +15,23 @@ public class LightPost {
         return text;
     }
 
-    String postID;
+   public String postId;
     String authorID;
    String text;
+   String commentsCount;
+   ArrayList<String> images;
+    ArrayList<String> videos;
+   public boolean isArticle;
+   boolean isCompanyPost;
+   ArrayList<String>likers;
+
     public LightPost()
     {
 
     }
     public LightPost(String postID,String authorID,String text){
         this.authorID = authorID;
-        this.postID = postID;
+        this.postId = postID;
         this.text = text;
 
     }

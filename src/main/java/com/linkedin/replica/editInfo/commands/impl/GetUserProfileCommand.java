@@ -19,7 +19,7 @@ public class GetUserProfileCommand extends Command{
         validateArgs(new String[]{"userId"});
         String []ids=new String[1];
        ids[0]=(String) args.get("userId");
-       User user = null;
+       UserReturn user = null;
 //        cacheeditInfoHandler = (CacheEditInfoHandler)this.cacheHandler;
 //        User user = (User) cacheeditInfoHandler.getUserFromCache(ids[0],User.class);
 //        if(user!=null) {
@@ -30,10 +30,10 @@ public class GetUserProfileCommand extends Command{
 
         validateArgs(new String[]{"userId"});
         // get notifications from db
-        dbHandler.getUserProfile((String)args.get("userId"));
-       ArrayList<User> users = new ArrayList<User>();
+       user= dbHandler.getUserProfile((String)args.get("userId"));
+       ArrayList<UserReturn> users = new ArrayList<UserReturn>();
         users.add(user);
-        cacheeditInfoHandler.saveUsersInCache(ids,users);
+//        cacheeditInfoHandler.saveUsersInCache(ids,users);
         return user;
     }
 }

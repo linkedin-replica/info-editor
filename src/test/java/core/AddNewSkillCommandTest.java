@@ -11,6 +11,7 @@ import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
 import com.linkedin.replica.editInfo.models.User;
 import com.linkedin.replica.editInfo.commands.Command;
+import com.linkedin.replica.editInfo.models.UserReturn;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -46,7 +47,7 @@ public class AddNewSkillCommandTest {
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
         );
-        databaseSeed.insertUsers();
+       // databaseSeed.insertUsers();
     }
 
 
@@ -54,8 +55,8 @@ public class AddNewSkillCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "0");
-        args.put("Skill", "Java");
+        args.put("userId", "101");
+        args.put("Skill", "Java2");
         command = new AddNewSkillCommand(args);
         command.setDbHandler(arangoHandler);
         response = command.execute();
@@ -64,14 +65,14 @@ public class AddNewSkillCommandTest {
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(jedisCacheHandler);
         response = command.execute();
-        User myUser = (User) response;
-        assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(myUser.getSkills().size()-1));
+        UserReturn myUser = (UserReturn) response;
+        assertEquals("Expected LastSkill", "Java2" , myUser.getSkills().get(myUser.getSkills().size()-1));
     }
 
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfigProp("db.name");
-          databaseSeed.deleteAllUsers();
+       //   databaseSeed.deleteAllUsers();
     }
 
 }

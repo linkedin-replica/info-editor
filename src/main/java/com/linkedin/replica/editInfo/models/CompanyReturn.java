@@ -13,6 +13,27 @@ public class CompanyReturn {
     public String companyLocation;
     public String companytype;
     String aboutUs;
+
+    public String get_key() {
+        return _key;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public String getAboutUs() {
+        return aboutUs;
+    }
+
+    public ArrayList<LightPost> getPosts() {
+        return posts;
+    }
+
+    public ArrayList<LightUser> getJobListing() {
+        return jobListing;
+    }
+
     public ArrayList<LightPost> posts;
     public ArrayList<LightUser> jobListing;
     public CompanyReturn(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,

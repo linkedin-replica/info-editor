@@ -40,15 +40,13 @@ static DatabaseSeed databaseSeed;
                 Configuration.getInstance().getArangoConfigProp("db.name")
         );
         databaseSeed = new DatabaseSeed();
-        arangoDb.createCollection(
-                config.getArangoConfigProp("collection.companies.name")
-        );
+
 
     }
 
     @Before
     public void initBeforeTest() throws IOException, ParseException {
-        databaseSeed.insertUsers();
+       // databaseSeed.insertUsers();
     }
 
     @Test
@@ -132,7 +130,7 @@ static DatabaseSeed databaseSeed;
     }
     @After
     public void cleanAfterTest() throws IOException {
-        databaseSeed.deleteAllUsers();
+        //databaseSeed.deleteAllUsers();
 
 
     }
@@ -140,9 +138,7 @@ static DatabaseSeed databaseSeed;
     @AfterClass
     public static void clean() throws IOException {
         DatabaseConnection.getInstance().closeConnections();
-        arangoDb.collection(
-                config.getArangoConfigProp("collection.companies.name")
-        ).drop();
+
 
 
 

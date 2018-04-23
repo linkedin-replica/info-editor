@@ -2,27 +2,28 @@ package core;
 
 import com.arangodb.ArangoDatabase;
 import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
-import com.linkedin.replica.editInfo.commands.impl.GetCompanyProfileCommand;
-import com.linkedin.replica.editInfo.commands.impl.UpdateCompanyCommand;
+import com.linkedin.replica.editInfo.commands.impl.AddNewSkillCommand;
+import com.linkedin.replica.editInfo.commands.impl.GetUserProfileCommand;
+import com.linkedin.replica.editInfo.commands.impl.RemoveSkillCommand;
 import com.linkedin.replica.editInfo.config.Configuration;
-import com.linkedin.replica.editInfo.database.DatabaseSeed;
-import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
+import com.linkedin.replica.editInfo.database.DatabaseSeed;
+import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
+import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
+import com.linkedin.replica.editInfo.models.User;
 import com.linkedin.replica.editInfo.commands.Command;
-import com.linkedin.replica.editInfo.models.*;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
-public class UpdateCompanyCommandTest {
+
+public class RemoveSkillCommandTest {
+
     private static Command command;
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
@@ -31,54 +32,47 @@ public class UpdateCompanyCommandTest {
     private static DatabaseSeed databaseSeed;
 
 
-
     @BeforeClass
-    public static void init() throws IOException, org.json.simple.parser.ParseException, SQLException, ClassNotFoundException {
+    public static void init() throws IOException, org.json.simple.parser.ParseException {
         String rootFolder = "src/main/resources/config/";
         Configuration.init(rootFolder + "app.config",
                 rootFolder + "arango.test.config",
                 rootFolder + "commands.config",rootFolder+"controller.config",rootFolder+"cache.config");
         DatabaseConnection.init();
         config = Configuration.getInstance();
-        arangoHandler = new ArangoEditInfoHandler();
         jedisCacheHandler = new JedisCacheHandler();
+
         databaseSeed = new DatabaseSeed();
+        arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
-               config.getArangoConfigProp("db.name")
+                config.getArangoConfigProp("db.name")
         );
-       // databaseSeed.insertCompanies();
+        // databaseSeed.insertUsers();
     }
 
 
     @Test
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
-        HashMap<String, Object> argstemp = new HashMap();
-
         Object response;
-        args.put("companyId", "13");
-        argstemp.put("companyId", "13");
-        argstemp.put("companyName", "Microsoft2");
-        ArrayList<String>  joblistings =  new ArrayList<String>();
-        joblistings.add("2");
-
-        argstemp.put("posts",joblistings);
-
-        command = new GetCompanyProfileCommand(args);
-        Command temp = new UpdateCompanyCommand(argstemp);
-        temp.setCacheHandler(jedisCacheHandler);
-        command.setCacheHandler(jedisCacheHandler);
+        args.put("userId", "2");
+        args.put("Skill", "Java2");
+        command = new RemoveSkillCommand(args);
         command.setDbHandler(arangoHandler);
-        temp.setDbHandler(arangoHandler);
-        temp.execute();
         response = command.execute();
-        CompanyReturn company = (CompanyReturn) response;
-        assertEquals("Expected matching new company name", "Microsoft2" ,company.getCompanyName() );
 
+        command = new GetUserProfileCommand(args);
+        command.setDbHandler(arangoHandler);
+        command.setCacheHandler(jedisCacheHandler);
+        response = command.execute();
+        User myUser = (User) response;
+        assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(myUser.getSkills().size()-1));
     }
+
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfigProp("db.name");
-      //  databaseSeed.deleteAllCompanies();
+        //   databaseSeed.deleteAllUsers();
     }
+
 }

@@ -9,6 +9,7 @@ import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.models.User;
+import com.linkedin.replica.editInfo.models.UserReturn;
 import org.junit.*;
 import com.linkedin.replica.editInfo.database.DatabaseSeed;
 
@@ -42,7 +43,7 @@ public class CreateProfileCommandTest {
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
         );
-        databaseSeed.insertUsers();
+      //  databaseSeed.insertUsers();
     }
 
 
@@ -50,7 +51,7 @@ public class CreateProfileCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "10");
+        args.put("userId", "101");
         args.put("firstName", "Loa2y");
         args.put("lastName", "Zobeidy");
         command = new CreateProfileCommand(args);
@@ -61,7 +62,7 @@ public class CreateProfileCommandTest {
         command.setCacheHandler(jedisCacheHandler);
         command.setDbHandler(arangoHandler);
         response = command.execute();
-        User myUser = (User) response;
+        UserReturn myUser = (UserReturn) response;
         assertEquals("Expected matching first name", "Loa2y" , myUser.getFirstName());
         assertEquals("Expected matching last name", "Zobeidy" , myUser.getLastName());
     }
@@ -69,6 +70,6 @@ public class CreateProfileCommandTest {
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfigProp("db.name");
-        databaseSeed.deleteAllUsers();
+        //databaseSeed.deleteAllUsers();
     }
 }

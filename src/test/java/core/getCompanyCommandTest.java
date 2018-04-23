@@ -5,6 +5,7 @@ import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
 import com.linkedin.replica.editInfo.commands.impl.GetCompanyProfileCommand;
 import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.models.Company;
+import com.linkedin.replica.editInfo.models.CompanyReturn;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -66,8 +67,8 @@ public class getCompanyCommandTest {
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(cacheEditInfoHandler);
         response = command.execute();
-        Company company = (Company) response;
-        assertEquals("Expected matching company ID", "1" ,company.getCompanyID() );
+        CompanyReturn company = (CompanyReturn) response;
+        assertEquals("Expected matching company ID", "12" ,company.getCompanyID() );
 
     }
     @AfterClass

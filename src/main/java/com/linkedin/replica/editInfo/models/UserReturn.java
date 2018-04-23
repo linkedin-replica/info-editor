@@ -3,30 +3,90 @@ package com.linkedin.replica.editInfo.models;
 import java.util.ArrayList;
 
 public  class UserReturn  {
+    private String _key;
     public String userId;
     public String firstName;
     public String lastName;
     public String headline;
     public String industry;
-    public ArrayList<String> positions;
-    public ArrayList<String> educations;
+    public ArrayList<Position> positions;
+
+    public void set_key(String _key) {
+        this._key = _key;
+    }
+
+    public void setPositions(ArrayList<Position> positions) {
+        this.positions = positions;
+    }
+
+    public void setEducations(ArrayList<Education> educations) {
+        this.educations = educations;
+    }
+
+    public void setFollowedCompanies(ArrayList<LightCompany> followedCompanies) {
+        this.followedCompanies = followedCompanies;
+    }
+
+    public void setFriendslist(ArrayList<LightUser> friendslist) {
+        this.friendslist = friendslist;
+    }
+
+    public String get_key() {
+
+        return _key;
+    }
+
+    public ArrayList<Position> getPositions() {
+        return positions;
+    }
+
+    public ArrayList<Education> getEducations() {
+        return educations;
+    }
+
+    public ArrayList<LightCompany> getFollowedCompanies() {
+        return followedCompanies;
+    }
+
+    public ArrayList<LightUser> getFriendslist() {
+        return friendslist;
+    }
+
+    public ArrayList<Education> educations;
     public String imageUrl;
     public String cvUrl;
     public ArrayList<String> skills;
     public ArrayList<LightCompany>followedCompanies;
-    public ArrayList<LightUser> connections;
+    public ArrayList<LightUser> friendslist;
     public ArrayList<LightPost> bookmarkedPosts;
 
 
-
-    public UserReturn(String userId, String firstName, String lastName, String headline, String industry) {
+    public UserReturn(String _key, String userId, String firstName, String lastName, String headline, String industry, ArrayList<Position> positions, ArrayList<Education> educations, String imageUrl, String cvUrl, ArrayList<String> skills, ArrayList<LightCompany> followedCompanies, ArrayList<LightUser> friendslist, ArrayList<LightPost> bookmarkedPosts) {
+        this._key = _key;
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.headline = headline;
         this.industry = industry;
+      //  this.positions = positions;
+        this.educations = educations;
+        this.imageUrl = imageUrl;
+        this.cvUrl = cvUrl;
+        this.skills = skills;
+        this.followedCompanies = followedCompanies;
+        this.friendslist = friendslist;
+        this.bookmarkedPosts = bookmarkedPosts;
+    }
 
-        this.positions = positions;
+    public UserReturn(String userId, String firstName, String lastName, String headline, String industry, ArrayList<Position>positions, ArrayList
+                      <Education>educations, String imageUrl, String cvUrl, ArrayList<String>skills, ArrayList<LightCompany>followedCompanies,
+                      ArrayList<LightUser>friendslist, ArrayList<LightPost>bookmarkedPosts) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.headline = headline;
+        this.industry = industry;
+      //  this.positions = positions;
         this.educations = educations;
         this.imageUrl = imageUrl;
         this.cvUrl = cvUrl;
@@ -59,13 +119,13 @@ public  class UserReturn  {
     }
 
 
-    public ArrayList<String> getPositions() {
-        return positions;
-    }
-
-    public ArrayList<String> getEducations() {
-        return educations;
-    }
+//    public ArrayList<Position> getPositions() {
+//        return positions;
+//    }
+//
+//    public ArrayList<Education> getEducations() {
+//        return educations;
+//    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -110,13 +170,13 @@ public  class UserReturn  {
 
 
 
-    public void setPositions(ArrayList<String> positions) {
-        this.positions = positions;
-    }
-
-    public void setEducations(ArrayList<String> educations) {
-        this.educations = educations;
-    }
+//    public void setPositions(ArrayList<Position> positions) {
+//        this.positions = positions;
+//    }
+//
+//    public void setEducations(ArrayList<Education> educations) {
+//        this.educations = educations;
+//    }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
@@ -135,3 +195,4 @@ public  class UserReturn  {
         this.bookmarkedPosts = bookmarkedPosts;
     }
 }
+

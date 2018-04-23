@@ -32,7 +32,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     public void disconnect() {
         // TODO
     }
-    public Company getCompany(String companyId){
+    public CompanyReturn getCompany(String companyId){
         Map <String, Object> bindVars = new HashMap<String ,Object>();
         bindVars.put("companyId",companyId);
 
@@ -57,8 +57,9 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         System.out.println(Query);
         String collectionName = config.getArangoConfigProp("collection.companies.name");
         ArangoCursor<CompanyReturn> cursor = dbInstance.query(Query, bindVars,null, CompanyReturn.class);
-        System.out.println(cursor.next().posts.get(0).getAuthorID());
-        return null;
+        CompanyReturn company =cursor.next();
+        System.out.println(company);
+        return company;
     }
     public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
             ,String companytype,ArrayList<String> specialities,ArrayList<String> posts,ArrayList<String> jobListings){
@@ -224,7 +225,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
 //        if(jobListings!=null&&jobListings.size()!=0)
 //           company.updateJobListings(jobListings);
 //        if(posts!=null&&posts.size()!=0)
-//            company.updatePosts(posts);
+//            company.updatePostspostId(posts);
 
 //            dbInstance.collection(collectionName).updateDocument(companyID+"", company);
         } catch (ArangoDBException e) {
@@ -241,12 +242,55 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
      * @param userId : the id of the user and the new skill
      */
     public void addSkill(String userID, String Skill){
-        User user = getUserProfile(userID);
-        String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
-        user.getSkills().add(Skill);
-        dbInstance.collection(UsersCollectionName).updateDocument(userID, user);
-    }
+        String collectionName = config.getArangoConfigProp("collection.users.name");
+        Gson gson = new Gson();
+        // System.out.println(args+"args");
+        Map<String, Object> bindVars = new MapBuilder().get();
+        bindVars.put("userId", userID);
+        bindVars.put("skill", Skill);
 
+        //execute query
+        String Query = "FOR user IN " + config.getArangoConfigProp("collection.users.name") + "  UPDATE { _key:" + "@userId";
+        Query += "} WITH{ ";
+
+
+        Query += "skills : PUSH(user.skills ,@skill)";
+        Query+="  }   IN "+collectionName;
+        System.out.println(Query);
+
+        try {
+         dbInstance.query(Query, bindVars, null, String.class);
+//            System.out.println(cursor.next());
+
+        } catch (ArangoDBException e) {
+            System.err.println("Failed to update document. " + e.getMessage());
+        }
+    }
+public void deleteSkill(String userId,String skill){
+    String collectionName = config.getArangoConfigProp("collection.users.name");
+    Gson gson = new Gson();
+    // System.out.println(args+"args");
+    Map<String, Object> bindVars = new MapBuilder().get();
+    bindVars.put("userId", userId);
+    bindVars.put("skill", skill);
+
+    //execute query
+    String Query = "FOR user IN " + config.getArangoConfigProp("collection.users.name") + "  UPDATE { _key:" + "@userId";
+    Query += "} WITH{ ";
+
+
+    Query += "skills : REMOVE_VALUE(user.skills ,@skill)";
+    Query+="  }   IN "+collectionName;
+    System.out.println(Query);
+
+    try {
+        ArangoCursor<String> cursor = dbInstance.query(Query, bindVars, null, String.class);
+        System.out.println(cursor.next());
+
+    } catch (ArangoDBException e) {
+        System.err.println("Failed to update document. " + e.getMessage());
+    }
+}
 
     public void addCV(String userID,String cv) {
         String collectionName = config.getArangoConfigProp("collection.users.name");
@@ -305,7 +349,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
      * @return the queried user profile
      */
 
-    public User getUserProfile(String UserID){
+    public UserReturn getUserProfile(String UserID){
         Map <String, Object> bindVars = new HashMap<String ,Object>();
         bindVars.put("userId",UserID);
         System.out.println("here");
@@ -319,7 +363,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
                 "let friendlist = (\n" +
                 "    for friend in users\n" +
                 "    filter friend._key in user.friendsList\n" +
-                "    return {\"friend.userId\":friend.userId,\"friend.userName\":friend.firstName,\"friend.lastName\":friend.lastName}\n" +
+                "    return {\"friend.userId\":friend.userId,\"friend.firstName\":friend.firstName,\"friend.lastName\":friend.lastName,\"friend.userName\":friend.userName}\n" +
                 ")\n" +
                 "let followedCompanies = (\n" +
                 "    for company in companies\n" +
@@ -327,16 +371,16 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
                 "    return {\"company.companyId\":company.companyId,\"company.companyName\":company.companyName,\"company.profilePictureUrl\":company.profilePictureUrl}\n" +
                 ")\n" +
                 "return  MERGE_RECURSIVE (\n" +
-                "                  UNSET( user,\"friendsList\",\"bookmarkedPosts\"),\n" +
+                "                  UNSET( user,\"friendsList\",\"bookmarkedPosts\",\"_id\",\"_rev\"),\n" +
                 "                    {\"bookmarkedPosts\": BookMarkedPosts, \"friendslist\": friendlist, \"followedCompanies\":followedCompanies}\n" +
                 "                    \n" +
                 "                )\n" +
                 "          ";
         System.out.println(Query);
-        String collectionName = config.getArangoConfigProp("collection.user.name");
+        String collectionName = config.getArangoConfigProp("collection.users.name");
         ArangoCursor<UserReturn> cursor = dbInstance.query(Query, bindVars,null, UserReturn.class);
-        System.out.println(cursor.next());
-        return null;
+
+        return cursor.next();
     }
 
 
@@ -354,3 +398,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     }
 }
 
+/*{"_id":"users\/1","_key":"1","_rev":"_Wsj44J---F","bookmarkedPosts":[{"authorId":"12","postId":"1","text":"How to calculate LCA with LCM?"},{"authorId":"1","postId":"2","text":"This is sooooooooooooo boring"},{"authorId":"2","postId":"3","text":"Another boring post"}],"cvUrl":"user12URL","education":[{"degree":"Bachelor","fieldOfStudy":"Computer Science","isCurrent":true,"schoolName":"German University in Cairo","startDate":123213213},{"degree":"Highschool","endDate":122213213,"schoolName":"MSA school","startDate":121213213}],"firstName":"Ahmed","followedCompanies":[],"friendslist":[{"friend.firstName":"Ahmed","friend.lastName":"Soliman","friend.userId":"4"},{"friend.firstName":"Hatem","friend.lastName":"Morgan","friend.userId":"3"},{"friend.firstName":"Mostafa","friend.lastName":"Karim","friend.userId":"2"}],"headline":"Software Engineer at Goofle","industry":"Computer Science","lastName":"Mohamed","positions":[{"companyId":"11","isCurrent":true,"startDate":-563580575,"title":"Software Engineer"},{"companyId":"12","endDate":1136419425,"startDate":536419425,"title":"Software Engineering Intern"}],"profilePictureUrl":"linkedin.com\/1.png","skills":["Hard worker","Work under pressure"],"userId":"1"}
+ */
+
+/*"positions":[{"companyId":"11","isCurrent":true,"startDate":-563580575,"title":"Software Engineer"},{"companyId":"12","endDate":1136419425,"startDate":536419425,"title":"Software Engineering Intern"}]*/

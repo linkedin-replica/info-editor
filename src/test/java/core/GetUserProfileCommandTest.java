@@ -9,11 +9,14 @@ import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.commands.impl.GetUserProfileCommand;
 import com.linkedin.replica.editInfo.commands.Command;
 
+import com.linkedin.replica.editInfo.models.UserReturn;
 import org.junit.*;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+
+import static org.junit.Assert.assertEquals;
 
 public class GetUserProfileCommandTest {
 
@@ -47,14 +50,14 @@ public class GetUserProfileCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "1");
+        args.put("userId", "101");
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(jedisCacheHandler);
         response = command.execute();
-////        User myUser = (User) response.get("results");
-//        assertEquals("Expected matching first name", "Omar" , myUser.getFirstName());
-//        assertEquals("Expected matching last name", "Radwan" , myUser.getLastName());
+        UserReturn myUser = (UserReturn) response;
+        assertEquals("Expected matching first name", "Baher" , myUser.getFirstName());
+        assertEquals("Expected matching last name", "Zobeidy" , myUser.getLastName());
 //        assertEquals("Expected matching headline", "Software Engineer at DFKI" , myUser.getHeadline());
     }
     @AfterClass

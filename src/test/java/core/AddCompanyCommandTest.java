@@ -8,6 +8,7 @@ import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.database.DatabaseSeed;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.models.Company;
+import com.linkedin.replica.editInfo.models.CompanyReturn;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -74,7 +75,7 @@ public class AddCompanyCommandTest {
        // command.execute();
 
 
-        Company company = arangoHandler.getCompany("f8312bc1-a02f-4d39-8373-5e3d03fcdba4");
+        CompanyReturn company = arangoHandler.getCompany("f8312bc1-a02f-4d39-8373-5e3d03fcdba4");
         System.out.println(company.getCompanyName());
         assertEquals("Expected skillsNumber", company.getCompanyName() ,"MicrosoftUnique");
 //        assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(5));
