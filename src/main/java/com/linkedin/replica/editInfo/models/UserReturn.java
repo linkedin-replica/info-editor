@@ -2,23 +2,24 @@ package com.linkedin.replica.editInfo.models;
 
 import java.util.ArrayList;
 
-public  class User {
-   public String userId;
-   public String firstName;
-   public String lastName;
-   public String headline;
-   public String industry;
-   public ArrayList<String> positions;
-   public ArrayList<String> educations;
-   public String imageUrl;
-   public String cvUrl;
-   public ArrayList<String> skills;
-   public ArrayList<String> friendsList;
-   public ArrayList<String> bookmarkedPosts;
+public  class UserReturn  {
+    public String userId;
+    public String firstName;
+    public String lastName;
+    public String headline;
+    public String industry;
+    public ArrayList<String> positions;
+    public ArrayList<String> educations;
+    public String imageUrl;
+    public String cvUrl;
+    public ArrayList<String> skills;
+    public ArrayList<LightCompany>followedCompanies;
+    public ArrayList<LightUser> connections;
+    public ArrayList<LightPost> bookmarkedPosts;
 
 
 
-    public User(String userId, String firstName, String lastName, String headline, String industry) {
+    public UserReturn(String userId, String firstName, String lastName, String headline, String industry) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -30,11 +31,10 @@ public  class User {
         this.imageUrl = imageUrl;
         this.cvUrl = cvUrl;
         this.skills = skills;
-        this.friendsList = friendsList;
         this.bookmarkedPosts = bookmarkedPosts;
     }
 
-    public User() {};
+    public UserReturn() {};
 
 
 
@@ -79,11 +79,9 @@ public  class User {
         return skills;
     }
 
-    public ArrayList<String> getFriendsList() {
-        return friendsList;
-    }
 
-    public ArrayList<String> getBookmarkedPosts() {
+
+    public ArrayList<LightPost> getBookmarkedPosts() {
         return bookmarkedPosts;
     }
 
@@ -132,11 +130,8 @@ public  class User {
         this.skills = skills;
     }
 
-    public void setFriendsList(ArrayList<String> friendsList) {
-        this.friendsList = friendsList;
-    }
 
-    public void setBookmarkedPosts(ArrayList<String> bookmarkedPosts) {
+    public void setBookmarkedPosts(ArrayList<LightPost> bookmarkedPosts) {
         this.bookmarkedPosts = bookmarkedPosts;
     }
 }

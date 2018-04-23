@@ -1,11 +1,10 @@
 package com.linkedin.replica.editInfo.models;
 
 public class LightUser {
-    String userID;
+    String userId;
     String firstName;
      String lastName ;
-     String currentPostion;
-     String profilePictureURL;
+     String userName;
      public LightUser(){
 
      }

@@ -55,50 +55,50 @@ public class CvCommandTest{
 
 
 
-//    @Test
-//    public void AddCvexecute()throws IOException {
-//
-//        HashMap<String, Object> args = new HashMap();
-//       Object response;
-//
-//        args.put("userId", "1");
-//        args.put("cv","user12URL");
-//        AddCvCommand command = new AddCvCommand(args);
-//        command.setDbHandler(arangoHandler);
-//        command.setCacheHandler(jedisCacheHandler);
-//        response = command.execute();
-//        User user = arangoHandler.getUserProfile("0");
-//        System.out.println((User) user);
-//
-//        assertEquals("response should be true", user.getCvUrl(), "user12URL");
-//
-//    }
     @Test
-    public void DeleteCvexecute()throws IOException {
+    public void AddCvexecute()throws IOException {
 
-        HashMap<String, Object> args = new HashMap<String, Object>();
+        HashMap<String, Object> args = new HashMap();
        Object response;
 
-
         args.put("userId", "1");
-
-        DeleteCvCommand command = new DeleteCvCommand(args);
+        args.put("cv","user12URL");
+        AddCvCommand command = new AddCvCommand(args);
         command.setDbHandler(arangoHandler);
-        GetUserProfileCommand command2 = new GetUserProfileCommand(args);
-        command2.setDbHandler(arangoHandler);
-        command2.setCacheHandler(jedisCacheHandler);
         command.setCacheHandler(jedisCacheHandler);
-        command.execute();
-        response = command2.execute();
+        response = command.execute();
+        User user = arangoHandler.getUserProfile("0");
+        System.out.println((User) user);
 
-//        System.out.println((User) response);
-     //   User user = arangoHandler.getUserProfile("0");
-//
-//        assertEquals("the cv should be null because it is deleted", "", user.getCvUrl());
-
-
+        assertEquals("response should be true", user.getCvUrl(), "user12URL");
 
     }
+//    @Test
+//    public void DeleteCvexecute()throws IOException {
+//
+//        HashMap<String, Object> args = new HashMap<String, Object>();
+//       Object response;
+//
+//
+//        args.put("userId", "1");
+//
+//        DeleteCvCommand command = new DeleteCvCommand(args);
+//        command.setDbHandler(arangoHandler);
+//        GetUserProfileCommand command2 = new GetUserProfileCommand(args);
+//        command2.setDbHandler(arangoHandler);
+//        command2.setCacheHandler(jedisCacheHandler);
+//        command.setCacheHandler(jedisCacheHandler);
+//        command.execute();
+//        response = command2.execute();
+//
+////        System.out.println((User) response);
+//     //   User user = arangoHandler.getUserProfile("0");
+////
+////        assertEquals("the cv should be null because it is deleted", "", user.getCvUrl());
+//
+//
+//
+//    }
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfigProp("db.name");

@@ -56,8 +56,8 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
                 "          ";
         System.out.println(Query);
         String collectionName = config.getArangoConfigProp("collection.companies.name");
-        ArangoCursor<String> cursor = dbInstance.query(Query, bindVars,null, String.class);
-        System.out.println(cursor.next());
+        ArangoCursor<CompanyReturn> cursor = dbInstance.query(Query, bindVars,null, CompanyReturn.class);
+        System.out.println(cursor.next().posts.get(0).getAuthorID());
         return null;
     }
     public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
@@ -318,24 +318,23 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
                 ")\n" +
                 "let friendlist = (\n" +
                 "    for friend in users\n" +
-                "    filter friend._key in friend.friendsList\n" +
+                "    filter friend._key in user.friendsList\n" +
                 "    return {\"friend.userId\":friend.userId,\"friend.userName\":friend.firstName,\"friend.lastName\":friend.lastName}\n" +
                 ")\n" +
                 "let followedCompanies = (\n" +
                 "    for company in companies\n" +
-                "    filter company._key in company.followedCompanies\n" +
+                "    filter company._key in user.followedCompanies\n" +
                 "    return {\"company.companyId\":company.companyId,\"company.companyName\":company.companyName,\"company.profilePictureUrl\":company.profilePictureUrl}\n" +
                 ")\n" +
                 "return  MERGE_RECURSIVE (\n" +
-                "                    user, \n" +
-                "                    {\"bookmarkedPosts\": BookMarkedPosts, \"connections\": friendlist, \"followedCompanines\":followedCompanies}\n" +
+                "                  UNSET( user,\"friendsList\",\"bookmarkedPosts\"),\n" +
+                "                    {\"bookmarkedPosts\": BookMarkedPosts, \"friendslist\": friendlist, \"followedCompanies\":followedCompanies}\n" +
                 "                    \n" +
                 "                )\n" +
                 "          ";
         System.out.println(Query);
-        String collectionName = config.getArangoConfigProp("collection.companies.name");
-        ArangoCursor<String> cursor = dbInstance.query(Query, bindVars,null, String.class);
-        System.out.println(cursor.next());
+        String collectionName = config.getArangoConfigProp("collection.user.name");
+        ArangoCursor<UserReturn> cursor = dbInstance.query(Query, bindVars,null, UserReturn.class);
         System.out.println(cursor.next());
         return null;
     }

@@ -2,11 +2,13 @@ package com.linkedin.replica.editInfo.models;
 
 public class LightCompany {
     private String companyName;
-    private String companyID;
+    private String companyId;
+    private String profilePictureUrl;
+
 public LightCompany(){}
     public LightCompany(String companyName, String companyID) {
         this.companyName = companyName;
-        this.companyID = companyID;
+        this.companyId = companyID;
     }
 
     public String getCompanyName() {
@@ -14,7 +16,7 @@ public LightCompany(){}
     }
 
     public String getCompanyID() {
-        return companyID;
+        return companyId;
     }
 
     public void setCompanyName(String companyName) {
@@ -22,6 +24,6 @@ public LightCompany(){}
     }
 
     public void setCompanyID(String companyID) {
-        this.companyID = companyID;
+        this.companyId = companyID;
     }
 }

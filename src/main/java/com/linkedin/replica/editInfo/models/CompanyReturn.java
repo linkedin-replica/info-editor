@@ -2,7 +2,7 @@ package com.linkedin.replica.editInfo.models;
 
 import java.util.ArrayList;
 
-public class Company {
+public class CompanyReturn {
     private String _key;
     public String companyName;
     public String companyProfilePicture;
@@ -13,11 +13,9 @@ public class Company {
     public String companyLocation;
     public String companytype;
     String aboutUs;
-    public ArrayList<String> posts;
-    public ArrayList<String> jobListings;
-    public ArrayList<String> Posts;
-    public ArrayList<String> joblistings;
-    public Company(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,
+    public ArrayList<LightPost> posts;
+    public ArrayList<LightUser> jobListing;
+    public CompanyReturn(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,
                    String industryType,String companyLocation,String companytype,ArrayList<String>posts,ArrayList<String> JobListings) {
         this.companyName = companyName;
         this.adminUserName=adminUserName;
@@ -28,7 +26,7 @@ public class Company {
         this.companyLocation = companyLocation;
         this.companytype = companytype;
     }
-    public Company(){
+    public CompanyReturn(){
     }
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
@@ -64,9 +62,6 @@ public class Company {
 
 
 
-    public void setPosts(ArrayList<String >posts){
-        this.posts = posts;
-    }
     public void setCompanyID(String companyID) {
         this.companyId = companyID;
     }
@@ -79,18 +74,12 @@ public class Company {
         return companytype;
     }
 
-    public void setJobListings(ArrayList<String> jobListings) {
-        this.jobListings =jobListings;
-    }
 
     public String getCompanyName() {
 
         return companyName;
     }
 
-    public ArrayList<String> getPosts() {
-        return posts;
-    }
 
     public String getCompanyProfilePicture() {
         return companyProfilePicture;
