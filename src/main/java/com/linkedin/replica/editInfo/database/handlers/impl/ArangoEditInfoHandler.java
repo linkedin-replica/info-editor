@@ -7,13 +7,13 @@ import com.google.gson.Gson;
 import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
-import com.linkedin.replica.editInfo.models.Company;
-import com.linkedin.replica.editInfo.models.User;
 
 import com.linkedin.replica.editInfo.models.*;
 import java.io.IOException;
 
 import com.arangodb.entity.BaseDocument;
+
+import javax.management.Query;
 
 public class ArangoEditInfoHandler implements EditInfoHandler {
 
@@ -35,8 +35,9 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     public CompanyReturn getCompany(String companyId){
         Map <String, Object> bindVars = new HashMap<String ,Object>();
         bindVars.put("companyId",companyId);
+        String companyCollectionName = config.getArangoConfigProp("collection.companies.name");
 
-        String Query = "FOR company in companies\n" +
+        String Query = "FOR company in " + companyCollectionName  + "\n" +
                 "filter company._key == @companyId\n" +
                 "let Posts = (" +
                 "    for post in posts\n" +
@@ -54,183 +55,119 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
                 "                    \n" +
                 "                )\n" +
                 "          ";
-        System.out.println(Query);
-        String collectionName = config.getArangoConfigProp("collection.companies.name");
         ArangoCursor<CompanyReturn> cursor = dbInstance.query(Query, bindVars,null, CompanyReturn.class);
-        CompanyReturn company =cursor.next();
-        System.out.println(company);
+        CompanyReturn company = cursor.next();
         return company;
     }
-    public void insertCompany(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID, String industryType,String companyLocation
-            ,String companytype,ArrayList<String> specialities,ArrayList<String> posts,ArrayList<String> jobListings){
+
+    /**
+     * Insert company in collection companies.
+     * @param companyName : name of inserted company
+     * @param companyID id generated
+     * @param companyProfilePicture profile picture url
+     * @param adminUserID id of user created the company
+     * @param industryType industry type of inserted company
+     * @param posts array of ids of posts of the company.
+     */
+    public String insertCompany(String companyName, String companyID, String companyProfilePicture, String adminUserID, String industryType, ArrayList<String> posts){
             BaseDocument myObject = new BaseDocument();
             myObject.setKey(companyID);
-            System.out.println(myObject.getId());
             myObject.addAttribute("companyName", companyName);
             myObject.addAttribute("companyId", companyID);
             myObject.addAttribute("companyProfilePicture", companyProfilePicture);
-            myObject.addAttribute("companyLocation", companyLocation);
-            myObject.addAttribute("companyType", companytype);
-            myObject.addAttribute("adminUserName", adminUserName);
             myObject.addAttribute("industryType", industryType);
-            myObject.addAttribute("specatilities",specialities);
-            myObject.addAttribute("jobListings",jobListings);
-            myObject.addAttribute("posts",posts);
+            myObject.addAttribute("posts", posts);
         try {
             dbInstance.collection("companies").insertDocument(myObject);
         } catch (ArangoDBException e) {
-            System.err.println("Failed to update document. " + e.getMessage());
+           return "Failed to create company. ";
         }
+        return "Company is created successfully.";
     }
 
-    public void updateCompany(HashMap<String,Object>args) {
+    public String updateCompany(HashMap<String,Object> args) {
         String collectionName = config.getArangoConfigProp("collection.companies.name");
-        Gson gson = new Gson();
-       // System.out.println(args+"args");
         Map<String, Object> bindVars = new MapBuilder().get();
 
-        //execute query
-        String Query = "FOR company IN "+config.getArangoConfigProp("collection.companies.name")+"  UPDATE { _key:"+"@companyId" ;
+        String Query = "FOR company IN "+ collectionName +"  UPDATE { _key:"+"@companyId" ;
         Query +="} WITH{ ";
         for(String key :args.keySet()){
             Class c = args.get(key).getClass();
-            //System.out.println(c.getName());
             bindVars.put(key,args.get(key));
             if(c.getName().equals("java.lang.String")){
-
-                Query +=key +": "+"@"+key+" , ";
+                Query += key +": "+"@"+key+" , ";
             }
             else{
-                Query +=key +": "+"APPEND(company."+key+","+"@"+key+")"+" ,";
+                Query += key +": "+"APPEND(company."+key+","+"@"+key+")"+" ,";
             }
-          //  System.out.println(bindVars);
-
         }
-   if(args.keySet().size()>0)
-       Query = Query.substring(0,Query.length()-2);
-        Query+="  }   IN "+collectionName;
-        System.out.println(Query);
+        if(args.keySet().size() > 0)
+            Query = Query.substring(0, Query.length() - 2);
+
+        Query+="  }   IN "+ collectionName;
 
         try {
-        ArangoCursor<String> cursor = dbInstance.query(Query, bindVars,null, String.class);
-        System.out.println(cursor);
+         dbInstance.query(Query, bindVars,null, String.class);
 
-//
-//        if(companyName!=null)
-//        company.addAttribute("companyName",companyName);
-//        if(companyProfilePicture!=null)
-//            company.setCompanyProfilePicture(companyProfilePicture);
-//        if(companyLocation!=null)
-//            company.setCompanyLocation(companyLocation);
-//        if(companytype==null)
-//           company.setCompanytype(companytype);
-//        if(industryType!=null)
-//            company.setIndustryType(industryType);
-//        if(jobListings!=null&&jobListings.size()!=0)
-//           company.updateJobListings(jobListings);
-//        if(posts!=null&&posts.size()!=0)
-//            company.updatePosts(posts);
-
-//            dbInstance.collection(collectionName).updateDocument(companyID+"", company);
         } catch (ArangoDBException e) {
-            System.err.println("Failed to update document. " + e.getMessage());
+            return "Failed to update company.";
         }
+        return "Company is updated successfully.";
     }
 
-    public void createProfile(HashMap<String,Object> profileAttributes, String userID){
+
+    public String createProfile(HashMap<String,Object> args, String userId){
         String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         BaseDocument user = new BaseDocument();
-        user.setKey(userID);
-        PersonalInfo personalInfo = new PersonalInfo();
-        Location location = new Location();
-        if(profileAttributes.containsKey("firstName"))
-            user.addAttribute("firstName", profileAttributes.get("firstName"));
-        if(profileAttributes.containsKey("lastName"))
-            user.addAttribute("lastName", profileAttributes.get("lastName"));
-        if(profileAttributes.containsKey("headline"))
-            user.addAttribute("headline", profileAttributes.get("headline"));
-        if(profileAttributes.containsKey("personalInfo.phone"))
-            personalInfo.setPhone((String)(profileAttributes.get("personalInfo.phone")));
-        if(profileAttributes.containsKey("personalInfo.email"))
-            personalInfo.setEmail((String)(profileAttributes.get("personalInfo.email")));
-        if(profileAttributes.containsKey("personalInfo.dob"))
-            personalInfo.setDob((String)(profileAttributes.get("personalInfo.dob")));
-        if(profileAttributes.containsKey("personalInfo.location.address"))
-            location.setAddress((String)profileAttributes.get("personalInfo.location.address"));
-        if(profileAttributes.containsKey("personalInfo.location.country"))
-            location.setCountry((String)profileAttributes.get("personalInfo.location.country"));
-        if(profileAttributes.containsKey("personalInfo.location.country"))
-            location.setCountry((String)profileAttributes.get("personalInfo.location.country"));
-        if(profileAttributes.containsKey("personalInfo.location.code"))
-            location.setCountry((String)profileAttributes.get("personalInfo.location.code"));
-        personalInfo.setLocation(location);
-        if(profileAttributes.containsKey("personalInfo.website"))
-            personalInfo.setWebsite((String)(profileAttributes.get("personalInfo.website")));
-        user.addAttribute("personalInfo", personalInfo);
-        if(profileAttributes.containsKey("numConnections"))
-            user.addAttribute("numConnections", (String)profileAttributes.get("numConnections"));
-        if(profileAttributes.containsKey("numFollowers"))
-            user.addAttribute("numFollowers", (String)profileAttributes.get("numFollowers"));
-        if(profileAttributes.containsKey("summary"))
-            user.addAttribute("summary", (String)profileAttributes.get("summary"));
-        if(profileAttributes.containsKey("imageUrl"))
-            user.addAttribute("imageUrl", (String)profileAttributes.get("imageUrl"));
-        if(profileAttributes.containsKey("cvUrl"))
-            user.addAttribute("cvUrl", (String)profileAttributes.get("cvUrl"));
-        dbInstance.collection(UsersCollectionName).insertDocument(user);
+        user.setKey(userId);
+        if(args.containsKey("firstName"))
+            user.addAttribute("firstName", args.get("firstName"));
+        if(args.containsKey("lastName"))
+            user.addAttribute("lastName", args.get("lastName"));
+        if(args.containsKey("headline"))
+            user.addAttribute("headline", args.get("headline"));
+        if(args.containsKey("email"))
+            user.addAttribute("email", (args.get("email")));
+        if(args.containsKey("profilePictureUrl"))
+            user.addAttribute("profilePictureUrl", args.get("profilePictureUrl"));
+        if(args.containsKey("cvUrl"))
+            user.addAttribute("cvUrl", args.get("cvUrl"));
+        try {
+            dbInstance.collection(UsersCollectionName).insertDocument(user);
+        } catch(ArangoDBException e) {
+            return "Failed to create profile.";
+        }
+        return "Profile is created successfully.";
     }
-    public void updateProfile(HashMap<String, Object> args){
+
+    public String updateProfile(HashMap<String, Object> args){
         String collectionName = config.getArangoConfigProp("collection.users.name");
-        Gson gson = new Gson();
-        // System.out.println(args+"args");
         Map<String, Object> bindVars = new MapBuilder().get();
 
         //execute query
-        String Query = "FOR user IN "+config.getArangoConfigProp("collection.users.name")+"  UPDATE { _key:"+"@userId" ;
+        String Query = "FOR user IN "+ collectionName +"  UPDATE { _key:"+"@userId" ;
         Query +="} WITH{ ";
         for(String key :args.keySet()){
             Class c = args.get(key).getClass();
-            //System.out.println(c.getName());
-            bindVars.put(key,args.get(key));
+            bindVars.put(key, args.get(key));
             if(c.getName().equals("java.lang.String")){
 
-                Query +=key +": "+"@"+key+" , ";
+                Query += key +": "+"@"+key+" , ";
             }
             else{
-                Query +=key +": "+"APPEND(user."+key+","+"@"+key+")"+" ,";
+                Query += key +": "+"APPEND(user."+key+","+"@"+key+")"+" ,";
             }
-            //  System.out.println(bindVars);
-
         }
-        if(args.keySet().size()>0)
-            Query = Query.substring(0,Query.length()-2);
+        if(args.keySet().size() > 0)
+            Query = Query.substring(0, Query.length() - 2);
         Query+="  }   IN "+collectionName;
-        System.out.println(Query);
 
         try {
-            ArangoCursor<String> cursor = dbInstance.query(Query, bindVars,null, String.class);
-            System.out.println(cursor);
-
-//
-//        if(companyName!=null)
-//        company.addAttribute("companyName",companyName);
-//        if(companyProfilePicture!=null)
-//            company.setCompanyProfilePicture(companyProfilePicture);
-//        if(companyLocation!=null)
-//            company.setCompanyLocation(companyLocation);
-//        if(companytype==null)
-//           company.setCompanytype(companytype);
-//        if(industryType!=null)
-//            company.setIndustryType(industryType);
-//        if(jobListings!=null&&jobListings.size()!=0)
-//           company.updateJobListings(jobListings);
-//        if(posts!=null&&posts.size()!=0)
-//            company.updatePostspostId(posts);
-
-//            dbInstance.collection(collectionName).updateDocument(companyID+"", company);
+            dbInstance.query(Query, bindVars,null, String.class);
         } catch (ArangoDBException e) {
-            System.err.println("Failed to update document. " + e.getMessage());
+            return "Failed to update profile. ";
         }
+        return "Profile updated successfully.";
     }
 
 
@@ -241,105 +178,88 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
      * Add new skill in the user profile
      * @param userId : the id of the user and the new skill
      */
-    public void addSkill(String userID, String Skill){
+    public String addSkill(String userId, String skill){
         String collectionName = config.getArangoConfigProp("collection.users.name");
-        Gson gson = new Gson();
-        // System.out.println(args+"args");
-        Map<String, Object> bindVars = new MapBuilder().get();
-        bindVars.put("userId", userID);
-        bindVars.put("skill", Skill);
 
-        //execute query
-        String Query = "FOR user IN " + config.getArangoConfigProp("collection.users.name") + "  UPDATE { _key:" + "@userId";
+        Map<String, Object> bindVars = new MapBuilder().get();
+        bindVars.put("userId", userId);
+        bindVars.put("skill", skill);
+
+        String Query = "FOR user IN " + collectionName + "  UPDATE { _key:" + "@userId";
         Query += "} WITH{ ";
 
 
-        Query += "skills : PUSH(user.skills ,@skill)";
-        Query+="  }   IN "+collectionName;
-        System.out.println(Query);
+        Query += "skills : PUSH(user.skills , @skill)";
+        Query+="  }   IN "+ collectionName;
 
         try {
          dbInstance.query(Query, bindVars, null, String.class);
-//            System.out.println(cursor.next());
-
         } catch (ArangoDBException e) {
-            System.err.println("Failed to update document. " + e.getMessage());
+            return "Failed to add skill.";
         }
+        return "Skill is added successfully.";
     }
-public void deleteSkill(String userId,String skill){
-    String collectionName = config.getArangoConfigProp("collection.users.name");
-    Gson gson = new Gson();
-    // System.out.println(args+"args");
-    Map<String, Object> bindVars = new MapBuilder().get();
-    bindVars.put("userId", userId);
-    bindVars.put("skill", skill);
 
-    //execute query
-    String Query = "FOR user IN " + config.getArangoConfigProp("collection.users.name") + "  UPDATE { _key:" + "@userId";
-    Query += "} WITH{ ";
+    public String deleteSkill(String userId, String skill){
+        String collectionName = config.getArangoConfigProp("collection.users.name");
+
+        Map<String, Object> bindVars = new MapBuilder().get();
+        bindVars.put("userId", userId);
+        bindVars.put("skill", skill);
+
+        String Query = "FOR user IN " + collectionName + "  UPDATE { _key:" + "@userId";
+        Query += "} WITH{ ";
 
 
-    Query += "skills : REMOVE_VALUE(user.skills ,@skill)";
-    Query+="  }   IN "+collectionName;
-    System.out.println(Query);
+        Query += "skills : REMOVE_VALUE(user.skills ,@skill)";
+        Query+="  }   IN "+collectionName;
 
     try {
-        ArangoCursor<String> cursor = dbInstance.query(Query, bindVars, null, String.class);
-        System.out.println(cursor.next());
-
+        dbInstance.query(Query, bindVars, null, String.class);
     } catch (ArangoDBException e) {
-        System.err.println("Failed to update document. " + e.getMessage());
+        return "Failed to delete skill.";
     }
+    return "skill is deleted successfully.";
 }
 
-    public void addCV(String userID,String cv) {
+    public String addCV(String userID, String cv) {
         String collectionName = config.getArangoConfigProp("collection.users.name");
-        Gson gson = new Gson();
-        // System.out.println(args+"args");
+
         Map<String, Object> bindVars = new MapBuilder().get();
         bindVars.put("cv", cv);
         bindVars.put("userId", userID);
 
-        //execute query
-        String Query = "FOR user IN " + config.getArangoConfigProp("collection.users.name") + "  UPDATE { _key:" + "@userId";
+        String Query = "FOR user IN " + collectionName + "  UPDATE { _key:" + "@userId";
         Query += "} WITH{ ";
 
-
         Query += " cvUrl:@cv }   IN " + collectionName;
-        System.out.println(Query);
 
         try {
            dbInstance.query(Query, bindVars, null, String.class);
-
-
         } catch (ArangoDBException e) {
-            System.err.println("Failed to update document. " + e.getMessage());
+            return "Failed to add CV.";
         }
+        return "CV is added successfully.";
     }
 
-    public void deleteCV(String userID) {
+    public String deleteCV(String userID) {
         String collectionName = config.getArangoConfigProp("collection.users.name");
-        Gson gson = new Gson();
-        // System.out.println(args+"args");
         Map<String, Object> bindVars = new MapBuilder().get();
         bindVars.put("cv", "");
         bindVars.put("userId", userID);
 
-        //execute query
-        String Query = "FOR user IN " + config.getArangoConfigProp("collection.users.name") + "  UPDATE { _key:" + "@userId";
+        String Query = "FOR user IN " + collectionName + "  UPDATE { _key:" + "@userId";
         Query += "} WITH{ ";
 
 
         Query += " cvUrl:@cv }   IN " + collectionName;
-       // System.out.println(Query);
 
         try {
-            ArangoCursor<String> cursor = dbInstance.query(Query, bindVars, null, String.class);
-         //   System.out.println(cursor.next());
-
+            dbInstance.query(Query, bindVars, null, String.class);
         } catch (ArangoDBException e) {
-            System.err.println("Failed to update document. " + e.getMessage());
+            return "Failed to delete CV.";
         }
+        return "CV is deleted successfully.";
     }
 
     /*
@@ -350,10 +270,12 @@ public void deleteSkill(String userId,String skill){
      */
 
     public UserReturn getUserProfile(String UserID){
-        Map <String, Object> bindVars = new HashMap<String ,Object>();
+        Map <String, Object> bindVars = new HashMap<>();
+        String usersCollectionName = config.getArangoConfigProp("collection.users.name");
+        String companiesCollectionName = config.getArangoConfigProp("collection.companies.name");
+
         bindVars.put("userId",UserID);
-        System.out.println("here");
-        String Query = "FOR user in users\n" +
+        String Query = "FOR user in " + usersCollectionName + "\n" +
                 "filter user._key == @userId\n" +
                 "let BookMarkedPosts = (" +
                 "    for post in posts\n" +
@@ -361,12 +283,12 @@ public void deleteSkill(String userId,String skill){
                 "    return {\"authorId\":post.authorId ,\"postId\":post.postId,\"text\":post.text}\n" +
                 ")\n" +
                 "let friendlist = (\n" +
-                "    for friend in users\n" +
+                "    for friend in " + usersCollectionName + "\n" +
                 "    filter friend._key in user.friendsList\n" +
                 "    return {\"friend.userId\":friend.userId,\"friend.firstName\":friend.firstName,\"friend.lastName\":friend.lastName,\"friend.userName\":friend.userName}\n" +
                 ")\n" +
                 "let followedCompanies = (\n" +
-                "    for company in companies\n" +
+                "    for company in " + companiesCollectionName + "\n" +
                 "    filter company._key in user.followedCompanies\n" +
                 "    return {\"company.companyId\":company.companyId,\"company.companyName\":company.companyName,\"company.profilePictureUrl\":company.profilePictureUrl}\n" +
                 ")\n" +
@@ -376,10 +298,7 @@ public void deleteSkill(String userId,String skill){
                 "                    \n" +
                 "                )\n" +
                 "          ";
-        System.out.println(Query);
-        String collectionName = config.getArangoConfigProp("collection.users.name");
         ArangoCursor<UserReturn> cursor = dbInstance.query(Query, bindVars,null, UserReturn.class);
-
         return cursor.next();
     }
 
