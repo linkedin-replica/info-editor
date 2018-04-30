@@ -16,16 +16,12 @@ public class AddCvCommand extends Command{
         super(args);
     }
 
-    public Object execute() throws IOException {
-        validateArgs(new String[]{"userId", "cv"});
-        // get notifications from db
-        EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        validateArgs(new String[]{"userId"});
-        dbHandler.addCV((String)args.get("userId"),(String)args.get("cv"));
-        LinkedHashMap<String, Object>resutls = new LinkedHashMap<String, Object>();
-        resutls.put("response",true);
-        return "CV added successfully";
+    public Object execute() {
+        validateArgs(new String[]{"userId", "cvUrl"});
 
+        EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
+        String response = dbHandler.addCV((String)args.get("userId"),(String)args.get("cvUrl"));
+        return response;
     }
 
 
