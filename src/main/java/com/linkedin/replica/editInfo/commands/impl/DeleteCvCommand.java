@@ -14,15 +14,11 @@ public class DeleteCvCommand extends Command{
         super(args);
     }
 
-    public Object execute() throws IOException {
+    public Object execute() {
         validateArgs(new String[]{"userId"});
-        // get notifications from db
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        validateArgs(new String[]{"userId"});
-        dbHandler.deleteCV((String)args.get("userId"));
-
-
-        return "Cv deleted successfully";
+        String response = dbHandler.deleteCV((String)args.get("userId"));
+        return response;
     }
 
 }
