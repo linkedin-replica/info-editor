@@ -15,26 +15,21 @@ public class AddCompanyCommand extends Command {
     }
 
     public Object execute() throws IOException {
-        validateArgs(new String[]{"specialities", "posts", "jobListings","companyName", "companyProfilePicture", "adminUserName","adminUserName" , "adminUserName",
-       "industryType", "companyLocation", "companyType" });
+        validateArgs(new String[]{"posts","companyName"
+                , "profilePictureUrl", "adminUserId",
+                "industryType", "aboutus"});
+
         String companyID = UUID.randomUUID().toString();
-        System.out.println(companyID);
-        // get notifications from db
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        ArrayList<String>specialities = new ArrayList<String>();
-specialities.add((String) args.get("specilities"));
 
-        ArrayList<String>posts = new ArrayList<String>();
-        posts.add((String)args.get("posts"));
-        ArrayList<String>jobLisitings = new ArrayList<String>();
-        jobLisitings.add((String)args.get("jobListings"));
-        dbHandler.insertCompany((String)args.get("companyName"),companyID,(String)args.get("companyProfilePicture"),(String)args.get("adminUserName"),(String)args.get("adminUserID")
-        ,(String)args.get("industryType"),(String)args.get("companyLocation"),(String)args.get("companyType"),specialities,posts,jobLisitings);
-        LinkedHashMap<String, Object>resutls = new LinkedHashMap<String, Object>();
-        resutls.put("response",true);
-        return "Company added successfully";
+        ArrayList<String> posts = (ArrayList<String>) args.get("posts");
+
+        String response = dbHandler.insertCompany((String)args.get("companyName"), companyID, (String)args.get("companyProfilePicture"),
+                (String)args.get("adminUserId"), (String)args.get("industryType"),
+                posts);
+        
+        return response;
     }
-
 
 
 }
