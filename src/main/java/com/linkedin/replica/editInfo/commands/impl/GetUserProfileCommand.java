@@ -26,7 +26,10 @@ public class GetUserProfileCommand extends Command {
         }
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
 
-        user = dbHandler.getUserProfile((String) args.get("userId"));
+        if (args.containsKey("profileId"))
+            user = dbHandler.getUserProfile((String) args.get("profileId"));
+        else
+            user = dbHandler.getUserProfile((String) args.get("userId"));
 
         cacheEditInfoHandler.saveUsersInCache(userId, user);
         return user;
