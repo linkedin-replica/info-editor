@@ -25,31 +25,28 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
         cachePool = CacheConnection.getInstance().getRedisPool();
         gson = CacheConnection.getGson();
     }
+
     @Override
-    public void saveUsersInCache(String[] usersIds, Object users) throws IOException {
+    public void saveUsersInCache(String userId, Object user) throws IOException {
 
         try {
             Jedis cacheInstance = cachePool.getResource();
             cacheInstance.select(databaseIndexusers);
             Pipeline pipeline = cacheInstance.pipelined();
-            ArrayList<Object> usersList = (ArrayList<Object>) users;
-            for(int j = 0; j < usersIds.length; ++j){
-                String key = usersIds[j];
-                Object user = usersList.get(j);
-                Class userClass = user.getClass();
-                Field [] fields = userClass.getDeclaredFields();
-                for(int i = 0; i < fields.length; ++i) {
-                    String fieldName = fields[i].getName();
-                    Object fieldValue;
-                    try {
-                        fields[i].setAccessible(true);
-                        fieldValue = fields[i].get(user);
-                        pipeline.hset(key, fieldName, gson.toJson(fieldValue));
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
+            Class userClass = user.getClass();
+            Field [] fields = userClass.getDeclaredFields();
+            for (Field field : fields) {
+                String fieldName = field.getName();
+                Object fieldValue;
+                try {
+                    field.setAccessible(true);
+                    fieldValue = field.get(user);
+                    pipeline.hset(userId, fieldName, gson.toJson(fieldValue));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
                 }
             }
+
             pipeline.sync();
             pipeline.close();
             cacheInstance.close();
@@ -60,7 +57,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     }
 
     @Override
-    public Object getUserFromCache(String key, Class<?> tClass) throws IOException {
+    public Object getUserFromCache(String key, Class<?> tClass)  {
 
         try {
             Jedis cacheInstance = cachePool.getResource();
@@ -126,33 +123,27 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
         }
     }
     @Override
-    public void saveCompanyInCache(String[] companiesIds, Object companies) throws IOException {
+    public void saveCompanyInCache(String companyId, Object company) throws IOException {
 
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
+
             cacheInstance.select(databaseIndexcompanies);
             Pipeline pipeline = cacheInstance.pipelined();
-            ArrayList<Object> companyList = (ArrayList<Object>) companies;
-            for(int j = 0; j < companiesIds.length; ++j) {
-                String key = companiesIds[j];
-                Object company = companyList.get(j);
-                Class companyClass = company.getClass();
-                Field [] fields = companyClass.getDeclaredFields();
-                for(int i = 0; i < fields.length; ++i) {
-                    String fieldName = fields[i].getName();
-                    Object fieldValue;
-                    try {
-                        fields[i].setAccessible(true);
-                        fieldValue = fields[i].get(company);
-                        pipeline.hset(key, fieldName, gson.toJson(fieldValue));
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
+            Class companyClass = company.getClass();
+            Field [] fields = companyClass.getDeclaredFields();
+            for (Field field : fields) {
+                String fieldName = field.getName();
+                Object fieldValue;
+                try {
+                    field.setAccessible(true);
+                    fieldValue = field.get(company);
+                    pipeline.hset(companyId, fieldName, gson.toJson(fieldValue));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
                 }
             }
             pipeline.sync();
             pipeline.close();
-            cacheInstance.close();
         } catch (JedisException e) {
             e.printStackTrace();
             return;
@@ -160,7 +151,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     }
 
     @Override
-    public Object getCompanyFromCache(String key, Class<?> tClass) throws IOException {
+    public Object getCompanyFromCache(String key, Class<?> tClass) {
 
         try {
             Jedis cacheInstance = cachePool.getResource();

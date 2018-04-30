@@ -9,7 +9,7 @@ import java.util.List;
 public interface CacheEditInfoHandler extends CacheHandler{
 
 
-    void saveUsersInCache(String[] usersIds, Object users) throws IOException;
+    void saveUsersInCache(String userId, Object user) throws IOException;
 
     Object getUserFromCache(String key, Class<?> tClass) throws IOException;
 
@@ -19,7 +19,7 @@ public interface CacheEditInfoHandler extends CacheHandler{
 
     void editUserCache(String key, LinkedHashMap<String, String> args);
 
-    void saveCompanyInCache(String[] companiesIds, Object companies) throws IOException;
+    void saveCompanyInCache(String companyId, Object company) throws IOException;
 
     Object getCompanyFromCache(String key, Class<?> tClass) throws IOException;
 
