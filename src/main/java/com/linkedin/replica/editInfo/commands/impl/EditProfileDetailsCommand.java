@@ -11,13 +11,15 @@ import java.util.LinkedHashMap;
 import java.util.zip.GZIPOutputStream;
 import org.apache.commons.codec.binary.Base64;
 public class EditProfileDetailsCommand extends Command{
-    private CacheEditInfoHandler cacheeditInfoHandler;
+
+    private CacheEditInfoHandler cacheEditInfoHandler;
+
     public EditProfileDetailsCommand(HashMap<String, Object> args) {
         super(args);
     }
     public Object execute()  throws IOException {
-        // validate that all required arguments are passed
-        LinkedHashMap<String, String> cacheargs = new LinkedHashMap<String, String>();
+        validateArgs(new String[]{"userId"});
+        LinkedHashMap<String, String> cacheargs = new LinkedHashMap<>();
 
 
         for (String key : cacheargs.keySet()) {
@@ -32,13 +34,12 @@ public class EditProfileDetailsCommand extends Command{
             cacheargs.put(key, stringvalue);
         }
 
-            validateArgs(new String[]{"userId"});
             EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-            // get notifications from db
-            dbHandler.updateProfile(args);
-            cacheeditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-            cacheeditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
-            return "Profile Edited successfully";
+
+            String response = dbHandler.updateProfile(args);
+            cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
+            cacheEditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
+            return response;
 
     }
 }
