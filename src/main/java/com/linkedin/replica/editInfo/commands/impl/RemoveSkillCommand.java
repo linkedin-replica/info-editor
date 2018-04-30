@@ -12,13 +12,10 @@ public class RemoveSkillCommand extends Command {
         super(args);
     }
     public Object execute() throws IOException {
-        // validate that all required arguments are passed
-        validateArgs(new String[]{"userId", "Skill"});
+        validateArgs(new String[]{"userId", "skill"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        validateArgs(new String[]{"userId"});
-        // get notifications from db
-        dbHandler.deleteSkill((String) args.get("userId"),(String)args.get("Skill"));
-        return "Skill removed successfully";
+        String response = dbHandler.deleteSkill((String) args.get("userId"), (String)args.get("skill"));
+        return response;
 
     }
 }
