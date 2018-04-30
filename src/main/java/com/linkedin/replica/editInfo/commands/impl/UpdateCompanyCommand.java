@@ -13,16 +13,15 @@ import java.util.LinkedHashMap;
 import java.util.zip.GZIPOutputStream;
 
 public class UpdateCompanyCommand extends Command{
-    private CacheEditInfoHandler cacheeditInfoHandler;
+
     public UpdateCompanyCommand(HashMap<String, Object> args) {
         super(args);
     }
+
     public Object execute()  throws IOException {
-        // validate that all required arguments are passed
         validateArgs(new String[]{"companyId"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        // get notifications from db
-        LinkedHashMap<String, String> cacheargs = new LinkedHashMap<String, String>();
+        LinkedHashMap<String, String> cacheargs = new LinkedHashMap<>();
 
 
         for (String key : args.keySet()) {
@@ -36,13 +35,10 @@ public class UpdateCompanyCommand extends Command{
             System.out.println(stringvalue+"heree");
             cacheargs.put(key, stringvalue);
         }
-        ArrayList<String >posts = new ArrayList<String>();
-        ArrayList<String >jobListings = new ArrayList<String>();
-        ArrayList<String> specialities = new ArrayList<String>();
-        System.out.println(cacheargs+"cache");
-        dbHandler.updateCompany(args);
-        cacheeditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-        cacheeditInfoHandler.editcompanyFromCache((String) args.get("companyId"), cacheargs);
-        return "Company updated successfully";
+
+        String response = dbHandler.updateCompany(args);
+        CacheEditInfoHandler cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
+        cacheEditInfoHandler.editcompanyFromCache((String) args.get("companyId"), cacheargs);
+        return response;
     }
 }
