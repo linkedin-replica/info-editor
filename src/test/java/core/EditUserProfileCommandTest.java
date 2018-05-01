@@ -56,12 +56,11 @@ public class EditUserProfileCommandTest {
         args.put("userId", "101");
         args.put("firstName", "Baher");
         args.put("headline", "Graduate");
-        String [] ids = new String[1];
-        ids[0]="1";
+        String id = "1";
         ArrayList<User> users = new ArrayList<User>();
         User user = new User();
         users.add(user);
-        cacheEditInfoHandler.saveUsersInCache(ids,users);
+        cacheEditInfoHandler.saveUsersInCache(id, users);
         Command command2 = new EditProfileDetailsCommand(args);
         command2.setDbHandler(arangoHandler);
         command2.setCacheHandler(cacheEditInfoHandler);
