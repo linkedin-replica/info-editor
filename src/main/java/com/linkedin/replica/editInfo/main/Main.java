@@ -3,6 +3,7 @@ package com.linkedin.replica.editInfo.main;
 
 
 
+import com.linkedin.replica.editInfo.cache.CacheConnection;
 import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.controller.Server;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
@@ -45,6 +46,7 @@ public class Main {
         // create singleton instance of DatabaseConnection class that is responsible for intiating connections
         // with databases
         DatabaseConnection.init();
+        CacheConnection.getInstance();
         // start RabbitMQ
         new ClientMessagesReceiver();
         // start server
