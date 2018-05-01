@@ -25,5 +25,5 @@ public interface CacheEditInfoHandler extends CacheHandler{
 
     void deleteCompanies(String key);
 
-    void editcompanyFromCache(String key, LinkedHashMap<String, String> args);
+    void editCompanyFromCache(String key, LinkedHashMap<String, String> args);
 }

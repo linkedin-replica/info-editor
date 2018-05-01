@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.linkedin.replica.editInfo.cache.CacheConnection;
 import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.config.Configuration;
+import com.linkedin.replica.editInfo.models.CompanyReturn;
+import com.linkedin.replica.editInfo.models.LightJob;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Pipeline;
@@ -26,11 +28,14 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
         gson = CacheConnection.getGson();
     }
 
+    public Gson getGson() {
+        return gson;
+    }
+
     @Override
     public void saveUsersInCache(String userId, Object user) throws IOException {
 
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(databaseIndexusers);
             Pipeline pipeline = cacheInstance.pipelined();
             Class userClass = user.getClass();
@@ -49,7 +54,6 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
 
             pipeline.sync();
             pipeline.close();
-            cacheInstance.close();
         } catch (JedisException e) {
             e.printStackTrace();
             return;
@@ -59,8 +63,8 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     @Override
     public Object getUserFromCache(String key, Class<?> tClass)  {
 
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
+
             cacheInstance.select(Integer.parseInt(configuration.getRedisConfigProp("cache.users.index")));
             if(!cacheInstance.exists(key))
                 return null;
@@ -68,27 +72,22 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
             Object user = null;
             try {
                 user = userClass.newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
             Field [] fields = userClass.getDeclaredFields();
             for(int i = 0; i < fields.length; ++i) {
                 String fieldName = fields[i].getName();
                 String jsonValue = cacheInstance.hget(key, fieldName);
-                Object objectValue = gson.fromJson(jsonValue, fields[i].getType());
+                Object objectValue = gson.fromJson(jsonValue, userClass.getField(fieldName).getType());
                 try {
                     userClass.getField(fieldName).set(user, objectValue);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (NoSuchFieldException e) {
+                } catch (IllegalAccessException | NoSuchFieldException e) {
                     e.printStackTrace();
                 }
             }
-            cacheInstance.close();
             return user;
-        } catch(JedisException e) {
+        } catch(JedisException | NoSuchFieldException e) {
             e.printStackTrace();
         }
         return null;
@@ -96,8 +95,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
 
     @Override
     public void deleteUserFromCache(String key) {
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(databaseIndexusers);
             if(!cacheInstance.exists(key))
                 return;
@@ -109,8 +107,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     }
     @Override
     public void editUserCache(String key, LinkedHashMap<String, String> args) {
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(databaseIndexusers);
             if(!cacheInstance.exists(key)) {
                 return;
@@ -146,43 +143,35 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
             pipeline.close();
         } catch (JedisException e) {
             e.printStackTrace();
-            return;
         }
     }
 
     @Override
     public Object getCompanyFromCache(String key, Class<?> tClass) {
 
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(Integer.parseInt(configuration.getRedisConfigProp("cache.companies.index")));
             if(!cacheInstance.exists(key))
                 return null;
-            Class companyClass = tClass;
             Object company = null;
             try {
-                company = companyClass.newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+                company = ((Class) tClass).newInstance();
+            } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
-            Field [] fields = companyClass.getDeclaredFields();
-            for(int i = 0; i < fields.length; ++i) {
-                String fieldName = fields[i].getName();
+            Field [] fields = tClass.getDeclaredFields();
+            for (Field field : fields) {
+                String fieldName = field.getName();
                 String jsonValue = cacheInstance.hget(key, fieldName);
-                Object objectValue = gson.fromJson(jsonValue, fields[i].getType());
+                Object objectValue = gson.fromJson(jsonValue, tClass.getField(fieldName).getType());
                 try {
-                    companyClass.getField(fieldName).set(company, objectValue);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (NoSuchFieldException e) {
+                    tClass.getField(fieldName).set(company, objectValue);
+                } catch (IllegalAccessException | NoSuchFieldException e) {
                     e.printStackTrace();
                 }
             }
-            cacheInstance.close();
             return company;
-        } catch(JedisException e) {
+        } catch(JedisException | NoSuchFieldException e) {
             e.printStackTrace();
         }
         return null;
@@ -190,8 +179,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
 
     @Override
     public void deleteCompanies(String key) {
-        try {
-            Jedis cacheInstance = cachePool.getResource();
+        try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(databaseIndexcompanies);
             if(!cacheInstance.exists(key))
                 return;
@@ -202,7 +190,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
         }
     }
     @Override
-    public void editcompanyFromCache(String key, LinkedHashMap<String, String> args) {
+    public void editCompanyFromCache(String key, LinkedHashMap<String, String> args) {
         try {
             Jedis cacheInstance = cachePool.getResource();
             cacheInstance.select(databaseIndexcompanies);
@@ -216,6 +204,5 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
             e.printStackTrace();
         }
     }
-
 
 }
