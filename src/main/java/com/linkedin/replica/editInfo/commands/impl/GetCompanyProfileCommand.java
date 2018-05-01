@@ -22,8 +22,8 @@ public class GetCompanyProfileCommand extends Command{
         if(company != null) {
             return company;
         }
-        company = dbHandler.getCompany((String)args.get("companyId"));
         cacheEditInfoHandler.saveCompanyInCache(companyId, company);
+        company = dbHandler.getCompany((String)args.get("companyId"));
         return company;
     }
 }

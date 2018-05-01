@@ -14,8 +14,7 @@ public class RemoveSkillCommand extends Command {
     public Object execute() throws IOException {
         validateArgs(new String[]{"userId", "skill"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        String response = dbHandler.deleteSkill((String) args.get("userId"), (String)args.get("skill"));
-        return response;
+        return dbHandler.deleteSkill((String) args.get("userId"), (String)args.get("skill"));
 
     }
 }

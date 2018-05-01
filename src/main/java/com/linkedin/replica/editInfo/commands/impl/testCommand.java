@@ -12,7 +12,7 @@ public class testCommand extends Command{
     }
 
     @Override
-    public Object execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public Object execute()  {
         return null;
     }
 }

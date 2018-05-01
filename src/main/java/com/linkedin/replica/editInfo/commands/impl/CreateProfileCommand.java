@@ -13,7 +13,6 @@ public class CreateProfileCommand extends Command {
     public Object execute() {
         validateArgs(new String[]{"userId"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        String response = dbHandler.createProfile(args,(String)args.get("userId"));
-        return response;
+        return dbHandler.createProfile(args,(String)args.get("userId"));
     }
 }

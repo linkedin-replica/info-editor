@@ -17,8 +17,7 @@ public class DeleteCvCommand extends Command{
     public Object execute() {
         validateArgs(new String[]{"userId"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        String response = dbHandler.deleteCV((String)args.get("userId"));
-        return response;
+        return dbHandler.deleteCV((String)args.get("userId"));
     }
 
 }

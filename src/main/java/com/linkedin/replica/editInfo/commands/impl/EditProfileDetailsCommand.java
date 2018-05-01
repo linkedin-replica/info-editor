@@ -1,4 +1,6 @@
 package com.linkedin.replica.editInfo.commands.impl;
+import com.google.gson.Gson;
+import com.linkedin.replica.editInfo.cache.CacheConnection;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
@@ -17,29 +19,21 @@ public class EditProfileDetailsCommand extends Command{
     public EditProfileDetailsCommand(HashMap<String, Object> args) {
         super(args);
     }
-    public Object execute()  throws IOException {
+
+    public Object execute() throws IOException {
         validateArgs(new String[]{"userId"});
-        LinkedHashMap<String, String> cacheargs = new LinkedHashMap<>();
+        LinkedHashMap<String, String> cacheArgs = new LinkedHashMap<>();
+        Gson gson = CacheConnection.getGson();
+        args.keySet().forEach(key -> {
+            Object value = args.get(key);
+            String jsonValue = gson.toJson(value);
+            cacheArgs.put(key, jsonValue);
+        });
+        cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
+        cacheEditInfoHandler.editUserCache((String) args.get("userId"), cacheArgs);
 
+        EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
 
-        for (String key : cacheargs.keySet()) {
-            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-            GZIPOutputStream gzipOutputStream = new GZIPOutputStream(arrayOutputStream);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(gzipOutputStream);
-            objectOutputStream.writeObject(cacheargs.get(key));
-            objectOutputStream.flush();
-            Base64 base64 = new Base64();
-            String stringvalue = new String(base64.encode(arrayOutputStream.toByteArray()));
-
-            cacheargs.put(key, stringvalue);
-        }
-
-            EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-
-            String response = dbHandler.updateProfile(args);
-            cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-            cacheEditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
-            return response;
-
+        return dbHandler.updateProfile(args);
     }
 }

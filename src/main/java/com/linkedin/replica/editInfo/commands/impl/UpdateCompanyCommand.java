@@ -1,4 +1,6 @@
 package com.linkedin.replica.editInfo.commands.impl;
+import com.google.gson.Gson;
+import com.linkedin.replica.editInfo.cache.CacheConnection;
 import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
@@ -21,24 +23,16 @@ public class UpdateCompanyCommand extends Command{
     public Object execute()  throws IOException {
         validateArgs(new String[]{"companyId"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        LinkedHashMap<String, String> cacheargs = new LinkedHashMap<>();
+        LinkedHashMap<String, String> cacheArgs = new LinkedHashMap<>();
 
-
-        for (String key : args.keySet()) {
-            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-            GZIPOutputStream gzipOutputStream = new GZIPOutputStream(arrayOutputStream);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(gzipOutputStream);
-            objectOutputStream.writeObject(cacheargs.get(key));
-            objectOutputStream.flush();
-            Base64 base64 = new Base64();
-            String stringvalue = new String(base64.encode(arrayOutputStream.toByteArray()));
-            System.out.println(stringvalue+"heree");
-            cacheargs.put(key, stringvalue);
-        }
-
-        String response = dbHandler.updateCompany(args);
+        Gson gson = CacheConnection.getGson();
+        args.keySet().forEach(key -> {
+            Object value = args.get(key);
+            String jsonValue = gson.toJson(value);
+            cacheArgs.put(key, jsonValue);
+        });
         CacheEditInfoHandler cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-        cacheEditInfoHandler.editcompanyFromCache((String) args.get("companyId"), cacheargs);
-        return response;
+        cacheEditInfoHandler.editCompanyFromCache((String) args.get("companyId"), cacheArgs);
+        return dbHandler.updateCompany(args);
     }
 }
