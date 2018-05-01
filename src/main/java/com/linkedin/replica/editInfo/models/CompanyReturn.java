@@ -12,7 +12,9 @@ public class CompanyReturn {
     public String industryType;
     public String companyLocation;
     public String companytype;
-    String aboutUs;
+    public ArrayList<LightPost> posts;
+    public ArrayList<LightJob> jobListing;
+    public String aboutUs;
 
     public String get_key() {
         return _key;
@@ -30,14 +32,13 @@ public class CompanyReturn {
         return posts;
     }
 
-    public ArrayList<LightUser> getJobListing() {
+    public ArrayList<LightJob> getJobListing() {
         return jobListing;
     }
 
-    public ArrayList<LightPost> posts;
-    public ArrayList<LightUser> jobListing;
+
     public CompanyReturn(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,
-                   String industryType,String companyLocation,String companytype,ArrayList<String>posts,ArrayList<String> JobListings) {
+                   String industryType,String companyLocation,String companytype) {
         this.companyName = companyName;
         this.adminUserName=adminUserName;
         this.companyId = companyID;
