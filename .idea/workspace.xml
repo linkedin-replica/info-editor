@@ -1,64 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ac9f98a-d4f9-433a-a5e4-22c30dc768dd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/UpdateCompanyCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/UpdateCompanyCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/CompanyReturn.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/CompanyReturn.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightCompany.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightCompany.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightPost.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightPost.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightUser.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightUser.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/UserReturn.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/UserReturn.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/app.config" afterPath="$PROJECT_DIR$/src/main/resources/config/app.config" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/arango.config" afterPath="$PROJECT_DIR$/src/main/resources/config/arango.config" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/arango.test.config" afterPath="$PROJECT_DIR$/src/main/resources/config/arango.test.config" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/commands.config" afterPath="$PROJECT_DIR$/src/main/resources/config/commands.config" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cache/JedisCacheHandlerTest.java" afterPath="$PROJECT_DIR$/src/test/java/cache/JedisCacheHandlerTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/AddCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/CvCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/CvCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/InfoEditorServiceTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/getCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/getCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/messaging/ClientMessagesTest.java" afterPath="$PROJECT_DIR$/src/test/java/messaging/ClientMessagesTest.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCvCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCvCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddNewSkillCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddNewSkillCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/CreateProfileCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/CreateProfileCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/DeleteCvCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/DeleteCvCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/EditProfileDetailsCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/UpdateCompanyCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/UpdateCompanyCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/main/Main.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/main/Main.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/models/LightCompany.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/models/LightCompany.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/models/PersonalInfo.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/app.config" afterPath="$PROJECT_DIR$/target/classes/config/app.config" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/commands.config" afterPath="$PROJECT_DIR$/target/classes/config/commands.config" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/AddCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/AddCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/AddNewSkillCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/AddNewSkillCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/ArangoHandlerTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/ArangoHandlerTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/CreateProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/CreateProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/CvCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/CvCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/EditUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/EditUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/GetUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/GetUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/InfoEditorServiceTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/InfoEditorServiceTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/UpdateCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/UpdateCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/getCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/getCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/messaging/ClientMessagesTest.class" afterPath="$PROJECT_DIR$/target/test-classes/messaging/ClientMessagesTest.class" />
-    </list>
+    <list default="true" id="0ac9f98a-d4f9-433a-a5e4-22c30dc768dd" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -766,7 +709,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35058078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35058078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
