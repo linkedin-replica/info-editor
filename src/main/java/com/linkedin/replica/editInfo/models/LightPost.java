@@ -8,7 +8,7 @@ public class LightPost {
     }
 
     public String getAuthorID() {
-        return authorID;
+        return authorId;
     }
 
     public String getText() {
@@ -16,21 +16,23 @@ public class LightPost {
     }
 
    public String postId;
-    String authorID;
+    String authorId;
    String text;
-   String commentsCount;
-   ArrayList<String> images;
-    ArrayList<String> videos;
-   public boolean isArticle;
-   boolean isCompanyPost;
-   ArrayList<String>likers;
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public String getAuthorId() {
+        return authorId;
+    }
 
     public LightPost()
     {
 
     }
     public LightPost(String postID,String authorID,String text){
-        this.authorID = authorID;
+        this.authorId = authorID;
         this.postId = postID;
         this.text = text;
 

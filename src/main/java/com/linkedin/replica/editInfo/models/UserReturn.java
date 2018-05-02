@@ -10,6 +10,7 @@ public  class UserReturn  {
     public String headline;
     public String industry;
     public ArrayList<Position> positions;
+    public String profilePictureUrl;
 
     public void set_key(String _key) {
         this._key = _key;
@@ -28,7 +29,7 @@ public  class UserReturn  {
     }
 
     public void setFriendslist(ArrayList<LightUser> friendslist) {
-        this.friendslist = friendslist;
+        this.friendsList = friendslist;
     }
 
     public String get_key() {
@@ -49,7 +50,7 @@ public  class UserReturn  {
     }
 
     public ArrayList<LightUser> getFriendslist() {
-        return friendslist;
+        return friendsList;
     }
 
     public ArrayList<Education> educations;
@@ -57,7 +58,7 @@ public  class UserReturn  {
     public String cvUrl;
     public ArrayList<String> skills;
     public ArrayList<LightCompany>followedCompanies;
-    public ArrayList<LightUser> friendslist;
+    public ArrayList<LightUser> friendsList;
     public ArrayList<LightPost> bookmarkedPosts;
 
 
@@ -74,7 +75,7 @@ public  class UserReturn  {
         this.cvUrl = cvUrl;
         this.skills = skills;
         this.followedCompanies = followedCompanies;
-        this.friendslist = friendslist;
+        this.friendsList = friendslist;
         this.bookmarkedPosts = bookmarkedPosts;
     }
 
@@ -92,6 +93,7 @@ public  class UserReturn  {
         this.cvUrl = cvUrl;
         this.skills = skills;
         this.bookmarkedPosts = bookmarkedPosts;
+        this._key=userId;
     }
 
     public UserReturn() {};
@@ -118,14 +120,6 @@ public  class UserReturn  {
         return industry;
     }
 
-
-//    public ArrayList<Position> getPositions() {
-//        return positions;
-//    }
-//
-//    public ArrayList<Education> getEducations() {
-//        return educations;
-//    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -166,17 +160,6 @@ public  class UserReturn  {
         this.industry = industry;
     }
 
-
-
-
-
-//    public void setPositions(ArrayList<Position> positions) {
-//        this.positions = positions;
-//    }
-//
-//    public void setEducations(ArrayList<Education> educations) {
-//        this.educations = educations;
-//    }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;

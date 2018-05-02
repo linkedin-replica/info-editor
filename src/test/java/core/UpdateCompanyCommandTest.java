@@ -58,7 +58,7 @@ public class UpdateCompanyCommandTest {
         Object response;
         args.put("companyId", "13");
         argstemp.put("companyId", "13");
-        argstemp.put("companyName", "Microsoft2");
+        argstemp.put("companyName", "Microsoft28");
         ArrayList<String>  joblistings =  new ArrayList<String>();
         joblistings.add("2");
 
@@ -73,7 +73,7 @@ public class UpdateCompanyCommandTest {
         temp.execute();
         response = command.execute();
         CompanyReturn company = (CompanyReturn) response;
-        assertEquals("Expected matching new company name", "Microsoft2" ,company.getCompanyName() );
+        assertEquals("Expected matching new company name", "Microsoft28" ,company.getCompanyName() );
 
     }
     @AfterClass

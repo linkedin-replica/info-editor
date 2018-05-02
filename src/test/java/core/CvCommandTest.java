@@ -63,7 +63,7 @@ public class CvCommandTest{
        Object response;
 
         args.put("userId", "6");
-        args.put("cv","user12URL");
+        args.put("cvUrl","user12URL");
         AddCvCommand command = new AddCvCommand(args);
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(jedisCacheHandler);

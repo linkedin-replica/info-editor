@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -59,26 +60,30 @@ public class AddCompanyCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         LinkedHashMap<String, Object> response;
+
+        args.put("companyId",   "f8312bc1-a02f-4d39-8373-5e3d03fcdba4");
         args.put("companyName", "MicrosoftUnique");
         args.put("companyProfilePicture", "http://www.");
         args.put("adminUserName", "baher");
-        args.put("adminUserID", "11025");
+        args.put("adminUserId", "11025");
         args.put("industryType", "Software");
         args.put("companyLocation", "Beirut");
         args.put("companyType", "Startup");
-        args.put("posts", "");
+        args.put("posts", new ArrayList<String>());
         args.put("specialities", "");
         args.put("jobListings", "");
+        args.put("aboutus", " ");
 
         command = new AddCompanyCommand(args);
         command.setDbHandler(arangoHandler);
-       // command.execute();
+        command.execute();
 
 
         CompanyReturn company = arangoHandler.getCompany("f8312bc1-a02f-4d39-8373-5e3d03fcdba4");
-        System.out.println(company.getCompanyName());
-        assertEquals("Expected skillsNumber", company.getCompanyName() ,"MicrosoftUnique");
-//        assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(5));
+        assertEquals("Expected company Name", "MicrosoftUnique",company.getCompanyName());
+        assertEquals("Expected Profile picture", "http://www." , company.getCompanyProfilePicture());
+        assertEquals("Expected Admin user name", "baher",company.getAdminUserName() );
+        assertEquals("Expected Industry type", "Software" , company.getIndustryType());
     }
 
     @AfterClass

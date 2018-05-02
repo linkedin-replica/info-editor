@@ -15,18 +15,19 @@ public class AddCompanyCommand extends Command {
     }
 
     public Object execute() throws IOException {
-        validateArgs(new String[]{"posts","companyName"
-                , "profilePictureUrl", "adminUserId",
+        validateArgs(new String[]{"posts","companyName","companyId"
+                , "companyProfilePicture", "adminUserId",
                 "industryType", "aboutus"});
-
-        String companyID = UUID.randomUUID().toString();
+        String companyID;
+        if(args.get("companyId")!=null)
+        companyID = (String)args.get("companyId");
+        else
+       companyID = UUID.randomUUID().toString();
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
 
         ArrayList<String> posts = (ArrayList<String>) args.get("posts");
 
-        String response = dbHandler.insertCompany((String)args.get("companyName"), companyID, (String)args.get("companyProfilePicture"),
-                (String)args.get("adminUserId"), (String)args.get("industryType"),
-                posts);
+        String response = dbHandler.insertCompany(args);
         
         return response;
     }

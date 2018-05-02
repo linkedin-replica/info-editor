@@ -5,7 +5,9 @@ public class LightCompany {
     private String companyId;
     private String profilePictureUrl;
 
-public LightCompany(){}
+public LightCompany(){
+    super();
+}
     public LightCompany(String companyName, String companyID) {
         this.companyName = companyName;
         this.companyId = companyID;

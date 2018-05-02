@@ -55,18 +55,18 @@ public class AddNewSkillCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "101");
-        args.put("Skill", "Java2");
+        args.put("userId", "103");
+        args.put("skill", "Java4");
         command = new AddNewSkillCommand(args);
         command.setDbHandler(arangoHandler);
         response = command.execute();
 
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
-        command.setCacheHandler(jedisCacheHandler);
+//        command.setCacheHandler(jedisCacheHandler);
         response = command.execute();
         UserReturn myUser = (UserReturn) response;
-        assertEquals("Expected LastSkill", "Java2" , myUser.getSkills().get(myUser.getSkills().size()-1));
+        assertEquals("Expected LastSkill", "Java4" , myUser.getSkills().get(myUser.getSkills().size()-1));
     }
 
     @AfterClass

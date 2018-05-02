@@ -24,21 +24,21 @@ public class UpdateCompanyCommand extends Command{
         LinkedHashMap<String, String> cacheargs = new LinkedHashMap<>();
 
 
-        for (String key : args.keySet()) {
-            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-            GZIPOutputStream gzipOutputStream = new GZIPOutputStream(arrayOutputStream);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(gzipOutputStream);
-            objectOutputStream.writeObject(cacheargs.get(key));
-            objectOutputStream.flush();
-            Base64 base64 = new Base64();
-            String stringvalue = new String(base64.encode(arrayOutputStream.toByteArray()));
-            System.out.println(stringvalue+"heree");
-            cacheargs.put(key, stringvalue);
-        }
+//        for (String key : args.keySet()) {
+//            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+//            GZIPOutputStream gzipOutputStream = new GZIPOutputStream(arrayOutputStream);
+//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(gzipOutputStream);
+//            objectOutputStream.writeObject(cacheargs.get(key));
+//            objectOutputStream.flush();
+//            Base64 base64 = new Base64();
+//            String stringvalue = new String(base64.encode(arrayOutputStream.toByteArray()));
+//            System.out.println(stringvalue+"heree");
+//            cacheargs.put(key, stringvalue);
+//        }
 
         String response = dbHandler.updateCompany(args);
-        CacheEditInfoHandler cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-        cacheEditInfoHandler.editcompanyFromCache((String) args.get("companyId"), cacheargs);
+//        CacheEditInfoHandler cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
+//        cacheEditInfoHandler.editcompanyFromCache((String) args.get("companyId"), cacheargs);
         return response;
     }
 }

@@ -8,11 +8,11 @@ public class CompanyReturn {
     public String companyProfilePicture;
     public String companyId;
     public String adminUserName;
-    public String adminUserID;
+    public String adminUserId;
     public String industryType;
     public String companyLocation;
     public String companytype;
-    String aboutUs;
+    String aboutus;
 
     public String get_key() {
         return _key;
@@ -23,7 +23,7 @@ public class CompanyReturn {
     }
 
     public String getAboutUs() {
-        return aboutUs;
+        return aboutus;
     }
 
     public ArrayList<LightPost> getPosts() {
@@ -42,10 +42,11 @@ public class CompanyReturn {
         this.adminUserName=adminUserName;
         this.companyId = companyID;
         this.companyProfilePicture = companyProfilePicture;
-        this.adminUserID = adminUserID;
+        this.adminUserId = adminUserID;
         this.industryType = industryType;
         this.companyLocation = companyLocation;
         this.companytype = companytype;
+        this._key =companyID;
     }
     public CompanyReturn(){
     }
@@ -63,7 +64,7 @@ public class CompanyReturn {
     }
 
     public void setAdminUserID(String adminUserID) {
-        this.adminUserID = adminUserID;
+        this.adminUserId = adminUserID;
     }
 
 
@@ -111,7 +112,7 @@ public class CompanyReturn {
     }
 
     public String getAdminUserID() {
-        return adminUserID;
+        return adminUserId;
     }
 
 

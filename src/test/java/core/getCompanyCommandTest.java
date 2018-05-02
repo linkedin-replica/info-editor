@@ -69,6 +69,8 @@ public class getCompanyCommandTest {
         response = command.execute();
         CompanyReturn company = (CompanyReturn) response;
         assertEquals("Expected matching company ID", "12" ,company.getCompanyID() );
+        assertEquals("Expected matching company Name", "microsoft3" ,company.getCompanyName() );
+        assertEquals("Expected matching company Industry", "Software" ,company.getIndustryType() );
 
     }
     @AfterClass

@@ -60,23 +60,14 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         return company;
     }
 
-    /**
-     * Insert company in collection companies.
-     * @param companyName : name of inserted company
-     * @param companyID id generated
-     * @param companyProfilePicture profile picture url
-     * @param adminUserID id of user created the company
-     * @param industryType industry type of inserted company
-     * @param posts array of ids of posts of the company.
-     */
-    public String insertCompany(String companyName, String companyID, String companyProfilePicture, String adminUserID, String industryType, ArrayList<String> posts){
+
+    public String insertCompany(HashMap<String, Object>args){
             BaseDocument myObject = new BaseDocument();
-            myObject.setKey(companyID);
-            myObject.addAttribute("companyName", companyName);
-            myObject.addAttribute("companyId", companyID);
-            myObject.addAttribute("companyProfilePicture", companyProfilePicture);
-            myObject.addAttribute("industryType", industryType);
-            myObject.addAttribute("posts", posts);
+            myObject.setKey((String) args.get("companyId"));
+            for(String key :args.keySet()) {
+                myObject.addAttribute(key,args
+                .get(key));
+            }
         try {
             dbInstance.collection("companies").insertDocument(myObject);
         } catch (ArangoDBException e) {
@@ -120,18 +111,9 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         String UsersCollectionName = config.getArangoConfigProp("collection.users.name");
         BaseDocument user = new BaseDocument();
         user.setKey(userId);
-        if(args.containsKey("firstName"))
-            user.addAttribute("firstName", args.get("firstName"));
-        if(args.containsKey("lastName"))
-            user.addAttribute("lastName", args.get("lastName"));
-        if(args.containsKey("headline"))
-            user.addAttribute("headline", args.get("headline"));
-        if(args.containsKey("email"))
-            user.addAttribute("email", (args.get("email")));
-        if(args.containsKey("profilePictureUrl"))
-            user.addAttribute("profilePictureUrl", args.get("profilePictureUrl"));
-        if(args.containsKey("cvUrl"))
-            user.addAttribute("cvUrl", args.get("cvUrl"));
+       for (String key:args.keySet()){
+           user.addAttribute(key,args.get(key));
+       }
         try {
             dbInstance.collection(UsersCollectionName).insertDocument(user);
         } catch(ArangoDBException e) {
@@ -185,14 +167,11 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         bindVars.put("userId", userId);
         bindVars.put("skill", skill);
 
-        String Query = "FOR user IN " + collectionName + "  UPDATE { _key:" + "@userId";
-        Query += "} WITH{ ";
-
-
-        Query += "skills : PUSH(user.skills , @skill)";
-        Query+="  }   IN "+ collectionName;
-
+        String Query ="FOR user IN " +collectionName+" FILTER user._key == @userId";
+        Query+=" LET newSkills = PUSH(user.skills ,@skill)";
+        Query+=" UPDATE user WITH { skills : newSkills } IN users";
         try {
+            System.out.println(Query);
          dbInstance.query(Query, bindVars, null, String.class);
         } catch (ArangoDBException e) {
             return "Failed to add skill.";
@@ -207,14 +186,12 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
         bindVars.put("userId", userId);
         bindVars.put("skill", skill);
 
-        String Query = "FOR user IN " + collectionName + "  UPDATE { _key:" + "@userId";
-        Query += "} WITH{ ";
-
-
-        Query += "skills : REMOVE_VALUE(user.skills ,@skill)";
-        Query+="  }   IN "+collectionName;
+        String Query ="FOR user IN " +collectionName+" FILTER user._key == @userId";
+        Query+=" LET newSkills = REMOVE_VALUE(user.skills ,@skill)";
+        Query+=" UPDATE user WITH { skills : newSkills } IN "+ collectionName;
 
     try {
+        System.out.println(Query);
         dbInstance.query(Query, bindVars, null, String.class);
     } catch (ArangoDBException e) {
         return "Failed to delete skill.";
@@ -285,7 +262,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
                 "let friendlist = (\n" +
                 "    for friend in " + usersCollectionName + "\n" +
                 "    filter friend._key in user.friendsList\n" +
-                "    return {\"friend.userId\":friend.userId,\"friend.firstName\":friend.firstName,\"friend.lastName\":friend.lastName,\"friend.userName\":friend.userName}\n" +
+                "    return {\"friend.userId\":friend.userId,\"friend.firstName\":friend.firstName,\"friend.profilePictureUrl\":friend.profilePictureUrl,\"friend.lastName\":friend.lastName,\"friend.userName\":friend.userName}\n" +
                 ")\n" +
                 "let followedCompanies = (\n" +
                 "    for company in " + companiesCollectionName + "\n" +
@@ -294,10 +271,12 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
                 ")\n" +
                 "return  MERGE_RECURSIVE (\n" +
                 "                  UNSET( user,\"friendsList\",\"bookmarkedPosts\",\"_id\",\"_rev\"),\n" +
-                "                    {\"bookmarkedPosts\": BookMarkedPosts, \"friendslist\": friendlist, \"followedCompanies\":followedCompanies}\n" +
+                "                    {\"bookmarkedPosts\": BookMarkedPosts, \"friendsList\": friendlist, \"followedCompanies\":followedCompanies}\n" +
                 "                    \n" +
                 "                )\n" +
                 "          ";
+        System.out.println(Query);
+
         ArangoCursor<UserReturn> cursor = dbInstance.query(Query, bindVars,null, UserReturn.class);
         return cursor.next();
     }

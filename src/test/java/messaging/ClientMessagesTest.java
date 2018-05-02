@@ -56,12 +56,12 @@ public class ClientMessagesTest {
                 Configuration.getInstance().getArangoConfigProp("db.name")
         );
 
-        arangoDb.createCollection(
-                config.getArangoConfigProp("collection.companies.name")
-        );
-        arangoDb.createCollection(
-                config.getArangoConfigProp("collection.users.name")
-        );
+//        arangoDb.createCollection(
+//                config.getArangoConfigProp("collection.companies.name")
+//        );
+//        arangoDb.createCollection(
+//                config.getArangoConfigProp("collection.users.name")
+//        );
 
         arangoHandler = new ArangoEditInfoHandler();
 
@@ -70,14 +70,14 @@ public class ClientMessagesTest {
         connection = factory.newConnection();
         channel = connection.createChannel();
         DatabaseSeed databaseSeed  = new DatabaseSeed();
-        databaseSeed.insertUsers();
-        databaseSeed.insertCompanies();
+//        databaseSeed.insertUsers();
+//        databaseSeed.insertCompanies();
     }
 
     @Test
     public void testMessages() throws IOException, InterruptedException {
         JsonObject object = new JsonObject();
-        object.addProperty("companyId", 3);
+        object.addProperty("companyId", "12");
         object.addProperty("commandName", "company.get");
         byte[] message = object.toString().getBytes();
         final String corrId = UUID.randomUUID().toString();
@@ -107,7 +107,7 @@ public class ClientMessagesTest {
 
 
 
-        assertEquals("", "Ergasti",  resObject.get("results").getAsJsonObject().get("companyName").getAsString());
+        assertEquals("", "microsoft3",  resObject.get("results").getAsJsonObject().get("companyName").getAsString());
     }
     @AfterClass
     public static void clean() throws IOException, TimeoutException {
@@ -116,12 +116,12 @@ public class ClientMessagesTest {
         channel.close();
         connection.close();
         // clean db
-        arangoDb.collection(
-                config.getArangoConfigProp("collection.companies.name")
-        ).drop();
-        arangoDb.collection(
-                config.getArangoConfigProp("collection.users.name")
-        ).drop();
+//        arangoDb.collection(
+//                config.getArangoConfigProp("collection.companies.name")
+//        ).drop();
+//        arangoDb.collection(
+//                config.getArangoConfigProp("collection.users.name")
+//        ).drop();
         DatabaseConnection.getInstance().closeConnections();
     }
 }

@@ -12,6 +12,7 @@ import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
 import com.linkedin.replica.editInfo.models.User;
 import com.linkedin.replica.editInfo.commands.Command;
+import com.linkedin.replica.editInfo.models.UserReturn;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -55,8 +56,8 @@ public class RemoveSkillCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "2");
-        args.put("Skill", "Java2");
+        args.put("userId", "103");
+        args.put("skill", "Java4");
         command = new RemoveSkillCommand(args);
         command.setDbHandler(arangoHandler);
         response = command.execute();
@@ -65,8 +66,8 @@ public class RemoveSkillCommandTest {
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(jedisCacheHandler);
         response = command.execute();
-        User myUser = (User) response;
-        assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(myUser.getSkills().size()-1));
+        UserReturn myUser = (UserReturn) response;
+        assertEquals("Expected LastSkill", false , myUser.getSkills().contains("Java4"));
     }
 
     @AfterClass

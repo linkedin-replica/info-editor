@@ -48,10 +48,9 @@ public class JedisCacheHandlerTest {
         User user = new User("1","loay","elzobaidy","position","Software");
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
-        String [] ids = new String[1];
-        ids[0]="1";
+        String ids ="1";
         editinfoHandler.saveUsersInCache(ids,users);
-        User tempuser = (User)editinfoHandler.getUserFromCache("1",User.class);
+        User tempuser = (User)editinfoHandler.getUserFromCache("1",UserReturn.class);
         assertEquals("the two users must have the same id","1",user.getUserId());
 
 
@@ -62,10 +61,9 @@ public class JedisCacheHandlerTest {
         User user = new User("1","loay","elzobaidy","position","Software");
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
-        String [] ids = new String[1];
-        ids[0]="1";
+        String ids="1";
         editinfoHandler.saveUsersInCache(ids,users);
-        User tempuser = (User)editinfoHandler.getUserFromCache("1",User.class);
+        UserReturn tempuser = (UserReturn) editinfoHandler.getUserFromCache("1",UserReturn.class);
         assertEquals("the two users must have the same id","1",user.getUserId());
         assertEquals("the two users must have the same firstname","loay",user.getFirstName());
         assertEquals("the two users must have the same lastname","elzobaidy",user.getLastName());
@@ -78,15 +76,15 @@ public class JedisCacheHandlerTest {
         User user = new User("2","loay","elzobaidy","position","Software");
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
-        String [] ids = new String[1];
-        ids[0]="2";
+
+        String ids ="2";
         editinfoHandler.saveUsersInCache(ids,users);
         LinkedHashMap<String,String> args= new LinkedHashMap<String,String>();
         String new_Position  = gson.toJson("ahmed");
         args.put("firstName",new_Position);
         System.out.println(args);
         editinfoHandler.editUserCache("2",args);
-        User tempuser = (User)editinfoHandler.getUserFromCache("2",User.class);
+        UserReturn tempuser = (UserReturn)editinfoHandler.getUserFromCache("2",UserReturn.class);
         assertEquals("the user must has the new first name","ahmed",tempuser.getFirstName());
 
     }
@@ -98,37 +96,34 @@ public class JedisCacheHandlerTest {
         User user = new User("1","loay","elzobaidy","position","Software");
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
-        String [] ids = new String[1];
-        ids[0]="1";
+        String ids ="1";
         editinfoHandler.saveUsersInCache(ids,users);
         editinfoHandler.deleteUserFromCache("1");
-        User usertemp = (User)editinfoHandler.getUserFromCache("1",User.class);
+        User usertemp = (User)editinfoHandler.getUserFromCache("1",UserReturn.class);
         assertEquals("the new user must be null",null,usertemp);
     }
 
     @Test
     public void testsaveCompaniesCache() throws Exception {
-        Company company = new Company("Microsoft","1","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
-        ArrayList<Company> companies = new ArrayList<Company>();
+        CompanyReturn company = new CompanyReturn("Microsoft","1","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
+        ArrayList<CompanyReturn> companies = new ArrayList<CompanyReturn>();
        companies.add(company);
-        String [] ids = new String[1];
-        ids[0]="1";
+        String ids ="1";
         editinfoHandler.saveCompanyInCache(ids,companies);
-       Company tempCompany = (Company) editinfoHandler.getCompanyFromCache("1",Company.class);
-        assertEquals("the two users must have the same id","1",tempCompany.getCompanyID());
+        CompanyReturn tempCompany = (CompanyReturn) editinfoHandler.getCompanyFromCache("1",CompanyReturn.class);
+        assertEquals("the two users must have the same id","Microsoft",tempCompany.getCompanyName());
 
 
     }
     @Test
     public void testgetCompaniesCache() throws Exception {
-        Company company = new Company("Microsoft","1","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
+        CompanyReturn company = new CompanyReturn("Microsoft","1","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
 
-        ArrayList<Company> companies = new ArrayList<Company>();
+        ArrayList<CompanyReturn> companies = new ArrayList<CompanyReturn>();
         companies.add(company);
-        String [] ids = new String[1];
-        ids[0]="1";
+        String ids ="1";
         editinfoHandler.saveCompanyInCache(ids,companies);
-        Company tempcompany = (Company) editinfoHandler.getCompanyFromCache("1",Company.class);
+        CompanyReturn tempcompany = (CompanyReturn) editinfoHandler.getCompanyFromCache("1",CompanyReturn.class);
         assertEquals("the two users must have the same id","1",tempcompany.getCompanyID());
 //        assertEquals("the two users must have the same firstname","loay",user.getFirstName());
 //        assertEquals("the two users must have the same lastname","elzobaidy",user.getLastName());
@@ -138,12 +133,11 @@ public class JedisCacheHandlerTest {
     @Test
     public void testeditCompaniesCache() throws Exception {
 
-        Company company = new Company("Microsoft","2","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
+        CompanyReturn company = new CompanyReturn("Microsoft","2","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
 
-        ArrayList<Company> companies = new ArrayList<Company>();
+        ArrayList<CompanyReturn> companies = new ArrayList<CompanyReturn>();
         companies.add(company);
-        String [] ids = new String[1];
-        ids[0]="2";
+        String ids ="2";
         editinfoHandler.saveCompanyInCache(ids,companies);
 
         editinfoHandler.saveCompanyInCache(ids,companies);
@@ -152,7 +146,7 @@ public class JedisCacheHandlerTest {
         args.put("companyName",new_Position);
         editinfoHandler.editcompanyFromCache("2",args);
         System.out.println(args);
-        Company tempcompany = (Company) editinfoHandler.getCompanyFromCache("2",Company.class);
+        CompanyReturn tempcompany = (CompanyReturn) editinfoHandler.getCompanyFromCache("2",CompanyReturn.class);
         assertEquals("the user must has the new headline","Mic",tempcompany.getCompanyName());
 
     }
@@ -162,15 +156,14 @@ public class JedisCacheHandlerTest {
     public void testdeleteCompaniesCache() throws Exception {
 
 
-        Company company = new Company("Microsoft","1","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
+        CompanyReturn company = new CompanyReturn("Microsoft","1","","loay","3","","","",new ArrayList<String>(),new ArrayList<String>());
 
-        ArrayList<Company> companies = new ArrayList<Company>();
+        ArrayList<CompanyReturn> companies = new ArrayList<CompanyReturn>();
         companies.add(company);
-        String [] ids = new String[1];
-        ids[0]="1";
+        String ids ="1";
         editinfoHandler.saveUsersInCache(ids,companies);
         editinfoHandler.deleteCompanies("1");
-        Company tempcompany = (Company) editinfoHandler.getCompanyFromCache("1",Company.class);
+        CompanyReturn tempcompany = (CompanyReturn) editinfoHandler.getCompanyFromCache("1",CompanyReturn.class);
         assertEquals("the user must has the new headline",null,tempcompany);
       }
     @AfterClass

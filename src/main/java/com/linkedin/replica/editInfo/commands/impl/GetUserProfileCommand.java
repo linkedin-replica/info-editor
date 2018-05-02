@@ -19,8 +19,9 @@ public class GetUserProfileCommand extends Command {
     public Object execute() throws IOException {
         validateArgs(new String[]{"userId"});
         String userId = (String) args.get("userId");
-        cacheEditInfoHandler = (CacheEditInfoHandler) this.cacheHandler;
-        UserReturn user = (UserReturn) cacheEditInfoHandler.getUserFromCache(userId, UserReturn.class);
+//        cacheEditInfoHandler = (CacheEditInfoHandler) this.cacheHandler;
+//        UserReturn user = (UserReturn) cacheEditInfoHandler.getUserFromCache(userId, UserReturn.class);
+        UserReturn user =null;
         if(user != null) {
             return user;
         }
@@ -31,7 +32,7 @@ public class GetUserProfileCommand extends Command {
         else
             user = dbHandler.getUserProfile((String) args.get("userId"));
 
-        cacheEditInfoHandler.saveUsersInCache(userId, user);
+//        cacheEditInfoHandler.saveUsersInCache(userId, user);
         return user;
     }
 }

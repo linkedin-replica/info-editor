@@ -51,7 +51,7 @@ public class CreateProfileCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "101");
+        args.put("userId", "106");
         args.put("firstName", "Loa2y");
         args.put("lastName", "Zobeidy");
         command = new CreateProfileCommand(args);
@@ -65,7 +65,9 @@ public class CreateProfileCommandTest {
         UserReturn myUser = (UserReturn) response;
         assertEquals("Expected matching first name", "Loa2y" , myUser.getFirstName());
         assertEquals("Expected matching last name", "Zobeidy" , myUser.getLastName());
+
     }
+
 
     @AfterClass
     public static void teardown() throws IOException {

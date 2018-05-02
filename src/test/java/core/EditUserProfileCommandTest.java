@@ -53,11 +53,11 @@ public class EditUserProfileCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "101");
+        args.put("userId", "103");
         args.put("firstName", "Baher");
+        args.put("industry", "Computer Science");
         args.put("headline", "Graduate");
-        String [] ids = new String[1];
-        ids[0]="1";
+        String ids ="1";
         ArrayList<User> users = new ArrayList<User>();
         User user = new User();
         users.add(user);
@@ -73,6 +73,8 @@ public class EditUserProfileCommandTest {
         UserReturn myUser =(UserReturn) response;
         assertEquals("Expected matching first name", "Baher" , myUser.getFirstName());
         assertEquals("Expected matching headline", "Graduate" , myUser.getHeadline());
+        assertEquals("Expected matching Industry", "Computer Science" , myUser.getIndustry());
+
     }
     @AfterClass
     public static void teardown() throws IOException {

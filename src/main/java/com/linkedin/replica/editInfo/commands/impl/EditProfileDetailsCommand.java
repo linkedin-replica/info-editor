@@ -21,24 +21,24 @@ public class EditProfileDetailsCommand extends Command{
         validateArgs(new String[]{"userId"});
         LinkedHashMap<String, String> cacheargs = new LinkedHashMap<>();
 
-
-        for (String key : cacheargs.keySet()) {
-            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-            GZIPOutputStream gzipOutputStream = new GZIPOutputStream(arrayOutputStream);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(gzipOutputStream);
-            objectOutputStream.writeObject(cacheargs.get(key));
-            objectOutputStream.flush();
-            Base64 base64 = new Base64();
-            String stringvalue = new String(base64.encode(arrayOutputStream.toByteArray()));
-
-            cacheargs.put(key, stringvalue);
-        }
+//
+//        for (String key : cacheargs.keySet()) {
+//            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+//            GZIPOutputStream gzipOutputStream = new GZIPOutputStream(arrayOutputStream);
+//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(gzipOutputStream);
+//            objectOutputStream.writeObject(cacheargs.get(key));
+//            objectOutputStream.flush();
+//            Base64 base64 = new Base64();
+//            String stringvalue = new String(base64.encode(arrayOutputStream.toByteArray()));
+//
+//            cacheargs.put(key, stringvalue);
+//        }
 
             EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
 
             String response = dbHandler.updateProfile(args);
-            cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-            cacheEditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
+//            cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
+//            cacheEditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
             return response;
 
     }

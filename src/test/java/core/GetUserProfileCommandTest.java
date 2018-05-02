@@ -50,7 +50,7 @@ public class GetUserProfileCommandTest {
     public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         HashMap<String, Object> args = new HashMap();
         Object response;
-        args.put("userId", "101");
+        args.put("userId", "103");
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
         command.setCacheHandler(jedisCacheHandler);
@@ -58,7 +58,7 @@ public class GetUserProfileCommandTest {
         UserReturn myUser = (UserReturn) response;
         assertEquals("Expected matching first name", "Baher" , myUser.getFirstName());
         assertEquals("Expected matching last name", "Zobeidy" , myUser.getLastName());
-//        assertEquals("Expected matching headline", "Software Engineer at DFKI" , myUser.getHeadline());
+        assertEquals("Expected matching headline", "Graduate" , myUser.getHeadline());
     }
     @AfterClass
     public static void teardown() throws IOException {
