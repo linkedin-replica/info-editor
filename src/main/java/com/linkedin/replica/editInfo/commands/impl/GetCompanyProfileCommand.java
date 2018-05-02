@@ -18,7 +18,7 @@ public class GetCompanyProfileCommand extends Command{
         validateArgs(new String[]{"companyId"});
         String companyId =(String) args.get("companyId");
         CacheEditInfoHandler cacheEditInfoHandler = (CacheEditInfoHandler) this.cacheHandler;
-        CompanyReturn company = (CompanyReturn) cacheEditInfoHandler.getCompanyFromCache(companyId, CompanyReturn.class);
+        CompanyReturn company = (CompanyReturn) cacheEditInfoHandler.getCompanyFromCache(companyId);
         if(company != null) {
             return company;
         }

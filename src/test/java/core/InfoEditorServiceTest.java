@@ -78,14 +78,13 @@ static DatabaseSeed databaseSeed;
         Object resultGetCompany = infoEditorService.serve("company.get", args);
         CompanyReturn company = (CompanyReturn) resultGetCompany;
 
-        assertEquals("The Two companies' UserNames should match", company.getCompanyName(), "microsoft3");
-        System.out.println(company.getCompanyName()+"hereeeeee");
+        assertEquals("The Two companies' UserNames should match", company.companyName, "microsoft3");
 
         args2.clear();
 
         args2.put("companyId", "12");
         args2.put("companyName", "microsoft3");
-        args2.put("companyProfilePicture", "http://www.adsf221");
+        args2.put("profilePictureUrl", "http://www.adsf221");
 
        Object resultUpdateCompany = infoEditorService.serve("company.update", args2);
         args2.clear();
@@ -96,8 +95,8 @@ static DatabaseSeed databaseSeed;
         CompanyReturn companyUpdate = (CompanyReturn) resultGetCompany2;
 
 
-        assertEquals("The Two companies' UserNames should match", companyUpdate.getCompanyName(), "microsoft3");
-        assertEquals("The Two companies' UserProfilePicture should match", companyUpdate.getCompanyProfilePicture(), "http://www.adsf221");
+        assertEquals("The Two companies' UserNames should match", companyUpdate.companyName, "microsoft3");
+        assertEquals("The Two companies' UserProfilePicture should match", companyUpdate.profilePictureUrl, "http://www.adsf221");
 
 
     }
@@ -108,22 +107,22 @@ static DatabaseSeed databaseSeed;
         args.put("userId", "6");
        Object resultProfile = infoEditorService.serve("user.get", args);
        UserReturn user=(UserReturn) resultProfile;
-        assertEquals("The user first names match" ,user.getFirstName(), "baher");
-        assertEquals("The user last names match" ,user.getLastName(), "Abdou");
+        assertEquals("The user first names match" ,user.firstName, "baher");
+        assertEquals("The user last names match" ,user.lastName, "Abdou");
         args.clear();
         args.put("userId", "6");
         args.put("Skill", "C++");
         resultProfile = infoEditorService.serve("user.add.skill", args);
         resultProfile = infoEditorService.serve("user.get", args);
         user = (UserReturn) resultProfile;
-        assertEquals("The added skill matched" ,user.getSkills().get(0), "C++");
+        assertEquals("The added skill matched" ,user.skills.get(0), "C++");
         args.clear();
         args.put("userId", "6");
         args.put("headline", "ACMER");
         resultProfile = infoEditorService.serve("user.update", args);
         resultProfile = infoEditorService.serve("user.get", args);
         user=(UserReturn) resultProfile;
-        assertEquals("The headline is updated" , user.getHeadline(), "ACMER");
+        assertEquals("The headline is updated" , user.headline, "ACMER");
 
 
 

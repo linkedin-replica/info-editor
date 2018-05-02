@@ -19,14 +19,11 @@ public class AddCompanyCommand extends Command {
                 , "profilePictureUrl", "adminUserId",
                 "industryType", "aboutus"});
 
-        String companyID = UUID.randomUUID().toString();
+        String companyId = UUID.randomUUID().toString();
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
 
-        ArrayList<String> posts = (ArrayList<String>) args.get("posts");
 
-        String response = dbHandler.insertCompany((String)args.get("companyName"), companyID, (String)args.get("companyProfilePicture"),
-                (String)args.get("adminUserId"), (String)args.get("industryType"),
-                posts);
+        String response = dbHandler.insertCompany((String)args.get("companyName"), companyId, (String)args.get("companyProfilePicture"), (String)args.get("userId"), (String)args.get("industryType"));
         
         return response;
     }

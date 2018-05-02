@@ -63,20 +63,17 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     /**
      * Insert company in collection companies.
      * @param companyName : name of inserted company
-     * @param companyID id generated
+     * @param companyId id generated
      * @param companyProfilePicture profile picture url
-     * @param adminUserID id of user created the company
      * @param industryType industry type of inserted company
-     * @param posts array of ids of posts of the company.
      */
-    public String insertCompany(String companyName, String companyID, String companyProfilePicture, String adminUserID, String industryType, ArrayList<String> posts){
+    public String insertCompany(String companyName, String companyId, String companyProfilePicture, String userId, String industryType){
             BaseDocument myObject = new BaseDocument();
-            myObject.setKey(companyID);
+            myObject.setKey(companyId);
             myObject.addAttribute("companyName", companyName);
-            myObject.addAttribute("companyId", companyID);
+            myObject.addAttribute("companyId", companyId);
             myObject.addAttribute("companyProfilePicture", companyProfilePicture);
             myObject.addAttribute("industryType", industryType);
-            myObject.addAttribute("posts", posts);
         try {
             dbInstance.collection("companies").insertDocument(myObject);
         } catch (ArangoDBException e) {

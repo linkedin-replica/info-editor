@@ -69,25 +69,20 @@ public class ArangoHandlerTest {
         CompanyReturn companytemp = arangoHandler.getCompany("12");
 //        System.out.println(companytemp);
 
-        assertEquals("name should be update",companytemp.getCompanyID(),"12");
+        assertEquals("name should be update",companytemp.getCompanyId(),"12");
 //    }x`
     }
     @Test
     public void testUpdateCompany() throws IOException {
         String collectionName = config.getArangoConfigProp("collection.companies.name");
-        ArrayList<String>posts = new ArrayList<String>();
-        posts.add("hello world");
-//        Company companytemp = arangoHandler.getCompany("1");
-        HashMap<String,Object >args =new HashMap<String,Object>();
+        arangoHandler.insertCompany("Microsoft", "1", "https://", "1", "IT");
+        HashMap<String,Object >args =new HashMap<>();
         args.put("companyName","microsoft3");
-        args.put("companyId","12");
-//        System.out.println(companytemp);
-       arangoHandler.updateCompany(args);
-        CompanyReturn companytemp2 = arangoHandler.getCompany("12");
+        args.put("companyId", "1");
+        arangoHandler.updateCompany(args);
+        CompanyReturn updatedCompany = arangoHandler.getCompany("1");
 
-//        System.out.println(companytemp.toString());
-         assertEquals("name should be update",companytemp2.getCompanyName(),"microsoft3");
-        assertEquals("name should be update",companytemp2.getPosts().size(),1);
+        assertEquals("name should be updated",updatedCompany.getCompanyName(),"microsoft3");
 
     //    }
     }

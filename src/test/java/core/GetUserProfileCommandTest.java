@@ -56,8 +56,8 @@ public class GetUserProfileCommandTest {
         command.setCacheHandler(jedisCacheHandler);
         response = command.execute();
         UserReturn myUser = (UserReturn) response;
-        assertEquals("Expected matching first name", "Baher" , myUser.getFirstName());
-        assertEquals("Expected matching last name", "Zobeidy" , myUser.getLastName());
+        assertEquals("Expected matching first name", "Baher" , myUser.firstName);
+        assertEquals("Expected matching last name", "Zobeidy" , myUser.lastName);
 //        assertEquals("Expected matching headline", "Software Engineer at DFKI" , myUser.getHeadline());
     }
     @AfterClass

@@ -63,8 +63,8 @@ public class CreateProfileCommandTest {
         command.setDbHandler(arangoHandler);
         response = command.execute();
         UserReturn myUser = (UserReturn) response;
-        assertEquals("Expected matching first name", "Loa2y" , myUser.getFirstName());
-        assertEquals("Expected matching last name", "Zobeidy" , myUser.getLastName());
+        assertEquals("Expected matching first name", "Loa2y" , myUser.firstName);
+        assertEquals("Expected matching last name", "Zobeidy" , myUser.lastName);
     }
 
     @AfterClass

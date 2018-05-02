@@ -71,7 +71,7 @@ public class CvCommandTest{
         UserReturn user = arangoHandler.getUserProfile("6");
         System.out.println((UserReturn) user);
 
-        assertEquals("response should be true", user.getCvUrl(), "user12URL");
+        assertEquals("response should be true", user.cvUrl, "user12URL");
 
     }
     @Test

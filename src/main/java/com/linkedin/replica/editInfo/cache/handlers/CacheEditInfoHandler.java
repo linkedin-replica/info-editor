@@ -21,7 +21,7 @@ public interface CacheEditInfoHandler extends CacheHandler{
 
     void saveCompanyInCache(String companyId, Object company) throws IOException;
 
-    Object getCompanyFromCache(String key, Class<?> tClass) throws IOException;
+    Object getCompanyFromCache(String key) throws IOException;
 
     void deleteCompanies(String key);
 

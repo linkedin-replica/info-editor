@@ -73,7 +73,7 @@ public class UpdateCompanyCommandTest {
         temp.execute();
         response = command.execute();
         CompanyReturn company = (CompanyReturn) response;
-        assertEquals("Expected matching new company name", "Microsoft2" ,company.getCompanyName() );
+        assertEquals("Expected matching new company name", "Microsoft2" ,company.companyName );
 
     }
     @AfterClass

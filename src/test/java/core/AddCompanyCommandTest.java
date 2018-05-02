@@ -76,8 +76,7 @@ public class AddCompanyCommandTest {
 
 
         CompanyReturn company = arangoHandler.getCompany("f8312bc1-a02f-4d39-8373-5e3d03fcdba4");
-        System.out.println(company.getCompanyName());
-        assertEquals("Expected skillsNumber", company.getCompanyName() ,"MicrosoftUnique");
+        assertEquals("Expected skillsNumber", company.companyName ,"MicrosoftUnique");
 //        assertEquals("Expected LastSkill", "Java" , myUser.getSkills().get(5));
     }
 

@@ -147,18 +147,14 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
     }
 
     @Override
-    public Object getCompanyFromCache(String key, Class<?> tClass) {
+    public CompanyReturn getCompanyFromCache(String key) {
 
         try (Jedis cacheInstance = cachePool.getResource()){
             cacheInstance.select(Integer.parseInt(configuration.getRedisConfigProp("cache.companies.index")));
             if(!cacheInstance.exists(key))
                 return null;
-            Object company = null;
-            try {
-                company = ((Class) tClass).newInstance();
-            } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
+            CompanyReturn company = new CompanyReturn();
+            Class tClass = CompanyReturn.class;
             Field [] fields = tClass.getDeclaredFields();
             for (Field field : fields) {
                 String fieldName = field.getName();
@@ -170,6 +166,7 @@ public class JedisCacheHandler implements CacheEditInfoHandler {
                     e.printStackTrace();
                 }
             }
+            System.out.println(company);
             return company;
         } catch(JedisException | NoSuchFieldException e) {
             e.printStackTrace();

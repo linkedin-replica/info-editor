@@ -70,8 +70,8 @@ public class EditUserProfileCommandTest {
         command.setCacheHandler(cacheEditInfoHandler);
         response = command.execute();
         UserReturn myUser =(UserReturn) response;
-        assertEquals("Expected matching first name", "Baher" , myUser.getFirstName());
-        assertEquals("Expected matching headline", "Graduate" , myUser.getHeadline());
+        assertEquals("Expected matching first name", "Baher" , myUser.firstName);
+        assertEquals("Expected matching headline", "Graduate" , myUser.headline);
     }
     @AfterClass
     public static void teardown() throws IOException {

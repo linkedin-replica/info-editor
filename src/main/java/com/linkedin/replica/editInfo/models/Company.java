@@ -17,6 +17,7 @@ public class Company {
     public ArrayList<String> jobListings;
     public ArrayList<String> Posts;
     public ArrayList<String> joblistings;
+
     public Company(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,
                    String industryType,String companyLocation,String companytype,ArrayList<String>posts,ArrayList<String> JobListings) {
         this.companyName = companyName;

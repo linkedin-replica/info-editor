@@ -33,6 +33,5 @@ public interface EditInfoHandler extends DatabaseHandler {
 
     String createProfile(HashMap<String, Object> profileAttributes, String userID);
 
-    String insertCompany(String companyName, String companyID, String companyProfilePicture, String adminUserName, String adminUserID,
-                         ArrayList<String> specialities);
+    String insertCompany(String companyName, String companyId, String companyProfilePicture, String userId, String industryType);
 }
