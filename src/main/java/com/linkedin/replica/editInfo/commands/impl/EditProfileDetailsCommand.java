@@ -38,15 +38,9 @@ public class EditProfileDetailsCommand extends Command{
 //            cacheargs.put(key, stringvalue);
 //        }
 
+
             EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-            if(args.keySet().contains("positions"))
-            {
-                JsonArray temp = ((JsonArray)args.get("positions")).getAsJsonArray();
-                ArrayList<String> newArray = new ArrayList<String>();
-                for(int i =0 ; i<temp.size();i++)
-                    newArray.add(temp.get(i).toString());
-                args.put("positions",newArray);
-            }
+
             String response = dbHandler.updateProfile(args);
 //            cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
 //            cacheEditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);

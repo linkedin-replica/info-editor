@@ -1,4 +1,5 @@
 package com.linkedin.replica.editInfo.commands.impl;
+import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
@@ -22,7 +23,7 @@ public class UpdateCompanyCommand extends Command{
         validateArgs(new String[]{"companyId"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
         LinkedHashMap<String, String> cacheargs = new LinkedHashMap<>();
-
+        JsonObject request = (JsonObject)args.get("request");
 
 //        for (String key : args.keySet()) {
 //            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
@@ -35,6 +36,28 @@ public class UpdateCompanyCommand extends Command{
 //            System.out.println(stringvalue+"heree");
 //            cacheargs.put(key, stringvalue);
 //        }
+
+        args.put("companyName",request.get("companyName").getAsString());
+        args.put("industryType",request.get("industryType").getAsString());
+        args.put("aboutus",request.get("aboutus").getAsString());
+        args.put("companyProfilePicture",request.get("companyProfilePicture").getAsString());
+        args.put("adminUserId",request.get("adminUserId").getAsString());
+
+        ArrayList<String > postsArra = new ArrayList<String>();
+        JsonObject posts = (JsonObject)request.get("posts");
+        for(String key : posts.keySet())
+            postsArra.add(posts.get(key).getAsString());
+
+
+        ArrayList<String > skillsArra = new ArrayList<String>();
+        JsonObject skills = (JsonObject)request.get("skills");
+        for(String key : skills.keySet())
+            skillsArra.add(skills.get(key).getAsString());
+
+
+
+        args.put("posts",postsArra);
+        args.put("skills",skillsArra);
 
         String response = dbHandler.updateCompany(args);
 //        CacheEditInfoHandler cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
