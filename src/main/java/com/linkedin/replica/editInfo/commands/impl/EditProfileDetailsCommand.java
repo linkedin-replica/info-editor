@@ -1,4 +1,5 @@
 package com.linkedin.replica.editInfo.commands.impl;
+import com.google.gson.JsonArray;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
@@ -6,6 +7,9 @@ import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.zip.GZIPOutputStream;
@@ -32,7 +36,16 @@ public class EditProfileDetailsCommand extends Command{
 //            cacheargs.put(key, stringvalue);
 //        }
             EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-            dbHandler.updateProfile(args);
+
+            if(args.keySet().contains("skills"))
+            {
+                JsonArray temp = ((JsonArray)args.get("skills")).getAsJsonArray();
+                ArrayList<String> newArray = new ArrayList<String>();
+                for(int i =0 ; i<temp.size();i++)
+                    newArray.add(temp.get(i).toString());
+                args.put("skills",newArray);
+            }
+            String response = dbHandler.updateProfile(args);
 //            cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
 //            cacheEditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
             return null;
