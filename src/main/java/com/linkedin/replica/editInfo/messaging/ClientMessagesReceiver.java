@@ -59,7 +59,7 @@ public class ClientMessagesReceiver {
                 HashMap<String, Object> args = new HashMap<String,Object>();
                 for(String key: object.keySet())
                     if(!key.equals("commandName"))
-                        args.put(key, object.get(key).getAsString());
+                        args.put(key, object.get(key));
 
                 // Call the service and form the response
                 LinkedHashMap<String, Object> response = new LinkedHashMap<String,Object>();

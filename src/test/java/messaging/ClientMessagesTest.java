@@ -104,8 +104,7 @@ public class ClientMessagesTest {
         });
         String resMessage = response.take();
         JsonObject resObject = new JsonParser().parse(resMessage).getAsJsonObject();
-
-
+        System.out.println(resObject+"hereee");
 
         assertEquals("", "microsoft3",  resObject.get("results").getAsJsonObject().get("companyName").getAsString());
     }
