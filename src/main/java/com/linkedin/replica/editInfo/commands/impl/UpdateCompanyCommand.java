@@ -1,16 +1,11 @@
 package com.linkedin.replica.editInfo.commands.impl;
-import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
-import org.apache.commons.codec.binary.Base64;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.zip.GZIPOutputStream;
 
 public class UpdateCompanyCommand extends Command{
 

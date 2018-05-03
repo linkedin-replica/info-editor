@@ -18,7 +18,7 @@ public class GetUserProfileCommand extends Command {
 
     public Object execute() throws IOException {
         validateArgs(new String[]{"userId"});
-        String userId = (String) args.get("userId");
+        //       String userId = (String) args.get("userId");
 //        cacheEditInfoHandler = (CacheEditInfoHandler) this.cacheHandler;
 //        UserReturn user = (UserReturn) cacheEditInfoHandler.getUserFromCache(userId, UserReturn.class);
         UserReturn user =null;
@@ -26,12 +26,10 @@ public class GetUserProfileCommand extends Command {
             return user;
         }
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-
         if (args.containsKey("profileId"))
             user = dbHandler.getUserProfile((String) args.get("profileId"));
         else
             user = dbHandler.getUserProfile((String) args.get("userId"));
-
 //        cacheEditInfoHandler.saveUsersInCache(userId, user);
         return user;
     }

@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.zip.GZIPOutputStream;
-import org.apache.commons.codec.binary.Base64;
 public class EditProfileDetailsCommand extends Command{
 
     private CacheEditInfoHandler cacheEditInfoHandler;
@@ -20,7 +19,6 @@ public class EditProfileDetailsCommand extends Command{
     public Object execute()  throws IOException {
         validateArgs(new String[]{"userId"});
         LinkedHashMap<String, String> cacheargs = new LinkedHashMap<>();
-
 //
 //        for (String key : cacheargs.keySet()) {
 //            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
@@ -33,13 +31,10 @@ public class EditProfileDetailsCommand extends Command{
 //
 //            cacheargs.put(key, stringvalue);
 //        }
-
             EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-
-            String response = dbHandler.updateProfile(args);
+            dbHandler.updateProfile(args);
 //            cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
 //            cacheEditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
-            return response;
-
+            return null;
     }
 }

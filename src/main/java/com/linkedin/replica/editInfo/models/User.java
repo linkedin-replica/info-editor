@@ -24,7 +24,6 @@ public  class User {
         this.lastName = lastName;
         this.headline = headline;
         this.industry = industry;
-
         this.positions = positions;
         this.educations = educations;
         this.imageUrl = imageUrl;

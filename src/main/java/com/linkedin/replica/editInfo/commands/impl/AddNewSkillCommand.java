@@ -19,9 +19,7 @@ import java.util.LinkedHashMap;
     public Object execute() {
         validateArgs(new String[]{"userId", "skill"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-
         String response = dbHandler.addSkill((String) args.get("userId"), (String) args.get("skill"));
         return response;
-
     }
 }
