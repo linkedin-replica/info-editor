@@ -1,4 +1,5 @@
 package com.linkedin.replica.editInfo.commands.impl;
+import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import java.io.IOException;
@@ -16,15 +17,8 @@ public class GetCompanyProfileCommand extends Command{
     public Object execute() throws IOException {
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
         validateArgs(new String[]{"companyId"});
-        String companyId =(String) args.get("companyId");
-//        CacheEditInfoHandler cacheEditInfoHandler = (CacheEditInfoHandler) this.cacheHandler;
-//        CompanyReturn company = (CompanyReturn) cacheEditInfoHandler.getCompanyFromCache(companyId, CompanyReturn.class);
-        CompanyReturn company = null;
-        if(company != null) {
-            return company;
-        }
-        company = dbHandler.getCompany((String)args.get("companyId"));
-//        cacheEditInfoHandler.saveCompanyInCache(companyId, company);
+        JsonObject request = (JsonObject)args.get("request");
+        CompanyReturn company = dbHandler.getCompany(request.get("companyId").getAsString());
         return company;
     }
 }

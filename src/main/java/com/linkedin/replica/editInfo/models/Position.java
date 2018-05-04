@@ -2,14 +2,14 @@ package com.linkedin.replica.editInfo.models;
 
 public class Position {
 
-    public Position(){};
+
     private String title;
     private  String summary;
     private long startDate;
     private long endDate;
     private  boolean isCurrent;
-
     private String companyId;
+    public Position(){};
     public Position(String title, String summary, long startDate, long endDate, boolean isCurrent, String companyName, String companyID) {
         this.title = title;
         this.summary = summary;

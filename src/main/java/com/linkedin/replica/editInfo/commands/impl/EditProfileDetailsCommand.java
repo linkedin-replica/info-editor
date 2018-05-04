@@ -1,5 +1,6 @@
 package com.linkedin.replica.editInfo.commands.impl;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
@@ -21,33 +22,10 @@ public class EditProfileDetailsCommand extends Command{
         super(args);
     }
     public Object execute()  throws IOException {
-        validateArgs(new String[]{"userId"});
-        LinkedHashMap<String, String> cacheargs = new LinkedHashMap<>();
-//
-//        for (String key : cacheargs.keySet()) {
-//            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-//            GZIPOutputStream gzipOutputStream = new GZIPOutputStream(arrayOutputStream);
-//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(gzipOutputStream);
-//            objectOutputStream.writeObject(cacheargs.get(key));
-//            objectOutputStream.flush();
-//            Base64 base64 = new Base64();
-//            String stringvalue = new String(base64.encode(arrayOutputStream.toByteArray()));
-//
-//            cacheargs.put(key, stringvalue);
-//        }
+            validateArgs(new String[]{"userId"});
             EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-
-            if(args.keySet().contains("skills"))
-            {
-                JsonArray temp = ((JsonArray)args.get("skills")).getAsJsonArray();
-                ArrayList<String> newArray = new ArrayList<String>();
-                for(int i =0 ; i<temp.size();i++)
-                    newArray.add(temp.get(i).toString());
-                args.put("skills",newArray);
-            }
-            String response = dbHandler.updateProfile(args);
-//            cacheEditInfoHandler = (CacheEditInfoHandler) cacheHandler;
-//            cacheEditInfoHandler.editUserCache((String) args.get("userId"), cacheargs);
+            JsonObject request = (JsonObject)args.get("request");
+            dbHandler.updateProfile(request);
             return null;
     }
 }

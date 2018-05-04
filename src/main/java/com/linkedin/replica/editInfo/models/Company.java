@@ -8,7 +8,7 @@ public class Company {
     public String companyProfilePicture;
     public String companyId;
     public String adminUserName;
-    public String adminUserID;
+    public String userId;
     public String industryType;
     public String companyLocation;
     public String companytype;
@@ -23,7 +23,7 @@ public class Company {
         this.adminUserName=adminUserName;
         this.companyId = companyID;
         this.companyProfilePicture = companyProfilePicture;
-        this.adminUserID = adminUserID;
+        this.userId = adminUserID;
         this.industryType = industryType;
         this.companyLocation = companyLocation;
         this.companytype = companytype;
@@ -44,7 +44,7 @@ public class Company {
     }
 
     public void setAdminUserID(String adminUserID) {
-        this.adminUserID = adminUserID;
+        this.userId = adminUserID;
     }
 
 
@@ -101,7 +101,7 @@ public class Company {
     }
 
     public String getAdminUserID() {
-        return adminUserID;
+        return userId;
     }
 
 

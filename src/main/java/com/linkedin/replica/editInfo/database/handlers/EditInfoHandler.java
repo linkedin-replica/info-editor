@@ -1,5 +1,7 @@
 package com.linkedin.replica.editInfo.database.handlers;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.models.CompanyReturn;
 import com.linkedin.replica.editInfo.models.UserReturn;
 
@@ -14,24 +16,16 @@ public interface EditInfoHandler extends DatabaseHandler {
     void connect();
 
     CompanyReturn getCompany(String companyID);
-
     UserReturn getUserProfile(String UserID);
-
-    String addSkill(String userID, String Skill);
-
-    String updateProfile(HashMap<String, Object> updates);
-
-    String addCV(String userID, String cv);
-
-    String deleteCV(String userID);
-
-    String updateCompany(HashMap<String,Object>args);
+    void addSkill(String userID, String Skill);
+    void updateProfile(JsonObject updates);
+    void addCV(String userID, String cv);
+    void deleteCV(String userID);
+    void updateCompany(JsonObject args);
+    void deleteSkill(String userId, String skill);
+    void createProfile(JsonObject args);
+    void insertCompany(JsonObject args);
 
     void disconnect();
 
-    String deleteSkill(String userId, String skill);
-
-    String createProfile(HashMap<String, Object> profileAttributes, String userID);
-
-    String insertCompany(HashMap<String,Object>args);
 }

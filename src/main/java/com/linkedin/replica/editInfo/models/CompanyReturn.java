@@ -3,64 +3,45 @@ package com.linkedin.replica.editInfo.models;
 import java.util.ArrayList;
 
 public class CompanyReturn {
-    private String _key;
     public String companyName;
     public String companyProfilePicture;
     public String companyId;
-    public String adminUserName;
+    public String userId;
     public String adminUserId;
     public String industryType;
     public String companyLocation;
     public String companytype;
     String aboutus;
+    public ArrayList<LightPost> posts;
+    public ArrayList<LightUser> jobListing;
 
-    public String get_key() {
-        return _key;
+    public CompanyReturn(){
+    }
+
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getCompanyId() {
         return companyId;
     }
-
     public String getAboutUs() {
         return aboutus;
     }
-
     public ArrayList<LightPost> getPosts() {
         return posts;
     }
-
     public ArrayList<LightUser> getJobListing() {
         return jobListing;
     }
-
-    public ArrayList<LightPost> posts;
-    public ArrayList<LightUser> jobListing;
-    public CompanyReturn(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,
-                   String industryType,String companyLocation,String companytype,ArrayList<String>posts,ArrayList<String> JobListings) {
-        this.companyName = companyName;
-        this.adminUserName=adminUserName;
-        this.companyId = companyID;
-        this.companyProfilePicture = companyProfilePicture;
-        this.adminUserId = adminUserID;
-        this.industryType = industryType;
-        this.companyLocation = companyLocation;
-        this.companytype = companytype;
-        this._key =companyID;
-    }
-    public CompanyReturn(){
-    }
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
 
     public void setCompanyProfilePicture(String companyProfilePicture) {
         this.companyProfilePicture = companyProfilePicture;
     }
 
     public void setAdminUserName(String adminUserName) {
-        this.adminUserName = adminUserName;
+        this.userId = adminUserName;
     }
 
     public void setAdminUserID(String adminUserID) {
@@ -108,7 +89,7 @@ public class CompanyReturn {
     }
 
     public String getAdminUserName() {
-        return adminUserName;
+        return userId;
     }
 
     public String getAdminUserID() {

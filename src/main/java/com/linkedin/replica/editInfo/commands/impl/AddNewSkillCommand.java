@@ -1,5 +1,6 @@
 package com.linkedin.replica.editInfo.commands.impl;
 
+import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.database.handlers.DatabaseHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
@@ -19,7 +20,8 @@ import java.util.LinkedHashMap;
     public Object execute() {
         validateArgs(new String[]{"userId", "skill"});
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        String response = dbHandler.addSkill((String) args.get("userId"), (String) args.get("skill"));
-        return response;
+         JsonObject request = (JsonObject)args.get("request");
+        dbHandler.addSkill(request.get("userId").getAsString(), request.get("skill").getAsString());
+        return null;
     }
 }

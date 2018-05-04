@@ -11,6 +11,15 @@ public  class UserReturn  {
     public String industry;
     public ArrayList<Position> positions;
     public String profilePictureUrl;
+    public ArrayList<Education> educations;
+    public String imageUrl;
+    public String cvUrl;
+    public ArrayList<String> skills;
+    public ArrayList<LightCompany>followedCompanies;
+    public ArrayList<LightUser> friendsList;
+    public ArrayList<LightPost> bookmarkedPosts;
+
+    public UserReturn() {};
 
     public void set_key(String _key) {
         this._key = _key;
@@ -52,52 +61,6 @@ public  class UserReturn  {
     public ArrayList<LightUser> getFriendslist() {
         return friendsList;
     }
-
-    public ArrayList<Education> educations;
-    public String imageUrl;
-    public String cvUrl;
-    public ArrayList<String> skills;
-    public ArrayList<LightCompany>followedCompanies;
-    public ArrayList<LightUser> friendsList;
-    public ArrayList<LightPost> bookmarkedPosts;
-
-
-    public UserReturn(String _key, String userId, String firstName, String lastName, String headline, String industry, ArrayList<Position> positions, ArrayList<Education> educations, String imageUrl, String cvUrl, ArrayList<String> skills, ArrayList<LightCompany> followedCompanies, ArrayList<LightUser> friendslist, ArrayList<LightPost> bookmarkedPosts) {
-        this._key = _key;
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.headline = headline;
-        this.industry = industry;
-      //  this.positions = positions;
-        this.educations = educations;
-        this.imageUrl = imageUrl;
-        this.cvUrl = cvUrl;
-        this.skills = skills;
-        this.followedCompanies = followedCompanies;
-        this.friendsList = friendslist;
-        this.bookmarkedPosts = bookmarkedPosts;
-    }
-
-    public UserReturn(String userId, String firstName, String lastName, String headline, String industry, ArrayList<Position>positions, ArrayList
-                      <Education>educations, String imageUrl, String cvUrl, ArrayList<String>skills, ArrayList<LightCompany>followedCompanies,
-                      ArrayList<LightUser>friendslist, ArrayList<LightPost>bookmarkedPosts) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.headline = headline;
-        this.industry = industry;
-      //  this.positions = positions;
-        this.educations = educations;
-        this.imageUrl = imageUrl;
-        this.cvUrl = cvUrl;
-        this.skills = skills;
-        this.bookmarkedPosts = bookmarkedPosts;
-        this._key=userId;
-    }
-
-    public UserReturn() {};
-
 
 
     public String getUserId() {

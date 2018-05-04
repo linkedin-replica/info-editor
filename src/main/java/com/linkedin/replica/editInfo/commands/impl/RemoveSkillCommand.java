@@ -1,5 +1,6 @@
 package com.linkedin.replica.editInfo.commands.impl;
 
+import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 
@@ -13,9 +14,9 @@ public class RemoveSkillCommand extends Command {
     }
     public Object execute() throws IOException {
         validateArgs(new String[]{"userId", "skill"});
+        JsonObject request = (JsonObject)args.get("request");
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        String response = dbHandler.deleteSkill((String) args.get("userId"), (String)args.get("skill"));
-        return response;
-
+        dbHandler.deleteSkill(request.get("userId").getAsString(), request.get("skill").getAsString());
+        return null;
     }
 }

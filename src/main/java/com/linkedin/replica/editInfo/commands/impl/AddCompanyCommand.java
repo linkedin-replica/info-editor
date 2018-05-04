@@ -1,5 +1,6 @@
 package com.linkedin.replica.editInfo.commands.impl;
 
+import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import java.util.UUID;
@@ -15,21 +16,10 @@ public class AddCompanyCommand extends Command {
     }
 
     public Object execute() throws IOException {
-        validateArgs(new String[]{"posts","companyName","companyId"
-                , "companyProfilePicture", "adminUserId",
-                "industryType", "aboutus"});
-        String companyID;
-        if(args.get("companyId")!=null)
-        companyID = (String)args.get("companyId");
-        else
-       companyID = UUID.randomUUID().toString();
-        EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-
-        ArrayList<String> posts = (ArrayList<String>) args.get("posts");
-
-        String response = dbHandler.insertCompany(args);
-        
-        return response;
+        validateArgs(new String[]{"userId"});
+        JsonObject request = (JsonObject)args.get("request");
+        ((EditInfoHandler)dbHandler).insertCompany(request);
+        return null;
     }
 
 

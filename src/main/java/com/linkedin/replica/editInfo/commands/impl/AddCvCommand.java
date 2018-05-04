@@ -1,6 +1,7 @@
 package com.linkedin.replica.editInfo.commands.impl;
 
 
+import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 
@@ -18,10 +19,10 @@ public class AddCvCommand extends Command{
 
     public Object execute() {
         validateArgs(new String[]{"userId", "cvUrl"});
-
+        JsonObject request = (JsonObject)args.get("request");
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        String response = dbHandler.addCV((String)args.get("userId"),(String)args.get("cvUrl"));
-        return response;
+        dbHandler.addCV(request.get("userId").getAsString(),request.get("cvUrl").getAsString());
+        return null;
     }
 
 
