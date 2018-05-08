@@ -1,7 +1,5 @@
-
 package com.linkedin.replica.editInfo.config;
 
-import com.linkedin.replica.editInfo.cache.handlers.CacheEditInfoHandler;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 
@@ -15,36 +13,37 @@ public class Configuration {
     private Properties commandConfig = new Properties();
     private Properties appConfig = new Properties();
     private Properties arangoConfig = new Properties();
-    private Properties redisConfig = new Properties();
+    private Properties mysqlConfig = new Properties();
     private Properties controllerConfig = new Properties();
 
     private static Configuration instance;
     private boolean isAppConfigModified;
     private boolean isArangoConfigModified;
+    private boolean isMysqlConfigModified;
     private boolean isCommandsConfigModified;
 
 
     private String appConfigPath;
     private String arangoConfigPath;
+    private String mysqlConfigPath;
     private String commandsConfigPath;
-    private String redisConfigPath;
 
-    private Configuration(String appConfigPath, String arangoConfigPath, String commandsConfigPath,
-                          String controllerConfigPath,String redisConfigPath) throws IOException {
+    private Configuration(String appConfigPath, String arangoConfigPath, String mysqlConfigPath, String commandsConfigPath,
+                          String controllerConfigPath) throws IOException {
         populateWithConfig(this.appConfigPath = appConfigPath, appConfig);
         populateWithConfig(this.arangoConfigPath = arangoConfigPath, arangoConfig);
+        populateWithConfig(this.mysqlConfigPath = mysqlConfigPath, mysqlConfig);
         populateWithConfig(this.commandsConfigPath = commandsConfigPath, commandConfig);
         populateWithConfig(controllerConfigPath, controllerConfig);
-        populateWithConfig(redisConfigPath, redisConfig);
 
         this.appConfigPath = appConfigPath;
         this.arangoConfigPath = arangoConfigPath;
+        this.mysqlConfigPath = mysqlConfigPath;
         this.commandsConfigPath = commandsConfigPath;
-        this.redisConfigPath = redisConfigPath;
     }
 
-    public static void init(String appConfigPath, String arangoConfigPath, String commandsConfigPath, String controllerConfigPath,String redisConfigPath) throws IOException {
-        instance = new Configuration(appConfigPath, arangoConfigPath, commandsConfigPath, controllerConfigPath,redisConfigPath);
+    public static void init(String appConfigPath, String arangoConfigPath, String mysqlConfigPath, String commandsConfigPath, String controllerConfigPath) throws IOException {
+        instance = new Configuration(appConfigPath, arangoConfigPath, mysqlConfigPath, commandsConfigPath, controllerConfigPath);
     }
 
     public static Configuration getInstance() {
@@ -58,8 +57,11 @@ public class Configuration {
     }
 
     public Class getCommandClass(String commandName) throws ClassNotFoundException {
+        System.out.println(commandName);
+        System.out.println(Command.class.getPackage().getName());
         String commandsPackageName = Command.class.getPackage().getName() + ".impl";
         String commandClassPath = commandsPackageName + '.' + commandConfig.get(commandName);
+        System.out.println(commandClassPath);
         return Class.forName(commandClassPath);
     }
 
@@ -72,21 +74,18 @@ public class Configuration {
     public String getAppConfigProp(String key) {
         return appConfig.getProperty(key);
     }
-    public String getRedisConfigProp(String key) {
-        return redisConfig.getProperty(key);
-    }
+
     public String getArangoConfigProp(String key) {
+        return arangoConfig.getProperty(key);
+    }
+
+    public String getMysqlConfigProp(String key) {
         return arangoConfig.getProperty(key);
     }
 
     public Class getHandlerClass(String commandName) throws ClassNotFoundException {
         String handlerPackageName = EditInfoHandler.class.getPackage().getName() + ".impl";
         String handlerClassPath = handlerPackageName + "." + commandConfig.get(commandName + ".handler");
-        return Class.forName(handlerClassPath);
-    }
-    public Class getCacheHandlerClass(String commandName) throws ClassNotFoundException {
-        String handlerPackageName = CacheEditInfoHandler.class.getPackage().getName() + ".impl";
-        String handlerClassPath = handlerPackageName + "." + commandConfig.get(commandName + ".handler.cache");
         return Class.forName(handlerClassPath);
     }
     public String getControllerConfigProp(String key) {
@@ -115,7 +114,14 @@ public class Configuration {
         isArangoConfigModified = true;
     }
 
+    public void setMysqlConfigProp(String key, String val) {
+        if (val != null)
+            mysqlConfig.setProperty(key, val);
+        else
+            mysqlConfig.remove(key); // remove property if val is null
 
+        isMysqlConfigModified = true;
+    }
 
     public void setCommandsConfigProp(String key, String val) {
         if (val != null)
@@ -142,6 +148,10 @@ public class Configuration {
             isArangoConfigModified = false;
         }
 
+        if (isMysqlConfigModified) {
+            writeConfig(mysqlConfigPath, mysqlConfig);
+            isMysqlConfigModified = false;
+        }
 
         if (isCommandsConfigModified) {
             writeConfig(commandsConfigPath, commandConfig);

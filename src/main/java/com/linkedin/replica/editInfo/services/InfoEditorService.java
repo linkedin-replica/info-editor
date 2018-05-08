@@ -9,6 +9,7 @@ import com.linkedin.replica.editInfo.commands.Command;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 public class InfoEditorService {
@@ -18,17 +19,14 @@ public class InfoEditorService {
         config = Configuration.getInstance();
     }
 
-    public Object serve(String commandName, HashMap<String, Object> args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException {
+    public Object serve(String commandName, HashMap<String, Object> args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, SQLException {
         Class<?> commandClass = config.getCommandClass(commandName);
         Constructor constructor = commandClass.getConstructor(HashMap.class);
         Command command = (Command) constructor.newInstance(args);
 
         Class<?> dbHandlerClass = config.getHandlerClass(commandName);
         DatabaseHandler databaseHandler = (DatabaseHandler) dbHandlerClass.newInstance();
-        Class<?> cacheHandlerClass = config.getCacheHandlerClass(commandName);
-        CacheHandler cacheHandler = (CacheHandler) cacheHandlerClass.newInstance();
         command.setDbHandler(databaseHandler);
-        command.setCacheHandler(cacheHandler);
 
         return command.execute();
     }

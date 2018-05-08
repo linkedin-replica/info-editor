@@ -40,15 +40,15 @@ public class UpdateCompanyCommandTest {
         config = Configuration.getInstance();
         arangoHandler = new ArangoEditInfoHandler();
         databaseSeed = new DatabaseSeed();
-        arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
-               config.getArangoConfigProp("db.name")
+        arangoDb = DatabaseConnection.getInstance().getArangoDriver().db(
+                config.getArangoConfigProp("db.name")
         );
        // databaseSeed.insertCompanies();
     }
 
 
     @Test
-    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, SQLException {
         HashMap<String, Object> args = new HashMap();
         HashMap<String, Object> argstemp = new HashMap();
 

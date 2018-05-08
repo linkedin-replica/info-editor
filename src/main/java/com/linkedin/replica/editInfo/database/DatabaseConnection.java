@@ -4,52 +4,64 @@ import com.arangodb.ArangoDB;
 import com.linkedin.replica.editInfo.config.Configuration;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
- * A singleton class carrying a database instance
+ * A singleton class for the connections of databases (Arango, Mysql).
  */
 public class DatabaseConnection {
+
     private ArangoDB arangoDriver;
+    private Connection mysqlDriver;
     private Configuration config;
 
-    private volatile static DatabaseConnection dbConnection;
+    private static DatabaseConnection instance;
 
-    private DatabaseConnection() throws IOException {
+    private DatabaseConnection() throws IOException, SQLException {
         config = Configuration.getInstance();
-
         initializeArangoDB();
+        initializeMysqlDB();
+    }
+
+    /**
+     * @return A singleton database instance
+     */
+    public static DatabaseConnection getInstance() {
+        return instance;
+    }
+
+    public static void init() throws IOException, SQLException {
+        instance = new DatabaseConnection();
     }
 
     private void initializeArangoDB() {
-        arangoDriver = new ArangoDB.Builder().host(config.getArangoConfigProp("arangodb.host"),Integer.parseInt(config.getArangoConfigProp("arangodb.port")))
+        arangoDriver = new ArangoDB.Builder()
+                .host(config.getArangoConfigProp("arangodb.host"), Integer.parseInt(config.getArangoConfigProp("arangodb.port")))
                 .user(config.getArangoConfigProp("arangodb.user"))
                 .password(config.getArangoConfigProp("arangodb.password"))
                 .build();
     }
-    public static void init() throws IOException {
-        dbConnection = new DatabaseConnection();
+
+    private void initializeMysqlDB() throws SQLException {
+        System.out.println(config.getMysqlConfigProp("mysql.url"));
+        mysqlDriver = DriverManager.getConnection(config.getMysqlConfigProp("mysql.url"),
+                config.getMysqlConfigProp("mysql.username"),
+                config.getMysqlConfigProp("mysql.password"));
     }
-    public static DatabaseConnection getInstance() throws IOException {
-        return dbConnection;
-    }
-    /**
-     * Get a singleton DB instance
-     * @return The DB instance
-     */
-   public static DatabaseConnection getDBConnection() throws IOException {
-        if(dbConnection == null) {
-            synchronized (DatabaseConnection.class) {
-                if (dbConnection == null)
-                    dbConnection = new DatabaseConnection();
-            }
-        }
-        return dbConnection;
-    }
-    public void closeConnections() {
+
+
+    public void closeConnections() throws SQLException {
+        mysqlDriver.close();
         arangoDriver.shutdown();
     }
 
     public ArangoDB getArangoDriver() {
         return arangoDriver;
+    }
+
+    public Connection getMysqlDriver() {
+        return mysqlDriver;
     }
 }

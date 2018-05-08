@@ -13,6 +13,7 @@ import com.linkedin.replica.editInfo.database.DatabaseSeed;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import static org.junit.Assert.*;
@@ -27,7 +28,7 @@ public class CreateProfileCommandTest {
 
 
     @BeforeClass
-    public static void init() throws IOException, org.json.simple.parser.ParseException {
+    public static void init() throws IOException, org.json.simple.parser.ParseException, SQLException {
         String rootFolder = "src/main/resources/config/";
         Configuration.init(rootFolder + "app.config",
                 rootFolder + "arango.test.config",
@@ -36,7 +37,7 @@ public class CreateProfileCommandTest {
         config = Configuration.getInstance();
         databaseSeed = new DatabaseSeed();
         arangoHandler = new ArangoEditInfoHandler();
-        arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
+        DatabaseConnection.getInstance().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
         );
       //  databaseSeed.insertUsers();
@@ -44,7 +45,7 @@ public class CreateProfileCommandTest {
 
 
     @Test
-    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, SQLException {
         HashMap<String, Object> args = new HashMap();
         Object response;
         args.put("userId", "106");

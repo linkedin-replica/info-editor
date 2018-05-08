@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,21 +26,19 @@ public class EditUserProfileCommandTest {
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     static Configuration config;
-    private static DatabaseSeed databaseSeed;
 
 
 
     @BeforeClass
-    public static void init() throws IOException, org.json.simple.parser.ParseException {
+    public static void init() throws IOException, org.json.simple.parser.ParseException, SQLException {
         String rootFolder = "src/main/resources/config/";
         Configuration.init(rootFolder + "app.config",
                 rootFolder + "arango.test.config",
                 rootFolder + "commands.config",rootFolder+"controller.config",rootFolder+"cache.config");
         DatabaseConnection.init();
         config = Configuration.getInstance();
-        databaseSeed = new DatabaseSeed();
         arangoHandler = new ArangoEditInfoHandler();
-        arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
+        arangoDb = DatabaseConnection.getInstance().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
         );
        // databaseSeed.insertUsers();
@@ -47,7 +46,7 @@ public class EditUserProfileCommandTest {
 
 
     @Test
-    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, SQLException {
         HashMap<String, Object> args = new HashMap();
         Object response;
         args.put("userId", "103");

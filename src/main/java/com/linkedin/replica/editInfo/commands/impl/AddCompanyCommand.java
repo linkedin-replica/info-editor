@@ -3,6 +3,8 @@ package com.linkedin.replica.editInfo.commands.impl;
 import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
+
+import java.sql.SQLException;
 import java.util.UUID;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,8 +17,8 @@ public class AddCompanyCommand extends Command {
         super(args);
     }
 
-    public Object execute() throws IOException {
-        validateArgs(new String[]{"userId"});
+    public Object execute() throws IOException, SQLException {
+        validateArgs(new String[]{"userId","companyName"});
         JsonObject request = (JsonObject)args.get("request");
         ((EditInfoHandler)dbHandler).insertCompany(request);
         return null;

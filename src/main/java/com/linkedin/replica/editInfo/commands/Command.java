@@ -3,6 +3,7 @@ package com.linkedin.replica.editInfo.commands;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -25,7 +26,7 @@ public abstract class Command {
      * @return The output (if any) of the command
      */
 
-    public abstract Object execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException;
+    public abstract Object execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, SQLException;
     public void setDbHandler(DatabaseHandler dbHandler) {
         this.dbHandler = dbHandler;
     }

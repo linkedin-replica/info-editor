@@ -5,7 +5,6 @@ import com.linkedin.replica.editInfo.commands.impl.AddCompanyCommand;
 import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
-import com.linkedin.replica.editInfo.database.DatabaseSeed;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.models.Company;
 import com.linkedin.replica.editInfo.models.CompanyReturn;
@@ -16,6 +15,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -28,12 +28,11 @@ public class AddCompanyCommandTest {
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     static Configuration config;
-    private static DatabaseSeed databaseSeed;
 
 
 
     @BeforeClass
-    public static void init() throws IOException, org.json.simple.parser.ParseException {
+    public static void init() throws IOException, org.json.simple.parser.ParseException, SQLException {
         String rootFolder = "src/main/resources/config/";
         Configuration.init(rootFolder + "app.config",
                 rootFolder + "arango.test.config",
@@ -41,11 +40,9 @@ public class AddCompanyCommandTest {
         DatabaseConnection.init();
         DatabaseConnection.init();
         config = Configuration.getInstance();
-        databaseSeed = new DatabaseSeed();
         arangoHandler = new ArangoEditInfoHandler();
-        arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
-                config.getArangoConfigProp("db.name")
-        );
+
+
 
     }
     @Before
@@ -57,7 +54,7 @@ public class AddCompanyCommandTest {
 
 
     @Test
-    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void execute() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, SQLException {
         HashMap<String, Object> args = new HashMap();
         LinkedHashMap<String, Object> response;
 
@@ -89,6 +86,5 @@ public class AddCompanyCommandTest {
     @AfterClass
     public static void teardown() throws IOException {
         String dbName = config.getArangoConfigProp("db.name");
-        //databaseSeed.deleteAllCompanies();
     }
 }

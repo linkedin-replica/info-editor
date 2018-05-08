@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.models.CompanyReturn;
 import com.linkedin.replica.editInfo.models.UserReturn;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,7 +25,7 @@ public interface EditInfoHandler extends DatabaseHandler {
     void updateCompany(JsonObject args);
     void deleteSkill(String userId, String skill);
     void createProfile(JsonObject args);
-    void insertCompany(JsonObject args);
+    void insertCompany(JsonObject args) throws SQLException;
 
     void disconnect();
 

@@ -114,13 +114,5 @@ public class ClientMessagesTest {
         messagesReceiver.closeConnection();
         channel.close();
         connection.close();
-        // clean db
-//        arangoDb.collection(
-//                config.getArangoConfigProp("collection.companies.name")
-//        ).drop();
-//        arangoDb.collection(
-//                config.getArangoConfigProp("collection.users.name")
-//        ).drop();
-        DatabaseConnection.getInstance().closeConnections();
     }
 }

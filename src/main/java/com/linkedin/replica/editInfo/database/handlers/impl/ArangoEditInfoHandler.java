@@ -1,4 +1,7 @@
 package com.linkedin.replica.editInfo.database.handlers.impl;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.*;
 
 import com.arangodb.*;
@@ -20,6 +23,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     private ArangoDatabase dbInstance;
     private ArangoCollection collection;
     private String collectionName;
+    Connection mysqlConnection;
 
     public void connect() {
         // TODe
@@ -61,7 +65,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
 
 
     /*inserting new company*/
-    public void insertCompany(JsonObject args){
+    public void insertCompany(JsonObject args) throws SQLException {
         BaseDocument myObject = new BaseDocument();
         String companyID = UUID.randomUUID().toString();
         myObject.setKey(companyID);
@@ -87,6 +91,12 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
                         myObject.addAttribute(key,args.get(key).getAsString());
                     }
             }
+            String query = "{CALL Insert_Company(?,?,?)}";
+            CallableStatement stmt = mysqlConnection.prepareCall(query);
+            stmt.setString(1, companyID);
+            stmt.setString(2, args.get("companyName").getAsString());
+            stmt.setString(3, args.get("userId").getAsString());
+            stmt.executeQuery();
             dbInstance.collection("companies").insertDocument(myObject);
     }
 
@@ -343,10 +353,10 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
 
 
 
-    public ArangoEditInfoHandler()throws IOException {
+    public ArangoEditInfoHandler() throws IOException, SQLException {
         config = Configuration.getInstance();
-        // init db
-        ArangoDB arangoDriver = DatabaseConnection.getDBConnection().getArangoDriver();
+        mysqlConnection = DatabaseConnection.getInstance().getMysqlDriver();
+        ArangoDB arangoDriver = new ArangoDB.Builder().build();
         collectionName = config.getArangoConfigProp("collection.users.name");
         dbInstance = arangoDriver.db(config.getArangoConfigProp("db.name"));
         collection = dbInstance.collection(collectionName);
