@@ -25,10 +25,7 @@ public class InfoEditorService {
 
         Class<?> dbHandlerClass = config.getHandlerClass(commandName);
         DatabaseHandler databaseHandler = (DatabaseHandler) dbHandlerClass.newInstance();
-        Class<?> cacheHandlerClass = config.getCacheHandlerClass(commandName);
-        CacheHandler cacheHandler = (CacheHandler) cacheHandlerClass.newInstance();
         command.setDbHandler(databaseHandler);
-        command.setCacheHandler(cacheHandler);
 
         return command.execute();
     }
