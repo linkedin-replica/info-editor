@@ -1,31 +1,20 @@
 package core;
 
 import com.arangodb.ArangoDatabase;
-import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
 import com.linkedin.replica.editInfo.commands.impl.AddCvCommand;
-import com.linkedin.replica.editInfo.commands.impl.AddNewSkillCommand;
 import com.linkedin.replica.editInfo.commands.impl.DeleteCvCommand;
 import com.linkedin.replica.editInfo.commands.impl.GetUserProfileCommand;
 import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.database.DatabaseSeed;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
-import com.linkedin.replica.editInfo.models.Company;
-import com.linkedin.replica.editInfo.models.User;
-import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
-import com.linkedin.replica.editInfo.database.DatabaseConnection;
-import com.linkedin.replica.editInfo.commands.*;
-import com.linkedin.replica.editInfo.commands.Command;
-import com.linkedin.replica.editInfo.models.User;
 import com.linkedin.replica.editInfo.models.UserReturn;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,7 +22,6 @@ public class CvCommandTest{
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     static Configuration config;
-    private static JedisCacheHandler jedisCacheHandler;
     static DatabaseSeed databaseSeed;
     @BeforeClass
     public static void init() throws IOException, org.json.simple.parser.ParseException {
@@ -44,7 +32,6 @@ public class CvCommandTest{
         DatabaseConnection.init();
         config = Configuration.getInstance();
         databaseSeed = new DatabaseSeed();
-        jedisCacheHandler = new JedisCacheHandler();
         arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
@@ -66,7 +53,6 @@ public class CvCommandTest{
         args.put("cvUrl","user12URL");
         AddCvCommand command = new AddCvCommand(args);
         command.setDbHandler(arangoHandler);
-        command.setCacheHandler(jedisCacheHandler);
         response = command.execute();
         UserReturn user = arangoHandler.getUserProfile("6");
         System.out.println((UserReturn) user);
@@ -87,8 +73,6 @@ public class CvCommandTest{
         command.setDbHandler(arangoHandler);
         GetUserProfileCommand command2 = new GetUserProfileCommand(args);
         command2.setDbHandler(arangoHandler);
-        command2.setCacheHandler(jedisCacheHandler);
-        command.setCacheHandler(jedisCacheHandler);
         command.execute();
         response = command2.execute();
 

@@ -1,7 +1,6 @@
 package core;
 
 import com.arangodb.ArangoDatabase;
-import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
 import com.linkedin.replica.editInfo.commands.impl.EditProfileDetailsCommand;
 import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseSeed;
@@ -27,7 +26,6 @@ public class EditUserProfileCommandTest {
     private static ArangoDatabase arangoDb;
     static Configuration config;
     private static DatabaseSeed databaseSeed;
-    private  static JedisCacheHandler cacheEditInfoHandler;
 
 
 
@@ -40,7 +38,6 @@ public class EditUserProfileCommandTest {
         DatabaseConnection.init();
         config = Configuration.getInstance();
         databaseSeed = new DatabaseSeed();
-        cacheEditInfoHandler = new JedisCacheHandler();
         arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
@@ -61,14 +58,11 @@ public class EditUserProfileCommandTest {
         ArrayList<User> users = new ArrayList<User>();
         User user = new User();
         users.add(user);
-        cacheEditInfoHandler.saveUsersInCache(ids,users);
         Command command2 = new EditProfileDetailsCommand(args);
         command2.setDbHandler(arangoHandler);
-        command2.setCacheHandler(cacheEditInfoHandler);
         command2.execute();
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
-        command.setCacheHandler(cacheEditInfoHandler);
         response = command.execute();
         UserReturn myUser =(UserReturn) response;
         assertEquals("Expected matching first name", "Baher" , myUser.getFirstName());

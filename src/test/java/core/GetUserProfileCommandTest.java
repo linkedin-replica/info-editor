@@ -1,7 +1,6 @@
 package core;
 
 import com.arangodb.ArangoDatabase;
-import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
 import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseSeed;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
@@ -25,7 +24,6 @@ public class GetUserProfileCommandTest {
     private static ArangoDatabase arangoDb;
     private static DatabaseSeed databaseSeed;
     static Configuration config;
-    private static JedisCacheHandler jedisCacheHandler;
 
 
     @BeforeClass
@@ -37,7 +35,6 @@ public class GetUserProfileCommandTest {
         DatabaseConnection.init();
         config = Configuration.getInstance();
         databaseSeed = new DatabaseSeed();
-        jedisCacheHandler = new JedisCacheHandler();
         arangoHandler = new ArangoEditInfoHandler();
         arangoDb = DatabaseConnection.getDBConnection().getArangoDriver().db(
                 config.getArangoConfigProp("db.name")
@@ -53,7 +50,6 @@ public class GetUserProfileCommandTest {
         args.put("userId", "103");
         command = new GetUserProfileCommand(args);
         command.setDbHandler(arangoHandler);
-        command.setCacheHandler(jedisCacheHandler);
         response = command.execute();
         UserReturn myUser = (UserReturn) response;
         assertEquals("Expected matching first name", "Baher" , myUser.getFirstName());

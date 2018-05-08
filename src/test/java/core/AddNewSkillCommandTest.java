@@ -1,15 +1,12 @@
 package core;
 
 import com.arangodb.ArangoDatabase;
-import com.linkedin.replica.editInfo.cache.handlers.impl.JedisCacheHandler;
 import com.linkedin.replica.editInfo.commands.impl.AddNewSkillCommand;
 import com.linkedin.replica.editInfo.commands.impl.GetUserProfileCommand;
 import com.linkedin.replica.editInfo.config.Configuration;
 import com.linkedin.replica.editInfo.database.DatabaseConnection;
 import com.linkedin.replica.editInfo.database.DatabaseSeed;
-import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
-import com.linkedin.replica.editInfo.models.User;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.models.UserReturn;
 import org.junit.AfterClass;
@@ -28,7 +25,6 @@ public class AddNewSkillCommandTest {
     private static ArangoEditInfoHandler arangoHandler;
     private static ArangoDatabase arangoDb;
     static Configuration config;
-    private static JedisCacheHandler jedisCacheHandler;
     private static DatabaseSeed databaseSeed;
 
 
@@ -40,7 +36,6 @@ public class AddNewSkillCommandTest {
                 rootFolder + "commands.config",rootFolder+"controller.config",rootFolder+"cache.config");
         DatabaseConnection.init();
         config = Configuration.getInstance();
-        jedisCacheHandler = new JedisCacheHandler();
 
         databaseSeed = new DatabaseSeed();
         arangoHandler = new ArangoEditInfoHandler();
