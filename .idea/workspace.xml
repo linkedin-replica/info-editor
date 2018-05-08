@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f81afbf-5cf3-4052-89d8-03a274167698" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/info-editor.iml" afterPath="$PROJECT_DIR$/info-editor.iml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/CacheConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/cache/handlers/impl/JedisCacheHandler.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/CvCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/CvCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/getCompanyCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/core/getCompanyCommandTest.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/app.config" afterPath="$PROJECT_DIR$/target/classes/config/app.config" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/AddNewSkillCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/AddNewSkillCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/CreateProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/CreateProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/CvCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/CvCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/EditUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/EditUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/GetUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/GetUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/UpdateCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/UpdateCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/getCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/getCompanyCommandTest.class" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/app.config" afterPath="$PROJECT_DIR$/src/main/resources/config/app.config" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/commands.config" afterPath="$PROJECT_DIR$/src/main/resources/config/commands.config" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,55 +15,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="arango.config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditUserProfileCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/EditUserProfileCommandTest.java">
+      <file leaf-file-name="app.config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.config">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state relative-caret-position="30">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddNewSkillCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/AddNewSkillCommandTest.java">
+      <file leaf-file-name="arango.test.config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.test.config">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-408">
-              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArangoHandlerTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/ArangoHandlerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="110" column="34" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="188" selection-end-column="3" />
-              <folding>
-                <marker date="1525394706000" expanded="false" signature="3308:3316" ph="&lt;~&gt;" />
-                <marker date="1525394706000" expanded="false" signature="3471:3486" ph="&lt;~&gt;" />
-                <marker date="1525394706000" expanded="false" signature="4659:4675" ph="&lt;~&gt;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateProfileCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/CreateProfileCommandTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -107,6 +65,36 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="database_auth" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/database_auth">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller.config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/controller.config">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commands.config" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/commands.config">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-190">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="RemoveSkillCommandTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -117,22 +105,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateCompanyCommandTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UpdateCompanyCommandTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-653">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CvCommandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/core/CvCommandTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="74" column="45" lean-forward="false" selection-start-line="74" selection-start-column="45" selection-end-line="74" selection-end-column="45" />
-              <folding />
+            <state relative-caret-position="172">
+              <caret line="58" column="66" lean-forward="true" selection-start-line="58" selection-start-column="66" selection-end-line="58" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -157,7 +137,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetCompanyProfileCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/AddNewSkillCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/commands.config" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Position.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/UserReturn.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/LightUser.java" />
@@ -180,6 +159,8 @@
         <option value="$PROJECT_DIR$/src/test/java/core/GetUserProfileCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/RemoveSkillCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/app.config" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/commands.config" />
       </list>
     </option>
   </component>
@@ -546,13 +527,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/UserReturn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="22" column="29" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Position.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -800,46 +774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/database_auth">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/controller.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/commands.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.test.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/cache.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -942,8 +876,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/core/UpdateCompanyCommandTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-653">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="172">
+          <caret line="58" column="66" lean-forward="true" selection-start-line="58" selection-start-column="66" selection-end-line="58" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/controller.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/database_auth">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.test.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/commands.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-190">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
