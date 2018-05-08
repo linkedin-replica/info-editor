@@ -1,0 +1,57 @@
+let notifications_seed = [
+  {
+    "_key": "1",
+    "notificationId": "1",
+    "userId": "1",
+    "text": "Not 1",
+    "link": "Link 1",
+    "read": true,
+    "timestamp": 12312312312
+  },
+  {
+    "_key": "2",
+    "notificationId": "2",
+    "userId": "1",
+    "text": "Not 2",
+    "link": "Link 2",
+    "read": false,
+    "timestamp": 1231431231
+  },
+  {
+    "_key": "3",
+    "notificationId": "3",
+    "userId": "1",
+    "text": "Not 3",
+    "link": "Link 3",
+    "read": false,
+    "timestamp": 1231531231
+  },
+  {
+    "_key": "4",
+    "notificationId": "4",
+    "userId": "2",
+    "text": "Not 4",
+    "link": "Link 4",
+    "read": false,
+    "timestamp": 1231231231
+  },
+  {
+    "_key": "5",
+    "notificationId": "5",
+    "userId": "2",
+    "text": "Not 5",
+    "link": "Link 5",
+    "read": false,
+    "timestamp": 1231241231
+  },
+  {
+    "_key": "6",
+    "notificationId": "6",
+    "userId": "3",
+    "text": "Not 6",
+    "link": "Link 6",
+    "read": false,
+    "timestamp": 1231231231
+  }
+]
+for notif in notifications_seed insert notif in notifications

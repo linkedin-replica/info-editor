@@ -1,0 +1,34 @@
+let replies_seed = [
+  {
+    "_key": "1",
+    "replyId": "1",
+    "authorId": "3",
+    "parentPostId": "1",
+    "parentCommentId": "1",
+    "text": "This is reply 1",
+    "timestamp": 12312321312,
+    "likers" : ["3"]
+  },
+  {
+    "_key": "2",
+    "replyId": "2",
+    "authorId": "1",
+    "parentPostId": "1",
+    "parentCommentId": "1",
+    "text": "This is reply 2",
+    "timestamp": 1231232312,
+    "likers" : []
+  },
+  {
+    "_key": "3",
+    "replyId": "3",
+    "authorId": "4",
+    "parentPostId": "2",
+    "parentCommentId": "3",
+    "text": "This is reply 3",
+    "timestamp": 12312321212,
+    "likers" : []
+  }
+]
+
+for reply in replies_seed insert reply in replies

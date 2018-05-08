@@ -1,24 +1,22 @@
 package com.linkedin.replica.editInfo.models;
 
 public class Position {
+
+
     private String title;
     private  String summary;
-    private String startDate;
-    private String endDate;
+    private long startDate;
+    private long endDate;
     private  boolean isCurrent;
-    private String companyName;
-    private String companyID;
-
+    private String companyId;
     public Position(){};
-
-    public Position(String title, String summary, String startDate, String endDate, boolean isCurrent, String companyName, String companyID) {
+    public Position(String title, String summary, long startDate, long endDate, boolean isCurrent, String companyName, String companyID) {
         this.title = title;
         this.summary = summary;
         this.startDate = startDate;
         this.endDate = endDate;
         this.isCurrent = isCurrent;
-        this.companyName = companyName;
-        this.companyID = companyID;
+        this.companyId = companyID;
     }
 
     public String getTitle() {
@@ -29,11 +27,11 @@ public class Position {
         return summary;
     }
 
-    public String getStartDate() {
+    public long getStartDate() {
         return startDate;
     }
 
-    public String getEndDate() {
+    public long getEndDate() {
         return endDate;
     }
 
@@ -41,20 +39,12 @@ public class Position {
         return isCurrent;
     }
 
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
 
     public String getCompanyID() {
-        return companyID;
+        return companyId;
     }
-
     public void setCompanyID(String companyID) {
-        this.companyID = companyID;
+        this.companyId = companyID;
     }
 
     public void setTitle(String title) {
@@ -65,11 +55,11 @@ public class Position {
         this.summary = summary;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(long startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(long endDate) {
         this.endDate = endDate;
     }
 

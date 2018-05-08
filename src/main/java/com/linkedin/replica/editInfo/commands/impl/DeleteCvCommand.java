@@ -1,8 +1,9 @@
 package com.linkedin.replica.editInfo.commands.impl;
+import com.google.gson.JsonObject;
 import com.linkedin.replica.editInfo.commands.Command;
 import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 import com.linkedin.replica.editInfo.database.handlers.impl.ArangoEditInfoHandler;
-import database.DatabaseHandler;
+import com.linkedin.replica.editInfo.database.handlers.EditInfoHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,15 +15,12 @@ public class DeleteCvCommand extends Command{
         super(args);
     }
 
-    public Object execute() throws IOException {
+    public Object execute() {
         validateArgs(new String[]{"userId"});
-        // get notifications from db
+        JsonObject request = (JsonObject)args.get("request");
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        validateArgs(new String[]{"userId"});
-        dbHandler.deleteCV((String)args.get("userId"));
-
-
-        return true;
+        dbHandler.deleteCV(request.get("userId").getAsString());
+        return null;
     }
 
 }

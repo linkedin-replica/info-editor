@@ -3,29 +3,30 @@ package com.linkedin.replica.editInfo.models;
 import java.util.ArrayList;
 
 public class Company {
-    private String companyName;
-    private String companyProfilePicture;
-    private String companyID;
-    private String adminUserName;
-    private String adminUserID;
-    private String industryType;
-    private String companyLocation;
-    private String companytype;
-    private ArrayList<String> posts;
-    private ArrayList<String> jobListings;
+    private String _key;
+    public String companyName;
+    public String companyProfilePicture;
+    public String companyId;
+    public String adminUserName;
+    public String userId;
+    public String industryType;
+    public String companyLocation;
+    public String companytype;
+    String aboutUs;
+    public ArrayList<String> posts;
+    public ArrayList<String> jobListings;
+    public ArrayList<String> Posts;
+    public ArrayList<String> joblistings;
     public Company(String companyName,String companyID,String companyProfilePicture,String adminUserName,String adminUserID,
                    String industryType,String companyLocation,String companytype,ArrayList<String>posts,ArrayList<String> JobListings) {
         this.companyName = companyName;
         this.adminUserName=adminUserName;
-        this.companyID = companyID;
+        this.companyId = companyID;
         this.companyProfilePicture = companyProfilePicture;
-        this.adminUserID = adminUserID;
+        this.userId = adminUserID;
         this.industryType = industryType;
         this.companyLocation = companyLocation;
         this.companytype = companytype;
-        this.posts =posts;
-        this.jobListings = JobListings;
-
     }
     public Company(){
     }
@@ -43,7 +44,7 @@ public class Company {
     }
 
     public void setAdminUserID(String adminUserID) {
-        this.adminUserID = adminUserID;
+        this.userId = adminUserID;
     }
 
 
@@ -61,21 +62,17 @@ public class Company {
     }
 
 
-    public void updatePosts(ArrayList<String> posts) {
-        this.posts.addAll(posts);
-    }
-    public void updateJobListings(ArrayList<String> jobListings){
-            this.jobListings.addAll(jobListings);
-        }
-    public void setPosts(ArrayList<String>posts){
+
+
+    public void setPosts(ArrayList<String >posts){
         this.posts = posts;
     }
     public void setCompanyID(String companyID) {
-        this.companyID = companyID;
+        this.companyId = companyID;
     }
 
     public String getCompanyID() {
-        return companyID;
+        return companyId;
     }
 
     public String getCompanytype() {
@@ -91,6 +88,10 @@ public class Company {
         return companyName;
     }
 
+    public ArrayList<String> getPosts() {
+        return posts;
+    }
+
     public String getCompanyProfilePicture() {
         return companyProfilePicture;
     }
@@ -100,7 +101,7 @@ public class Company {
     }
 
     public String getAdminUserID() {
-        return adminUserID;
+        return userId;
     }
 
 
@@ -112,12 +113,4 @@ public class Company {
         return companyLocation;
     }
 
-
-    public ArrayList<String> getPosts() {
-        return posts;
-    }
-
-    public ArrayList<String> getJobListings() {
-        return jobListings;
-    }
 }

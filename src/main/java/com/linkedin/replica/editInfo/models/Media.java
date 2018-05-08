@@ -6,7 +6,8 @@ public class Media {
     private ArrayList<String> images;
     private ArrayList<String> videos;
     private ArrayList<String> urls;
-
+public  Media(){
+}
     public void setImages(ArrayList<String> images) {
         this.images = images;
     }

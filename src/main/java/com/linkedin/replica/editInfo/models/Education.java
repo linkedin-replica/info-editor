@@ -6,14 +6,13 @@ public class Education {
     private String startDate;
     private String endDate;
     private String degree;
-
+    private boolean isCurrent ;
     public  Education(){};
 
     public Education(String schoolName, String fieldOfStudy, String startDate, String endDate, String degree) {
         this.schoolName = schoolName;
         this.fieldOfStudy = fieldOfStudy;
         this.startDate = startDate;
-        this.endDate = endDate;
         this.degree = degree;
     }
 

@@ -1,0 +1,43 @@
+let posts_seed = [
+  {
+    "_key": "1",
+    "authorId": "12",
+    "postId": "1",
+    "isCompanyPost": true,
+    "text": "How to calculate LCA with LCM?",
+    "images": ["linkedin.com/111.png", "linkedin.com/112.png"],
+    "videos": [],
+    "commentsCount": "1",
+    "timestamp": 1651334654,
+    "isArticle": false,
+    "likers": ["4", "3"]
+  },
+  {
+    "_key": "2",
+    "authorId": "1",
+    "postId": "2",
+    "isCompanyPost": false,
+    "text": "This is sooooooooooooo boring",
+    "images": ["linkedin.com/1231.png"],
+    "videos": [],
+    "commentsCount": "2",
+    "timestamp": 1651334654,
+    "isArticle": false,
+    "likers": ["1", "2"]
+  },
+  {
+    "_key": "3",
+    "authorId": "2",
+    "postId": "3",
+    "isCompanyPost": false,
+    "text": "Another boring post",
+    "images": [],
+    "videos": ["linkedin.com/avideo.com"],
+    "commentsCount": "0",
+    "timestamp": 1651334654,
+    "isArticle": false,
+    "likers": []
+  }
+]
+
+for post in posts_seed insert post in posts

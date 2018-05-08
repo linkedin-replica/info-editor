@@ -20,7 +20,8 @@ public class ClientMessagesReceiver {
     private InfoEditorService infoEditorService = new InfoEditorService();
     private final String QUEUE_NAME = configuration.getAppConfigProp("rabbitmq.queue.client");
     private final String RABBIT_MQ_IP = configuration.getAppConfigProp("rabbitmq.ip");
-
+    private final String RABBIT_MQ_USERNAME = configuration.getAppConfigProp("rabbitmq.username");
+    private final String RABBIT_MQ_PASSWORD = configuration.getAppConfigProp("rabbitmq.password");
     private ConnectionFactory factory;
     private Channel channel;
     private Connection connection;
@@ -28,9 +29,12 @@ public class ClientMessagesReceiver {
 
     public ClientMessagesReceiver() throws IOException, TimeoutException {
         factory = new ConnectionFactory();
+        factory.setUsername(RABBIT_MQ_USERNAME);
+        factory.setPassword(RABBIT_MQ_PASSWORD);
         factory.setHost(RABBIT_MQ_IP);
         connection = factory.newConnection();
         channel = connection.createChannel();
+
 
         // Create queue if not exists
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
@@ -52,11 +56,8 @@ public class ClientMessagesReceiver {
                 // Extract the request arguments
                 JsonObject object = new JsonParser().parse(new String(body)).getAsJsonObject();
                 String commandName = object.get("commandName").getAsString();
-                HashMap<String, Object> args = new HashMap<String,Object>();
-                for(String key: object.keySet())
-                    if(!key.equals("commandName"))
-                        args.put(key, object.get(key).getAsString());
-
+                HashMap<String, Object> args = new HashMap<>();
+                args.put("request",object);
                 // Call the service and form the response
                 LinkedHashMap<String, Object> response = new LinkedHashMap<String,Object>();
                 try {
