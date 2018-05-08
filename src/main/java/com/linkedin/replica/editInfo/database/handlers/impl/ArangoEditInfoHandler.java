@@ -356,7 +356,7 @@ public class ArangoEditInfoHandler implements EditInfoHandler {
     public ArangoEditInfoHandler() throws IOException, SQLException {
         config = Configuration.getInstance();
         mysqlConnection = DatabaseConnection.getInstance().getMysqlDriver();
-        ArangoDB arangoDriver = new ArangoDB.Builder().build();
+        ArangoDB arangoDriver = DatabaseConnection.getInstance().getArangoDriver();
         collectionName = config.getArangoConfigProp("collection.users.name");
         dbInstance = arangoDriver.db(config.getArangoConfigProp("db.name"));
         collection = dbInstance.collection(collectionName);

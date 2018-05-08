@@ -1,4 +1,4 @@
-db.name=Linkedin
+db.name=linkedin
 collection.users.name=users
 collection.companies.name=companies
 collection.jobs.name=jobs
