@@ -25,7 +25,7 @@ public class GetUserProfileCommand extends Command {
             return user;
         }
         EditInfoHandler dbHandler = (EditInfoHandler) this.dbHandler;
-        if (args.containsKey("profileId"))
+        if (request.has("profileId"))
             user = dbHandler.getUserProfile(request.get("profileId").getAsString());
         else
             user = dbHandler.getUserProfile(request.get("userId").getAsString());

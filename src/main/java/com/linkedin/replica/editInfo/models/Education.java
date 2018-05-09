@@ -3,13 +3,13 @@ package com.linkedin.replica.editInfo.models;
 public class Education {
     private String schoolName;
     private String fieldOfStudy;
-    private String startDate;
-    private String endDate;
+    private long startDate;
+    private long endDate;
     private String degree;
     private boolean isCurrent ;
     public  Education(){};
 
-    public Education(String schoolName, String fieldOfStudy, String startDate, String endDate, String degree) {
+    public Education(String schoolName, String fieldOfStudy, long startDate, long endDate, String degree) {
         this.schoolName = schoolName;
         this.fieldOfStudy = fieldOfStudy;
         this.startDate = startDate;
@@ -24,11 +24,11 @@ public class Education {
         return fieldOfStudy;
     }
 
-    public String getStartDate() {
+    public long getStartDate() {
         return startDate;
     }
 
-    public String getEndDate() {
+    public long getEndDate() {
         return endDate;
     }
 
@@ -44,11 +44,11 @@ public class Education {
         this.fieldOfStudy = fieldOfStudy;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(long startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(long endDate) {
         this.endDate = endDate;
     }
 
