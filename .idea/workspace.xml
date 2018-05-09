@@ -2,40 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f81afbf-5cf3-4052-89d8-03a274167698" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/info-editor.iml" afterPath="$PROJECT_DIR$/info-editor.iml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Education.java" afterPath="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Education.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/app.config" afterPath="$PROJECT_DIR$/src/main/resources/config/app.config" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config/arango.config" afterPath="$PROJECT_DIR$/src/main/resources/config/arango.config" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/arango.test.config" afterPath="$PROJECT_DIR$/src/main/resources/config/arango.test.config" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/arango_names" afterPath="$PROJECT_DIR$/src/main/resources/config/arango_names" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/database_auth" afterPath="$PROJECT_DIR$/src/main/resources/config/database_auth" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/Command.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/Command.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/commands/impl/AddCompanyCommand.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/config/Configuration.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/config/Configuration.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/DatabaseConnection.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/DatabaseConnection.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/DatabaseSeed.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/DatabaseSeed.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/EditInfoHandler.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/main/Main.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/main/Main.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/services/InfoEditorService.class" afterPath="$PROJECT_DIR$/target/classes/com/linkedin/replica/editInfo/services/InfoEditorService.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/app.config" afterPath="$PROJECT_DIR$/target/classes/config/app.config" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/arango.config" afterPath="$PROJECT_DIR$/target/classes/config/arango.config" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/arango.test.config" afterPath="$PROJECT_DIR$/target/classes/config/arango.test.config" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/arango_names" afterPath="$PROJECT_DIR$/target/classes/config/arango_names" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config/database_auth" afterPath="$PROJECT_DIR$/target/classes/config/database_auth" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/AddCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/AddCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/AddNewSkillCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/AddNewSkillCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/CreateProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/CreateProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/CvCommandTest.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/EditUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/EditUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/GetUserProfileCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/GetUserProfileCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/InfoEditorServiceTest.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/UpdateCompanyCommandTest.class" afterPath="$PROJECT_DIR$/target/test-classes/core/UpdateCompanyCommandTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/getCompanyCommandTest.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/messaging/ClientMessagesTest.class" afterPath="$PROJECT_DIR$/target/test-classes/messaging/ClientMessagesTest.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="arango.config" pinned="false" current-in-tab="false">
+      <file leaf-file-name="arango.config" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="48">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,17 +58,17 @@
       <file leaf-file-name="ArangoEditInfoHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="287" column="9" lean-forward="false" selection-start-line="287" selection-start-column="9" selection-end-line="287" selection-end-column="9" />
+            <state relative-caret-position="8424">
+              <caret line="375" column="5" lean-forward="false" selection-start-line="375" selection-start-column="5" selection-end-line="375" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Education.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Education.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Education.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
+            <state relative-caret-position="768">
               <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
               <folding />
             </state>
@@ -199,10 +167,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/DatabaseConnection.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/database_auth" />
         <option value="$PROJECT_DIR$/src/main/resources/config/arango_names" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/arango.config" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/commands/impl/GetUserProfileCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Education.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/arango.config" />
       </list>
     </option>
   </component>
@@ -590,8 +558,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35053763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35053763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24654505" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1004,14 +972,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/DatabaseConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
@@ -1052,18 +1012,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Education.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="287" column="9" lean-forward="false" selection-start-line="287" selection-start-column="9" selection-end-line="287" selection-end-column="9" />
+        <state relative-caret-position="768">
+          <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/models/Education.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/linkedin/replica/editInfo/database/handlers/impl/ArangoEditInfoHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+        <state relative-caret-position="8424">
+          <caret line="375" column="5" lean-forward="false" selection-start-line="375" selection-start-column="5" selection-end-line="375" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/arango.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
